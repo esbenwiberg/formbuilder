@@ -19,7 +19,7 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Lists',
+  title: 'Property groupings',
   component: FormBuilder,
   parameters: {
     docs: {
@@ -28,4 +28,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SimpleList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...tabGroupRenderOptions} />;
+export const TabGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...tabGroupRenderOptions} />;
