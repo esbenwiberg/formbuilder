@@ -1,0 +1,41 @@
+.formbuilder-property {
+  padding-bottom: 10px;
+  /* width: 400px; */
+}
+
+.ms-Panel-footer {
+  background-color: white;
+}
+
+/* .formbuilder-editorpanel-header {
+  padding-bottom: 30px;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-self: flex-start;
+  flex-grow: 1;
+}
+
+.formbuilder-editorpanel-headertext {
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(50, 49, 48);
+  line-height: 27px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.formbuilder-editorpanel-saveicon {
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.formbuilder-editorpanel-footer {
+  flex-shrink: 0;
+  border-top: 1px solid rgb(237, 235, 233);
+  transition: opacity 0.367s cubic-bezier(0.1, 0.25, 0.75, 0.9) 0s;
+  background: rgb(255, 255, 255);
+} */
+

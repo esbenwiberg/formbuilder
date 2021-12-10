@@ -1,0 +1,67 @@
+{
+  "name": "formbuilder",
+  "version": "0.0.1",
+  "description": "A builder of forms",
+  "main": "dist/index",
+  "types": "dist/types",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "rollup --config ./rollup.config.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "commit": "cz",
+    "postinstall": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/esbenwiberg/formbuilder"
+  },
+  "keywords": [
+    "forms",
+    "react",
+    "fluent"
+  ],
+  "author": "Esben Wiberg",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@fluentui/react": "^8.32.0",
+    "@mdx-js/rollup": "^2.0.0-rc.1",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.1.0",
+    "@storybook/addon-actions": "^6.4.4",
+    "@storybook/addon-essentials": "^6.4.4",
+    "@storybook/addon-links": "^6.4.4",
+    "@storybook/addon-storysource": "^6.4.8",
+    "@storybook/react": "^6.4.4",
+    "@types/node": "^14.14.21",
+    "@types/react": "^16.8.25",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
+    "babel-loader": "^8.2.3",
+    "commitizen": "^4.2.4",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.2.1",
+    "rollup": "^2.36.2",
+    "rollup-plugin-css-bundle": "^1.0.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "typescript": "^4.5.2"
+  },
+  "peerDependencies": {
+    "@fluentui/react": ">=8.0.0",
+    "@types/react": ">=16.8.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
+}
