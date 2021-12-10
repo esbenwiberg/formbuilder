@@ -1,21 +1,20 @@
-
-import { IFormItemOptions } from "../../../formbuilder/models/options/IFormItemOptions";
-import { IFormSchema } from "../../../formbuilder/models/schema/IFormSchema";
-import { SchemaProvider } from "../../../formbuilder/models/schema/ISchemaProvider";
-import { ValidationEventType } from "../../../formbuilder/models/validation/ValidationEventType";
-import { ValidationMark } from "../../../formbuilder/models/validation/ValidationMark";
-import { IFormItem } from "../../../formbuilder/modules/IFormItem";
-import { PropertyGroupOptionsFactory } from "../../../formbuilder/utils/PropertyGroupOptionsFactory";
-import { PropertyOptionsFactory } from "../../../formbuilder/utils/PropertyOptionsFactory";
+import { IFormItemOptions } from "../../../../formbuilder/models/options/IFormItemOptions";
+import { IFormSchema } from "../../../../formbuilder/models/schema/IFormSchema";
+import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaProvider";
+import { ValidationEventType } from "../../../../formbuilder/models/validation/ValidationEventType";
+import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
+import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
 import { MyTabGroupedFormItem } from "./MyGroupedFormItem";
+import { PropertyGroupOptionsFactory } from "../../../../formbuilder/utils/PropertyGroupOptionsFactory";
+import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 
 export class MyTabGroupedFormItemSchemaProvider extends SchemaProvider<MyTabGroupedFormItem> {
 
-    public override key = "MyTabGroupedFormItem";
-    public override itemType = () => MyTabGroupedFormItem
+    public key = "MyTabGroupedFormItem";
+    public itemType = () => MyTabGroupedFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        var schema: IFormSchema<MyTabGroupedFormItem> = {
+        const schema: IFormSchema<MyTabGroupedFormItem> = {
             options: {
                 groups: {
                     groupOne: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Group 1", groupProps: { collapsed: false } }),

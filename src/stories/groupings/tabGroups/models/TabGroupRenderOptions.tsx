@@ -1,4 +1,4 @@
-import { IFormBuilderProps } from "../../../formbuilder/components/FormBuilder";
+import { IFormBuilderProps } from "../../../../formbuilder/components/FormBuilder";
 import { MyTabGroupedFormItem } from "./MyGroupedFormItem";
 import { MyTabGroupContainer, myTabGroupRender } from "./MyTabGroupRender";
 

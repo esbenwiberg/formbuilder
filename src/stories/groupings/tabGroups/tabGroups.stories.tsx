@@ -3,12 +3,12 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { simpleListFormOptions } from './models/SimpleListFormOptions';
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
 import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
-import simpleListDocs from './simpleListDocs.mdx';
+import tabGroupsDocs from './tabGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
+import { tabGroupRenderOptions } from './models/TabGroupRenderOptions';
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())
@@ -23,9 +23,9 @@ export default {
   component: FormBuilder,
   parameters: {
     docs: {
-      page: simpleListDocs,
+      page: tabGroupsDocs,
     },
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SimpleList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...simpleListFormOptions} />;
+export const SimpleList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...tabGroupRenderOptions} />;
