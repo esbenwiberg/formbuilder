@@ -1,8 +1,8 @@
 import { INavLink, INavLinkGroup, INavStyles, Nav, Stack } from "@fluentui/react";
 import { FunctionComponent, useEffect, useState } from "react";
-import { IFormGrouping } from "../../../formbuilder/interfaces/IFormGrouping";
 import { BuildTrees } from "./TreeBuilder";
 import React from "react";
+import { IFormGrouping } from "../../../../formbuilder/interfaces/IFormGrouping";
 
 const navStyles: Partial<INavStyles> = {
     root: {

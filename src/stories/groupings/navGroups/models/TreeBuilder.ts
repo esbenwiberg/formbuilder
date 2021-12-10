@@ -5,17 +5,17 @@ const JoinToString = (array: Array<any>, seperator: string, property?: string): 
     return array.map(_ => property ? _[property] : _).join(seperator);
 }
 
-export const BuildTrees = <T>(paths: Array<any>, nameProp: string = "Name", pathProp: string = "Path", childrenProp: string = "Children", alterItem?: (item: T) => void) : Array<T> => {
-    let result: Array<T> = [];
-    let level = { result };
+export const BuildTrees = <T>(paths: Array<any>, nameProp = "Name", pathProp = "Path", childrenProp = "Children", alterItem?: (item: T) => void) : Array<T> => {
+    const result: Array<T> = [];
+    const level = { result };
 
     paths.forEach(path => {
-        let splits = [...path.split('|')];
+        const splits = [...path.split('|')];
         splits.reduce((r, name, i, a) => {
             if(!r[name]) {
                 r[name] = {result: []};
-                let pathStr = JoinToString(splits.slice(0, i + 1), "|");
-                let obj = {} as any as T;
+                const pathStr = JoinToString(splits.slice(0, i + 1), "|");
+                const obj = {} as any as T;
                 (obj as any)[nameProp] = name;
                 (obj as any)[pathProp] = pathStr;
                 (obj as any)[childrenProp] = r[name].result;

@@ -1,4 +1,4 @@
-import { IFormItem } from "../../../formbuilder/modules/IFormItem";
+import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
 import { MyNavGroupedFormItemSchemaProvider } from "./MyTabGroupedFormItemSchemaProvider";
 
 @IFormItem.register(MyNavGroupedFormItemSchemaProvider)

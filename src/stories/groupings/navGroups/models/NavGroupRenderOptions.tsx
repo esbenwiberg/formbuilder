@@ -1,4 +1,4 @@
-import { IFormBuilderProps } from "../../../formbuilder/components/FormBuilder";
+import { IFormBuilderProps } from "../../../../formbuilder/components/FormBuilder";
 import { MyNavGroupedFormItem } from "./MyNavGroupedFormItem";
 import { MyNavGroupContainer, myNavGroupRender } from "./MyNavGroupRender";
 
