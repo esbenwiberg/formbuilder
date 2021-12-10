@@ -1,4 +1,4 @@
-// simpleList.stories.ts|tsx
+// fullList.stories.ts|tsx
 
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
