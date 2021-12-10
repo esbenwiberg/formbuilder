@@ -24,16 +24,16 @@ export const MyNavGroupContainer: FunctionComponent<IProps> = props => {
 
     const buildNavLinks = (): INavLink[] => {
         
-        let groupNames = props.groupings.map(_ => _.displayName);
+        const groupNames = props.groupings.map(_ => _.displayName);
         // expand initial selected groups
-        let alterItem = (item: INavLink) => (item.isExpanded = selectedKey?.startsWith(item.key as string));
+        const alterItem = (item: INavLink) => (item.isExpanded = selectedKey?.startsWith(item.key as string));
 
         let groups = BuildTrees<INavLink>(groupNames, 'name', 'key', 'links', alterItem);
         return groups;
     }
 
     useEffect(() => {
-        let links = buildNavLinks();
+        const links = buildNavLinks();
         setNavLinks(links);
     }, [props.groupings])
 
@@ -53,7 +53,7 @@ export const MyNavGroupContainer: FunctionComponent<IProps> = props => {
                 />
             <div style={{position: "relative", top: "-170px", left: "400px" }}>
                 <Stack tokens={{ childrenGap: 8 }} key="askjrlfd">
-                    { (props.children as Array<JSX.Element>).filter(_ => _.props["data-groupname"].startsWith(selectedKey)) }
+                    { (props.children as Array<JSX.Element>).filter(_ => _.props["data-groupname"]?.startsWith(selectedKey)) }
                 </Stack>
             </div>
         </div>
