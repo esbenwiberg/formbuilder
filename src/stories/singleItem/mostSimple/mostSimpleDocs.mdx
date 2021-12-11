@@ -17,16 +17,14 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItem> {
     public itemType = () => MyFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyFormItem> = {
+        return {
             options: {
                 properties: {
                     name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
                     age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
                 } 
             } as IFormItemOptions<MyFormItem>
-        }
-
-        return schema as IFormSchema<IFormItem>;
+        } as IFormSchema<IFormItem>;
     }
 }
 ```
