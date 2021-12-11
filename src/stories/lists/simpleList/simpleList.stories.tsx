@@ -9,6 +9,9 @@ import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuil
 import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
 import simpleListDocs from './simpleListDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
+import { initializeIcons } from '@fluentui/react';
+
+initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())

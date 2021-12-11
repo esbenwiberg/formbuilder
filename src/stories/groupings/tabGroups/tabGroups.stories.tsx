@@ -9,6 +9,9 @@ import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/Compl
 import tabGroupsDocs from './tabGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { tabGroupRenderOptions } from './models/TabGroupRenderOptions';
+import { initializeIcons } from '@fluentui/react';
+
+initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())

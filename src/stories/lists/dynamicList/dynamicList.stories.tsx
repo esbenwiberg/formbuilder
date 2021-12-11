@@ -9,6 +9,9 @@ import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/Compl
 import dynamicListDocs from '../dynamicList/dynamicListDocs.mdx';
 import { dynamicListFormOptions } from './models/DynamicListFormOptions';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
+import { initializeIcons } from '@fluentui/react';
+
+initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())

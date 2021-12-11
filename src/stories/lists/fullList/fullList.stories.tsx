@@ -9,6 +9,9 @@ import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/Compl
 import fullListDocs from '../fullList/fullListDocs.mdx';
 import { fullListFormOptions } from './models/FullListFormOptions';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
+import { initializeIcons } from '@fluentui/react';
+
+initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())

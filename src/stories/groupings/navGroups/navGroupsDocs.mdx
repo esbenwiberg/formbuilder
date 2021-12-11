@@ -60,7 +60,7 @@ export const MyNavGroupContainer: FunctionComponent<IProps> = props => {
                     // initialSelectedKey={ undefined }
                     selectedKey={ selectedKey }
                 />
-            <div style={{position: "relative", top: "-170px", left: "400px" }}>
+            <div style={{position: "relative", top: "-130px", left: "400px" }}>
                 <Stack tokens={{ childrenGap: 8 }} key="askjrlfd">
                     { (props.children as Array<JSX.Element>).filter(_ => _.props["data-groupname"].startsWith(selectedKey)) }
                 </Stack>

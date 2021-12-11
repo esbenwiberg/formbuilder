@@ -7,11 +7,11 @@ import { MyIdValueListFormItem } from "./MyIdValueListFormItem";
 
 export class MyIdValueListFormItemSchemaProvider extends SchemaProvider<MyIdValueListFormItem> {
 
-    public override key = "MySimplteListFormItem";
-    public override itemType = () => MyIdValueListFormItem
+    public key = "MySimplteListFormItem";
+    public itemType = () => MyIdValueListFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        var schema: IFormSchema<MyIdValueListFormItem> = {
+        const schema: IFormSchema<MyIdValueListFormItem> = {
             options: {
                 properties: {
                     name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),

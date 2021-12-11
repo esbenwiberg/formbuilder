@@ -9,6 +9,10 @@ import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/Compl
 import navGroupsDocs from './navGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { navGroupRenderOptions } from './models/NavGroupRenderOptions';
+import { initializeIcons } from '@fluentui/react';
+
+initializeIcons(/* optional base url */);
+
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())
