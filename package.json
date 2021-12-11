@@ -1,6 +1,6 @@
 {
   "name": "fluentui-formbuilder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A builder of forms using fluentui",
   "main": "dist/index",
   "types": "dist/types",
@@ -20,7 +20,7 @@
   },
   "config": {
     "commitizen": {
-        "path": "node_modules/cz-customizable"
+      "path": "node_modules/cz-customizable"
     },
     "cz-customizable": {
       "config": "cz-config.js"
