@@ -20,8 +20,8 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItem> {
         return {
             options: {
                 properties: {
-                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
-                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
+                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age" }),
                 } 
             } as IFormItemOptions<MyFormItem>
         } as IFormSchema<IFormItem>;
