@@ -11,8 +11,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "commit": "cz",
+    "release": "standard-version",
     "postinstall": "husky install",
-    "release": "standard-version"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
