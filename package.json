@@ -12,8 +12,7 @@
     "build-storybook": "build-storybook",
     "commit": "cz",
     "release": "standard-version",
-    "postinstall": "husky install",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,10 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+        "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "cz-config.js"
     }
   },
   "keywords": [

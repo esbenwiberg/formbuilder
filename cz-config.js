@@ -36,7 +36,7 @@ module.exports = {
 
     scopes: [{ name: "formbuilder" }, { name: "docs" }, { name: "misc" }],
 
-    allowCustomScopes: true,
+    // allowCustomScopes: true,
     allowBreakingChanges: ["feat", "fix", "perf", "refactor"],
 
     // askForBreakingChangeFirst: true,
