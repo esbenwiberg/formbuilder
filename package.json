@@ -11,11 +11,17 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "commit": "cz",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/esbenwiberg/formbuilder"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "keywords": [
     "forms",
@@ -45,6 +51,7 @@
     "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
     "commitlint-config-gitmoji": "^2.2.5",
+    "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
