@@ -1,7 +1,7 @@
 {
-  "name": "formbuilder",
+  "name": "fluentui-formbuilder",
   "version": "0.0.1",
-  "description": "A builder of forms",
+  "description": "A builder of forms using fluentui",
   "main": "dist/index",
   "types": "dist/types",
   "scripts": {
@@ -56,6 +56,7 @@
     "rollup-plugin-css-bundle": "^1.0.4",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
+    "standard-version": "^9.3.2",
     "typescript": "^4.5.2"
   },
   "dependencies": {
@@ -63,8 +64,5 @@
     "@types/react": ">=16.8.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
-  },
-  "peerDependencies": {
-
   }
 }
