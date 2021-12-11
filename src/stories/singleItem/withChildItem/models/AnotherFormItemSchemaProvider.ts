@@ -1,10 +1,10 @@
-import { IFormItemOptions } from "../../formbuilder/models/options/IFormItemOptions";
-import { IFormSchema } from "../../formbuilder/models/schema/IFormSchema";
-import { SchemaProvider } from "../../formbuilder/models/schema/ISchemaProvider";
-import { ValidationEventType } from "../../formbuilder/models/validation/ValidationEventType";
-import { ValidationMark } from "../../formbuilder/models/validation/ValidationMark";
-import { IFormItem } from "../../formbuilder/modules/IFormItem";
-import { PropertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
+import { IFormItemOptions } from "../../../../formbuilder/models/options/IFormItemOptions";
+import { IFormSchema } from "../../../../formbuilder/models/schema/IFormSchema";
+import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaProvider";
+import { ValidationEventType } from "../../../../formbuilder/models/validation/ValidationEventType";
+import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
+import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
+import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import { AnotherFormItem } from "./AnotherFormItem";
 
 

@@ -6,7 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
 import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
-import fullListDocs from '../fullList/fullListDocs.mdx';
+import fullListDocs from './fullListDocs.mdx';
 import { fullListFormOptions } from './models/FullListFormOptions';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';

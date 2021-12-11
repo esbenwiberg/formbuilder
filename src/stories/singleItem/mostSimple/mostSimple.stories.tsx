@@ -1,17 +1,20 @@
-// dynamicList.stories.ts|tsx
+// mostSimple.stories.ts|tsx
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
 import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
-import dynamicListDocs from './dynamicListDocs.mdx';
-import { dynamicListFormOptions } from './models/DynamicListFormOptions';
+import mostSimpleDocs from './mostSimpleDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
-import { initializeIcons } from '@fluentui/react';
+import { DefaultButton, initializeIcons, Label, PrimaryButton } from '@fluentui/react';
+import { FormRef } from '../../../formbuilder/components/Form';
+import { PluginFormItem } from '../../lists/dynamicList/models/PluginFormItem';
+import { simpleFormItemOptions } from './models/FormItemOptions';
 
 initializeIcons(/* optional base url */);
+
 
 formbuilder.initialize()
     .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())
@@ -22,13 +25,22 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Lists',
+  title: 'Single item',
   component: FormBuilder,
   parameters: {
     docs: {
-      page: dynamicListDocs,
+      page: mostSimpleDocs,
     },
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SuperDynamicList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...dynamicListFormOptions} />;
+export const MostSimple: ComponentStory<typeof FormBuilder> = () => {
+  const formRef = useRef<FormRef<PluginFormItem>>();
+  return  <>
+            <FormBuilder {...simpleFormItemOptions} ref={formRef} />
+            <div style={{ border: "dotted 1px black", padding: "20px", margin: "10px" }}>
+                  <Label>This is outside the form:</Label>
+                  <PrimaryButton text="Log item to console" onClick={() => console.log(formRef.current?.getItem())} />
+              </div>
+          </>
+}

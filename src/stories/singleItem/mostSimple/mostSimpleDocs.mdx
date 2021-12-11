@@ -1,0 +1,39 @@
+<h2>Sample code</h2>  
+
+
+```js
+@IFormItem.register(MyFormItemChildSchemaProvider)
+export class MyFormItem {
+    public id?: string;
+    public name?: string;
+    public age?: number;
+}
+```
+
+```js
+export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItem> {
+
+    public key = "MyFormItem";
+    public itemType = () => MyFormItem
+
+    public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
+        const schema: IFormSchema<MyFormItem> = {
+            options: {
+                properties: {
+                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
+                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                } 
+            } as IFormItemOptions<MyFormItem>
+        }
+
+        return schema as IFormSchema<IFormItem>;
+    }
+}
+```
+
+```js
+export const simpleFormItemOptions: IFormBuilderProps<MyFormItem> = {
+    itemType: MyFormItem,
+    item: { id: "test1", name: 'Esbend', age: 42 } as MyFormItem,
+}
+```

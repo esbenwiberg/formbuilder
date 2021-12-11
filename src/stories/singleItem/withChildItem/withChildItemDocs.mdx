@@ -1,15 +1,26 @@
-import { IFormItem } from "../../formbuilder/modules/IFormItem";
-import { IFormItemOptions } from "../../formbuilder/models/options/IFormItemOptions";
-import { IFormSchema } from "../../formbuilder/models/schema/IFormSchema";
-import { SchemaProvider } from "../../formbuilder/models/schema/ISchemaProvider";
-import { MyFormItemChild } from "./MyFormItemChild";
-import { PropertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
-import { PropertyGroupOptionsFactory } from "../../formbuilder/utils/PropertyGroupOptionsFactory";
-import { AnotherFormItem } from "./AnotherFormItem";
-import { ValidationEventType } from "../../formbuilder/models/validation/ValidationEventType";
-import { ValidationMark } from "../../formbuilder/models/validation/ValidationMark";
-import React from "react";
+<h2>Sample code</h2>  
 
+
+```js
+@IFormItem.register(MyFormItemChildSchemaProvider)
+export class MyFormItemChild {
+    public id?: string;
+    public name?: string;
+    public age?: number;
+    public child?: AnotherFormItem;
+}
+```
+
+```js
+@IFormItem.register(AnotherFormItemSchemaProvider)
+export class AnotherFormItem {
+    public id?: string;
+    public name?: string;
+    public awesome?: boolean;
+}
+```
+
+```js
 export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChild> {
 
     public key = "MyFormItemChild";
@@ -40,3 +51,39 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChil
         return schema as IFormSchema<IFormItem>;
     }
 }
+```
+
+```js
+export class AnotherFormItemSchemaProvider extends SchemaProvider<AnotherFormItem> {
+
+    public key = "AnotherFormItem";
+    public itemType = () => AnotherFormItem
+
+    public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
+        const schema: IFormSchema<AnotherFormItem> = {
+            options: {
+                validation: {
+                    ignoreValidation: false,
+                    validationRules: {
+                        name: { id: "namelength", validationMark: ValidationMark.Required, validationRule: (item: AnotherFormItem) => (item.name?.length ?? 0) > 3, validationMessage: "Your name must be over 3 characters", validateOn: ValidationEventType.Blur | ValidationEventType.Manual },
+                    }
+                },
+                properties: {
+                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true } }),
+                    awesome: PropertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome, sir?", group: "groupTwo", config: { asToggle: false, textIfTrue: "Si senor", textIfFalse: "Nopes, not really" }})
+                } 
+            } as IFormItemOptions<AnotherFormItem>
+        }
+
+        return schema as IFormSchema<IFormItem>;
+    }
+}
+```
+
+```js
+export const itemWithChildFormItemOptions: IFormBuilderProps<MyFormItemChild> = {
+    itemType: MyFormItemChild,
+    item: { id: "test1", name: 'Esbend', age: 42, child: { id: "1.1", name: "Esben", awesome: true } as AnotherFormItem } as MyFormItemChild,
+}
+
+```

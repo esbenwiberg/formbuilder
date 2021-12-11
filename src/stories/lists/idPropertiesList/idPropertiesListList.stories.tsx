@@ -1,4 +1,4 @@
-// dynamicList.stories.ts|tsx
+// idPropertiesList.stories.ts|tsx
 
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
@@ -6,10 +6,10 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
 import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
-import dynamicListDocs from './dynamicListDocs.mdx';
-import { dynamicListFormOptions } from './models/DynamicListFormOptions';
+import idPropertiesListListDocs from './idPropertiesListListDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
+import { listWithIdsFormOptions } from './models/ListWithIdsFormOptions';
 
 initializeIcons(/* optional base url */);
 
@@ -26,9 +26,9 @@ export default {
   component: FormBuilder,
   parameters: {
     docs: {
-      page: dynamicListDocs,
+      page: idPropertiesListListDocs,
     },
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SuperDynamicList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...dynamicListFormOptions} />;
+export const ListWithIdProperties: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...listWithIdsFormOptions} />;

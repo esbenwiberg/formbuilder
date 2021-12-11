@@ -1,14 +1,14 @@
-import { IFormItem } from "../../formbuilder/modules/IFormItem";
-import { IFormItemOptions } from "../../formbuilder/models/options/IFormItemOptions";
-import { IFormSchema } from "../../formbuilder/models/schema/IFormSchema";
-import { SchemaProvider } from "../../formbuilder/models/schema/ISchemaProvider";
-import { MyFormItemChild } from "./MyFormItemChild";
-import { PropertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
-import { PropertyGroupOptionsFactory } from "../../formbuilder/utils/PropertyGroupOptionsFactory";
-import { AnotherFormItem } from "./AnotherFormItem";
-import { ValidationEventType } from "../../formbuilder/models/validation/ValidationEventType";
-import { ValidationMark } from "../../formbuilder/models/validation/ValidationMark";
 import React from "react";
+import { IFormItemOptions } from "../../../../formbuilder/models/options/IFormItemOptions";
+import { IFormSchema } from "../../../../formbuilder/models/schema/IFormSchema";
+import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaProvider";
+import { ValidationEventType } from "../../../../formbuilder/models/validation/ValidationEventType";
+import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
+import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
+import { PropertyGroupOptionsFactory } from "../../../../formbuilder/utils/PropertyGroupOptionsFactory";
+import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
+import { AnotherFormItem } from "./AnotherFormItem";
+import { MyFormItemChild } from "./MyFormItemChild";
 
 export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChild> {
 

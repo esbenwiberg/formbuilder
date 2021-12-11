@@ -6,7 +6,6 @@ import { PropertyGroupOptionsFactory } from "../../../../formbuilder/utils/Prope
 import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import { MyNavGroupedFormItem } from "./MyNavGroupedFormItem";
 
-
 export class MyNavGroupedFormItemSchemaProvider extends SchemaProvider<MyNavGroupedFormItem> {
 
     public key = "MyNavGroupedFormItem";

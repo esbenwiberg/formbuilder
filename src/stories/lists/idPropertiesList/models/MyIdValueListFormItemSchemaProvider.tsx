@@ -1,9 +1,9 @@
-import { IFormItem } from "../../../formbuilder/modules/IFormItem";
-import { IFormItemOptions } from "../../../formbuilder/models/options/IFormItemOptions";
-import { IFormSchema } from "../../../formbuilder/models/schema/IFormSchema";
-import { SchemaProvider } from "../../../formbuilder/models/schema/ISchemaProvider";
-import { PropertyOptionsFactory } from "../../../formbuilder/utils/PropertyOptionsFactory";
+import { IFormItemOptions } from "../../../../formbuilder/models/options/IFormItemOptions";
+import { IFormSchema } from "../../../../formbuilder/models/schema/IFormSchema";
+import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaProvider";
+import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
 import { MyIdValueListFormItem } from "./MyIdValueListFormItem";
+import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 
 export class MyIdValueListFormItemSchemaProvider extends SchemaProvider<MyIdValueListFormItem> {
 

@@ -23,7 +23,7 @@ export const simpleListFormOptions: IFormBuilderProps<MySimpleListFormItem> = {
         editorConfig: {
             title: item => `Edit '${item?.name}'`,
             description: "Here's a little description for ya'",
-            type: FormBuilderListEditorType.Panel
+            type: FormBuilderListEditorType.Dialog
         }
     }
 }

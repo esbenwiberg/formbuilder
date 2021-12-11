@@ -1,5 +1,5 @@
-import { FormBuilderListEditorType } from "../../../formbuilder/components/config/IFormBuilderListConfig";
-import { IFormBuilderProps } from "../../../formbuilder/components/FormBuilder";
+import { FormBuilderListEditorType } from "../../../../formbuilder/components/config/IFormBuilderListConfig";
+import { IFormBuilderProps } from "../../../../formbuilder/components/FormBuilder";
 import { MyIdValueListFormItem } from "./MyIdValueListFormItem";
 
 export const listWithIdsFormOptions: IFormBuilderProps<MyIdValueListFormItem> = {
