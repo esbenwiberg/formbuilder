@@ -24,7 +24,6 @@ export class FluentBuilder implements IFormItemBuilder {
     public id = "internal_fluentbuilder";
     private _labelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string, validationMark: ValidationMark = ValidationMark.None) => <Label key={key} required={validationMark > 0}>{propertySchema.displayName}</Label>;
     public listComponent? = () => FluentList;
-    // public loadingSpinnerComponent? = () => FluentSpinner;
     public loadingSpinnerComponent? = () => FluentFormShimmer;
 
     constructor(labelRender?: LabelRender) {
