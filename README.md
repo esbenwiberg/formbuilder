@@ -28,34 +28,40 @@ https://esbenwiberg.github.io/formbuilder
 5.  You want to be able to create custom components and use/reuse them in your forms
 6.  You want to be able to use forms for arrays of objects as well, with all the features you need
 7.  You want to use forms with forms in them. And with another form in that. #recursiveformsFTW
-8.  You want to be able to group the rendered properties in the form, just the way you want
-9.  You want to dynamically at run-time, decide how our form is modelled, ie. by fetching a schema from an API
+8.  You want to be able to group the rendered properties in the form, just the way you like
+9.  You want to dynamically at run-time, decide how your form is modelled, ie. by fetching a schema from an API
 10. You hate constantly creating forms by hand!
+
+# Npm
+Find the npm package [here](https://www.npmjs.com/package/@wiberg/formbuilder)
 
 # Install
 ```js
-npm i formbuilder
+npm i @wiberg/formbuilder
 ```
 or
 ```js
-yarn add formbuilder
+yarn add @wiberg/formbuilder
 ```
 
 # Release info
-This is still a work in progress, and should not be used in production environments yet!  
-The plan is to have a stable release ready in 2022 Q1.
+**This is still a work in progress, and should not be used in production environments yet!**  
+The plan is to have a stable release ready in ***2022 Q1***.
 
 ### Known issues
-- react key warning, that's pretty good at hiding
-- validation for nested forms sometimes act
+- react missing key warning, that's pretty good at hiding :smiley:
+- validation for nested forms sometimes act up
+- excessive re-renders (not an issue per se)
 
 ### What's next?
 - general stabilization
 - various cleanup
-- extraction of fluentUI builder to a seperate package. This opens up for us/you to create other builders using different UI libraries (ie. MaterialUI) or just plain html/js
+- extraction of fluentUI builder to a seperate package. This opens up for us/you to create custom builders using different UI libraries (ie. MaterialUI) or just plain html/js
 
 # Quick Start
 TODO: add sample code here
+- init
 - item
 - schema
+- options
 - builder
