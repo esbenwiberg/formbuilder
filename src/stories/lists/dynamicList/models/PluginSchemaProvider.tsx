@@ -1,7 +1,7 @@
 import { IFormItemOptions } from "../../../../formbuilder/models/options/IFormItemOptions";
 import { IFormSchema } from "../../../../formbuilder/models/schema/IFormSchema";
 import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaProvider";
-import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import { PluginFormItem } from "./PluginFormItem";
 
 export class PluginSchemaProvider extends SchemaProvider<PluginFormItem> {
@@ -13,9 +13,9 @@ export class PluginSchemaProvider extends SchemaProvider<PluginFormItem> {
         const schema: IFormSchema<PluginFormItem> = {
             options: {
                 properties: {
-                    id: PropertyOptionsFactory.stringPropertyOption({ displayName: "This id" }),
-                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
-                    description: PropertyOptionsFactory.stringPropertyOption({ displayName: "This description" }),
+                    id: propertyOptionsFactory.stringPropertyOption({ displayName: "This id" }),
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
+                    description: propertyOptionsFactory.stringPropertyOption({ displayName: "This description" }),
                 } 
             } as IFormItemOptions<PluginFormItem>
         }

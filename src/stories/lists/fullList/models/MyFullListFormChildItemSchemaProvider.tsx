@@ -4,7 +4,7 @@ import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaPro
 import { ValidationEventType } from "../../../../formbuilder/models/validation/ValidationEventType";
 import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
 import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
-import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import { MyFullListFormChildItem } from "./MyFullListFormChildItem";
 
 export class MyFullListFormChildItemSchemaProvider extends SchemaProvider<MyFullListFormChildItem> {
@@ -31,8 +31,8 @@ export class MyFullListFormChildItemSchemaProvider extends SchemaProvider<MyFull
                     }
                 },
                 properties: {
-                    endpoint: PropertyOptionsFactory.stringPropertyOption({ displayName: "Endpoint", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } }),
-                    url: PropertyOptionsFactory.stringPropertyOption({ displayName: "Url", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } })
+                    endpoint: propertyOptionsFactory.stringPropertyOption({ displayName: "Endpoint", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } }),
+                    url: propertyOptionsFactory.stringPropertyOption({ displayName: "Url", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } })
                 } 
             } as IFormItemOptions<MyFullListFormChildItem>
         }

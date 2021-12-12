@@ -28,7 +28,7 @@ export const MyNavGroupContainer: FunctionComponent<IProps> = props => {
         // expand initial selected groups
         const alterItem = (item: INavLink) => (item.isExpanded = selectedKey?.startsWith(item.key as string));
 
-        let groups = BuildTrees<INavLink>(groupNames, 'name', 'key', 'links', alterItem);
+        const groups = BuildTrees<INavLink>(groupNames, 'name', 'key', 'links', alterItem);
         return groups;
     }
 

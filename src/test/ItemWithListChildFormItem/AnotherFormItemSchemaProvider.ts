@@ -4,7 +4,7 @@ import { SchemaProvider } from "../../formbuilder/models/schema/ISchemaProvider"
 import { ValidationEventType } from "../../formbuilder/models/validation/ValidationEventType";
 import { ValidationMark } from "../../formbuilder/models/validation/ValidationMark";
 import { IFormItem } from "../../formbuilder/modules/IFormItem";
-import { PropertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
 import { AnotherFormItem } from "./AnotherFormItem";
 
 
@@ -23,8 +23,8 @@ export class AnotherFormItemSchemaProvider extends SchemaProvider<AnotherFormIte
                     }
                 },
                 properties: { 
-                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true } }),
-                    awesome: PropertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome, sir?", group: "groupTwo", config: { asToggle: false, textIfTrue: "Si senor", textIfFalse: "Nopes, not really" }})
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true } }),
+                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome, sir?", group: "groupTwo", config: { asToggle: false, textIfTrue: "Si senor", textIfFalse: "Nopes, not really" }})
                 } 
             } as IFormItemOptions<AnotherFormItem>
         }

@@ -1,7 +1,7 @@
 import React from "react";
 
 const validationMessageStyles = {
-    animationName: "css-1, css-14",
+    animationName: "css-0, css-13",
     animationDuration: "0.367s",
     animationTimingFunction: "cubic-bezier(0.1, 0.9, 0.2, 1)",
     animationFillMode: "both",
@@ -10,7 +10,7 @@ const validationMessageStyles = {
     fontWeight: 400,
     color: "rgb(164, 38, 44)",
     margin: "0px",
-    // paddingTop: "5px",
+    paddingBottom: "5px",
     display: "flex",
     alignItems: "center"
 }

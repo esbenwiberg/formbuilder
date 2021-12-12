@@ -10,7 +10,7 @@ import { ValidationEventType } from "../../../../formbuilder/models/validation/V
 import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
 import { json } from "../../../../formbuilder/utils/Json";
 import { mergeDeep } from "../../../../formbuilder/utils/MergeObjects";
-import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import { DynamicListFormItem } from "./DynamicListFormItem";
 import { IJsonPropertySchema, IJsonMemberSchema } from "./JsonPropertySchema";
 
@@ -28,17 +28,17 @@ const mappings: Record<string, PropertyType> = {
 const propertyOptions = (propertyType: PropertyType, propertyName: string) : Partial<IFormItemPropertyOptions<DynamicListFormItem, IDynamicPropertyComponentConfig>> => {
     switch (propertyType) {
         case PropertyType.String:
-            return PropertyOptionsFactory.stringPropertyOption<DynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.stringPropertyOption<DynamicListFormItem>({ displayName: propertyName });
         case PropertyType.Number:
-            return PropertyOptionsFactory.numberPropertyOption<DynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.numberPropertyOption<DynamicListFormItem>({ displayName: propertyName });
         case PropertyType.Boolean:
-            return PropertyOptionsFactory.booleanPropertyOption<DynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.booleanPropertyOption<DynamicListFormItem>({ displayName: propertyName });
         case PropertyType.Json:
-            return PropertyOptionsFactory.jsonPropertyOption<DynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.jsonPropertyOption<DynamicListFormItem>({ displayName: propertyName });
         case PropertyType.PredefinedArray:
-            return PropertyOptionsFactory.predefinedArrayPropertyOption<DynamicListFormItem>({ displayName: propertyName, config: { predefinedOptions: { options: [] } } });
+            return propertyOptionsFactory.predefinedArrayPropertyOption<DynamicListFormItem>({ displayName: propertyName, config: { predefinedOptions: { options: [] } } });
         case PropertyType.Array:
-            return PropertyOptionsFactory.arrayPropertyOption<DynamicListFormItem>({ displayName: propertyName, config: {  } });
+            return propertyOptionsFactory.arrayPropertyOption<DynamicListFormItem>({ displayName: propertyName, config: {  } });
     }
     return {};
 }

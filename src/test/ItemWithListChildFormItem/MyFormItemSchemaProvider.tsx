@@ -3,7 +3,7 @@ import { IFormItemOptions } from "../../formbuilder/models/options/IFormItemOpti
 import { IFormSchema } from "../../formbuilder/models/schema/IFormSchema";
 import { SchemaProvider } from "../../formbuilder/models/schema/ISchemaProvider";
 import { MyFormItemChild } from "./MyFormItemChild";
-import { PropertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
 import { PropertyGroupOptionsFactory } from "../../formbuilder/utils/PropertyGroupOptionsFactory";
 import { AnotherFormItem } from "./AnotherFormItem";
 import { ValidationEventType } from "../../formbuilder/models/validation/ValidationEventType";
@@ -31,9 +31,9 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChil
                     }
                 },
                 properties: { 
-                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
-                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    childs: PropertyOptionsFactory.formItemPropertyOption({ 
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    childs: propertyOptionsFactory.formItemPropertyOption({ 
                         displayName: "Another 'FormItem' as a child array", 
                         config: { itemType: AnotherFormItem },
                         listItemOptions: { customValueRender: (item: MyFormItemChild) => <>{item.childs?.length ?? 0}</> },

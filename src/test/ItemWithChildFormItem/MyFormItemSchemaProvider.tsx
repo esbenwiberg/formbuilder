@@ -3,7 +3,7 @@ import { IFormItemOptions } from "../../formbuilder/models/options/IFormItemOpti
 import { IFormSchema } from "../../formbuilder/models/schema/IFormSchema";
 import { SchemaProvider } from "../../formbuilder/models/schema/ISchemaProvider";
 import { MyFormItemChild } from "./MyFormItemChild";
-import { PropertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../formbuilder/utils/PropertyOptionsFactory";
 import { PropertyGroupOptionsFactory } from "../../formbuilder/utils/PropertyGroupOptionsFactory";
 import { AnotherFormItem } from "./AnotherFormItem";
 import { ValidationEventType } from "../../formbuilder/models/validation/ValidationEventType";
@@ -30,9 +30,9 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChil
                     }
                 },
                 properties: { // TODO: group as reference, for easier renaming of groups (ewi)
-                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
-                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    child: PropertyOptionsFactory.formItemPropertyOption({ displayName: "Another 'FormItem' as child", config: { itemType: AnotherFormItem }, listItemOptions: { customValueRender: item => <>{(item.child as AnotherFormItem)?.name}</> } }),
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    child: propertyOptionsFactory.formItemPropertyOption({ displayName: "Another 'FormItem' as child", config: { itemType: AnotherFormItem }, listItemOptions: { customValueRender: item => <>{(item.child as AnotherFormItem)?.name}</> } }),
                 } 
             } as IFormItemOptions<MyFormItemChild>
         }

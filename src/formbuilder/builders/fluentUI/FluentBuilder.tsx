@@ -1,4 +1,3 @@
-import { Label } from "@fluentui/react";
 import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
 import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
 import { IFormItemBuilder, IPropertyBuilderResult, LabelRender } from "../interfaces/IPropertyBuilder";
@@ -18,6 +17,7 @@ import { DynamicDateField } from "./components/dynamicComponents/DynamicDateFiel
 import { DynamicPredefinedArrayField } from "./components/dynamicComponents/DynamicPredefinedArrayField";
 import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfield";
 import React from "react";
+import { Label } from "@fluentui/react";
 
 export class FluentBuilder implements IFormItemBuilder {
 

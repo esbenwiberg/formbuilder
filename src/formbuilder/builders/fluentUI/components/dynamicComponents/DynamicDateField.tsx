@@ -43,8 +43,8 @@ export const DynamicDateField = <T extends IFormItem>(props: PropsWithChildren<I
                     onBlur={() => props.onBlur(props.value)}
                 />
                 {
-                    props.errorMessage &&
-                        validationMessageElement(props.errorMessage)	
+                    !!props.errorMessage &&
+                        validationMessageElement(props.errorMessage)
 			    }
             </>
 }

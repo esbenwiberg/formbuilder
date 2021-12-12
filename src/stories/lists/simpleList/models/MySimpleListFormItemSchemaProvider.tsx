@@ -2,7 +2,7 @@ import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
 import { IFormItemOptions } from "../../../../formbuilder/models/options/IFormItemOptions";
 import { IFormSchema } from "../../../../formbuilder/models/schema/IFormSchema";
 import { SchemaProvider } from "../../../../formbuilder/models/schema/ISchemaProvider";
-import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import { PropertyGroupOptionsFactory } from "../../../../formbuilder/utils/PropertyGroupOptionsFactory";
 import { ValidationEventType } from "../../../../formbuilder/models/validation/ValidationEventType";
 import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
@@ -31,10 +31,10 @@ export class MySimpleListFormItemSchemaProvider extends SchemaProvider<MySimpleL
                     }
                 },
                 properties: {
-                    name: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
-                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    awesome: PropertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    start: PropertyOptionsFactory.datePropertyOption({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: MySimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: MySimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
                 } 
             } as IFormItemOptions<MySimpleListFormItem>
         }

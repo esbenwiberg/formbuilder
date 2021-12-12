@@ -9,7 +9,7 @@ import { ValidationEventType } from "../../../../formbuilder/models/validation/V
 import { ValidationMark } from "../../../../formbuilder/models/validation/ValidationMark";
 import { IFormItem } from "../../../../formbuilder/modules/IFormItem";
 import { PropertyGroupOptionsFactory } from "../../../../formbuilder/utils/PropertyGroupOptionsFactory";
-import { PropertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
+import { propertyOptionsFactory } from "../../../../formbuilder/utils/PropertyOptionsFactory";
 import MyCustomComponent from "./MyCustomComponent";
 import { MyFullListFormChildItem } from "./MyFullListFormChildItem";
 import { MyFullListFormItem } from "./MyFullListFormItem";
@@ -37,13 +37,13 @@ export class MyFullListFormItemSchemaProvider extends SchemaProvider<MyFullListF
                     }
                 },
                 properties: {
-                    firstname: PropertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true, customValueRender: (item, onChange) => <>{<TextField value={item.firstname+""} onChange={(ev, val) => onChange({...item, ...{ firstname: val }})} />}</> } }),
-                    age: PropertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    awesome: PropertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    custom: PropertyOptionsFactory.customComponentPropertyOption({ displayName: "This is rendered by a custom component", group: "groupOne", config: { component: MyCustomComponent, test: "This is a static variable" }}),
-                    start: PropertyOptionsFactory.datePropertyOption({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: MyFullListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } }),
-                    fakeListColumn: PropertyOptionsFactory.stringPropertyOption({ displayName: "Fake list column", group: "groupOne", hide: () => true, listItemOptions: { customValueRender: item => <>{<div onClick={() => alert(item.age)} style={{ cursor: "pointer", backgroundColor: (item.age ?? 0) > 15 ? "green" : "red", height: "100%"}}></div> }</> }} ),
-                    endpoints: PropertyOptionsFactory.formItemPropertyOption({ 
+                    firstname: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true, customValueRender: (item, onChange) => <>{<TextField value={item.firstname+""} onChange={(ev, val) => onChange({...item, ...{ firstname: val }})} />}</> } }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    custom: propertyOptionsFactory.customComponentPropertyOption({ displayName: "This is rendered by a custom component", group: "groupOne", config: { component: MyCustomComponent, test: "This is a static variable" }}),
+                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: MyFullListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } }),
+                    fakeListColumn: propertyOptionsFactory.stringPropertyOption({ displayName: "Fake list column", group: "groupOne", hide: () => true, listItemOptions: { customValueRender: item => <>{<div onClick={() => alert(item.age)} style={{ cursor: "pointer", backgroundColor: (item.age ?? 0) > 15 ? "green" : "red", height: "100%"}}></div> }</> }} ),
+                    endpoints: propertyOptionsFactory.formItemPropertyOption({ 
                         displayName: "Endpoints", 
                         group: "endpoints",
                         config: { itemType: MyFullListFormChildItem },
