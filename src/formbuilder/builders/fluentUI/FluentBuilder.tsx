@@ -5,11 +5,9 @@ import { PropertyType } from "../../models/property/PropertyType";
 import { IFormItem } from "../../modules/IFormItem";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
 import { validationUtil } from "../../utils/ValidationUtil";
-import FluentList from "./components/list/FluentList";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { ValidationMark } from "../../models/validation/ValidationMark";
 import { getPropertyValidationMark } from "../../utils/PropertyValidationMark";
-import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
 import { DynamicJsonfield } from "./components/dynamicComponents/DynamicJsonfield";
 import { DynamicBooleanField } from "./components/dynamicComponents/DynamicBooleanField";
 import { DynamicDateField } from "./components/dynamicComponents/DynamicDateField";
@@ -17,7 +15,9 @@ import { DynamicPredefinedArrayField } from "./components/dynamicComponents/Dyna
 import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfield";
 import React from "react";
 import { Label } from "@fluentui/react";
-import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
+import { FluentPropertyLabel } from "./components/list2/components/FluentPropertyLabel";
+import { FluentFormShimmer } from "./components/list2/components/FluentFormShimmer";
+import FluentList from "./components/list2/FluentList";
 
 export class FluentBuilder implements IFormItemBuilder {
 

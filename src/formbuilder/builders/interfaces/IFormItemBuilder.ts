@@ -3,7 +3,7 @@ import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
 import { ValidationMark } from "../../models/validation/ValidationMark";
 import { IFormItem } from "../../modules/IFormItem";
-import { ILoadingSpinnerProps } from "../fluentUI/components/list/components/FluentFormShimmer";
+import { ILoadingSpinnerProps } from "../fluentUI/components/list2/components/FluentFormShimmer";
 import { IDynamicPropertyComponentConfig } from "./IDynamicPropertyComponentConfig";
 
 export interface IFormItemBuilderResult {
