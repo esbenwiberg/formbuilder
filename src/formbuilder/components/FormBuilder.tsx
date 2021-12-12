@@ -12,7 +12,7 @@ import { FormList } from './FormList';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
-import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list2/components/FluentFormShimmer';
+import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
 
 export type FormBuilderItemType<T extends IFormItem> = T | Array<T>;
 

@@ -15,9 +15,9 @@ import { DynamicPredefinedArrayField } from "./components/dynamicComponents/Dyna
 import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfield";
 import React from "react";
 import { Label } from "@fluentui/react";
-import { FluentPropertyLabel } from "./components/list2/components/FluentPropertyLabel";
-import { FluentFormShimmer } from "./components/list2/components/FluentFormShimmer";
-import FluentList from "./components/list2/FluentList";
+import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
+import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
+import FluentList from "./components/list/FluentList";
 
 export class FluentBuilder implements IFormItemBuilder {
 

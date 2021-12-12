@@ -3,7 +3,7 @@ import { IFormItem } from "../../modules/IFormItem";
 import React from "react";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IFormListRenderProps } from "../FormList";
-import { ILoadingSpinnerProps } from "../../builders/fluentUI/components/list2/components/FluentFormShimmer";
+import { ILoadingSpinnerProps } from "../../builders/fluentUI/components/list/components/FluentFormShimmer";
 
 export interface IFormItemRender {
     hasBuilders: () => boolean;
