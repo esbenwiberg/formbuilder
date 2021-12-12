@@ -14,7 +14,7 @@ import { initializeIcons } from '@fluentui/react';
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .withBuilders(FluentBuilder.Create(), ComplexObjectBuilder.Create())
+    .withBuilders(FluentBuilder.Create())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     
 export default {

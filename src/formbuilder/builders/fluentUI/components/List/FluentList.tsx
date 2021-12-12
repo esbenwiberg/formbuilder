@@ -4,7 +4,7 @@ import { useStateRef } from "../../../../hooks/useStateRef";
 import { IFormBuilderListMenuItemSelectionMode, IFormListColumnsPickType as FormListColumnsPickType } from "../../../../components/config/IFormBuilderListConfig";
 import { FormRef } from "../../../../components/Form";
 import { IFormListRenderProps } from "../../../../components/FormList";
-import { Searcher } from "../../../../components/search/Searcher";
+import { Searcher } from "./components/search/Searcher";
 import { lang } from "../../../../models/language/Language";
 import { IFormItemPropertyOptions } from "../../../../models/options/IFormItemPropertyOptions";
 import { ValidationResult } from "../../../../models/validation/ValidationResult";

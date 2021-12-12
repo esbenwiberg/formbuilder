@@ -1,16 +1,15 @@
 import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
 import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
-import { IFormItemBuilder, IPropertyBuilderResult, LabelRender } from "../interfaces/IPropertyBuilder";
+import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interfaces/IFormItemBuilder";
 import { PropertyType } from "../../models/property/PropertyType";
 import { IFormItem } from "../../modules/IFormItem";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
 import { validationUtil } from "../../utils/ValidationUtil";
-import FluentList from "./components/List/FluentList";
+import FluentList from "./components/list/FluentList";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { ValidationMark } from "../../models/validation/ValidationMark";
 import { getPropertyValidationMark } from "../../utils/PropertyValidationMark";
-import { FluentFormShimmer } from "./components/FluentFormShimmer";
-import { FluentPropertyLabel } from "./components/FluentPropertyLabel";
+import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
 import { DynamicJsonfield } from "./components/dynamicComponents/DynamicJsonfield";
 import { DynamicBooleanField } from "./components/dynamicComponents/DynamicBooleanField";
 import { DynamicDateField } from "./components/dynamicComponents/DynamicDateField";
@@ -18,6 +17,7 @@ import { DynamicPredefinedArrayField } from "./components/dynamicComponents/Dyna
 import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfield";
 import React from "react";
 import { Label } from "@fluentui/react";
+import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
 
 export class FluentBuilder implements IFormItemBuilder {
 
@@ -36,7 +36,7 @@ export class FluentBuilder implements IFormItemBuilder {
         return builder;
     }
 
-    public build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : IPropertyBuilderResult => {
+    public build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : IFormItemBuilderResult => {
         let { item, onChange, onBlur, validationResults, validationResultPrefix } = renderProps;
         
         if (item === null) throw Error("item is null");

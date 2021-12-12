@@ -1,7 +1,7 @@
 import { FunctionComponent,  useEffect, useState } from 'react';
 import { mergeStyles, MessageBar, MessageBarType, Shimmer, ShimmerElementType } from '@fluentui/react';
-import useIsMounted from '../../../hooks/useIsMounted';
-import { lang } from '../../../models/language/Language';
+import useIsMounted from '../../../../../hooks/useIsMounted';
+import { lang } from '../../../../../models/language/Language';
 import React from "react";
 
 export interface ILoadingSpinnerProps {

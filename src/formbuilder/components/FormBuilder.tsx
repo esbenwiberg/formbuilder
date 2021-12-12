@@ -1,5 +1,4 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { ILoadingSpinnerProps } from '../builders/fluentUI/components/FluentSpinner';
 import { IFormItemOptions } from '../models/options/IFormItemOptions';
 import { IFormSchema } from '../models/schema/IFormSchema';
 import { fetchSchema } from '../utils/SchemaFetch';
@@ -13,6 +12,7 @@ import { FormList } from './FormList';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
+import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
 
 export type FormBuilderItemType<T extends IFormItem> = T | Array<T>;
 

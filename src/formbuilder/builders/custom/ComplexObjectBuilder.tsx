@@ -2,7 +2,7 @@ import { Label } from "@fluentui/react";
 import { PropsWithChildren, ReactElement } from "react";
 import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
 import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
-import { IFormItemBuilder, IPropertyBuilderResult, LabelRender } from "../interfaces/IPropertyBuilder";
+import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interfaces/IFormItemBuilder";
 import { PropertyType } from "../../models/property/PropertyType";
 import { IFormItem } from "../../modules/IFormItem";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
@@ -39,7 +39,7 @@ export class ComplexObjectBuilder implements IFormItemBuilder {
         return clone;
     }
 
-    public build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : IPropertyBuilderResult => {
+    public build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : IFormItemBuilderResult => {
         let { item, onChange, onBlur, validationResults, validationResultPrefix } = renderProps;
         
         if (item == null) throw Error("item is null");

@@ -1,8 +1,9 @@
+import { ComplexObjectBuilder } from "../../..";
 import { buildFormItemRender, IFormItemRender } from "../../components/helpers/FormItemRender";
 import { IFormbuilderLanguage } from "../../models/language/ILanguage";
 import { initLanguage } from "../../models/language/Language";
 import { RecursivePartial } from "../../utils/Partials";
-import { IFormItemBuilder } from "../interfaces/IPropertyBuilder";
+import { IFormItemBuilder } from "../interfaces/IFormItemBuilder";
 
 export interface IFormBuilder {
     formItemRender: IFormItemRender;
@@ -19,7 +20,7 @@ export const formbuilder: IFormBuilder = {
         return formbuilder;
     },
     withBuilders: (...builders: IFormItemBuilder[]): IFormBuilder => {
-        formbuilder.formItemRender?.registerRange(builders);
+        formbuilder.formItemRender?.registerRange([...builders, ComplexObjectBuilder.Create()]);
         return formbuilder;
     },
     withLanguage: (language: RecursivePartial<IFormbuilderLanguage>): IFormBuilder => {

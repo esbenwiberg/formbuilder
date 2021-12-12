@@ -1,9 +1,9 @@
-import { IFormItemBuilder } from "../../builders/interfaces/IPropertyBuilder"
+import { IFormItemBuilder } from "../../builders/interfaces/IFormItemBuilder"
 import { IFormItem } from "../../modules/IFormItem";
 import React from "react";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IFormListRenderProps } from "../FormList";
-import { ILoadingSpinnerProps } from "../../builders/fluentUI/components/FluentSpinner";
+import { ILoadingSpinnerProps } from "../../builders/fluentUI/components/list/components/FluentFormShimmer";
 
 export interface IFormItemRender {
     hasBuilders: () => boolean;

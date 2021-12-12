@@ -1,6 +1,6 @@
 {
   "name": "@wiberg/formbuilder",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
   "main": "dist/index",
   "types": "dist/types",
@@ -12,7 +12,7 @@
     "build-storybook": "build-storybook",
     "commit": "cz",
     "release": "standard-version",
-    "generate-barrels": "barrelsby --delete",
+    "generate-barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
     "postinstall": "husky install"
   },
   "repository": {
@@ -53,6 +53,7 @@
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "babel-loader": "^8.2.3",
+    "barrelsby": "^2.3.1",
     "commitizen": "^4.2.4",
     "commitlint-config-gitmoji": "^2.2.5",
     "cz-conventional-changelog": "^3.3.0",
@@ -71,9 +72,9 @@
     "typescript": "^4.5.3"
   },
   "dependencies": {
-    "@fluentui/react": "8.47.1",
-    "@types/react": "17.0.37",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@fluentui/react": "^8.47.1",
+    "@types/react": "^17.0.37",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

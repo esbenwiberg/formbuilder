@@ -1,0 +1,14 @@
+{
+    "directory": "./src/formbuilder",
+    "exclude": [
+        "./utils/", 
+        "./builders/custom/", 
+        "./builders/fluentUI/components/dynamicComponents/Dynamic",
+        "./hooks/",
+        "./formbuilder/components/helpers/",
+        "./components/helpers/",
+        "./builders/fluentUI/components/list/",
+        "./components/FormList",
+        "./components/Form"
+    ]
+}

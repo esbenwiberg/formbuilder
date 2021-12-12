@@ -19,7 +19,7 @@ export class MyFullListFormChildItemSchemaProvider extends SchemaProvider<MyFull
                     validationRules: {
                         url: {
                             id: "validurl",
-                            validateOn: ValidationEventType.Change | ValidationEventType.Blur,
+                            validateOn: ValidationEventType.Change | ValidationEventType.Blur | ValidationEventType.Manual,
                             validationMessage: "Not correct specified url",
                             validationRule: item => {
                                 if (item.url == null) return false;

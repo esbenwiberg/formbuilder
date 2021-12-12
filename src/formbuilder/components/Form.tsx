@@ -1,5 +1,4 @@
 import React, { forwardRef, FunctionComponent, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { ILoadingSpinnerProps } from '../builders/fluentUI/components/FluentSpinner';
 import useIsMounted from '../hooks/useIsMounted';
 import { IFormGroupOptions } from '../models/options/IFormGroupOptions';
 import { IFormItemOptions } from '../models/options/IFormItemOptions';
@@ -17,6 +16,7 @@ import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IItemRenderProps } from '../interfaces/IItemRenderProps';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
+import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
 
 export interface IFormItemProps<T extends IFormItem> {
     itemType: new () => T;
