@@ -49,7 +49,7 @@ export type FormBuilderRef<T extends IFormItem> = { getItem: () => FormBuilderIt
 // wrapper for handling both single item and list of items
 export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(props : IFormBuilderProps<T>, ref: FormBuilderRef) => {
 
-    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'FormBuilder.Initialize' as early as possible")
+    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'formBuilder.initialize' as early as possible");
 
     const formRef = useRef<FormRef<T>>();
     const [schema, setSchema] = useState<IFormSchema<IFormItem> | undefined>(props.overrideSchema);

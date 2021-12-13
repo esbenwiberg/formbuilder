@@ -17,10 +17,11 @@ export const formbuilder: IFormBuilder = {
     formItemRender: undefined as any,
     initialize: (): IFormBuilder => {
         formbuilder.formItemRender = buildFormItemRender();
+        formbuilder.formItemRender?.register(ComplexObjectBuilder.Create());
         return formbuilder;
     },
     withBuilders: (...builders: IFormItemBuilder[]): IFormBuilder => {
-        formbuilder.formItemRender?.registerRange([...builders, ComplexObjectBuilder.Create()]);
+        formbuilder.formItemRender?.registerRange(builders);
         return formbuilder;
     },
     withLanguage: (language: RecursivePartial<IFormbuilderLanguage>): IFormBuilder => {

@@ -45,7 +45,7 @@ const EmptyGroupContainer : FunctionComponent<{groupings: Array<IFormGrouping>, 
 
 export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemProps<T>, ref: FormRef) => {
 
-    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'FormBuilder.Initialize' as early as possible")
+    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'formBuilder.initialize' as early as possible");
 
     const isMounted = useIsMounted();
 
@@ -102,6 +102,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     }, [props.itemType]);
 
     useEffect(() => {
+        if (props.propertyOverrides == null) return;
         loadSchema(undefined, true);
     }, [props.propertyOverrides]);
 
@@ -109,8 +110,6 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     
     useEffect(() => {
         buildGroupings();
-        // TODO: why? (ewi)
-        // eslint-disable-next-line 
     }, [schema])
 
     const buildGroupings = () => {
