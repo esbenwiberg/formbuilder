@@ -1,6 +1,5 @@
 <h1>The simplest list of them all</h1>
 <p>Double click an item to open the item's form</p>
-<p>This sample uses a dialog instead of a panel to display the form</p>  
 
 <h2>Sample code</h2>  
 
@@ -25,24 +24,12 @@ export const simpleListFormOptions: IFormBuilderProps<MySimpleListFormItem> = {
         { id: "2", name: 'Other', age: 12, awesome: false, custom: "Come on!"  } as MySimpleListFormItem
     ],
     listProps: {
-        onItemChange: item => console.log(item),
         config: { 
-            itemIdentifier: item => item.id as string,
-            multiSelect: true, 
-            onItemsChange: items => console.log("FROM OUTSIDE", items),
-            shimmerLines: 5
-        },
-        columnConfig: {
-            columnOrder: ["name", "awesome", "custom"],
-            customColumns: []
-        },
-        editorConfig: {
-            title: item => `Edit '${item?.name}'`,
-            description: "Here's a little description for ya'",
-            type: FormBuilderListEditorType.Panel
+            itemIdentifier: item => item.id as string
         }
     }
 }
+
 ```
 
 ```js
@@ -54,29 +41,14 @@ export class MySimpleListFormItemSchemaProvider extends SchemaProvider<MySimpleL
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
         return {
             options: {
-                groups: {
-                    groupOne: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Group 1" }),
-                    groupTwo: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Group 2", groupProps: { collapsed: true } })
-                },
-                validation: {
-                    ignoreValidation: false,
-                    validationRules: {
-                        name: { id: "mustbeesben", validationMark: ValidationMark.Required, validationRule: (item: MySimpleListFormItem) => item.name === "Esben", validationMessage: "Your name must be 'Esben'", validateOn: ValidationEventType.Blur | ValidationEventType.Manual },
-                        age: { id: "lessthanforthy", validationMark: ValidationMark.Required, validationRule: (item: MySimpleListFormItem) => (item.age ?? 0) < 40, validationMessage: "You must be less than 40 years old", validateOn: ValidationEventType.Blur | ValidationEventType.Manual },
-                        awesome: { id: "highoverthirty", validationRule: (item: MySimpleListFormItem) => !item.awesome || ((item.age ?? 0) > 30), validationMessage: "Only people over 30, can be awesome", validateOn: ValidationEventType.Change | ValidationEventType.Manual },
-                        start: { id: "dateshizzle", validationRule: (item: MySimpleListFormItem) => item.start != null && item.start >= new Date(2021, 9, 1), validateOn: ValidationEventType.Blur | ValidationEventType.Change | ValidationEventType.Manual, validationMessage: "Start should be after '2021-10-1'" }
-                    }
-                },
                 properties: {
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: MySimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age"}),
+                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: MySimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
                 } 
             } as IFormItemOptions<MySimpleListFormItem>
         }
-
-        return schema as IFormSchema<IFormItem>;
     }
 }
 ```
