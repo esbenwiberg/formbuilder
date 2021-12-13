@@ -13,7 +13,7 @@
     "commit": "git add -A && cz",
     "release": "standard-version",
     "generate-barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
