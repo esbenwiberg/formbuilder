@@ -1,3 +1,6 @@
+<h1>Form properties grouped with tabs</h1>
+<p>This sample will show how you group form properties, using your own custom way of grouping</p>  
+
 <h2>Sample code</h2>  
 
 
@@ -29,7 +32,7 @@ export class MyTabGroupedFormItemSchemaProvider extends SchemaProvider<MyTabGrou
     public itemType = () => MyTabGroupedFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyTabGroupedFormItem> = {
+        return {
             options: {
                 groups: {
                     groupOne: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Group 1", groupProps: { collapsed: false } }),

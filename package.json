@@ -10,7 +10,7 @@
     "start": "rollup --config ./rollup.config.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "commit": "cz",
+    "commit": "git add -A && cz",
     "release": "standard-version",
     "generate-barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
     "postinstall": "husky install"

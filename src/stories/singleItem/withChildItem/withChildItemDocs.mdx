@@ -1,3 +1,7 @@
+<h1>A form item with another form item as a child (nested forms)</h1>
+<p>This sample will show how you can nest forms</p>  
+
+
 <h2>Sample code</h2>  
 
 
@@ -27,7 +31,7 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChil
     public itemType = () => MyFormItemChild
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyFormItemChild> = {
+        return {
             options: {
                 groups: {
                     groupOne: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Group 1" }),
@@ -40,7 +44,7 @@ export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItemChil
                         child: { id: "nest", validationRule: () => true, validateOn: ValidationEventType.Blur | ValidationEventType.Manual, validationMessage: "", fromType: AnotherFormItem },
                     }
                 },
-                properties: { // TODO: group as reference, for easier renaming of groups (ewi)
+                properties: {
                     name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
                     age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
                     child: propertyOptionsFactory.formItemPropertyOption({ displayName: "Another 'FormItem' as child", config: { itemType: AnotherFormItem }, listItemOptions: { customValueRender: item => <>{(item.child as AnotherFormItem)?.name}</> } }),

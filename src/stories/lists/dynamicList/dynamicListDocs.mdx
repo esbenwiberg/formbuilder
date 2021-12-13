@@ -1,3 +1,9 @@
+<h1>Highly dynamic forms</h1>
+<p>This sample is made to explain how to use run-time fetched schemas to dynamically create forms.</p>
+<p>It shows that it's possible to call endpoints, using a specific form that matches each endpoint's requirements.</p>
+<p>The list contains endpoints and when double-clicking on an endpoint, it will fetch the JSON schema form an API, parse that schema and use that to render the form.</p>
+<p>Nested forms and validation in those, are supported as well.</p>  
+
 <h2>Sample code</h2>  
 
 ```js
@@ -24,7 +30,7 @@ export class PluginSchemaProvider extends SchemaProvider<PluginFormItem> {
     public itemType = () => PluginFormItem
 
     public getSchema = async () : Promise<IFormSchema<PluginFormItem>> => {
-        const schema: IFormSchema<PluginFormItem> = {
+        return {
             options: {
                 properties: {
                     id: propertyOptionsFactory.stringPropertyOption({ displayName: "This id" }),
@@ -74,37 +80,48 @@ export const PluginSchemaFetch = (key: string | undefined) : Promise<any> | unde
 
 export const schemas = [
 	{
-		"TypeName": "AccessVerify",
-		"Id": "fa664d40-5d0a-48bc-99da-854c3c85ade1",
-		"Name": "PowerHub - Access Verify",
-		"Url": "/api/plugin/powerhub/fa664d40-5d0a-48bc-99da-854c3c85ade1",
+		"TypeName": "AddFirewallRule",
+		"Id": "7aa1c968-3067-4859-8eba-c0268db1896c",
+		"Name": "Add Firewall Rule",
+		"Url": "/api/addfirewallrule",
 		"Request": {
-			"Properties": [],
+			"Properties": [
+				{
+					"MemberType": "Property",
+					"Name": "Id",
+					"Type": "Int32",
+					"IsStandard": true,
+					"IsNullable": false,
+					"DataAnnotations": []
+				},
+				{
+					"MemberType": "Property",
+					"Name": "Name",
+					"Type": "String",
+					"IsStandard": true,
+					"IsNullable": false,
+					"DataAnnotations": []
+				},
+				{
+					"MemberType": "Property",
+					"Name": "RangeFrom",
+					"Type": "String",
+					"IsStandard": true,
+					"IsNullable": false,
+					"DataAnnotations": []
+				},
+				{
+					"MemberType": "Property",
+					"Name": "RangeTo",
+					"Type": "String",
+					"IsStandard": true,
+					"IsNullable": false,
+					"DataAnnotations": []
+				}
+			],
 			"MemberType": "TypeInfo",
 			"Name": "",
-			"Type": "Int32",
-			"IsStandard": true,
-			"IsNullable": false
-		},
-		"Response": {
-			"Properties": [],
-			"MemberType": "TypeInfo",
-			"Name": "",
-			"Type": "Task`1",
-			"IsStandard": true,
-			"IsNullable": false
-		}
-	},
-	{
-		"TypeName": "AddAccessor",
-		"Id": "dd94b337-2b42-4723-8da4-3e084acbe78e",
-		"Name": "Add Accessor",
-		"Url": "/api/plugin/powerhub/dd94b337-2b42-4723-8da4-3e084acbe78e",
-		"Request": {
-			"Properties": [],
-			"MemberType": "TypeInfo",
-			"Name": "",
-			"Type": "ExpandoObject",
+			"Type": "FirewallRuleDto",
 			"IsStandard": false,
 			"IsNullable": false
 		},

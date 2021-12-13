@@ -1,3 +1,6 @@
+<h1>Form properties grouped with navbar</h1>
+<p>This sample will show how you group form properties, using your own custom way of grouping</p>  
+
 <h2>Sample code</h2>  
 
 
@@ -85,7 +88,7 @@ export class MyNavGroupedFormItemSchemaProvider extends SchemaProvider<MyNavGrou
     public itemType = () => MyNavGroupedFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyNavGroupedFormItem> = {
+        return {
             options: {
               
                 properties: {

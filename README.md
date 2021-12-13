@@ -1,5 +1,5 @@
 # Introduction 
-# The Epic Formbuilder
+## The only formbuilder you'll ever need
 
 The **formbuilder** is, as the name states, a builder of forms :smiley:  
 It can **relieve** you from one of the more tiresome task of building forms thoughout your application.  
@@ -50,12 +50,13 @@ The plan is to have a stable release ready in ***2022 Q1***.
 
 ### Known issues
 - react missing key warning, that's pretty good at hiding :smiley:
-- validation for nested forms sometimes act up
+- validation for dynamic nested forms sometimes act up
 - excessive re-renders (not an issue per se)
 
 ### What's next?
 - general stabilization
 - various cleanup
+- more documentation
 - extraction of fluentUI builder to a seperate package. This opens up for us/you to create custom builders using different UI libraries (ie. MaterialUI) or just plain html/js
 
 # Quick Start

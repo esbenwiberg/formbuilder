@@ -1,3 +1,7 @@
+<h1>The simplest list of them all</h1>
+<p>Double click an item to open the item's form</p>
+<p>This sample uses a dialog instead of a panel to display the form</p>  
+
 <h2>Sample code</h2>  
 
 
@@ -48,7 +52,7 @@ export class MySimpleListFormItemSchemaProvider extends SchemaProvider<MySimpleL
     public itemType = () => MySimpleListFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MySimpleListFormItem> = {
+        return {
             options: {
                 groups: {
                     groupOne: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Group 1" }),

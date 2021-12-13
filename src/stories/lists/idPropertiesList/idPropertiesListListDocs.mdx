@@ -1,3 +1,9 @@
+<h1>List forms with id's as property values</h1>
+<p>This sample is made to show how you can support id as property values.</p>
+<p>When you have id's as property values, you don't want them to be displayed in the list columns. But you do need them in your custom components that render the properties, ie. a user selector.</p>
+<p>Using this course of action, we can add the string/any values to the objects and use them in the custom column render.</p>
+<p>We then get the best of both worlds :)</p>  
+
 <h2>Sample code</h2>  
 
 ```js
@@ -19,7 +25,7 @@ export class MyIdValueListFormItemSchemaProvider extends SchemaProvider<MyIdValu
     public itemType = () => MyIdValueListFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyIdValueListFormItem> = {
+        return {
             options: {
                 properties: {
                     name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),

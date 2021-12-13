@@ -1,3 +1,15 @@
+<h1>Full list forms</h1>
+<p>This sample is made to show a large feature set of list forms.</p>
+<p>Features used:</p>
+<ul>
+    <li>Custom column renders</li>
+    <li>Nested list form</li>
+    <li>Custom columns</li>
+    <li>List commands</li>
+    <li>Custom list commands</li>
+    <li>Validation</li>
+</ul>  
+
 <h2>Sample code</h2>  
 
 
@@ -86,7 +98,7 @@ export class MyFullListFormItemSchemaProvider extends SchemaProvider<MyFullListF
     public itemType = () => MyFullListFormItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyFullListFormItem> = {
+        return {
             options: {
                 groups: {
                     groupOne: PropertyGroupOptionsFactory.GroupOptions({ displayName: "Basic" }),
@@ -147,7 +159,7 @@ export class MyFullListFormChildItemSchemaProvider extends SchemaProvider<MyFull
     public itemType = () => MyFullListFormChildItem
 
     public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        const schema: IFormSchema<MyFullListFormChildItem> = {
+        return {
             options: {
                 validation: {
                     validationRules: {
