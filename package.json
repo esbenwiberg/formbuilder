@@ -2,8 +2,8 @@
   "name": "@wiberg/formbuilder",
   "version": "0.0.3",
   "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
-  "main": "dist/index",
-  "types": "dist/types",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -31,6 +31,9 @@
     "forms",
     "react",
     "fluent"
+  ],
+  "files": [
+    "dist"
   ],
   "author": "Esben Wiberg",
   "license": "MIT",

@@ -4,6 +4,7 @@
         "module": "commonjs",
         "lib": ["dom", "ESNext", "ES2017"],
         "declaration": true,
+        "composite": true,
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,

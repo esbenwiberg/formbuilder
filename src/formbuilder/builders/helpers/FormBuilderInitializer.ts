@@ -1,8 +1,8 @@
-import { ComplexObjectBuilder } from "../../..";
 import { buildFormItemRender, IFormItemRender } from "../../components/helpers/FormItemRender";
 import { IFormbuilderLanguage } from "../../models/language/ILanguage";
 import { initLanguage } from "../../models/language/Language";
 import { RecursivePartial } from "../../utils/Partials";
+import { ComplexObjectBuilder } from "../custom/ComplexObjectBuilder";
 import { IFormItemBuilder } from "../interfaces/IFormItemBuilder";
 
 export interface IFormBuilder {
