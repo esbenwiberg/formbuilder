@@ -1,6 +1,6 @@
 {
   "name": "@wiberg/formbuilder",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,7 +17,7 @@
     "clean": "npx rimraf dist",
     "prebuildpackage": "npm run clean && npm run build && node dist/SetupPackage.js",
     "buildpackage": "cd dist && npm pack",
-    "publishpackage": "npm publish"
+    "publishpackage": "cd dist && npm publish"
   },
   "repository": {
     "type": "git",
