@@ -2,7 +2,7 @@
 ## The only formbuilder you'll ever need
 
 The **formbuilder** is, as the name states, a builder of forms :smiley:  
-It can **relieve** you from one of the more tiresome task of building forms thoughout your application.  
+It can **relieve** you from one of the more tiresome tasks of building forms thoughout your application.  
 It is **highly customizable** and can be tailored to your exact needs. As crazy as they may be.  
 Go through the supplied samples, to get inspired :smiley:  
 
@@ -43,6 +43,9 @@ or
 ```js
 yarn add @wiberg/formbuilder
 ```
+
+## Requirements
+```experimentaldecorators``` needs to be turned on.  
 
 # Release info
 **This is still a work in progress, and should not be used in production environments yet!**  
