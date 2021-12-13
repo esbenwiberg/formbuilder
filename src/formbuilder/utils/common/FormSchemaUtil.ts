@@ -1,6 +1,6 @@
-import { lang } from "../models/language/Language";
-import { IFormSchema } from "../models/schema/IFormSchema";
-import { IFormItem } from "../modules/IFormItem";
+import { lang } from "../../models/language/Language";
+import { IFormSchema } from "../../models/schema/IFormSchema";
+import { IFormItem } from "../../modules/IFormItem";
 
 export class FormSchemaUtil {
     public static GetSchemaFromItem = async <T extends IFormItem>(type: new () => T, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {

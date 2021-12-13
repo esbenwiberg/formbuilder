@@ -1,4 +1,4 @@
-import { IValidationResult, IValidationRuleResult } from "../models/validation/IValidationResult";
+import { IValidationResult, IValidationRuleResult } from "../../models/validation/IValidationResult";
 
 export const validationUtil = {
     getResultAsString: (result: {[ruleId: string] : IValidationRuleResult }) => {

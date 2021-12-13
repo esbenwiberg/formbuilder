@@ -4,12 +4,12 @@ import { IDynamicArrayFieldConfig } from "../builders/custom/config/IDynamicArra
 import { IFormItemPropertyOptions } from "../models/options/IFormItemPropertyOptions";
 import { PropertyType } from "../models/property/PropertyType";
 import { IFormItem } from "../modules/IFormItem";
-import { AtLeast } from "./Partials";
 import { IDynamicBooleanConfig } from "../builders/fluentUI/components/dynamicComponents/config/IDynamicBooleanConfig";
 import { IDynamicDateFieldConfig } from "../builders/fluentUI/components/dynamicComponents/config/IDynamicDateFieldConfig";
 import { IDynamicJsonFieldConfig } from "../builders/fluentUI/components/dynamicComponents/config/IDynamicJsonfieldConfig";
 import { IDynamicPredefinedArrayFieldConfig } from "../builders/fluentUI/components/dynamicComponents/config/IDynamicPredefinedArrayFieldConfig";
 import { IDynamicTextFieldConfig } from "../builders/fluentUI/components/dynamicComponents/config/IDynamicTextfieldConfig";
+import { AtLeast } from "../interfaces/types/Partials";
 
 export const propertyOptionsFactory = {
     stringPropertyOption: <T extends IFormItem>(options: AtLeast<IFormItemPropertyOptions<T, IDynamicTextFieldConfig>, "displayName">) : Partial<IFormItemPropertyOptions<T, IDynamicTextFieldConfig>> => {

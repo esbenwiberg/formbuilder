@@ -1,8 +1,8 @@
 import { FunctionComponent, useRef } from 'react';
 import { SearchBox } from '@fluentui/react';
-import { debounce } from '../../../../../../utils/Debounce';
 import { lang } from '../../../../../../models/language/Language';
 import React from "react";
+import { debounce } from '../../../../../../utils/common/Debounce';
 
 interface IProps {
 	className?: string;

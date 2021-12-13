@@ -4,10 +4,8 @@ import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interf
 import { PropertyType } from "../../models/property/PropertyType";
 import { IFormItem } from "../../modules/IFormItem";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
-import { validationUtil } from "../../utils/ValidationUtil";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { ValidationMark } from "../../models/validation/ValidationMark";
-import { getPropertyValidationMark } from "../../utils/PropertyValidationMark";
 import { DynamicJsonfield } from "./components/dynamicComponents/DynamicJsonfield";
 import { DynamicBooleanField } from "./components/dynamicComponents/DynamicBooleanField";
 import { DynamicDateField } from "./components/dynamicComponents/DynamicDateField";
@@ -18,6 +16,8 @@ import { Label } from "@fluentui/react";
 import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
 import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
 import FluentList from "./components/list/FluentList";
+import { getPropertyValidationMark } from "../../utils/common/PropertyValidationMark";
+import { validationUtil } from "../../utils/common/ValidationUtil";
 
 export class FluentBuilder implements IFormItemBuilder {
 

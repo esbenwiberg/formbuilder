@@ -1,5 +1,5 @@
-import { mergeDeep } from "../../utils/MergeObjects";
-import { RecursivePartial } from "../../utils/Partials";
+import { RecursivePartial } from "../../interfaces/types/Partials";
+import { mergeDeep } from "../../utils/common/MergeObjects";
 import { formbuilderDefaultLanguage } from "./DefaultLanguage";
 import { IFormbuilderLanguage } from "./ILanguage";
 

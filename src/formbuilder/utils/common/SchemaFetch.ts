@@ -1,9 +1,9 @@
-import { IPropertyOverrides } from "../interfaces/IPropertyOverrides";
-import { IFormItem } from "../modules/IFormItem";
+import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
+import { IFormItemOptions } from "../../models/options/IFormItemOptions";
+import { IFormSchema } from "../../models/schema/IFormSchema";
+import { IFormItem } from "../../modules/IFormItem";
 import { FormSchemaUtil } from "./FormSchemaUtil";
 import { mergeDeep } from "./MergeObjects";
-import { IFormItemOptions } from "../models/options/IFormItemOptions";
-import { IFormSchema } from "../models/schema/IFormSchema";
 
 export const fetchSchema = async <T extends IFormItem>(itemType: new () => IFormItem, formItemConfigOverrides?: Partial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<IFormItem> | undefined> => {
     let schema = await FormSchemaUtil.GetSchemaFromItem(itemType, dynamicKey);

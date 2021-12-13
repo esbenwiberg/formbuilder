@@ -4,14 +4,14 @@
         "module": "commonjs",
         "lib": ["dom", "ESNext", "ES2017"],
         "declaration": true,
-        "composite": true,
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,
         "jsx": "react",
         "sourceMap": true,
         "allowJs": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "rootDirs": ["src/formbuilder/"]
     },
     "exclude": ["node_modules", "dist", "src/stories"],
     "include": ["src"]

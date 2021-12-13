@@ -1,7 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { IFormItemOptions } from '../models/options/IFormItemOptions';
 import { IFormSchema } from '../models/schema/IFormSchema';
-import { fetchSchema } from '../utils/SchemaFetch';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
@@ -13,6 +12,7 @@ import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
 import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
+import { fetchSchema } from '../utils/common/SchemaFetch';
 
 export type FormBuilderItemType<T extends IFormItem> = T | Array<T>;
 

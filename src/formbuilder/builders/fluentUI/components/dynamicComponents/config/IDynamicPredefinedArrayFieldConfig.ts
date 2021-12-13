@@ -1,4 +1,4 @@
-import { RequireOnlyOne } from "../../../../../utils/Partials";
+import { RequireOnlyOne } from "../../../../../interfaces/types/Partials";
 import { IDynamicPropertyComponentConfig } from "../../../../interfaces/IDynamicPropertyComponentConfig";
 
 export interface IDynamicPredefinedArrayItem {

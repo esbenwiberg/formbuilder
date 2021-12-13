@@ -3,7 +3,7 @@ import { IFormSchema } from "../../models/schema/IFormSchema";
 import { IValidationResult } from "../../models/validation/IValidationResult";
 import { ValidationEventType } from "../../models/validation/ValidationEventType";
 import { IFormItem } from "../../modules/IFormItem";
-import { FormSchemaUtil } from "../../utils/FormSchemaUtil";
+import { FormSchemaUtil } from "../../utils/common/FormSchemaUtil";
 
 const validateRule = async <T extends IFormItem>(item: T, property: string, rule: IValidationRule<T> | Array<IValidationRule<T>>, onEvent: ValidationEventType | undefined, results: IValidationResult, validationResultPrefix?: string) : Promise<void> => {
     if (rule == null) return;

@@ -3,13 +3,11 @@ import useIsMounted from '../hooks/useIsMounted';
 import { IFormGroupOptions } from '../models/options/IFormGroupOptions';
 import { IFormItemOptions } from '../models/options/IFormItemOptions';
 import { IFormSchema } from '../models/schema/IFormSchema';
-import { fetchSchema } from '../utils/SchemaFetch';
 import { IValidationResult } from '../models/validation/IValidationResult';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
 import { IFormItem } from '../modules/IFormItem';
-import { validationUtil } from '../utils/ValidationUtil';
 import { IDynamicSchemaConfig } from './config/IFormBuilderListConfig';
 import { formValidator } from './helpers/FormValidator';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
@@ -17,6 +15,8 @@ import { IItemRenderProps } from '../interfaces/IItemRenderProps';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
 import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
+import { validationUtil } from '../utils/common/ValidationUtil';
+import { fetchSchema } from '../utils/common/SchemaFetch';
 
 export interface IFormItemProps<T extends IFormItem> {
     itemType: new () => T;

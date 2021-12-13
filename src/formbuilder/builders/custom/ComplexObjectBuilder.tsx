@@ -9,13 +9,13 @@ import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyC
 import { IDynamicComponentConfig } from "./config/IDynamicComponentConfig";
 import { IFormItemProps } from "../../components/Form";
 import { IFormItemComponentConfig } from "./config/IFormItemComponentConfig";
-import { validationUtil } from "../../utils/ValidationUtil";
 import { FormBuilder } from "../../components/FormBuilder";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
 import { validationMessageElement } from "../../components/validationMessage";
 import { DynamicArrayField } from "./components/DynamicArrayField";
 import React from "react";
+import { validationUtil } from "../../utils/common/ValidationUtil";
 
 export class ComplexObjectBuilder implements IFormItemBuilder {
 
