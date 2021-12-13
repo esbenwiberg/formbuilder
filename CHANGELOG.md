@@ -13,4 +13,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **formbuilder:** minor refactor ([c5fd925](https://github.com/esbenwiberg/formbuilder/commit/c5fd92504145c69d4bcef1b11aff3881a7c8d7cd))
 * **formbuilder:** retry github action fail ([20e06ed](https://github.com/esbenwiberg/formbuilder/commit/20e06edcd15f73bb0a599d1031fd6ec7cb5184ec))
 
-### 0.0.2 (2021-12-11)
+
+### 0.0.1 (2021-12-11)
+initial commit
