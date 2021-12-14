@@ -11,7 +11,7 @@
     "storybook": "start-storybook -p 6006 -s ./docs",
     "build-storybook": "build-storybook -o ./docs",
     "commit": "git add -A && cz",
-    "release": "standard-version",
+    "release": "standard-version && git push --follow-tags origin main",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
     "post-install": "husky install",
     "clean": "npx rimraf dist",

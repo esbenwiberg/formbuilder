@@ -15,7 +15,5 @@
 # profile.npmrc 
 # .npmrc
 debug.log
-.VSCodeCounter
-storybook-static
-dist
-docs/
+/.VSCodeCounter
+/dist
