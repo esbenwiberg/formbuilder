@@ -1,43 +1,13 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { IFormSchema } from '../models/schema/IFormSchema';
-import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { IFormItem } from '../modules/IFormItem';
-import { IFormBuilderListProps } from './FormBuilder';
-import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
 import { useStateRef } from '../hooks/useStateRef';
 import { IFormItemPropertyOptions } from '../models/options/IFormItemPropertyOptions';
 import { IDynamicPropertyComponentConfig } from '../builders/interfaces/IDynamicPropertyComponentConfig';
 import { formListHelper } from './helpers/FormListHelper';
 import { IFormListColumnInfo } from '../interfaces/lists/IFormListColumnInfo';
-
-export interface IFormListRenderProps<T extends IFormItem> extends IFormListProps<T> {
-    onItemChange: (item: T) => void;
-    
-    filteredItems: Array<T>;
-    selectedItems: Array<T>;
-    
-    deleteItems: (pre?: (items: Array<T>) => boolean | void) => boolean | void;
-    columnValueRender?: (propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig>) => ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined;
-
-    columns: Array<IFormListColumnInfo>;
-
-    updateItems: (items: Array<T>) => void;
-    updateFilteredItems: (items: Array<T>) => void;
-    updateSelectedItems: (items: Array<T>) => void;
-    sortColumn: (column: IFormListColumnInfo) => void;
-}
-
-export interface IFormListProps<T extends IFormItem> {
-    itemType: new () => T;
-    items: Array<T>;
-    schema: IFormSchema<T>;
-    groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
-    groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
-    validationOverride?: ValidationOverride;
-    listProps: IFormBuilderListProps<T>;
-    keyPrefix?: string;
-}
+import { IFormListProps } from './interfaces/IFormListProps';
+import { IFormListRenderProps } from './interfaces/IFormListRenderProps';
 
 export type FormListRef<T extends IFormItem> = { getItem: () => Array<T> };
 

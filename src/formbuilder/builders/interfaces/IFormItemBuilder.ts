@@ -1,4 +1,4 @@
-import { IFormListRenderProps } from "../../components/FormList";
+import { IFormListRenderProps } from "../../components/interfaces/IFormListRenderProps";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
 import { ValidationMark } from "../../models/validation/ValidationMark";

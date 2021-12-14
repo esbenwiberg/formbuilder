@@ -15,7 +15,7 @@ export * from "./builders/interfaces/IListBuilder";
 export * from "./components/Form";
 export * from "./components/FormBuilder";
 export * from "./components/FormList";
-export * from "./components/validationMessage";
+export * from "./builders/helpers/validationMessage";
 export * from "./components/config/IFormBuilderListConfig";
 export * from "./interfaces/IFormGrouping";
 export * from "./interfaces/IItemRenderProps";

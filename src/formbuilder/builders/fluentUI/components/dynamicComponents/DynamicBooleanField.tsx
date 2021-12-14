@@ -3,7 +3,7 @@ import { Checkbox, Toggle } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
 import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicPropertyComponentConfig } from '../../../interfaces/IDynamicPropertyComponentConfig';
-import { validationMessageElement } from '../../../../components/validationMessage';
+import { validationMessageElement } from '../../../helpers/validationMessage';
 import { IDynamicBooleanConfig } from './config/IDynamicBooleanConfig';
 import React from "react";
  

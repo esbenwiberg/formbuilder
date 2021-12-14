@@ -2,7 +2,6 @@
 import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
 import { useStateRef } from "../../../../hooks/useStateRef";
 import { FormRef } from "../../../../components/Form";
-import { IFormListRenderProps } from "../../../../components/FormList";
 import { Searcher } from "./components/search/Searcher";
 import { lang } from "../../../../models/language/Language";
 import { ValidationResult } from "../../../../models/validation/ValidationResult";
@@ -11,6 +10,7 @@ import { FluentDialog } from "./FluentDialog";
 import React from "react";
 import { formListHelper } from "../../../../components/helpers/FormListHelper";
 import { IFormListColumnInfo } from "../../../../interfaces/lists/IFormListColumnInfo";
+import { IFormListRenderProps } from "../../../../components/interfaces/IFormListRenderProps";
 
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
 

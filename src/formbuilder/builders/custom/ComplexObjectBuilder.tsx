@@ -10,22 +10,24 @@ import { IFormItemComponentConfig } from "./config/IFormItemComponentConfig";
 import { FormBuilder } from "../../components/FormBuilder";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
-import { validationMessageElement } from "../../components/validationMessage";
 import { DynamicArrayField } from "./components/DynamicArrayField";
 import React from "react";
 import { validationUtil } from "../../utils/common/ValidationUtil";
+import { validationMessageElement } from "../helpers/validationMessage";
 
 export class ComplexObjectBuilder implements IFormItemBuilder {
 
     public id = "internal_custombuilder";
     private _labelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string) => <label key={key}>{propertySchema.displayName}</label>;
+    private _validationMessageElement: (message: string) => JSX.Element = validationMessageElement;
 
-    constructor(labelRender?: LabelRender) {
+    constructor(labelRender?: LabelRender, validationMsgElement?: (message: string) => JSX.Element) {
         if (labelRender) this._labelRender = labelRender;
+        if (validationMsgElement) this._validationMessageElement = validationMsgElement;
     }
 
-    public static Create = (labelRender?: LabelRender) : ComplexObjectBuilder => {
-        let builder = new ComplexObjectBuilder(labelRender);
+    public static Create = (labelRender?: LabelRender, validationMsgElement?: (message: string) => JSX.Element) : ComplexObjectBuilder => {
+        let builder = new ComplexObjectBuilder(labelRender, validationMsgElement);
         return builder;
     }
 
@@ -61,7 +63,7 @@ export class ComplexObjectBuilder implements IFormItemBuilder {
                 <div className="formbuilder-property" key={props.key}>
                     { !props.options.hideLabel && this._labelRender(schema, key + "-label")}
                     { element }
-                    { (addErrormessage && props.errorMessage) && validationMessageElement(props.errorMessage)}
+                    { (addErrormessage && props.errorMessage) && this._validationMessageElement(props.errorMessage)}
                 </div>
             )
         }

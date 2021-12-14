@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
 import { DatePicker, DayOfWeek, FirstWeekOfYear } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
-import { validationMessageElement } from '../../../../components/validationMessage';
+import { validationMessageElement } from '../../../helpers/validationMessage';
 import { lang } from '../../../../models/language/Language';
 import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicDateFieldConfig } from './config/IDynamicDateFieldConfig';
