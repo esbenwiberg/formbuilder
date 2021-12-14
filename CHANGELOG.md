@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/esbenwiberg/formbuilder/compare/v0.0.10...v0.0.11) (2021-12-14)
+
+
+### Bug Fixes
+
+* **formbuilder:** testing auto changelog ([a4f83df](https://github.com/esbenwiberg/formbuilder/commit/a4f83df6bc01eb435fca0e6a9348ca2569f64e7a))
+
 ### [0.0.10](https://github.com/esbenwiberg/formbuilder/compare/v0.0.9...v0.0.10) (2021-12-14)
 
 
