@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/esbenwiberg/formbuilder/compare/v0.0.12...v0.0.13) (2021-12-14)
+
+
+### Features
+
+* **formbuilder:** more work on preparing to extract the FluentUI builder to a seperate package ([d1fd7a0](https://github.com/esbenwiberg/formbuilder/commit/d1fd7a058ce1c6a8b6f7011253d01ef1d822e6f7))
+
 ### [0.0.12](https://github.com/esbenwiberg/formbuilder/compare/v0.0.11...v0.0.12) (2021-12-14)
 
 
