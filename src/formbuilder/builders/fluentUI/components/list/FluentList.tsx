@@ -363,7 +363,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                             constrainMode={ConstrainMode.horizontalConstrained}
                             setKey={'itemId'}
                             // setKey="none"
-                            getKey={(item: T) => item != null ? `item-${props.listProps.config.itemIdentifier(item)}` : id.make()}
+                            getKey={(item: T) => `item-${props.listProps.config.itemIdentifier(item)}`}
                             // useReducedRowRenderer
                             onItemInvoked={ 
                                 props.listProps.config.disableItemInvoke ? undefined :
