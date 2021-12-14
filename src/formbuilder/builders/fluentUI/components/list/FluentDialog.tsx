@@ -2,9 +2,9 @@ import { useRef, forwardRef } from "react";
 import { Dialog, DialogFooter, Panel, PanelType } from '@fluentui/react';
 import { FormBuilderListEditorType, IDynamicSchemaConfig, IFormBuilderListEditorConfig } from '../../../../components/config/IFormBuilderListConfig';
 import { Form } from '../../../../components/Form';
-import { IFormListProps } from '../../../../components/FormList';
 import { IFormItem } from '../../../../modules/IFormItem';
 import React from "react";
+import { IFormListProps } from "../../../../components/interfaces/IFormListProps";
 
 export interface IFluentDialogProps<T extends IFormItem> {
 	item: T;
