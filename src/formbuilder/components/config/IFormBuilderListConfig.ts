@@ -11,10 +11,10 @@ export interface IFormBuilderListConfig<T extends IFormItem> {
     disableItemInvoke?: boolean;
 }
 
-export enum IFormListColumnsPickType { Only, Without }
+export enum FormListColumnsPickType { Only, Without }
 export interface IFormListColumnsPicks {
     columns: Array<string>;
-    pickType: IFormListColumnsPickType;
+    pickType: FormListColumnsPickType;
 }
 
 export interface IFormBuilderListColumns {

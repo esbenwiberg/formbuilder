@@ -1,4 +1,4 @@
-import { FormBuilderListEditorType, IFormListColumnsPickType } from "../../../../formbuilder/components/config/IFormBuilderListConfig";
+import { FormBuilderListEditorType, FormListColumnsPickType } from "../../../../formbuilder/components/config/IFormBuilderListConfig";
 import { IFormBuilderProps } from "../../../../formbuilder/components/FormBuilder";
 import { LargeListFormItem } from "./LargeListFormItem";
 
@@ -18,7 +18,7 @@ export const largeListFormOptions: IFormBuilderProps<LargeListFormItem> = {
         },
         columnConfig: {
             columnsPicks: {
-                pickType: IFormListColumnsPickType.Without,
+                pickType: FormListColumnsPickType.Without,
                 columns: [ "id" ]
             }
         },

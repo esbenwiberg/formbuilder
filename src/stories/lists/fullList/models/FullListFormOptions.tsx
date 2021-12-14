@@ -1,4 +1,4 @@
-import { FormBuilderListEditorType, IFormBuilderListMenuItemSelectionMode, IFormListColumnsPickType } from "../../../../formbuilder/components/config/IFormBuilderListConfig";
+import { FormBuilderListEditorType, IFormBuilderListMenuItemSelectionMode, FormListColumnsPickType } from "../../../../formbuilder/components/config/IFormBuilderListConfig";
 import { IFormBuilderProps } from "../../../../formbuilder/components/FormBuilder";
 import { ValidationOverride } from "../../../../formbuilder/models/validation/ValidationOverride";
 import { MyFullListFormItem } from "./MyFullListFormItem";
@@ -27,10 +27,9 @@ export const fullListFormOptions: IFormBuilderProps<MyFullListFormItem> = {
         },
         columnConfig: {
             columnOrder: ["firstname", "awesome", "custom"],
-            customColumns: [],
             columnsPicks: {
                 columns: ["awesome"],
-                pickType: IFormListColumnsPickType.Without
+                pickType: FormListColumnsPickType.Without
             }
         },
         editorConfig: {
