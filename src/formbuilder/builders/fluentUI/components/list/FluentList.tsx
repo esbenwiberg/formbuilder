@@ -220,7 +220,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         }, 400);
     }
 
-    // TODO: show confirmation dialog (ewi)
+    // TODO: show confirmation dialog (can be handled from outside - see LargeList sample) (ewi)
     // TODO: move out to FormList (ewi)
     const deleteItems = (pre?: (items: Array<T>) => boolean | void) => {
         let sItems = [...selectedItems];
@@ -229,10 +229,19 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             let result = pre(sItems);
             if (result === false) return;
         }
-        let itemsLeft = items.filter(_ => sItems.findIndex(si => props.listProps.config.itemIdentifier(_) == props.listProps.config.itemIdentifier(si)) < 0);
+
+        let itemsLeft: T[] = [];
+        let filteredItemsLeft: T[] = [];
+        // not all items
+        if (items.length != sItems.length) {
+
+            itemsLeft = items.filter(_ => sItems.indexOf(_) < 0);
+            filteredItemsLeft = filteredItems.filter(_ => sItems.indexOf(_) < 0);
+        }
+
         setItems(itemsLeft);
-        let filteredItemsLeft = filteredItems.filter(_ => sItems.findIndex(si => props.listProps.config.itemIdentifier(_) == props.listProps.config.itemIdentifier(si)) < 0);
         setFilteredItems(filteredItemsLeft);
+        
         setSelectedItems([]);
         selection.setAllSelected(false);
         if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...itemsLeft]);
@@ -354,7 +363,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                             constrainMode={ConstrainMode.horizontalConstrained}
                             setKey={'itemId'}
                             // setKey="none"
-                            getKey={(item: T) => item != null ? `item-${props.listProps.config.itemIdentifier(item)}` : "item-null"}
+                            getKey={(item: T) => item != null ? `item-${props.listProps.config.itemIdentifier(item)}` : id.make()}
                             // useReducedRowRenderer
                             onItemInvoked={ 
                                 props.listProps.config.disableItemInvoke ? undefined :

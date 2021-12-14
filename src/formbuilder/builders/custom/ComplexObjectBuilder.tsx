@@ -1,5 +1,3 @@
-import { Label } from "@fluentui/react";
-import { PropsWithChildren, ReactElement } from "react";
 import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
 import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
 import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interfaces/IFormItemBuilder";
@@ -20,7 +18,7 @@ import { validationUtil } from "../../utils/common/ValidationUtil";
 export class ComplexObjectBuilder implements IFormItemBuilder {
 
     public id = "internal_custombuilder";
-    private _labelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string) => <Label key={key}>{propertySchema.displayName}</Label>;
+    private _labelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string) => <label key={key}>{propertySchema.displayName}</label>;
 
     constructor(labelRender?: LabelRender) {
         if (labelRender) this._labelRender = labelRender;

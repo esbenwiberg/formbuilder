@@ -5,7 +5,7 @@ import { IFormItem } from "../../modules/IFormItem";
 export interface IFormBuilderListConfig<T extends IFormItem> {
     itemIdentifier: (item: T) => string;
     onItemsChange?: (items: Array<T>) => void;
-    listRender?: React.ElementType;
+    // listRender?: React.ElementType;
     multiSelect?: boolean;
     shimmerLines?: number;
     disableItemInvoke?: boolean;
@@ -19,7 +19,7 @@ export interface IFormListColumnsPicks {
 
 export interface IFormBuilderListColumns {
     columnOrder?: Array<string>;
-    customColumns?: Array<any>;
+    // customColumns?: Array<any>;
     columnsPicks?: IFormListColumnsPicks;
 }
 
