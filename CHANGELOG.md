@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/esbenwiberg/formbuilder/compare/v0.0.17...v0.0.18) (2021-12-15)
+
+
+### Features
+
+* **formbuilder:** final changes before extracting fluentbuilder ([b0bd9cc](https://github.com/esbenwiberg/formbuilder/commit/b0bd9cc5fc2e5f5b122da209d51dc52d39615176))
+
 ### [0.0.17](https://github.com/esbenwiberg/formbuilder/compare/v0.0.16...v0.0.17) (2021-12-15)
 
 
