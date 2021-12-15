@@ -72,7 +72,7 @@ export class ComplexObjectBuilder implements IFormItemBuilder {
             case PropertyType.Array: return { found: true, element: WrapInLabel(<DynamicArrayField {...schema} {...props} />) };
             case PropertyType.Custom: 
                 let customConfig = (schema.config as unknown) as IDynamicComponentConfig;
-                if (!customConfig?.componentName) return { found: false, element: undefined };
+                if (!customConfig?.component) return { found: false, element: undefined };
                 // const Comp = this.customComponents[customConfig?.componentName];
                 const Comp = customConfig.component;
                 return { found: true, element: <>{ WrapInLabel(<Comp key={key} {...props} {...schema} />) }</> }
