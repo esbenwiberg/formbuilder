@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/esbenwiberg/formbuilder/compare/v0.0.15...v0.0.16) (2021-12-15)
+
+
+### Bug Fixes
+
+* **formbuilder:** fixed issue with Formlist null ref ([c64f32b](https://github.com/esbenwiberg/formbuilder/commit/c64f32bc375675a7728acec02653e141eeb79fe2))
+
 ### [0.0.15](https://github.com/esbenwiberg/formbuilder/compare/v0.0.14...v0.0.15) (2021-12-14)
 
 ### [0.0.14](https://github.com/esbenwiberg/formbuilder/compare/v0.0.13...v0.0.14) (2021-12-14)
