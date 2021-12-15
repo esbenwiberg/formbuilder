@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/esbenwiberg/formbuilder/compare/v0.0.16...v0.0.17) (2021-12-15)
+
+
+### Bug Fixes
+
+* **formbuilder:** fixed issue with rendering of custom components ([1dbf782](https://github.com/esbenwiberg/formbuilder/commit/1dbf78203044ed8262e4cd8f39df6362fd54d28d))
+
 ### [0.0.16](https://github.com/esbenwiberg/formbuilder/compare/v0.0.15...v0.0.16) (2021-12-15)
 
 
