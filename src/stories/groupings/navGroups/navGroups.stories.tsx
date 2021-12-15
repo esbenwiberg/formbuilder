@@ -10,11 +10,14 @@ import navGroupsDocs from './navGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { navGroupRenderOptions } from './models/NavGroupRenderOptions';
 import { initializeIcons } from '@fluentui/react';
+import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
+import { fluentUiValidationMessageElement } from '../../../formbuilder';
 
 initializeIcons(/* optional base url */);
 
 
-formbuilder.initialize()
+formbuilder
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
     .withBuilders(FluentBuilder.Create())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

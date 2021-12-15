@@ -13,10 +13,13 @@ import { CountDownConfirmDialog, ICountDownConfirmDialogInfo } from './models/Co
 import { IFormBuilderListMenuItemSelectionMode } from '../../../formbuilder/components/config/IFormBuilderListConfig';
 import { LargeListFormItem } from './models/LargeListFormItem';
 import { mergeDeep } from '../../../formbuilder/utils/common/MergeObjects';
+import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
     .withBuilders(FluentBuilder.Create())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

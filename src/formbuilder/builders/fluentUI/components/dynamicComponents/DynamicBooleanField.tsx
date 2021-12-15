@@ -3,7 +3,7 @@ import { Checkbox, Toggle } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
 import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicPropertyComponentConfig } from '../../../interfaces/IDynamicPropertyComponentConfig';
-import { validationMessageElement } from '../../../helpers/validationMessage';
+import { fluentUiValidationMessageElement } from '../fluentUiValidationMessageElement';
 import { IDynamicBooleanConfig } from './config/IDynamicBooleanConfig';
 import React from "react";
  
@@ -44,7 +44,7 @@ export const DynamicBooleanField = <T extends IFormItem>(props: PropsWithChildre
 			}
 			{
 				props.errorMessage &&
-					validationMessageElement(props.errorMessage)	
+					fluentUiValidationMessageElement(props.errorMessage)	
 			}
 		</>
 	)

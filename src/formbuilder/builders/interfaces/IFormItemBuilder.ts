@@ -11,7 +11,6 @@ export interface IFormItemBuilderResult {
     element: JSX.Element | undefined;
 }
 
-// TODO: rename (ewi)
 export interface IFormItemBuilder {
     id: string;
     listComponent?: <T extends IFormItem>() => React.ElementType<IFormListRenderProps<T>>;

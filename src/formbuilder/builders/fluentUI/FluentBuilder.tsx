@@ -18,11 +18,12 @@ import { FluentFormShimmer } from "./components/list/components/FluentFormShimme
 import FluentList from "./components/list/FluentList";
 import { getPropertyValidationMark } from "../../utils/common/PropertyValidationMark";
 import { validationUtil } from "../../utils/common/ValidationUtil";
+import { fluentUiLabel } from "./components/fluentUiLabel";
 
 export class FluentBuilder implements IFormItemBuilder {
 
     public id = "internal_fluentbuilder";
-    private _labelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string, validationMark: ValidationMark = ValidationMark.None) => <Label key={key} required={validationMark > 0}>{propertySchema.displayName}</Label>;
+    private _labelRender: LabelRender = fluentUiLabel;
     public listComponent? = () => FluentList;
     public loadingSpinnerComponent? = () => FluentFormShimmer;
 

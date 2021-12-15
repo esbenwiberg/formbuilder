@@ -146,8 +146,8 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     const onPropertyChange = (property: string, value: any | never) : void => {
         let clone = {...item} as IFormItem | any;
         clone[property as keyof IFormItem] = value;
-        setItem(clone);
-        validateItem(clone, schema, ValidationEventType.Change, property);
+        // setItem(clone);
+        // validateItem(clone, schema, ValidationEventType.Change, property);
         var onChanged = schema?.options.properties[property]?.onChanged;
         if (onChanged != null) {
             let result = onChanged(clone);
@@ -155,6 +155,8 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
                 loadSchema(clone);
             }
         }
+        setItem(clone);
+        validateItem(clone, schema, ValidationEventType.Change, property);
         if (props.onPropertyChange) props.onPropertyChange(clone, property, value);
     }
 

@@ -10,10 +10,13 @@ import dynamicListDocs from './dynamicListDocs.mdx';
 import { dynamicListFormOptions } from './models/DynamicListFormOptions';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
+import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
     .withBuilders(FluentBuilder.Create())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

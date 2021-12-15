@@ -16,6 +16,6 @@ const validationMessageStyles = {
 }
 
 // TODO: move out of here (this is FluentUI specific) (ewi)
-export const validationMessageElement = (message: string) : JSX.Element => {
+export const fluentUiValidationMessageElement = (message: string) : JSX.Element => {
     return <span><div role="alert"><p className="ms-TextField-errorMessage" style={validationMessageStyles}><span data-automation-id="error-message">{message}</span></p></div></span>
 }

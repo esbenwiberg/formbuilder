@@ -13,13 +13,13 @@ import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
 import { DynamicArrayField } from "./components/DynamicArrayField";
 import React from "react";
 import { validationUtil } from "../../utils/common/ValidationUtil";
-import { validationMessageElement } from "../helpers/validationMessage";
+import { fluentUiValidationMessageElement } from "../fluentUI/components/fluentUiValidationMessageElement";
 
 export class ComplexObjectBuilder implements IFormItemBuilder {
 
     public id = "internal_custombuilder";
     private _labelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string) => <label key={key}>{propertySchema.displayName}</label>;
-    private _validationMessageElement: (message: string) => JSX.Element = validationMessageElement;
+    private _validationMessageElement: (message: string) => JSX.Element = fluentUiValidationMessageElement;
 
     constructor(labelRender?: LabelRender, validationMsgElement?: (message: string) => JSX.Element) {
         if (labelRender) this._labelRender = labelRender;

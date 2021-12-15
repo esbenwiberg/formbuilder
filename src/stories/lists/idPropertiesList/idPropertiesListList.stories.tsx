@@ -10,10 +10,13 @@ import idPropertiesListListDocs from './idPropertiesListListDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
 import { listWithIdsFormOptions } from './models/ListWithIdsFormOptions';
+import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
     .withBuilders(FluentBuilder.Create())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

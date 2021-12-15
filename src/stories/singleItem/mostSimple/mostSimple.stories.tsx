@@ -12,11 +12,14 @@ import { DefaultButton, initializeIcons, Label, PrimaryButton } from '@fluentui/
 import { FormRef } from '../../../formbuilder/components/Form';
 import { PluginFormItem } from '../../lists/dynamicList/models/PluginFormItem';
 import { simpleFormItemOptions } from './models/FormItemOptions';
+import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
 
 initializeIcons(/* optional base url */);
 
 
 formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
     .withBuilders(FluentBuilder.Create())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     
