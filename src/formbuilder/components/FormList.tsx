@@ -15,8 +15,8 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
 
     const [listProps, setListProps] = useState<IFormListProps<T>>({...props});
 
-    const [items, setItems, itemsRef] = useStateRef(props.items);
-    const [filteredItems, setFilteredItems, filteredItemsRef] = useStateRef([...props.items]);
+    const [items, setItems, itemsRef] = useStateRef(props.items ?? []);
+    const [filteredItems, setFilteredItems, filteredItemsRef] = useStateRef(props.items ?? []);
     const [selectedItems, setSelectedItems, selectedItemsRef] = useStateRef<Array<T>>([]);
     const [columns, setColumns, columnRef] = useStateRef<Array<IFormListColumnInfo>>();
 
@@ -57,9 +57,12 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         // items
         let changedItems = itemChangeInCollection(itemsRef.current, item);
         setItems(changedItems);
-        // // filtered
+        // filtered
         let changedFilteredItems = itemChangeInCollection(filteredItemsRef.current, item);
         setFilteredItems(changedFilteredItems);
+        // selected
+        let changedSelectedItems = itemChangeInCollection(selectedItemsRef.current, item);
+        setSelectedItems(changedSelectedItems);
 
         if (props.listProps.onItemChange) props.listProps.onItemChange({...item});
         if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...changedItems]);

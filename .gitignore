@@ -17,3 +17,4 @@
 debug.log
 /.VSCodeCounter
 /dist
+/docs/*

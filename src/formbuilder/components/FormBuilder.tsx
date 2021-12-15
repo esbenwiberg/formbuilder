@@ -49,6 +49,8 @@ export type FormBuilderRef<T extends IFormItem> = { getItem: () => FormBuilderIt
 // wrapper for handling both single item and list of items
 export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(props : IFormBuilderProps<T>, ref: FormBuilderRef) => {
 
+    // TODO: make verify throw exception
+    // TODO: add text for missing builders, with link to builders guide
     if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'formBuilder.initialize' as early as possible");
 
     const formRef = useRef<FormRef<T>>();

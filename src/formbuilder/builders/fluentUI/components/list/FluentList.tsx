@@ -26,7 +26,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         selectionMode: props.listProps.config.multiSelect ? SelectionMode.multiple : SelectionMode.single,
         getKey: (item: any, index?: number) => props.listProps.config.itemIdentifier(item),
         onSelectionChanged: () => {
-            props.updateSelectedItems(selection.getSelection() as Array<T>);
+            props.updateSelectedItems(selection.getSelection() as Array<T> ?? []);
         }
     }));
 
