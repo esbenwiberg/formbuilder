@@ -13,6 +13,9 @@ export type FormListRef<T extends IFormItem> = { getItem: () => Array<T> };
 
 export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IFormListProps<T>, ref: FormListRef) => {
 
+    // verify that the formbuilder is set up correctly
+    formbuilder.verify();
+
     const [listProps, setListProps] = useState<IFormListProps<T>>({...props});
 
     const [items, setItems, itemsRef] = useStateRef(props.items ?? []);
@@ -150,8 +153,6 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     }
 
     const ListContainer: React.ComponentType<IFormListRenderProps<T>> = formbuilder.formItemRender.list();
-
-    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'formBuilder.initialize' as early as possible");
 
 	return (
         <div className="formbuilder-listcontainer" key={`${props.keyPrefix}`} >

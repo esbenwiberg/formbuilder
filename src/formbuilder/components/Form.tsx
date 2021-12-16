@@ -45,7 +45,8 @@ const EmptyGroupContainer : FunctionComponent<{groupings: Array<IFormGrouping>, 
 
 export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemProps<T>, ref: FormRef) => {
 
-    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'formBuilder.initialize' as early as possible");
+    // verify that the formbuilder is set up correctly
+    formbuilder.verify();
 
     const isMounted = useIsMounted();
 

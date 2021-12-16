@@ -49,9 +49,8 @@ export type FormBuilderRef<T extends IFormItem> = { getItem: () => FormBuilderIt
 // wrapper for handling both single item and list of items
 export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(props : IFormBuilderProps<T>, ref: FormBuilderRef) => {
 
-    // TODO: make verify throw exception
-    // TODO: add text for missing builders, with link to builders guide
-    if (!formbuilder.verify()) throw Error("Formbuilder not initialized! call 'formBuilder.initialize' as early as possible");
+    // verify that the formbuilder is set up correctly
+    formbuilder.verify();
 
     const formRef = useRef<FormRef<T>>();
     const [schema, setSchema] = useState<IFormSchema<IFormItem> | undefined>(props.overrideSchema);
@@ -82,6 +81,7 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
                             items={props.item}
                             schema={schema}
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
+                            listProps={props.listProps ?? schema.options.listOptions}
                             keyPrefix={`${props.keyPrefix}-list`}
                         />
                     :   <Form

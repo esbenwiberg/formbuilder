@@ -1,5 +1,7 @@
 export interface IValidationRuleResult {
+    /** whether validation is a success */
     success: boolean;
+    /** the validation message */
     message: string;
 }
 

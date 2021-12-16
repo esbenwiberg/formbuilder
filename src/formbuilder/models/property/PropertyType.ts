@@ -1,3 +1,4 @@
+/** the type of a property */
 export enum PropertyType {
     String = 1,
     Number = 2, // TODO: slider

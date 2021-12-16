@@ -3,6 +3,8 @@
  */
 
 export * from "./builders/fluentUI/FluentBuilder";
+export * from "./builders/fluentUI/components/fluentUiLabel";
+export * from "./builders/fluentUI/components/fluentUiValidationMessageElement";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicBooleanConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicDateFieldConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicJsonfieldConfig";
@@ -15,12 +17,15 @@ export * from "./builders/interfaces/IListBuilder";
 export * from "./components/Form";
 export * from "./components/FormBuilder";
 export * from "./components/FormList";
-export * from "./builders/fluentUI/components/fluentUiValidationMessageElement";
 export * from "./components/config/IFormBuilderListConfig";
+export * from "./components/interfaces/IFormListProps";
+export * from "./components/interfaces/IFormListRenderProps";
 export * from "./interfaces/IFormGrouping";
 export * from "./interfaces/IItemRenderProps";
 export * from "./interfaces/IPropertyOverrides";
 export * from "./interfaces/IPropertyRenderProps";
+export * from "./interfaces/lists/IFormListColumnInfo";
+export * from "./interfaces/types/Partials";
 export * from "./models/language/DefaultLanguage";
 export * from "./models/language/ILanguage";
 export * from "./models/language/Language";
@@ -39,5 +44,6 @@ export * from "./models/validation/ValidationMark";
 export * from "./models/validation/ValidationOverride";
 export * from "./models/validation/ValidationResult";
 export * from "./modules/IFormItem";
+export * from "./utils/Factory";
 export * from "./utils/PropertyGroupOptionsFactory";
 export * from "./utils/PropertyOptionsFactory";
