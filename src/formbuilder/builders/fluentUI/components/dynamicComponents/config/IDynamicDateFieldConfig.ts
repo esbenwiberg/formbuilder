@@ -1,14 +1,14 @@
 import { DayOfWeek, FirstWeekOfYear } from "@fluentui/react";
 import { ICalendarStrings } from "@fluentui/react";
-import { IFormItem } from "../../../../../modules/IFormItem";
+import { IFormItem } from "../../../../../interfaces/form/IFormItem";
 import { IDynamicPropertyComponentConfig } from "../../../../interfaces/IDynamicPropertyComponentConfig";
 
-export interface IDynamicDateFieldConfig extends IDynamicPropertyComponentConfig {
+export interface IDynamicDateFieldConfig<T> extends IDynamicPropertyComponentConfig<T> {
 	firstDayOfWeek?: DayOfWeek;
 	firstWeekOfYear?: FirstWeekOfYear;
 	displayFormat?: (date?: Date | undefined) => string;
 	localizationStrings?: ICalendarStrings;
-	minDate?: (parent: IFormItem) => Date;
-	maxDate?: (parent: IFormItem) => Date;
+	minDate?: (parent: T) => Date;
+	maxDate?: (parent: T) => Date;
 	restrictedDates?: (parent: IFormItem) => Array<Date> | undefined;
 }

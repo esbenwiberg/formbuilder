@@ -1,18 +1,20 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { IFormItemOptions } from '../models/options/IFormItemOptions';
-import { IFormSchema } from '../models/schema/IFormSchema';
+import { IFormItemOptions } from '../interfaces/options/IFormItemOptions';
+import { IFormSchema } from '../interfaces/schema/IFormSchema';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
-import { IFormItem } from '../modules/IFormItem';
 import { IFormBuilderListConfig, IFormBuilderListSearchConfig, IFormBuilderListColumns, IFormBuilderListMenuConfig, IFormBuilderListEditorConfig } from './config/IFormBuilderListConfig';
 import { Form, FormRef } from './Form';
 import { FormList } from './FormList';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
-import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
-import { fetchSchema } from '../utils/common/SchemaFetch';
+import { ILoadingSpinnerProps } from '../builders/interfaces/ILoadingSpinnerProps';
+import { ISchemaProvider } from '../interfaces/schema/ISchemaProvider';
+import { RequireOnlyOne } from '..';
+import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
+import { IFormItem } from '../interfaces/form/IFormItem';
 
 export type FormBuilderItemType<T extends IFormItem> = T | Array<T>;
 
@@ -29,9 +31,14 @@ export interface IFormBuilderListProps<T extends IFormItem> {
     editorConfig?: IFormBuilderListEditorConfig<T>;
 }
 
+export interface ISchemaConfig<T extends IFormItem> {
+    registeredSchemaKey?: string;
+    schemaProvider?: ISchemaProvider<T>;
+}
+
 export interface IFormBuilderProps<T extends IFormItem> {
-    itemType: new () => T;
     item: FormBuilderItemType<T>;
+    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
     singleItemProps?: FormBuilderSingleItemProps<T>;
     listProps?: IFormBuilderListProps<T>;
     groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
@@ -41,7 +48,7 @@ export interface IFormBuilderProps<T extends IFormItem> {
     propertyOverrides?: IPropertyOverrides;
     spinnerProps?: ILoadingSpinnerProps;
     keyPrefix?: string;
-    overrideSchema?: IFormSchema<IFormItem>;
+    overrideSchema?: IFormSchema<T>;
 }
 
 export type FormBuilderRef<T extends IFormItem> = { getItem: () => FormBuilderItemType<T>, validateItem: () => Promise<ValidationResult>; };
@@ -53,7 +60,7 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
     formbuilder.verify();
 
     const formRef = useRef<FormRef<T>>();
-    const [schema, setSchema] = useState<IFormSchema<IFormItem> | undefined>(props.overrideSchema);
+    const [schema, setSchema] = useState<IFormSchema<T> | undefined>(props.overrideSchema); 
 
     useImperativeHandle<FormBuilderRef, any>(ref as any, () => ({ 
         getItem: () => formRef.current?.getItem(), 
@@ -61,22 +68,27 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
     }), []);
     
     const loadSchema = async() => {
-        let schemaMerged = await fetchSchema<T>(props.itemType, props.formItemConfigOverrides, props.propertyOverrides);
+        let schemaMerged = await schemaFromConfig(props.schemaConfig, props.formItemConfigOverrides, props.propertyOverrides);
         setSchema(schemaMerged);
     }
 
     useEffect(() => {
         if (props.overrideSchema == null)
             loadSchema();
-    }, [props.itemType]);
+    }, [props.schemaConfig]);
 
     if (schema == null) return null;
+
+    const getKey = () : string => {
+        return `${props.keyPrefix}`;
+    }
 
 	return (
         <div className="formbuilder-rootcontainer" key={`${props.keyPrefix}-formbuilder-container`}>
             {
                 (Array.isArray(props.item) || props.listProps != null)
                     ?   <FormList
+                            key={getKey()}
                             ref={formRef}
                             items={props.item}
                             schema={schema}
@@ -85,12 +97,12 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
                             keyPrefix={`${props.keyPrefix}-list`}
                         />
                     :   <Form
-                            key={(props.item as any).id}
+                            key={getKey()}
                             ref={formRef}
                             schema={schema}
                             onPropertyChange={ (item: IFormItem, prop: string, value: any) => props.singleItemProps?.onPropertyChange == null ? () => {} : props.singleItemProps.onPropertyChange(item as any, prop, value)} // TODO: fucking T type mismatch for some reason (ewi)
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
-                            keyPrefix={`${props.keyPrefix}-${(props.item as any).id}`}
+                            keyPrefix={getKey()}
                         />
             }
         </div>

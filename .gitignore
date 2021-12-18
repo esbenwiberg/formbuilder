@@ -19,3 +19,4 @@ debug.log
 /dist
 /docs/*
 !/docs/.keepme
+storybook-static

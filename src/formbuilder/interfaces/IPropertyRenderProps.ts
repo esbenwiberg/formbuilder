@@ -1,8 +1,8 @@
-import { IFormItem } from "../modules/IFormItem";
-import { IFormItemPropertyOptions } from "../models/options/IFormItemPropertyOptions";
+import { IFormItemPropertyOptions } from "./options/IFormItemPropertyOptions";
 import { IDynamicPropertyComponentConfig } from "../builders/interfaces/IDynamicPropertyComponentConfig";
+import { IFormItem } from "./form/IFormItem";
 
-export interface IPropertyRenderProps<TItem extends IFormItem, TConfig extends IDynamicPropertyComponentConfig, TValue> {
+export interface IPropertyRenderProps<TItem extends IFormItem, TConfig extends IDynamicPropertyComponentConfig<TItem>, TValue> {
     /** the property key */
     key?: string;
     /** the property value */
@@ -12,7 +12,7 @@ export interface IPropertyRenderProps<TItem extends IFormItem, TConfig extends I
     /** the 'onChange' event of the properties render element */
     onChange: (value: TValue) => void;
     /** the 'onBlur' event of the properties render element */
-    onBlur: (value: any) => void;
+    onBlur: (value: TValue) => void;
     /** whether or not the property is disabled for editing */
     disabled: boolean;
     /** if validation fails this is the error message */

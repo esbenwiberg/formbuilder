@@ -1,7 +1,7 @@
-import { IFormItemOptions } from "../models/options/IFormItemOptions";
+import { IFormItemOptions } from "./options/IFormItemOptions";
 import { IValidationResult } from "../models/validation/IValidationResult";
-import { IFormItem } from "../modules/IFormItem";
 import { IPropertyOverrides } from "./IPropertyOverrides";
+import { IFormItem } from "./form/IFormItem";
 
 export interface IItemRenderProps<T extends IFormItem> {
     /** the form item */
@@ -19,5 +19,5 @@ export interface IItemRenderProps<T extends IFormItem> {
     /** a prefix added to the validation results. used for distincting between nested vailadtionresults */
     validationResultPrefix?: string;
     /** the item where the property resides */
-    parentItem?: Readonly<IFormItem>;
+    parentItem?: Readonly<T>;
 }

@@ -11,7 +11,7 @@ export interface IDynamicPredefinedArrayFieldValuesConfig {
 	optionsAsync?: () => Promise<Array<IDynamicPredefinedArrayItem>>;
 }
 
-export interface IDynamicPredefinedArrayFieldConfig extends IDynamicPropertyComponentConfig {
+export interface IDynamicPredefinedArrayFieldConfig<T> extends IDynamicPropertyComponentConfig<T> {
 	multiSelect?: boolean;
 	predefinedOptions?: RequireOnlyOne<IDynamicPredefinedArrayFieldValuesConfig>
 }

@@ -1,29 +1,31 @@
 import React, { forwardRef, FunctionComponent, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useIsMounted from '../hooks/useIsMounted';
-import { IFormGroupOptions } from '../models/options/IFormGroupOptions';
-import { IFormItemOptions } from '../models/options/IFormItemOptions';
-import { IFormSchema } from '../models/schema/IFormSchema';
+import { IFormGroupOptions } from '../interfaces/options/IFormGroupOptions';
+import { IFormItemOptions } from '../interfaces/options/IFormItemOptions';
+import { IFormSchema } from '../interfaces/schema/IFormSchema';
 import { IValidationResult } from '../models/validation/IValidationResult';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
-import { IFormItem } from '../modules/IFormItem';
 import { IDynamicSchemaConfig } from './config/IFormBuilderListConfig';
 import { formValidator } from './helpers/FormValidator';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IItemRenderProps } from '../interfaces/IItemRenderProps';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
-import { ILoadingSpinnerProps } from '../builders/fluentUI/components/list/components/FluentFormShimmer';
 import { validationUtil } from '../utils/common/ValidationUtil';
-import { fetchSchema } from '../utils/common/SchemaFetch';
+import { ILoadingSpinnerProps } from '../builders/interfaces/ILoadingSpinnerProps';
+import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
+import { RequireOnlyOne } from '../interfaces/types/Partials';
+import { ISchemaConfig } from './FormBuilder';
+import { IFormItem } from '../interfaces/form/IFormItem';
 
 export interface IFormItemProps<T extends IFormItem> {
-    itemType: new () => T;
+    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
     item: T;
     schema?: IFormSchema<T>;
     dynamicSchema?: IDynamicSchemaConfig<T>; // experimental
-    onPropertyChange?: (item: IFormItem, prop: string, value: any) => void;
+    onPropertyChange?: (item: T, prop: string, value: any) => void;
     groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
     groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
     validationOverride?: ValidationOverride;
@@ -90,8 +92,9 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
 
     const loadSchema = async (it?: T, force?: boolean) => {
         if (schema !== undefined && props.dynamicSchema?.dynamicKey == null && !force) return;
-        let schemaMerged = await fetchSchema<T>(props.dynamicSchema?.customFormType ?? props.itemType, props.formItemConfigOverrides, props.propertyOverrides, getDynamicSchemaKey(it));
-        if (props.dynamicSchema?.customFormType != null) {
+        // let schemaMerged = await fetchSchema<T>(props.dynamicSchema?.customFormType ?? props.itemType, props.formItemConfigOverrides, props.propertyOverrides, getDynamicSchemaKey(it));
+        let schemaMerged = await schemaFromConfig(props.dynamicSchema?.schemaConfig ?? props.schemaConfig, props.formItemConfigOverrides, props.propertyOverrides, getDynamicSchemaKey(it));
+        if (props.dynamicSchema?.schemaConfig != null) {
             dynamicSchema.current = schemaMerged;
         }
         if (!isMounted()) return;
@@ -100,7 +103,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
 
     useEffect(() => {
         loadSchema();
-    }, [props.itemType]);
+    }, [props.schemaConfig]);
 
     useEffect(() => {
         if (props.propertyOverrides == null) return;

@@ -1,15 +1,15 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
 import { Checkbox, Toggle } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
-import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicPropertyComponentConfig } from '../../../interfaces/IDynamicPropertyComponentConfig';
 import { fluentUiValidationMessageElement } from '../fluentUiValidationMessageElement';
 import { IDynamicBooleanConfig } from './config/IDynamicBooleanConfig';
 import React from "react";
+import { IFormItem } from '../../../../interfaces/form/IFormItem';
  
-interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicPropertyComponentConfig, boolean | undefined> { 
+interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicPropertyComponentConfig<T>, boolean | undefined> { 
 	hideLabel?: boolean;
-	config?: IDynamicBooleanConfig;
+	config?: IDynamicBooleanConfig<T>;
 }
 
 export const DynamicBooleanField = <T extends IFormItem>(props: PropsWithChildren<IProps<T>>) : ReactElement | null => {

@@ -6,49 +6,40 @@
 
 <h2>Sample code</h2>  
 
+
+```initialize```  
 ```js
-@IFormItem.register(MyIdValueListFormItemSchemaProvider)
-export class MyIdValueListFormItem {
-    public id?: string;
-    public name?: string;
-    public userId?: string;
-    public userAsString?: string;
-    public typeId?: string;
-    public typeAsString?: string;
-}
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
 ```
 
+```interfaces.ts```  
 ```js
-export class MyIdValueListFormItemSchemaProvider extends SchemaProvider<MyIdValueListFormItem> {
-
-    public key = "MySimplteListFormItem";
-    public itemType = () => MyIdValueListFormItem
-
-    public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        return {
-            options: {
-                properties: {
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
-                    userId: propertyOptionsFactory.stringPropertyOption({ displayName: "This user", listItemOptions: { customValueRender: (item: MyIdValueListFormItem) => item.userAsString } }),
-                    typeId: propertyOptionsFactory.stringPropertyOption({ displayName: "This type", listItemOptions: { customValueRender: (item: MyIdValueListFormItem) => item.typeAsString } })
-                } 
-            } as IFormItemOptions<MyIdValueListFormItem>
-        }
-    }
+export interface IMyIdValueListFormItem extends IFormItem {
+    id: number;
+    name: string;
+    userId: string;
+    userAsString: string;
+    typeId: string;
+    typeAsString: string;
 }
+
 ```
 
+
+```options.ts``` 
 ```js
-export const listWithIdsFormOptions: IFormBuilderProps<MyIdValueListFormItem> = {
-    itemType: MyIdValueListFormItem,
+export const listWithIdsFormOptions: IFormBuilderProps<IMyIdValueListFormItem> = {
+    schemaConfig: { schemaProvider: idValueListFormItemSchemaProvider },
     item: [
-        { id: "1", name: 'Esben', userId: "e959c336-f50d-43da-822f-a3107a01e99f", userAsString: "ewi", typeId: "241854fc-39ea-4bc5-9f9f-650d7cbfe20e", typeAsString: "Admin" } as MyIdValueListFormItem,
-        { id: "2", name: 'Other', userId: "8ac4b128-25ee-4ff9-a5f4-012fc163995d", userAsString: "oth", typeId: "9ca1e9ba-636c-46f8-89f3-cee502d39fb5", typeAsString: "SuperUser" } as MyIdValueListFormItem
+        { id: 1, name: 'Esben', userId: "e959c336-f50d-43da-822f-a3107a01e99f", userAsString: "ewi", typeId: "241854fc-39ea-4bc5-9f9f-650d7cbfe20e", typeAsString: "Admin" } as IMyIdValueListFormItem,
+        { id: 2, name: 'Other', userId: "8ac4b128-25ee-4ff9-a5f4-012fc163995d", userAsString: "oth", typeId: "9ca1e9ba-636c-46f8-89f3-cee502d39fb5", typeAsString: "SuperUser" } as IMyIdValueListFormItem
     ],
     listProps: {
         onItemChange: item => console.log(item),
         config: { 
-            itemIdentifier: item => item.id as string,
+            itemIdentifier: item => item.id.toString(),
             shimmerLines: 2
         },
         editorConfig: {
@@ -57,5 +48,26 @@ export const listWithIdsFormOptions: IFormBuilderProps<MyIdValueListFormItem> = 
         }
     }
 }
+
 ```
 
+
+
+```schemas.ts```  
+```js
+export const idValueListFormItemSchemaProvider: ISchemaProvider<IMyIdValueListFormItem> = {
+    key: "idValueListFormItemSchemaProvider",
+    getSchema: async () : Promise<IFormSchema<IMyIdValueListFormItem>> => {
+        return {
+            options: {
+                properties: {
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
+                    userId: propertyOptionsFactory.stringPropertyOption({ displayName: "This user", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.userAsString } }),
+                    typeId: propertyOptionsFactory.stringPropertyOption({ displayName: "This type", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.typeAsString } })
+                } 
+            } as IFormItemOptions<IMyIdValueListFormItem>
+        } as IFormSchema<IMyIdValueListFormItem>;
+    }
+}
+
+```

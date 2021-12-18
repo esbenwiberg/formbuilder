@@ -3,11 +3,7 @@ import { mergeStyles, MessageBar, MessageBarType, Shimmer, ShimmerElementType } 
 import useIsMounted from '../../../../../hooks/useIsMounted';
 import { lang } from '../../../../../models/language/Language';
 import React from "react";
-
-export interface ILoadingSpinnerProps {
-	timeout?: number;
-	timeoutMessage?: string;
-}
+import { ILoadingSpinnerProps } from '../../../../interfaces/ILoadingSpinnerProps';
 
 const wrapperClass = mergeStyles({
 	padding: 2,
@@ -26,8 +22,8 @@ const shimmerInput = [
 	{ type: ShimmerElementType.line, height: 30  },
 ];
 
-const propertyShimmer = (
-	<div className={wrapperClass}>
+const propertyShimmer = (idx: number) => (
+	<div className={wrapperClass} key={`formbuilder-shimmer-line-${idx}`}>
 		<Shimmer shimmerElements={shimmerLabel} width="35%" />
 		<Shimmer shimmerElements={shimmerInput} />
 	</div>
@@ -48,14 +44,15 @@ export const FluentFormShimmer: FunctionComponent<ILoadingSpinnerProps> = props 
 
     return (
 		timedOut 
-			? 	<MessageBar key="formbuilder-shimmer-bar"
+			? 	<MessageBar
+					key="formbuilder-shimmer-bar"
 					messageBarType={ MessageBarType.error }
 					styles={{root: { width: "100%" }}}
 				>
 					{ props.timeoutMessage ?? lang.texts.areas.common.schemaNotFound }
 				</MessageBar>
 			: 	<div style={{paddingBottom: "10px"}} key="formbuilder-shimmer">
-					{ [1,2,3,4,5].map(_ => propertyShimmer) }
+					{ [1,2,3,4,5].map((_, idx) => propertyShimmer(idx)) }
 				</div>
 	)
 }

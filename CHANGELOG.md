@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/esbenwiberg/formbuilder/compare/v0.0.19...v0.1.0) (2021-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **formbuilder:** the entire API has been restructured!
+
+### Features
+
+* **formbuilder:** rewrote the entire code to not use classes or decorators!!! ([19c1618](https://github.com/esbenwiberg/formbuilder/commit/19c1618574d32acab60d89a22a1e961038354bb6))
+
 ### [0.0.19](https://github.com/esbenwiberg/formbuilder/compare/v0.0.18...v0.0.19) (2021-12-16)
 
 

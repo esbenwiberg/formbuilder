@@ -3,24 +3,25 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { largeListFormOptions } from './models/LargeFormOptions';
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
-import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
+import { createFluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
 import largeListDocs from './largeListDocs.mdx';
 import { FormBuilder, IFormBuilderProps } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
 import { CountDownConfirmDialog, ICountDownConfirmDialogInfo } from './models/CountDownConfirmDialog';
 import { IFormBuilderListMenuItemSelectionMode } from '../../../formbuilder/components/config/IFormBuilderListConfig';
-import { LargeListFormItem } from './models/LargeListFormItem';
 import { mergeDeep } from '../../../formbuilder/utils/common/MergeObjects';
 import { fluentUiValidationMessageElement } from '../../../formbuilder';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
+import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
+import { ILargeListFormItem } from './models/interfaces';
+import { largeListFormOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
-    .withBuilders(FluentBuilder.Create())
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     
 export default {
@@ -38,7 +39,7 @@ export const LargeList: ComponentStory<typeof FormBuilder> = () => {
   
   const [confirmInfo, setConfirmInfo] = useState<ICountDownConfirmDialogInfo>();
   
-  const showDeleteDialog = (deleteItems: (pre?: (items: LargeListFormItem[]) => boolean | void) => void) => {
+  const showDeleteDialog = (deleteItems: (pre?: (items: ILargeListFormItem[]) => boolean | void) => void) => {
     setConfirmInfo({ callback: () => deleteItems(() => true), dismissCallback: () => deleteItems(() => false), count: 10, title: "Are you sure?", subText: "This cannot be undone!" } as ICountDownConfirmDialogInfo);
   }
 
@@ -57,12 +58,10 @@ export const LargeList: ComponentStory<typeof FormBuilder> = () => {
     }
   };
 
-  const options = mergeDeep(overrideOptions as Partial<IFormBuilderProps<LargeListFormItem>>, largeListFormOptions) ;
+  const options = mergeDeep(overrideOptions as Partial<IFormBuilderProps<ILargeListFormItem>>, largeListFormOptions) ;
 
   return  <>
-            <FormBuilder
-              {...options}
-            />
+            <FormBuilder {...options as any} />
             <CountDownConfirmDialog
               info={confirmInfo}
               cancelText="Cancel"

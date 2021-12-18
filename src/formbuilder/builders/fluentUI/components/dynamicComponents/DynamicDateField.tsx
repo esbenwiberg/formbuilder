@@ -3,14 +3,14 @@ import { DatePicker, DayOfWeek, FirstWeekOfYear } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
 import { fluentUiValidationMessageElement } from '../fluentUiValidationMessageElement';
 import { lang } from '../../../../models/language/Language';
-import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicDateFieldConfig } from './config/IDynamicDateFieldConfig';
 import React from "react";
+import { IFormItem } from '../../../../interfaces/form/IFormItem';
 
 export type DynamicDateFieldConfigValueType = Date | null | undefined;
 
-interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicDateFieldConfig, DynamicDateFieldConfigValueType> { 
-    config?: IDynamicDateFieldConfig;
+interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicDateFieldConfig<T>, DynamicDateFieldConfigValueType> { 
+    config?: IDynamicDateFieldConfig<T>;
 }
 
 export const DynamicDateField = <T extends IFormItem>(props: PropsWithChildren<IProps<T>>) : ReactElement | null => {

@@ -1,6 +1,6 @@
 {
   "name": "@wiberg/formbuilder",
-  "version": "0.0.19",
+  "version": "0.1.0",
   "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "rollup --config ./rollup.config.js",
-    "storybook": "start-storybook -p 6006 -s ./docs",
-    "build-storybook": "build-storybook -o ./docs",
+    "storybook": "start-storybook -p 6006 -s",
+    "build-storybook": "build-storybook",
     "commit": "git add -A && cz",
     "release": "standard-version && git push --follow-tags origin main",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",

@@ -1,15 +1,15 @@
 import { lang } from "../../models/language/Language";
-import { IFormSchema } from "../../models/schema/IFormSchema";
-import { IFormItem } from "../../modules/IFormItem";
+import { IFormSchema } from "../../interfaces/schema/IFormSchema";
+import { formbuilder } from "../..";
+import { IFormItem } from "../../interfaces/form/IFormItem";
 
-export class FormSchemaUtil {
-    public static GetSchemaFromItem = async <T extends IFormItem>(type: new () => T, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
-        let schemaType = IFormItem.getSchemaProvider(type) as any;
-        if (schemaType == null) {
-            console.error(`${lang.texts.areas.common.schemaNotFound} Make sure to register your schema provider using the '@IFormItem.register' method.`);
+export const formSchemaUtil = {
+    getSchemaFromMap: async <T extends IFormItem>(schemaMapKey: string, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+        let schemaProvider = formbuilder.getSchemaProvider(schemaMapKey) as any;
+        if (schemaProvider == null) {
+            console.error(`${lang.texts.areas.common.schemaNotFound} Make sure to register your schema provider using the 'formbuilder.registerSchemaProvider' function.`);
             return undefined;
         }
-        let schema = new schemaType.provider();
-        return await schema.getSchema(dynamicKey);
+        return await schemaProvider.getSchema(dynamicKey);
     }
 }
