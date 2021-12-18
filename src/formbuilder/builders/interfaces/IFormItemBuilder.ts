@@ -1,10 +1,10 @@
 import { IFormListRenderProps } from "../../components/interfaces/IFormListRenderProps";
+import { IFormItem } from "../../interfaces/form/IFormItem";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
-import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
+import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
 import { ValidationMark } from "../../models/validation/ValidationMark";
-import { IFormItem } from "../../modules/IFormItem";
-import { ILoadingSpinnerProps } from "../fluentUI/components/list/components/FluentFormShimmer";
 import { IDynamicPropertyComponentConfig } from "./IDynamicPropertyComponentConfig";
+import { ILoadingSpinnerProps } from "./ILoadingSpinnerProps";
 
 export interface IFormItemBuilderResult {
     found: boolean;
@@ -12,10 +12,10 @@ export interface IFormItemBuilderResult {
 }
 
 export interface IFormItemBuilder {
-    id: string;
+    id: Readonly<string>;
     listComponent?: <T extends IFormItem>() => React.ElementType<IFormListRenderProps<T>>;
-    loadingSpinnerComponent?: () => React.ElementType<ILoadingSpinnerProps>;
-    build: <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) => IFormItemBuilderResult;
+    loadingSpinnerComponent?: () => React.ElementType<ILoadingSpinnerProps> | undefined;
+    build: <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) => IFormItemBuilderResult;
 }
 
-export type LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(propertySchema: IFormItemPropertyOptions<T, C>, key: string, validationMark?: ValidationMark) => JSX.Element | undefined;
+export type LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(propertySchema: IFormItemPropertyOptions<T, C>, key: string, validationMark?: ValidationMark) => JSX.Element | undefined;

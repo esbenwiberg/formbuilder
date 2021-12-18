@@ -4,20 +4,19 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
-import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
-import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
 import dynamicListDocs from './dynamicListDocs.mdx';
-import { dynamicListFormOptions } from './models/DynamicListFormOptions';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
-import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { createFluentBuilder, fluentUiValidationMessageElement } from '../../../formbuilder';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
+import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
+import { dynamicListFormOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
-    .withBuilders(FluentBuilder.Create())
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     
 export default {
@@ -34,4 +33,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SuperDynamicList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...dynamicListFormOptions} />;
+export const SuperDynamicList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...dynamicListFormOptions as any} />;

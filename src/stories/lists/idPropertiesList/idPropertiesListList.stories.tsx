@@ -2,23 +2,20 @@
 
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
-import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
-import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
 import idPropertiesListListDocs from './idPropertiesListListDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
-import { listWithIdsFormOptions } from './models/ListWithIdsFormOptions';
-import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { createFluentBuilder, fluentUiValidationMessageElement } from '../../../formbuilder';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
+import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
+import { listWithIdsFormOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
-    .withBuilders(FluentBuilder.Create())
-    .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
     
 export default {
   /* 👇 The title prop is optional.
@@ -34,4 +31,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const ListWithIdProperties: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...listWithIdsFormOptions} />;
+export const ListWithIdProperties: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...listWithIdsFormOptions as any} />;

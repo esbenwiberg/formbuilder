@@ -1,8 +1,7 @@
 import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
-import { IFormItemPropertyOptions } from "../../models/options/IFormItemPropertyOptions";
+import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
 import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interfaces/IFormItemBuilder";
-import { PropertyType } from "../../models/property/PropertyType";
-import { IFormItem } from "../../modules/IFormItem";
+import { IPropertyTypes, propertyTypes } from "../../models/property/PropertyType";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { ValidationMark } from "../../models/validation/ValidationMark";
@@ -11,32 +10,27 @@ import { DynamicBooleanField } from "./components/dynamicComponents/DynamicBoole
 import { DynamicDateField } from "./components/dynamicComponents/DynamicDateField";
 import { DynamicPredefinedArrayField } from "./components/dynamicComponents/DynamicPredefinedArrayField";
 import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfield";
-import React from "react";
-import { Label } from "@fluentui/react";
+import React, { ElementType } from "react";
 import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
 import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
-import FluentList from "./components/list/FluentList";
 import { getPropertyValidationMark } from "../../utils/common/PropertyValidationMark";
 import { validationUtil } from "../../utils/common/ValidationUtil";
 import { fluentUiLabel } from "./components/fluentUiLabel";
+import { ILoadingSpinnerProps } from "../interfaces/ILoadingSpinnerProps";
+import { IFormListRenderProps } from "../../components/interfaces/IFormListRenderProps";
+import FluentList from "./components/list/FluentList";
+import { IFormItem } from "../../interfaces/form/IFormItem";
 
-export class FluentBuilder implements IFormItemBuilder {
+export const createFluentBuilder = (labelRender?: LabelRender) : IFormItemBuilder => {
 
-    public id = "internal_fluentbuilder";
-    private _labelRender: LabelRender = fluentUiLabel;
-    public listComponent? = () => FluentList;
-    public loadingSpinnerComponent? = () => FluentFormShimmer;
+    const id: Readonly<string> = "internal_fluentbuilder";
+    
+    const defaultLabelRender: LabelRender = fluentUiLabel;
+    const builderLabelRender = labelRender ?? defaultLabelRender;
+    const listComponent = <T extends IFormItem>() : ElementType<IFormListRenderProps<T>> => FluentList;
+    const loadingSpinnerComponent = () : ElementType<ILoadingSpinnerProps> | undefined => FluentFormShimmer;
 
-    constructor(labelRender?: LabelRender) {
-        if (labelRender) this._labelRender = labelRender;
-    }
-
-    public static Create = (labelRender?: LabelRender) : FluentBuilder => {
-        let builder = new FluentBuilder(labelRender);
-        return builder;
-    }
-
-    public build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : IFormItemBuilderResult => {
+    const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
         let { item, onChange, onBlur, validationResults, validationResultPrefix } = renderProps;
         
         if (item === null) throw Error("item is null");
@@ -62,7 +56,7 @@ export class FluentBuilder implements IFormItemBuilder {
                 <div className="formbuilder-property" key={`propcon-${key}`}>
                     <FluentPropertyLabel
                         key={`${key}-labelcontainer`}
-                        labelRender={this._labelRender}
+                        labelRender={builderLabelRender}
                         propertySchema={schema}
                         hideLabel={props.options.hideLabel}
                         parentKey={key}
@@ -73,14 +67,19 @@ export class FluentBuilder implements IFormItemBuilder {
             )
         }
 
+        const propertyType: IPropertyTypes = propertyTypes;
+
         switch (schema.propertyType) {
-            case PropertyType.String: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...props} />) };
-            case PropertyType.Number: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...props} />) };
-            case PropertyType.Boolean: return { found: true, element: WrapInLabel(<DynamicBooleanField {...schema} {...props} />) }
-            case PropertyType.Date: return { found: true, element: WrapInLabel(<DynamicDateField {...schema} {...props} />) }
-            case PropertyType.Json: return { found: true, element: WrapInLabel(<DynamicJsonfield {...schema} {...props} />) };
-            case PropertyType.PredefinedArray: return { found: true, element: WrapInLabel(<DynamicPredefinedArrayField {...schema} {...props} />) };
+            case propertyType.string: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...props} />) };
+            case propertyType.number: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...props} />) };
+            case propertyType.boolean: return { found: true, element: WrapInLabel(<DynamicBooleanField {...schema} {...props} />) }
+            case propertyType.date: return { found: true, element: WrapInLabel(<DynamicDateField {...schema} {...props} />) }
+            case propertyType.json: return { found: true, element: WrapInLabel(<DynamicJsonfield {...schema} {...props} />) };
+            case propertyType.predefinedArray: return { found: true, element: WrapInLabel(<DynamicPredefinedArrayField {...schema} {...props} />) };
             default: return { found: false, element: undefined }
         }
-    }
+    };
+
+
+    return { id, build, loadingSpinnerComponent, listComponent }
 }

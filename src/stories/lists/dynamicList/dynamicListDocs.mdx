@@ -6,30 +6,90 @@
 
 <h2>Sample code</h2>  
 
+
+```initialize```  
 ```js
-@IFormItem.register(PluginSchemaProvider)
-export class PluginFormItem {
-    public id?: string;
-    public name?: string;
-    public description?: string;
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
+```
+
+```interfaces.ts```  
+```js
+export interface IPluginFormItem extends IFormItem {
+    id: string;
+    name: string;
+    description: string;
+}
+
+export interface IDynamicListFormItem extends IFormItem {
+    // no props needed (all is fetched on the fly)
+    [key: string]: string | keyof IDynamicListFormItem | any | undefined;
 }
 ```
 
+
+```options.ts``` 
 ```js
-@IFormItem.register(DynamicListFormItemSchemaProvider)
-export class DynamicListFormItem {
-   // no props needed (all is fetched on the fly)
-   [key: string]: string | keyof DynamicListFormItemSchemaProvider | any | undefined;
+export const dynamicListFormOptions: IFormBuilderProps<IPluginFormItem> = {
+    schemaConfig: { schemaProvider: pluginFormItemSchemaProvider },
+    item: schemas.map(_ => {
+        return { id: _.Id, name: _.Name, description: _.Url } as IPluginFormItem;
+    }),
+    spinnerProps:{ timeout: 3000 },
+    listProps: {
+        onItemChange: item => console.log(item),
+        config: { 
+            itemIdentifier: item => item.id as string,
+            multiSelect: true, 
+            onItemsChange: items => console.log("FROM OUTSIDE", items),
+            shimmerLines: 20
+        },
+        columnConfig: {
+            columnOrder: ["name", "customStuff"],
+            customColumns: []
+        },
+        editorConfig: {
+            title: item => `Invoke '${item?.name}'`,
+            description: "Here's a little description for ya'",
+            type: FormBuilderListEditorType.Panel,
+            dynamicForm: {
+                dynamicKey: (item: IPluginFormItem) => item.id as string,
+                schemaConfig: { schemaProvider: dynamicFormItemSchemaProvider },
+                useEmptyItem: true
+            },
+            customFooter: (save, dismiss, validate, getItem) => (
+                <>
+                    <PrimaryButton 
+                        text="Invoke" 
+                        onClick={async () => {
+                            const validationResult = await validate();
+                            if (validationResult != ValidationResult.Success) return;
+                            const item = getItem();
+                            alert(JSON.stringify(item));
+                            dismiss();
+                        }}
+                    />
+                    <IconButton iconProps={{iconName:"Cancel"}} onClick={() => dismiss()} />
+                </>
+            )
+        },
+        searchConfig: {
+            searchEnabled: true,
+            searchPlaceHolder: "Type here to filter items..",
+            searchableFields: ["name", "customStuff"]
+        }
+    } as IFormBuilderListProps<IPluginFormItem>
 }
+
 ```
 
+
+```schemas.ts```  
 ```js
-export class PluginSchemaProvider extends SchemaProvider<PluginFormItem> {
-
-    public key = "PluginFormItem";
-    public itemType = () => PluginFormItem
-
-    public getSchema = async () : Promise<IFormSchema<PluginFormItem>> => {
+export const pluginFormItemSchemaProvider: ISchemaProvider<IPluginFormItem> = {
+    key: "pluginFormItemSchemaProvider",
+    getSchema: async () : Promise<IFormSchema<IPluginFormItem>> => {
         return {
             options: {
                 properties: {
@@ -37,20 +97,15 @@ export class PluginSchemaProvider extends SchemaProvider<PluginFormItem> {
                     name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
                     description: propertyOptionsFactory.stringPropertyOption({ displayName: "This description" }),
                 } 
-            } as IFormItemOptions<PluginFormItem>
-        }
+            } as IFormItemOptions<IPluginFormItem>
+        } as IFormSchema<IPluginFormItem>;
     }
 }
-```
 
-```js
-export class DynamicListFormItemSchemaProvider extends SchemaProvider<DynamicListFormItem> {
 
-    public key = "DynamicListFormItem";
-    public itemType = () => DynamicListFormItem
-
-    public getSchema = async (dynamicKey?: string) : Promise<IFormSchema<DynamicListFormItem> | undefined> => {
-
+export const dynamicFormItemSchemaProvider: ISchemaProvider<IDynamicListFormItem> = {
+    key: "dynamicFormItemSchemaProvider",
+    getSchema: async (dynamicKey?: string) : Promise<IFormSchema<IDynamicListFormItem>> => {
         const jsonSchema = await PluginSchemaFetch(dynamicKey);
         const schema = PluginSchemaParser(jsonSchema);
         return schema;
@@ -58,9 +113,195 @@ export class DynamicListFormItemSchemaProvider extends SchemaProvider<DynamicLis
 }
 ```
 
-<h3>Fake fetch</h3>  
+```json schema```  
+```js
+export interface IJsonPropertySchema {
+    MemberType: string;
+    Name: string;
+    SourceId: string;
+    Type: string;
+    IsStandard: boolean;
+    IsNullable: boolean;
+    DataAnnotations: Array<any>; // what is this? (ewi)
+    ElementType: IJsonMemberSchema;
+    Values: Array<{ [name: string] : number; }>;
+}
+
+export interface IJsonMemberSchema extends IJsonPropertySchema {
+    Properties: Array<IJsonPropertySchema>;
+}
+```
 
 
+
+```dynamic parsing```  
+```js
+const mappings: Record<string, keyof IPropertyTypes> = {
+    "String": "string",
+    "Int32": "number",
+    "Boolean": "boolean",
+    "List": "formItem",
+    "Object": "json", 
+    "ExpandoObject": "json",
+    "Enum": "predefinedArray"
+}
+
+const propertyOptions = (propertyType: keyof IPropertyTypes, propertyName: string) : Partial<IFormItemPropertyOptions<IDynamicListFormItem, IDynamicPropertyComponentConfig<IDynamicListFormItem>>> => {
+    switch (propertyType) {
+        case "string":
+            return propertyOptionsFactory.stringPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+        case "number":
+            return propertyOptionsFactory.numberPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+        case "boolean":
+            return propertyOptionsFactory.booleanPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+        case "json":
+            return propertyOptionsFactory.jsonPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+        case "predefinedArray":
+            return propertyOptionsFactory.predefinedArrayPropertyOption<IDynamicListFormItem>({ displayName: propertyName, config: { predefinedOptions: { options: [] } } });
+        case "array":
+            return propertyOptionsFactory.arrayPropertyOption<IDynamicListFormItem>({ displayName: propertyName, config: {  } });
+    }
+    return {};
+}
+
+const getName = (name: string) : string => {
+    if (name == null || name == "") return "Noname";
+    return name;
+}
+
+// TODO: refactor the shit out of this (ewi)
+const parseSingleProperty = (jsonPropertySchema: IJsonPropertySchema, formSchema: IFormSchema<IDynamicListFormItem>, nested?: boolean) : void => {
+    const name: string = getName(jsonPropertySchema.Name);
+    let type = mappings[jsonPropertySchema.Type];
+
+    const isList = jsonPropertySchema.Type === "List";
+    // list of simple objects (ie. string, number, boolean)
+    if (isList && (jsonPropertySchema as IJsonMemberSchema).Properties === undefined && !jsonPropertySchema.ElementType?.Properties?.length) {
+        type = "array";
+    }
+
+    // complex type in a list (or maybe unsupported type)
+    if (type == null && nested) {
+        (jsonPropertySchema as IJsonMemberSchema).Properties?.forEach(_ => parseSingleProperty(_, formSchema, true));
+        return;
+    }
+
+    const options = propertyOptions(type, name);
+    
+    let skipValidation = false;
+    // complex type on root
+    if (Object.keys(options).length == 0) {
+        // options = propertyOptions(PropertyType.FormItem, jsonPropertySchema.Name);
+        type = "formItem";
+        skipValidation = true; // skip validation for complex type's root
+    }
+
+    // more array
+    if (type == "array") {
+        const dynamicArrayConfig = (options as IFormItemPropertyOptions<IDynamicListFormItem, IDynamicArrayFieldConfig<IDynamicListFormItem>>).config;
+        if (dynamicArrayConfig != null)
+            dynamicArrayConfig.propertyType = mappings[jsonPropertySchema.ElementType.Type];
+    }
+
+    // handle enums
+    if (type == "predefinedArray") {
+        const arrayOptions = options as IFormItemPropertyOptions<IDynamicListFormItem, IDynamicPredefinedArrayFieldConfig<IDynamicListFormItem>>;
+        if (arrayOptions.config !== undefined) {
+            arrayOptions.config.predefinedOptions = {
+                options: Object.keys(jsonPropertySchema.Values).map(_ => {
+                    return { key: (jsonPropertySchema.Values as any)[_], text: _ } as { key: number, text: string };
+                })
+            }
+        }
+    }
+
+    formSchema.options.properties[name] = options as any;
+
+    // handle lists
+    if (type == "formItem") {
+        if (isList) {
+            const listFormSchema = { options: { properties: { }, validation: { validationRules: { } } } } as IFormSchema<IDynamicListFormItem>;
+            const listSchema = jsonPropertySchema.ElementType;
+            
+            listSchema.Properties.forEach(_ => parseSingleProperty(_, listFormSchema, true));
+            const listPropName = jsonPropertySchema.Name;
+
+            // validation
+            const validationRules = {} as  any;
+            validationRules[listPropName] = {
+                id: listPropName,
+                validateOn: ValidationEventType.Manual,
+                validationMessage: `${listPropName} is required`,
+                validationRule: item => item[listPropName] != null && item[listPropName].lenght > 0,
+                validationMark: ValidationMark.Required
+            } as IValidationRule<any>;
+            formSchema.options.validation = mergeDeep(validationRules, formSchema.options.validation); // merge with existing validation
+            
+            // list schema
+            formSchema.options.properties[listPropName] = {
+                displayName: listPropName,
+                propertyType: "formItem",
+                config: {
+                    schemaConfig: { registeredSchemaKey: "dynamicFormItemSchemaProvider" },
+                    overrideSchema: listFormSchema as IFormSchema<IDynamicListFormItem>
+                },
+                listItemOptions: {
+                    customValueRender: nested ? (item, onChange) => item[listPropName]?.length : undefined,
+                    isResizable: true
+                },
+                listProps: {
+                    config: {
+                        itemIdentifier: (item => json.tryStringify(item)),
+                        multiSelect: true
+                    },
+                    editorConfig: {
+                        title: () => "Edit",
+                        type: FormBuilderListEditorType.Dialog
+                    },
+                    menuConfig: {
+                        actions: (newItem, editItem, deleteItems) => (
+                            [
+                                { title: "New", iconName: "Add", selectionMode: IFormBuilderListMenuItemSelectionMode.None | IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => newItem() },
+                                { title: "Edit", iconName: "Edit", selectionMode: IFormBuilderListMenuItemSelectionMode.Single, action: () => editItem() },
+                                { title: "Delete", iconName: "Delete", selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => deleteItems() }
+                            ]
+                        ),
+                    }
+                }
+            }
+        }
+        else {
+            (jsonPropertySchema as IJsonMemberSchema).Properties.forEach(_ => parseSingleProperty(_, formSchema, true));
+        }
+    }
+
+    // add required validation
+    if (!skipValidation && !jsonPropertySchema.IsNullable && formSchema.options?.validation?.validationRules != null) {
+        formSchema.options.validation.validationRules[name] = { id: "required", validationMark: ValidationMark.Required, validationRule: (item: IDynamicListFormItem) => item[name] != null &&  item[name] != "", validationMessage: `'${name}' is required`, validateOn: ValidationEventType.Manual }
+    }
+}
+
+export const PluginSchemaParser = (jsonSchema: any) : IFormSchema<IDynamicListFormItem> | undefined => {
+    if (jsonSchema == null) return undefined;
+    const formSchema = { options: { properties: { }, validation: { validationRules: { } } } } as IFormSchema<IDynamicListFormItem>;
+
+    const memberSchema: IJsonMemberSchema = jsonSchema.Request as IJsonMemberSchema;
+
+    const map = mappings[memberSchema.Type];
+    // complex type (or maybe unsupported type)
+    if (map == null) {
+        memberSchema.Properties.forEach(_ => parseSingleProperty(_, formSchema));
+    }
+    // simple type
+    else {
+        parseSingleProperty(memberSchema, formSchema);
+    }
+    return formSchema;
+}
+```
+
+
+```fetch```  
 ```js
 // FAKE API CALL
 export const PluginSchemaFetch = (key: string | undefined) : Promise<any> | undefined => {
@@ -134,246 +375,5 @@ export const schemas = [
 	},
     ...,
     ...
-]
-```
-
-<h3>Parsing</h3>  
-
-
-```js
-export const dynamicListFormOptions: IFormBuilderProps<PluginFormItem> = {
-    itemType: PluginFormItem,
-    item: schemas.map(_ => {
-        return { id: _.Id, name: _.Name, description: _.Url } as PluginFormItem;
-    }),
-    spinnerProps:{ timeout: 4000 },
-    listProps: {
-        onItemChange: item => console.log(item),
-        config: { 
-            itemIdentifier: item => item.id as string,
-            multiSelect: true, 
-            onItemsChange: items => console.log("FROM OUTSIDE", items),
-            shimmerLines: 20
-        },
-        columnConfig: {
-            columnOrder: ["name", "customStuff"],
-            customColumns: []
-        },
-        editorConfig: {
-            title: item => `Invoke '${item?.name}'`,
-            description: "Here's a little description for ya'",
-            type: FormBuilderListEditorType.Panel,
-            dynamicForm: {
-                dynamicKey: (item: PluginFormItem) => item.id as string,
-                customFormType: DynamicListFormItem,
-                useEmptyItem: true
-            },
-            customFooter: (save, dismiss, validate, getItem) => (
-                <>
-                    <PrimaryButton 
-                        text="Invoke" 
-                        onClick={async () => {
-                            const validationResult = await validate();
-                            if (validationResult != ValidationResult.Success) return;
-                            const item = getItem();
-                            alert(JSON.stringify(item));
-                            dismiss();
-                        }}
-                    />
-                    <IconButton iconProps={{iconName:"Cancel"}} onClick={() => dismiss()} />
-                </>
-            )
-        },
-        searchConfig: {
-            searchEnabled: true,
-            searchPlaceHolder: "Type here to filter items..",
-            searchableFields: ["name", "customStuff"]
-        }
-    } as IFormBuilderListProps<PluginFormItem>
-};
-
-```
-
-
-```js
-export interface IJsonPropertySchema {
-    MemberType: string;
-    Name: string;
-    SourceId: string;
-    Type: string;
-    IsStandard: boolean;
-    IsNullable: boolean;
-    DataAnnotations: Array<any>; // what is this? (ewi)
-    ElementType: IJsonMemberSchema;
-    Values: Array<{ [name: string] : number; }>;
-}
-
-export interface IJsonMemberSchema extends IJsonPropertySchema {
-    Properties: Array<IJsonPropertySchema>;
-}
-```
-
-```js
-const mappings: Record<string, PropertyType> = {
-    "String": PropertyType.String,
-    "Int32": PropertyType.Number,
-    "Boolean": PropertyType.Boolean,
-    "List": PropertyType.FormItem,
-    "Object": PropertyType.Json,
-    "ExpandoObject": PropertyType.Json,
-    "Enum": PropertyType.PredefinedArray
-}
-
-const propertyOptions = (propertyType: PropertyType, propertyName: string) : Partial<IFormItemPropertyOptions<DynamicListFormItem, IDynamicPropertyComponentConfig>> => {
-    switch (propertyType) {
-        case PropertyType.String:
-            return propertyOptionsFactory.stringPropertyOption<DynamicListFormItem>({ displayName: propertyName });
-        case PropertyType.Number:
-            return propertyOptionsFactory.numberPropertyOption<DynamicListFormItem>({ displayName: propertyName });
-        case PropertyType.Boolean:
-            return propertyOptionsFactory.booleanPropertyOption<DynamicListFormItem>({ displayName: propertyName });
-        case PropertyType.Json:
-            return propertyOptionsFactory.jsonPropertyOption<DynamicListFormItem>({ displayName: propertyName });
-        case PropertyType.PredefinedArray:
-            return propertyOptionsFactory.predefinedArrayPropertyOption<DynamicListFormItem>({ displayName: propertyName, config: { predefinedOptions: { options: [] } } });
-        case PropertyType.Array:
-            return propertyOptionsFactory.arrayPropertyOption<DynamicListFormItem>({ displayName: propertyName, config: {  } });
-    }
-    return {};
-}
-
-const getName = (name: string) : string => {
-    if (name == null || name == "") return "Noname";
-    return name;
-}
-
-// TODO: refactor the shit out of this (ewi)
-const parseSingleProperty = (jsonPropertySchema: IJsonPropertySchema, formSchema: IFormSchema<DynamicListFormItem>, nested?: boolean) : void => {
-    const name: string = getName(jsonPropertySchema.Name);
-    let type = mappings[jsonPropertySchema.Type];
-
-    const isList = jsonPropertySchema.Type === "List";
-    // list of simple objects (ie. string, number, boolean)
-    if (isList && (jsonPropertySchema as IJsonMemberSchema).Properties === undefined && !jsonPropertySchema.ElementType?.Properties?.length) {
-        type = PropertyType.Array;
-    }
-
-    // complex type in a list (or maybe unsupported type)
-    if (type == null && nested) {
-        (jsonPropertySchema as IJsonMemberSchema).Properties?.forEach(_ => parseSingleProperty(_, formSchema, true));
-        return;
-    }
-
-    const options = propertyOptions(type, name);
-    
-    let skipValidation = false;
-    // complex type on root
-    if (Object.keys(options).length == 0) {
-        // options = propertyOptions(PropertyType.FormItem, jsonPropertySchema.Name);
-        type = PropertyType.FormItem;
-        skipValidation = true; // skip validation for complex type's root
-    }
-
-    // more array
-    if (type == PropertyType.Array) {
-        const dynamicArrayConfig = (options as IFormItemPropertyOptions<DynamicListFormItem, IDynamicArrayFieldConfig>).config;
-        if (dynamicArrayConfig != null)
-            dynamicArrayConfig.propertyType = mappings[jsonPropertySchema.ElementType.Type];
-    }
-
-    // handle enums
-    if (type == PropertyType.PredefinedArray) {
-        const arrayOptions = options as IFormItemPropertyOptions<DynamicListFormItem, IDynamicPredefinedArrayFieldConfig>;
-        if (arrayOptions.config !== undefined) {
-            arrayOptions.config.predefinedOptions = {
-                options: Object.keys(jsonPropertySchema.Values).map(_ => {
-                    return { key: (jsonPropertySchema.Values as any)[_], text: _ } as { key: number, text: string };
-                })
-            }
-        }
-    }
-
-    formSchema.options.properties[name] = options as any;
-
-    // handle lists
-    if (type == PropertyType.FormItem) {
-        if (isList) {
-            const listFormSchema = { options: { properties: { }, validation: { validationRules: { } } } } as IFormSchema<DynamicListFormItem>;
-            const listSchema = jsonPropertySchema.ElementType;
-            
-            listSchema.Properties.forEach(_ => parseSingleProperty(_, listFormSchema, true));
-            const listPropName = jsonPropertySchema.Name;
-
-            // validation
-            const validationRules = {} as  any;
-            validationRules[listPropName] = {
-                id: listPropName,
-                validateOn: ValidationEventType.Manual,
-                validationMessage: `${listPropName} is required`,
-                validationRule: item => item[listPropName] != null && item[listPropName].lenght > 0,
-                validationMark: ValidationMark.Required
-            } as IValidationRule<any>;
-            formSchema.options.validation = mergeDeep(validationRules, formSchema.options.validation); // merge with existing validation
-
-            // list schema
-            formSchema.options.properties[listPropName] = {
-                displayName: listPropName,
-                propertyType: PropertyType.FormItem,
-                config: {
-                    itemType: DynamicListFormItem,
-                    overrideSchema: listFormSchema as IFormSchema<DynamicListFormItem>
-                },
-                listItemOptions: {
-                    customValueRender: nested ? (item, onChange) => item[listPropName]?.length : undefined,
-                    isResizable: true
-                },
-                listProps: {
-                    config: {
-                        itemIdentifier: (item => json.tryStringify(item)),
-                        multiSelect: true
-                    },
-                    editorConfig: {
-                        title: () => "Edit",
-                        type: FormBuilderListEditorType.Dialog
-                    },
-                    menuConfig: {
-                        actions: (newItem, editItem, deleteItems) => (
-                            [
-                                { title: "New", iconName: "Add", selectionMode: IFormBuilderListMenuItemSelectionMode.None | IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => newItem() },
-                                { title: "Edit", iconName: "Edit", selectionMode: IFormBuilderListMenuItemSelectionMode.Single, action: () => editItem() },
-                                { title: "Delete", iconName: "Delete", selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => deleteItems() }
-                            ]
-                        ),
-                    }
-                }
-            }
-        }
-        else {
-            (jsonPropertySchema as IJsonMemberSchema).Properties.forEach(_ => parseSingleProperty(_, formSchema, true));
-        }
-    }
-
-    // add required validation
-    if (!skipValidation && !jsonPropertySchema.IsNullable && formSchema.options?.validation?.validationRules != null) {
-        formSchema.options.validation.validationRules[name] = { id: "required", validationMark: ValidationMark.Required, validationRule: (item: DynamicListFormItem) => item[name] != null &&  item[name] != "", validationMessage: `'${name}' is required`, validateOn: ValidationEventType.Manual }
-    }
-}
-
-export const PluginSchemaParser = (jsonSchema: any) : IFormSchema<DynamicListFormItem> | undefined => {
-    if (jsonSchema == null) return undefined;
-    const formSchema = { options: { properties: { }, validation: { validationRules: { } } } } as IFormSchema<DynamicListFormItem>;
-
-    const memberSchema: IJsonMemberSchema = jsonSchema.Request as IJsonMemberSchema;
-
-    const map = mappings[memberSchema.Type];
-    // complex type (or maybe unsupported type)
-    if (map == null) {
-        memberSchema.Properties.forEach(_ => parseSingleProperty(_, formSchema));
-    }
-    // simple type
-    else {
-        parseSingleProperty(memberSchema, formSchema);
-    }
-    return formSchema;
-}
+];
 ```

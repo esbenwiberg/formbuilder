@@ -1,13 +1,13 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { IFormItem } from '../modules/IFormItem';
 import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
 import { useStateRef } from '../hooks/useStateRef';
-import { IFormItemPropertyOptions } from '../models/options/IFormItemPropertyOptions';
+import { IFormItemPropertyOptions } from '../interfaces/options/IFormItemPropertyOptions';
 import { IDynamicPropertyComponentConfig } from '../builders/interfaces/IDynamicPropertyComponentConfig';
 import { formListHelper } from './helpers/FormListHelper';
 import { IFormListColumnInfo } from '../interfaces/lists/IFormListColumnInfo';
 import { IFormListProps } from './interfaces/IFormListProps';
 import { IFormListRenderProps } from './interfaces/IFormListRenderProps';
+import { IFormItem } from '../interfaces/form/IFormItem';
 
 export type FormListRef<T extends IFormItem> = { getItem: () => Array<T> };
 
@@ -71,7 +71,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...changedItems]);
     }
 
-    const columnValueRender = (propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig>) : ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined => {
+    const columnValueRender = (propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>) : ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined => {
         let valueRender = propInfo?.listItemOptions?.customValueRender as any;
         if (valueRender == undefined) return undefined;
         else {

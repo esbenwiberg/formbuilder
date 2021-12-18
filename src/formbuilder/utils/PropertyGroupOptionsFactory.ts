@@ -1,8 +1,8 @@
 import { AtLeast } from "../interfaces/types/Partials";
-import { IFormGroupOptions } from "../models/options/IFormGroupOptions";
+import { IFormGroupOptions } from "../interfaces/options/IFormGroupOptions";
 
-export class PropertyGroupOptionsFactory {
-    public static GroupOptions = (options: AtLeast<IFormGroupOptions, "displayName">) : Partial<IFormGroupOptions> => {
+export const propertyGroupOptionsFactory = {
+    groupOptions: (options: AtLeast<IFormGroupOptions, "displayName">) : Partial<IFormGroupOptions> => {
         return options;
     }
 }

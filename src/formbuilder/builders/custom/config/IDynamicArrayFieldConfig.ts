@@ -1,9 +1,10 @@
+import { IPropertyTypes } from "../../..";
 import { IFormBuilderListMenuConfig } from "../../../components/config/IFormBuilderListConfig";
-import { PropertyType } from "../../../models/property/PropertyType";
+import { IFormItem } from "../../../interfaces/form/IFormItem";
 import { IDynamicPropertyComponentConfig } from "../../interfaces/IDynamicPropertyComponentConfig";
 
-export interface IDynamicArrayFieldConfig extends IDynamicPropertyComponentConfig {
+export interface IDynamicArrayFieldConfig<T extends IFormItem> extends IDynamicPropertyComponentConfig<T> {
 	multiSelect?: boolean;
 	listMenuConfig?: IFormBuilderListMenuConfig<any>;
-	propertyType?: PropertyType;
+	propertyType?: keyof IPropertyTypes;
 }

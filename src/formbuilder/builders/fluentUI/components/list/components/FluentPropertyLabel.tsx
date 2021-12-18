@@ -1,17 +1,17 @@
 import { Icon } from '@fluentui/react';
 import { memo, PropsWithChildren, ReactElement } from 'react';
 import React from "react";
-import { IFormItemPropertyOptions } from '../../../../../models/options/IFormItemPropertyOptions';
-import { IFormItem } from '../../../../../modules/IFormItem';
+import { IFormItemPropertyOptions } from '../../../../../interfaces/options/IFormItemPropertyOptions';
 import { LabelRender } from '../../../../interfaces/IFormItemBuilder';
 import { ValidationMark } from '../../../../../models/validation/ValidationMark';
 import { IDynamicPropertyComponentConfig } from '../../../../interfaces/IDynamicPropertyComponentConfig';
+import { IFormItem } from '../../../../../interfaces/form/IFormItem';
  
 interface IProps<T extends IFormItem> { 
     labelRender: LabelRender;
 	hideLabel?: boolean;
 	validationMark?: ValidationMark;
-	propertySchema: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig>;
+	propertySchema: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>;
 	parentKey?: string;
 }
 

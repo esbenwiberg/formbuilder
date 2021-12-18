@@ -1,6 +1,8 @@
 import React from "react";
+import { IFormItem } from "../../interfaces/form/IFormItem";
+import { RequireOnlyOne } from "../../interfaces/types/Partials";
 import { ValidationResult } from "../../models/validation/ValidationResult";
-import { IFormItem } from "../../modules/IFormItem";
+import { ISchemaConfig } from "../FormBuilder";
 
 export interface IFormBuilderListConfig<T extends IFormItem> {
     itemIdentifier: (item: T) => string;
@@ -50,7 +52,7 @@ export interface IFormBuilderListSearchConfig {
 
 export interface IDynamicSchemaConfig<T> extends IFormItem {
     dynamicKey: (item: T) => string;
-    customFormType?: new () => IFormItem;
+    schemaConfig?: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
     useEmptyItem?: boolean;
 }
 export enum FormBuilderListEditorType { Dialog, Panel };

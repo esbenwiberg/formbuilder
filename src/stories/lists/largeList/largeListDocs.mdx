@@ -5,47 +5,34 @@
 <h2>Sample code</h2>  
 
 
+
+```initialize```  
 ```js
-@IFormItem.register(LargeListFormItemSchemaProvider)
-export class LargeListFormItem {
-    public id?: number;
-    public name?: string;
-    public age?: number;
-    public awesome?: boolean;
-    public start?: Date;
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder())
+    .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } });
+```
+
+```interfaces.ts```  
+```js
+export interface ILargeListFormItem extends IFormItem {
+    id: number;
+    name: string;
+    age: number;
+    awesome: boolean;
+    start: Date;
 }
 ```
 
-```js
-export class LargeListFormItemSchemaProvider extends SchemaProvider<LargeListFormItem> {
-
-    public key = "LargeListFormItem";
-    public itemType = () => LargeListFormItem
-
-    public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        return {
-            options: {
-                properties: {
-                    id: propertyOptionsFactory.stringPropertyOption({ displayName: "This id", description: "This is an explanation of what this property does.." }),
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age"}),
-                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: LargeListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
-                } 
-            } as IFormItemOptions<LargeListFormItem>
-        }
-    }
-}
-
-```
-
+```options.ts``` 
 ```js
 const date = new Date();
 
-export const largeListFormOptions: IFormBuilderProps<LargeListFormItem> = {
-    itemType: LargeListFormItem,
-    item: Array.from(Array(1000).keys()).map(_ => {
-        return { id: _, name: _.toString(), age: _ % 100, awesome: _  % 2 == 0, start: new Date(date.setDate(_)) } as LargeListFormItem;
+export const largeListFormOptions: IFormBuilderProps<ILargeListFormItem> = {
+    schemaConfig: { schemaProvider: largeListFormItemSchemaProvider },
+    item: Array.from(Array(100000).keys()).map(_ => {
+        return { id: _, name: _.toString(), age: _ % 100, awesome: _  % 2 == 0, start: new Date(date.setDate(_)) } as ILargeListFormItem;
     }),
     listProps: {
         config: { 
@@ -73,14 +60,37 @@ export const largeListFormOptions: IFormBuilderProps<LargeListFormItem> = {
         }
     }
 }
+
+
 ```
 
+```schemas.ts``` 
+```js
+export const largeListFormItemSchemaProvider: ISchemaProvider<ILargeListFormItem> = {
+    key: "largeListFormItemSchemaProvider",
+    getSchema: async () : Promise<IFormSchema<ILargeListFormItem>> => {
+        return {
+            options: {
+                properties: {
+                    id: propertyOptionsFactory.stringPropertyOption({ displayName: "This id", description: "This is an explanation of what this property does.." }),
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age"}),
+                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "" }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
+                } 
+            } as IFormItemOptions<ILargeListFormItem>
+        } as IFormSchema<ILargeListFormItem>;
+    }
+}
+```
+
+```component```
 ```js
 export const LargeList: ComponentStory<typeof FormBuilder> = () => {
   
   const [confirmInfo, setConfirmInfo] = useState<ICountDownConfirmDialogInfo>();
   
-  const showDeleteDialog = (deleteItems: (pre?: (items: LargeListFormItem[]) => boolean | void) => void) => {
+  const showDeleteDialog = (deleteItems: (pre?: (items: ILargeListFormItem[]) => boolean | void) => void) => {
     setConfirmInfo({ callback: () => deleteItems(() => true), dismissCallback: () => deleteItems(() => false), count: 10, title: "Are you sure?", subText: "This cannot be undone!" } as ICountDownConfirmDialogInfo);
   }
 
@@ -99,12 +109,10 @@ export const LargeList: ComponentStory<typeof FormBuilder> = () => {
     }
   };
 
-  const options = mergeDeep(overrideOptions as Partial<IFormBuilderProps<LargeListFormItem>>, largeListFormOptions) ;
+  const options = mergeDeep(overrideOptions as Partial<IFormBuilderProps<ILargeListFormItem>>, largeListFormOptions) ;
 
   return  <>
-            <FormBuilder
-              {...options}
-            />
+            <FormBuilder {...options as any} />
             <CountDownConfirmDialog
               info={confirmInfo}
               cancelText="Cancel"
@@ -112,4 +120,5 @@ export const LargeList: ComponentStory<typeof FormBuilder> = () => {
             />
           </>
 };
+
 ```

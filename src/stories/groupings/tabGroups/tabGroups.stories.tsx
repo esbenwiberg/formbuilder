@@ -4,17 +4,18 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
-import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
-import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
 import tabGroupsDocs from './tabGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
-import { tabGroupRenderOptions } from './models/TabGroupRenderOptions';
 import { initializeIcons } from '@fluentui/react';
+import { fluentUiLabel, fluentUiValidationMessageElement, createFluentBuilder } from '../../../formbuilder';
+import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
+import { tabGroupRenderOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .withBuilders(FluentBuilder.Create())
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     
 export default {
@@ -31,4 +32,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const TabGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...tabGroupRenderOptions} />;
+export const TabGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...tabGroupRenderOptions as any} />;

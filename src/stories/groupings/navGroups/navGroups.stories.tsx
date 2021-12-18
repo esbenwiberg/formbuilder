@@ -4,21 +4,20 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
-import { FluentBuilder } from '../../../formbuilder/builders/fluentUI/FluentBuilder';
-import { ComplexObjectBuilder } from '../../../formbuilder/builders/custom/ComplexObjectBuilder';
 import navGroupsDocs from './navGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
-import { navGroupRenderOptions } from './models/NavGroupRenderOptions';
 import { initializeIcons } from '@fluentui/react';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
-import { fluentUiValidationMessageElement } from '../../../formbuilder';
+import { createFluentBuilder, fluentUiValidationMessageElement } from '../../../formbuilder';
+import { navGroupRenderOptions } from './models/options';
+import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
 
 initializeIcons(/* optional base url */);
 
 
 formbuilder
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement)
-    .withBuilders(FluentBuilder.Create())
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     
 export default {
@@ -35,4 +34,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const NavGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...navGroupRenderOptions} />;
+export const NavGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...navGroupRenderOptions as any} />;

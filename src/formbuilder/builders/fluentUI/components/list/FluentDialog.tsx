@@ -2,9 +2,9 @@ import { useRef, forwardRef } from "react";
 import { Dialog, DialogFooter, Panel, PanelType } from '@fluentui/react';
 import { FormBuilderListEditorType, IDynamicSchemaConfig, IFormBuilderListEditorConfig } from '../../../../components/config/IFormBuilderListConfig';
 import { Form } from '../../../../components/Form';
-import { IFormItem } from '../../../../modules/IFormItem';
 import React from "react";
 import { IFormListProps } from "../../../../components/interfaces/IFormListProps";
+import { IFormItem } from "../../../../interfaces/form/IFormItem";
 
 export interface IFluentDialogProps<T extends IFormItem> {
 	item: T;
@@ -50,8 +50,8 @@ export const FluentDialog = forwardRef(<T extends IFormItem, FormRef>(props : IF
                                             :   {
                                                     // semi-override dynamickey function, due to item reset, if using 'useEmptyItem'
                                                     dynamicKey: (item: T) => props.editorConfig?.dynamicForm?.dynamicKey(item != null && Object.keys(item).length ? item : props.item),
-                                                    customFormType: props.editorConfig?.dynamicForm?.customFormType
-                                                } as IDynamicSchemaConfig<IFormItem>
+                                                    schemaConfig: props.editorConfig?.dynamicForm?.schemaConfig
+                                                } as IDynamicSchemaConfig<T> as any // argh!! the types do nothing :| (ewi)
                                     }
                                 />
                                 <DialogFooter>
@@ -91,7 +91,7 @@ export const FluentDialog = forwardRef(<T extends IFormItem, FormRef>(props : IF
                                         :   {
                                                 // semi-override dynamickey function, due to item reset, if using 'useEmptyItem'
                                                 dynamicKey: (item: T) => props.editorConfig?.dynamicForm?.dynamicKey(item != null && Object.keys(item).length ? item : props.item),
-                                                customFormType: props.editorConfig?.dynamicForm?.customFormType
+                                                schemaConfig: props.editorConfig?.dynamicForm?.schemaConfig
                                             } as IDynamicSchemaConfig<IFormItem>
                                 }
                             />

@@ -56,9 +56,10 @@ PeerDependencies:
 The plan is to have a stable release ready in ***2022 Q1***.
 
 ### Known issues
-- react missing key warning, that's pretty good at hiding :smiley:
+- a react missing key warning, that's pretty good at hiding :smiley:
 - validation for dynamic nested forms sometimes act up
 - excessive re-renders (not an issue per se)
+- a minor type issue in IFormBuilderProps, causing the need for cast to any
 
 ### What's next?
 - general stabilization

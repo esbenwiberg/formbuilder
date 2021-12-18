@@ -1,4 +1,4 @@
-import { IFormItem } from "../../modules/IFormItem";
+import { IFormItem } from "../../interfaces/form/IFormItem";
 import { IValidationRule } from "./IValidationRules";
 
 export interface IValidationConfig<T extends IFormItem> {

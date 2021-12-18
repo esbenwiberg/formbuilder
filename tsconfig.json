@@ -10,7 +10,6 @@
         "jsx": "react",
         "sourceMap": true,
         "allowJs": true,
-        "experimentalDecorators": true,
         "rootDirs": ["src/formbuilder/"]
     },
     "exclude": ["node_modules", "dist", "src/stories"],

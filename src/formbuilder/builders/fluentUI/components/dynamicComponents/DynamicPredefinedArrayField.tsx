@@ -1,13 +1,13 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
 import { Dropdown, IDropdownOption } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
-import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicPredefinedArrayItem, IDynamicPredefinedArrayFieldConfig } from './config/IDynamicPredefinedArrayFieldConfig';
 import { lang } from '../../../../models/language/Language';
 import React from "react";
+import { IFormItem } from '../../../../interfaces/form/IFormItem';
  
-interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicPredefinedArrayFieldConfig, string | number | undefined> { 
-    config?: IDynamicPredefinedArrayFieldConfig;
+interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicPredefinedArrayFieldConfig<T>, string | number | undefined> { 
+    config?: IDynamicPredefinedArrayFieldConfig<T>;
 }
 
 export const DynamicPredefinedArrayField = <T extends IFormItem>(props: PropsWithChildren<IProps<T>>) : ReactElement | null => {

@@ -3,37 +3,50 @@
 <h2>Sample code</h2>  
 
 
+```initialize```  
 ```js
-@IFormItem.register(MyFormItemChildSchemaProvider)
-export class MyFormItem {
-    public id?: string;
-    public name?: string;
-    public age?: number;
-}
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
 ```
 
+```interfaces.ts```  
+
 ```js
-export class MyFormItemChildSchemaProvider extends SchemaProvider<MyFormItem> {
+export interface IMyFormItem extends IFormItem {
+    id: string;
+    name: string;
+    age: number;
+}
 
-    public key = "MyFormItem";
-    public itemType = () => MyFormItem
+```
 
-    public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
-        return {
-            options: {
-                properties: {
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age" }),
-                } 
-            } as IFormItemOptions<MyFormItem>
-        } as IFormSchema<IFormItem>;
+
+```options.ts``` 
+```js
+export const simpleFormItemOptions: IFormBuilderProps<IMyFormItem> = {
+    item: { id: "test1", name: 'Esbend', age: 42 } as IMyFormItem,
+    schemaConfig: {
+        schemaProvider: myFormItemSchemaProvider
     }
 }
 ```
 
+
+
+```schemas.ts```  
 ```js
-export const simpleFormItemOptions: IFormBuilderProps<MyFormItem> = {
-    itemType: MyFormItem,
-    item: { id: "test1", name: 'Esbend', age: 42 } as MyFormItem,
+export const myFormItemSchemaProvider: ISchemaProvider<IMyFormItem> = {
+    key: "myformitemschemaprovider",
+    getSchema: async () : Promise<IFormSchema<IMyFormItem>> => {
+        return {
+            options: {
+                properties: {
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age" })
+                }
+            } as IFormItemOptions<IMyFormItem>
+        } as IFormSchema<IMyFormItem>;
+    }
 }
 ```

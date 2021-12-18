@@ -1,4 +1,4 @@
-import { IFormGroupOptions } from "../models/options/IFormGroupOptions";
+import { IFormGroupOptions } from "./options/IFormGroupOptions";
 
 export interface IFormGrouping extends IFormGroupOptions {
     groupKey: string;

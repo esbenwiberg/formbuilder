@@ -5,12 +5,12 @@ import { FormRef } from "../../../../components/Form";
 import { Searcher } from "./components/search/Searcher";
 import { lang } from "../../../../models/language/Language";
 import { ValidationResult } from "../../../../models/validation/ValidationResult";
-import { IFormItem } from "../../../../modules/IFormItem";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
 import { formListHelper } from "../../../../components/helpers/FormListHelper";
 import { IFormListColumnInfo } from "../../../../interfaces/lists/IFormListColumnInfo";
 import { IFormListRenderProps } from "../../../../components/interfaces/IFormListRenderProps";
+import { IFormItem } from "../../../../interfaces/form/IFormItem";
 
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
 
@@ -96,7 +96,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         setTimeout(() => {
             setNewItemMode(false);
             setShowEditor(true);
-        }, 400);
+        }, 200); // TODO: why was this needed ? (ewi)
     }
 
     const deleteItems = (pre?: (items: Array<T>) => boolean | void) => {

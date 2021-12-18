@@ -1,4 +1,4 @@
-import { IFormItem } from "../../modules/IFormItem";
+import { IFormItem } from "../../interfaces/form/IFormItem";
 import { ValidationEventType } from "./ValidationEventType";
 import { ValidationMark } from "./ValidationMark";
 
@@ -16,5 +16,6 @@ export interface IValidationRule<T extends IFormItem> {
     /** which events should the validation, for this property, fire */
     validateOn: ValidationEventType;
     /** use this when validating a child form item */
-    fromType?: new () => IFormItem;
+    usingSchemaKey?: string;
+    // fromType?: new () => IFormItem;
 }

@@ -1,12 +1,12 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
 import { TextField } from '@fluentui/react';
 import { IPropertyRenderProps } from '../../../../interfaces/IPropertyRenderProps';
-import { IFormItem } from '../../../../modules/IFormItem';
 import { IDynamicTextFieldConfig } from './config/IDynamicTextfieldConfig';
 import React from "react";
+import { IFormItem } from '../../../../interfaces/form/IFormItem';
  
-interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicTextFieldConfig, string | number | undefined> { 
-    config?: IDynamicTextFieldConfig;
+interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicTextFieldConfig<T>, string | number | undefined> { 
+    config?: IDynamicTextFieldConfig<T>;
 }
 
 const OnKeyDown = (e: any, type: string | undefined, allowNegativeNumbers?: boolean) => {

@@ -1,12 +1,22 @@
+import { ISchemaProvider } from "../..";
+import { IFormItem } from "../../interfaces/form/IFormItem";
 import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
-import { IFormItemOptions } from "../../models/options/IFormItemOptions";
-import { IFormSchema } from "../../models/schema/IFormSchema";
-import { IFormItem } from "../../modules/IFormItem";
-import { FormSchemaUtil } from "./FormSchemaUtil";
+import { IFormItemOptions } from "../../interfaces/options/IFormItemOptions";
+import { IFormSchema } from "../../interfaces/schema/IFormSchema";
+import { formSchemaUtil } from "./FormSchemaUtil";
 import { mergeDeep } from "./MergeObjects";
 
-export const fetchSchema = async <T extends IFormItem>(itemType: new () => IFormItem, formItemConfigOverrides?: Partial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<IFormItem> | undefined> => {
-    let schema = await FormSchemaUtil.GetSchemaFromItem(itemType, dynamicKey);
+export const fetchSchemaFromMap = async <T extends IFormItem>(schemaMapKey: string, formItemConfigOverrides?: Partial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+    let schema = await formSchemaUtil.getSchemaFromMap<T>(schemaMapKey, dynamicKey);
+    return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
+};
+
+export const fetchSchema = async <T extends IFormItem>(schemaProvider: ISchemaProvider<T>, formItemConfigOverrides?: Partial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+    let schema = await schemaProvider.getSchema(dynamicKey);
+    return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
+};
+
+export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefined, formItemConfigOverrides?: Partial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : IFormSchema<T> | undefined => {
     if (schema == null) return undefined;
     // merge with overrides
     let merged: IFormItemOptions<T> = mergeDeep<IFormItemOptions<T>>(schema?.options, formItemConfigOverrides);
