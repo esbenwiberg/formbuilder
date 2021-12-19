@@ -49,8 +49,6 @@ PeerDependencies:
 ```React```
 ```FluentUI```  
 
-```experimentaldecorators``` needs to be turned on.  
-
 # Release info
 **This is still a work in progress, and should not be used in production environments yet!**  
 The plan is to have a stable release ready in ***2022 Q1***.
