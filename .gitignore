@@ -17,6 +17,4 @@
 debug.log
 /.VSCodeCounter
 /dist
-/docs/*.*
-!/docs/.keepme
 storybook-static
