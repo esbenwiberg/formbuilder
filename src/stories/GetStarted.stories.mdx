@@ -123,7 +123,7 @@ import StackAlt from './assets/stackalt.svg';
 <p>The most basic example is this: </p>  
 
 ```App.tsx```  
-```js
+```ts
 export const App = () => {
   formbuilder.initialize()
       .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
@@ -145,7 +145,7 @@ export const App = () => {
 <p>The formbuilder requires a schemaprovider.</p>
 <p>A simple version of that could look like this</p>
 
-```js
+```ts
 export const personSchemaProvider: ISchemaProvider<IPerson> = {
     key: "personSchemaProvider",
     getSchema: async () : Promise<IFormSchema<IPerson>> => {
@@ -175,7 +175,7 @@ export const personSchemaProvider: ISchemaProvider<IPerson> = {
 
 ```IFormItemOptions```  
 
-```js
+```ts
 interface IFormItemOptions<T extends IFormItem> {
     /** all the groups for an item's properties */
     groups?: { [name: string] : IFormGroupOptions };
@@ -198,7 +198,7 @@ interface IFormItemOptions<T extends IFormItem> {
 <div className="subheading">Form options</div>
 <p>This is the most simple options for a form. For more craziness please have a look at the supplied examples.</p>
 
-```js
+```ts
 export const formItemOptions: IFormBuilderProps<IPerson> = {
     item: { name: 'Esben', age: 38 } as IPerson,
     schemaConfig: {
@@ -210,8 +210,7 @@ export const formItemOptions: IFormBuilderProps<IPerson> = {
 <div className="subheading">Add the form</div>
 <p>This is how it's all being put together :)</p>
 
-```js
-
+```ts
 export const PersonForm = () => {
   const formRef = useRef<FormRef<IPerson>>();
 
