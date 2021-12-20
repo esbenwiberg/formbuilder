@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/esbenwiberg/formbuilder/compare/v0.0.19...v0.2.0) (2021-12-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* the entire API has been restructured!
+
+* chore(release): 0.1.0
+
+Co-authored-by: Esben Wiberg <ewi@projectum.com>
+
+* Feature/ewi noclassordecorators (#3) ([3894c38](https://github.com/esbenwiberg/formbuilder/commit/3894c38ebd66e26378350044c5652598836c969e)), closes [#3](https://github.com/esbenwiberg/formbuilder/issues/3)
+
 ## [0.1.0](https://github.com/esbenwiberg/formbuilder/compare/v0.0.19...v0.1.0) (2021-12-18)
 
 
