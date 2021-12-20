@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
+import { formbuilder } from '../utils/FormBuilderInitializer';
 import { useStateRef } from '../hooks/useStateRef';
 import { IFormItemPropertyOptions } from '../interfaces/options/IFormItemPropertyOptions';
 import { IDynamicPropertyComponentConfig } from '../builders/interfaces/IDynamicPropertyComponentConfig';

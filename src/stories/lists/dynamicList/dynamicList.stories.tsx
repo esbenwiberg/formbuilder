@@ -3,11 +3,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import dynamicListDocs from './dynamicListDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
-import { createFluentBuilder, fluentUiValidationMessageElement } from '../../../formbuilder';
+import { createFluentBuilder, fluentUiValidationMessageElement, formbuilder } from '../../../formbuilder';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
 import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
 import { dynamicListFormOptions } from './models/options';
@@ -24,7 +23,7 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Lists',
+  title: 'Examples/Very Advanced/Lists',
   component: FormBuilder,
   parameters: {
     docs: {

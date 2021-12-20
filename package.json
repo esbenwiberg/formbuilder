@@ -35,10 +35,13 @@
     "formbuilder",
     "formsbuilder",
     "formgenerator",
+    "builder",
     "forms",
     "builder",
     "react",
-    "fluentui"
+    "fluentui",
+    "materialui",
+    "headless"
   ],
   "files": [
     "dist"

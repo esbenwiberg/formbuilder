@@ -2,13 +2,12 @@
 
 import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import mostSimpleDocs from './mostSimpleDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons, Label, PrimaryButton } from '@fluentui/react';
 import { FormRef } from '../../../formbuilder/components/Form';
 import { simpleFormItemOptions } from './models/options';
-import { createFluentBuilder, fluentUiValidationMessageElement } from '../../../formbuilder';
+import { createFluentBuilder, fluentUiValidationMessageElement, formbuilder } from '../../../formbuilder';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
 import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
 import { IMyFormItem } from './models/interfaces';
@@ -25,7 +24,7 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Single item',
+  title: 'Examples/Basic/Single item',
   component: FormBuilder,
   parameters: {
     docs: {

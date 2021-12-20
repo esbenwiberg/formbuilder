@@ -1,4 +1,3 @@
-import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
 import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
 import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interfaces/IFormItemBuilder";
 import { IPropertyTypes, propertyTypes } from "../../models/property/PropertyType";
@@ -13,13 +12,13 @@ import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfiel
 import React, { ElementType } from "react";
 import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
 import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
-import { getPropertyValidationMark } from "../../utils/common/PropertyValidationMark";
-import { validationUtil } from "../../utils/common/ValidationUtil";
 import { fluentUiLabel } from "./components/fluentUiLabel";
-import { ILoadingSpinnerProps } from "../interfaces/ILoadingSpinnerProps";
+import { ILoadingProps } from "../interfaces/ILoadingProps";
 import { IFormListRenderProps } from "../../components/interfaces/IFormListRenderProps";
 import FluentList from "./components/list/FluentList";
 import { IFormItem } from "../../interfaces/form/IFormItem";
+import { getValidationMarkForProperty } from "../helpers/GetValidationMark";
+import { buildPropertyRenderInfo } from "../helpers/BuildPropertyRenderProps";
 
 export const createFluentBuilder = (labelRender?: LabelRender) : IFormItemBuilder => {
 
@@ -28,38 +27,26 @@ export const createFluentBuilder = (labelRender?: LabelRender) : IFormItemBuilde
     const defaultLabelRender: LabelRender = fluentUiLabel;
     const builderLabelRender = labelRender ?? defaultLabelRender;
     const listComponent = <T extends IFormItem>() : ElementType<IFormListRenderProps<T>> => FluentList;
-    const loadingSpinnerComponent = () : ElementType<ILoadingSpinnerProps> | undefined => FluentFormShimmer;
+    const loadingSpinnerComponent = () : ElementType<ILoadingProps> | undefined => FluentFormShimmer;
 
     const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
-        let { item, onChange, onBlur, validationResults, validationResultPrefix } = renderProps;
+        let { item } = renderProps;
         
         if (item === null) throw Error("item is null");
         if (schema == null) throw Error("schema is null");
 
-        let validationIndexer = validationResultPrefix ? `${validationResultPrefix}.${property}` : property;
-        let key = `prop-${validationResultPrefix ?? ""}${property}`;
-        let props: IPropertyRenderProps<T, C, any> = {
-            key: schema.key ?? key,
-            value: (item as any)[property],
-            options: schema,
-            onChange: (value: any) => onChange(property ,value),
-            onBlur: (value: any) => onBlur(property, value),
-            disabled: schema.disable ? schema.disable(item) : false,
-            errorMessage: validationUtil.getResultAsString(validationResults[validationIndexer]),
-            parent: item
-        }
-
-        let validationMark: ValidationMark = getPropertyValidationMark(renderProps?.schema?.validation?.validationRules && renderProps.schema.validation.validationRules[property]);
+        let info = buildPropertyRenderInfo(renderProps, schema, property);
+        let validationMark: ValidationMark = getValidationMarkForProperty(renderProps, property);
 
         const WrapInLabel = (element: JSX.Element) : JSX.Element => {
             return (
-                <div className="formbuilder-property" key={`propcon-${key}`}>
+                <div className="formbuilder-property" key={`propcon-${info.key}`}>
                     <FluentPropertyLabel
-                        key={`${key}-labelcontainer`}
+                        key={`${info.key}-labelcontainer`}
                         labelRender={builderLabelRender}
                         propertySchema={schema}
-                        hideLabel={props.options.hideLabel}
-                        parentKey={key}
+                        hideLabel={info.props.options.hideLabel}
+                        parentKey={info.key}
                         validationMark={validationMark}
                     />
                     { element }
@@ -70,16 +57,16 @@ export const createFluentBuilder = (labelRender?: LabelRender) : IFormItemBuilde
         const propertyType: IPropertyTypes = propertyTypes;
 
         switch (schema.propertyType) {
-            case propertyType.string: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...props} />) };
-            case propertyType.number: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...props} />) };
-            case propertyType.boolean: return { found: true, element: WrapInLabel(<DynamicBooleanField {...schema} {...props} />) }
-            case propertyType.date: return { found: true, element: WrapInLabel(<DynamicDateField {...schema} {...props} />) }
-            case propertyType.json: return { found: true, element: WrapInLabel(<DynamicJsonfield {...schema} {...props} />) };
-            case propertyType.predefinedArray: return { found: true, element: WrapInLabel(<DynamicPredefinedArrayField {...schema} {...props} />) };
+            case propertyType.string: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...info.props} />) };
+            case propertyType.number: return { found: true, element: WrapInLabel(<DynamicTextfield {...schema} {...info.props} />) };
+            case propertyType.boolean: return { found: true, element: WrapInLabel(<DynamicBooleanField {...schema} {...info.props} />) }
+            case propertyType.date: return { found: true, element: WrapInLabel(<DynamicDateField {...schema} {...info.props} />) }
+            case propertyType.json: return { found: true, element: WrapInLabel(<DynamicJsonfield {...schema} {...info.props} />) };
+            case propertyType.predefinedArray: return { found: true, element: WrapInLabel(<DynamicPredefinedArrayField {...schema} {...info.props} />) };
             default: return { found: false, element: undefined }
         }
     };
 
 
-    return { id, build, loadingSpinnerComponent, listComponent }
+    return { id, build, loadingComponent: loadingSpinnerComponent, listComponent }
 }

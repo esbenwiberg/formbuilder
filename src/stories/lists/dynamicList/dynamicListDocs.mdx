@@ -36,7 +36,7 @@ export const dynamicListFormOptions: IFormBuilderProps<IPluginFormItem> = {
     item: schemas.map(_ => {
         return { id: _.Id, name: _.Name, description: _.Url } as IPluginFormItem;
     }),
-    spinnerProps:{ timeout: 3000 },
+    loadingProps:{ timeout: 3000 },
     listProps: {
         onItemChange: item => console.log(item),
         config: { 

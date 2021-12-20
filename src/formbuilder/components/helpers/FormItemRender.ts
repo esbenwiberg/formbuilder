@@ -2,7 +2,7 @@ import { IFormItemBuilder } from "../../builders/interfaces/IFormItemBuilder"
 import React from "react";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IFormListRenderProps } from "../interfaces/IFormListRenderProps";
-import { ILoadingSpinnerProps } from "../../builders/interfaces/ILoadingSpinnerProps";
+import { ILoadingProps } from "../../builders/interfaces/ILoadingProps";
 import { IFormItem } from "../../interfaces/form/IFormItem";
 
 export interface IFormItemRender {
@@ -11,7 +11,7 @@ export interface IFormItemRender {
     registerRange: (builders: Array<IFormItemBuilder> | undefined) => void;
 
     list: <T extends IFormItem>() => React.ElementType<IFormListRenderProps<T>>;
-    spinner: () => React.ElementType<ILoadingSpinnerProps>;
+    loadingComponent: () => React.ElementType<ILoadingProps>;
     properties: <T extends IFormItem>(renderProps: IItemRenderProps<T>, properties?: Array<string>) => Array<JSX.Element> | undefined;
 }
 
@@ -37,9 +37,9 @@ export const buildFormItemRender = () : IFormItemRender => {
         return undefined;
     }
 
-    const spinner = () : React.ElementType<ILoadingSpinnerProps> | undefined => {
+    const loadingComponent = () : React.ElementType<ILoadingProps> | undefined => {
         for (const builder of _builders) {
-            if (builder.loadingSpinnerComponent) return builder.loadingSpinnerComponent();
+            if (builder.loadingComponent) return builder.loadingComponent();
         }
         return undefined;
     }
@@ -59,5 +59,5 @@ export const buildFormItemRender = () : IFormItemRender => {
         return elements?.length ? elements : undefined;
     }
 
-    return { register, registerRange, properties, hasBuilders, list, spinner } as IFormItemRender
+    return { register, registerRange, properties, hasBuilders, list, loadingComponent } as IFormItemRender
 }

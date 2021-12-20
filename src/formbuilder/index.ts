@@ -10,11 +10,11 @@ export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicD
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicJsonfieldConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicPredefinedArrayFieldConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicTextfieldConfig";
-export * from "./builders/helpers/FormBuilderInitializer";
+export * from "./utils/FormBuilderInitializer";
 export * from "./builders/interfaces/IDynamicPropertyComponentConfig";
 export * from "./builders/interfaces/IFormItemBuilder";
 export * from "./builders/interfaces/IListBuilder";
-export * from "./builders/interfaces/ILoadingSpinnerProps";
+export * from "./builders/interfaces/ILoadingProps";
 export * from "./components/Form";
 export * from "./components/FormBuilder";
 export * from "./components/FormList";

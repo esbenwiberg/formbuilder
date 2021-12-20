@@ -3,7 +3,12 @@ export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
-    },
+      date: /Date$/
+    }
   },
+  options: {
+    storySort: {
+      order: ['Introduction', 'GetStarted', 'Builders', 'Examples', [ 'Basic', 'Advanced', 'Very Advanced' ]],
+    }
+  }
 }

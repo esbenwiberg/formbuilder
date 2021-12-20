@@ -3,11 +3,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import tabGroupsDocs from './tabGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
-import { fluentUiLabel, fluentUiValidationMessageElement, createFluentBuilder } from '../../../formbuilder';
+import { fluentUiLabel, fluentUiValidationMessageElement, createFluentBuilder, formbuilder } from '../../../formbuilder';
 import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
 import { tabGroupRenderOptions } from './models/options';
 
@@ -23,7 +22,7 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Property groupings',
+  title: 'Examples/Basic/Property groupings',
   component: FormBuilder,
   parameters: {
     docs: {

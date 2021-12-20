@@ -9,8 +9,8 @@ import { Form, FormRef } from './Form';
 import { FormList } from './FormList';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
-import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
-import { ILoadingSpinnerProps } from '../builders/interfaces/ILoadingSpinnerProps';
+import { formbuilder } from '../utils/FormBuilderInitializer';
+import { ILoadingProps } from '../builders/interfaces/ILoadingProps';
 import { ISchemaProvider } from '../interfaces/schema/ISchemaProvider';
 import { RequireOnlyOne } from '..';
 import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
@@ -46,7 +46,7 @@ export interface IFormBuilderProps<T extends IFormItem> {
     validationOverride?: ValidationOverride;
     formItemConfigOverrides?: Partial<IFormItemOptions<T>>;
     propertyOverrides?: IPropertyOverrides;
-    spinnerProps?: ILoadingSpinnerProps;
+    loadingProps?: ILoadingProps;
     keyPrefix?: string;
     overrideSchema?: IFormSchema<T>;
 }

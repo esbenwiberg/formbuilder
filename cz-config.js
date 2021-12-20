@@ -34,7 +34,7 @@ module.exports = {
         },
     ],
 
-    scopes: [{ name: "formbuilder" }, { name: "docs" }, { name: "misc" }],
+    // scopes: [{ name: "formbuilder" }, { name: "docs" }, { name: "misc" }],
 
     // allowCustomScopes: true,
     allowBreakingChanges: ["feat", "fix", "perf", "refactor"],

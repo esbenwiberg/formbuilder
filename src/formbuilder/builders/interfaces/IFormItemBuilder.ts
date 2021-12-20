@@ -4,7 +4,7 @@ import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
 import { ValidationMark } from "../../models/validation/ValidationMark";
 import { IDynamicPropertyComponentConfig } from "./IDynamicPropertyComponentConfig";
-import { ILoadingSpinnerProps } from "./ILoadingSpinnerProps";
+import { ILoadingProps as ILoadingProps } from "./ILoadingProps";
 
 export interface IFormItemBuilderResult {
     found: boolean;
@@ -14,7 +14,7 @@ export interface IFormItemBuilderResult {
 export interface IFormItemBuilder {
     id: Readonly<string>;
     listComponent?: <T extends IFormItem>() => React.ElementType<IFormListRenderProps<T>>;
-    loadingSpinnerComponent?: () => React.ElementType<ILoadingSpinnerProps> | undefined;
+    loadingComponent?: () => React.ElementType<ILoadingProps> | undefined;
     build: <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) => IFormItemBuilderResult;
 }
 

@@ -12,6 +12,6 @@ export interface IFormItemOptions<T extends IFormItem> {
     properties: { [name: string] : IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>> };
     /** the validation config for the schema */
     validation?: IValidationConfig<T>;
-    /** if needed as a list, this config is used - can also be configured directly on the 'FromBuilder' component */
+    /** if needed as a list, this config is used - can also be configured directly on the 'FormBuilder' component */
     listOptions?: IFormBuilderListProps<T>;
 }

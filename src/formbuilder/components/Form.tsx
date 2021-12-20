@@ -12,9 +12,9 @@ import { formValidator } from './helpers/FormValidator';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IItemRenderProps } from '../interfaces/IItemRenderProps';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
-import { formbuilder } from '../builders/helpers/FormBuilderInitializer';
+import { formbuilder } from '../utils/FormBuilderInitializer';
 import { validationUtil } from '../utils/common/ValidationUtil';
-import { ILoadingSpinnerProps } from '../builders/interfaces/ILoadingSpinnerProps';
+import { ILoadingProps } from '../builders/interfaces/ILoadingProps';
 import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
 import { RequireOnlyOne } from '../interfaces/types/Partials';
 import { ISchemaConfig } from './FormBuilder';
@@ -31,7 +31,7 @@ export interface IFormItemProps<T extends IFormItem> {
     validationOverride?: ValidationOverride;
     formItemConfigOverrides?: Partial<IFormItemOptions<T>>;
     propertyOverrides?: IPropertyOverrides;
-    spinnerProps?: ILoadingSpinnerProps;
+    loadingProps?: ILoadingProps;
     /*** DO NOT USE! only used internally */
     validationResult?: IValidationResult;
     /*** DO NOT USE! only used internally */
@@ -164,10 +164,10 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
         if (props.onPropertyChange) props.onPropertyChange(clone, property, value);
     }
 
-    const Spinner: React.ComponentType<ILoadingSpinnerProps> = formbuilder.formItemRender.spinner();
+    const Spinner: React.ComponentType<ILoadingProps> = formbuilder.formItemRender.loadingComponent();
 
     if (item == null) return null;
-    if (schema == null) return <Spinner {...props.spinnerProps} />;
+    if (schema == null) return <Spinner {...props.loadingProps} />;
     if (!groupsHandled) return null;
 
     const propertyRenderProps: IItemRenderProps<T> = {

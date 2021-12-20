@@ -3,7 +3,7 @@ import { mergeStyles, MessageBar, MessageBarType, Shimmer, ShimmerElementType } 
 import useIsMounted from '../../../../../hooks/useIsMounted';
 import { lang } from '../../../../../models/language/Language';
 import React from "react";
-import { ILoadingSpinnerProps } from '../../../../interfaces/ILoadingSpinnerProps';
+import { ILoadingProps } from '../../../../interfaces/ILoadingProps';
 
 const wrapperClass = mergeStyles({
 	padding: 2,
@@ -29,7 +29,7 @@ const propertyShimmer = (idx: number) => (
 	</div>
 )
 
-export const FluentFormShimmer: FunctionComponent<ILoadingSpinnerProps> = props => {
+export const FluentFormShimmer: FunctionComponent<ILoadingProps> = props => {
 
 	const [timedOut, setTimedOut] = useState(false);
 

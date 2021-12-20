@@ -3,12 +3,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { formbuilder } from '../../../formbuilder/builders/helpers/FormBuilderInitializer';
 import navGroupsDocs from './navGroupsDocs.mdx';
 import { FormBuilder } from '../../../formbuilder/components/FormBuilder';
 import { initializeIcons } from '@fluentui/react';
 import { fluentUiLabel } from '../../../formbuilder/builders/fluentUI/components/fluentUiLabel';
-import { createFluentBuilder, fluentUiValidationMessageElement } from '../../../formbuilder';
+import { createFluentBuilder, fluentUiValidationMessageElement, formbuilder } from '../../../formbuilder';
 import { navGroupRenderOptions } from './models/options';
 import { FluentFormShimmer } from '../../../formbuilder/builders/fluentUI/components/list/components/FluentFormShimmer';
 
@@ -25,7 +24,7 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Property groupings',
+  title: 'Examples/Basic/Property groupings',
   component: FormBuilder,
   parameters: {
     docs: {

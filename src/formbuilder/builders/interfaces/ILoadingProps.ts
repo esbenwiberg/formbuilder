@@ -1,4 +1,4 @@
-export interface ILoadingSpinnerProps {
+export interface ILoadingProps {
 	timeout?: number;
 	timeoutMessage?: string;
 }
