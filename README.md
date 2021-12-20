@@ -75,9 +75,4 @@ The plan is to have a stable release ready in ***2022 Q1***.
 - more documentation
 
 # Quick Start
-TODO: add sample code here
-- init
-- item
-- schema
-- options
-- builder
+Find a 'Get started' guide on the [documentation site](https://esbenwiberg.github.io/formbuilder/?path=/docs/get-started--page)
