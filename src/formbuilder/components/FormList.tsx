@@ -3,7 +3,7 @@ import { formbuilder } from '../utils/FormBuilderInitializer';
 import { useStateRef } from '../hooks/useStateRef';
 import { IFormItemPropertyOptions } from '../interfaces/options/IFormItemPropertyOptions';
 import { IDynamicPropertyComponentConfig } from '../builders/interfaces/IDynamicPropertyComponentConfig';
-import { formListHelper } from './helpers/FormListHelper';
+import { formListHelper } from '../builders/helpers/FormListHelper';
 import { IFormListColumnInfo } from '../interfaces/lists/IFormListColumnInfo';
 import { IFormListProps } from './interfaces/IFormListProps';
 import { IFormListRenderProps } from './interfaces/IFormListRenderProps';

@@ -11,6 +11,7 @@ export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicJ
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicPredefinedArrayFieldConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicTextfieldConfig";
 export * from "./builders/helpers/BuildPropertyRenderProps";
+export * from "./builders/helpers/FormListHelper";
 export * from "./builders/helpers/GetValidationMark";
 export * from "./builders/interfaces/IDynamicPropertyComponentConfig";
 export * from "./builders/interfaces/IFormItemBuilder";

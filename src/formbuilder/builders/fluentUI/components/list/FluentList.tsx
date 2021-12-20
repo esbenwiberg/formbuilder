@@ -7,7 +7,7 @@ import { lang } from "../../../../models/language/Language";
 import { ValidationResult } from "../../../../models/validation/ValidationResult";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
-import { formListHelper } from "../../../../components/helpers/FormListHelper";
+import { formListHelper } from "../../../helpers/FormListHelper";
 import { IFormListColumnInfo } from "../../../../interfaces/lists/IFormListColumnInfo";
 import { IFormListRenderProps } from "../../../../components/interfaces/IFormListRenderProps";
 import { IFormItem } from "../../../../interfaces/form/IFormItem";
