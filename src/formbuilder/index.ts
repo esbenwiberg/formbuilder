@@ -10,7 +10,8 @@ export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicD
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicJsonfieldConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicPredefinedArrayFieldConfig";
 export * from "./builders/fluentUI/components/dynamicComponents/config/IDynamicTextfieldConfig";
-export * from "./utils/FormBuilderInitializer";
+export * from "./builders/helpers/BuildPropertyRenderProps";
+export * from "./builders/helpers/GetValidationMark";
 export * from "./builders/interfaces/IDynamicPropertyComponentConfig";
 export * from "./builders/interfaces/IFormItemBuilder";
 export * from "./builders/interfaces/IListBuilder";
@@ -46,6 +47,7 @@ export * from "./models/validation/ValidationMark";
 export * from "./models/validation/ValidationOverride";
 export * from "./models/validation/ValidationResult";
 export * from "./utils/Factory";
+export * from "./utils/FormBuilderInitializer";
 export * from "./utils/PropertyGroupOptionsFactory";
 export * from "./utils/PropertyOptionsFactory";
 export * from "./utils/schema/schemaFromConfig";
