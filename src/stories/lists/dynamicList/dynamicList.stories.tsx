@@ -23,7 +23,7 @@ export default {
   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
   * to learn how to generate automatic titles
   */
-  title: 'Examples/Very Advanced/Lists',
+  title: 'Examples/Wizardry/Lists',
   component: FormBuilder,
   parameters: {
     docs: {
