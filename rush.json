@@ -392,12 +392,14 @@
     {
       "packageName": "@wiberg/formbuilder",
       "projectFolder": "projects/formbuilder",
-      "reviewCategory": "formbuilder"
+      "reviewCategory": "formbuilder",
+      "shouldPublish": true
     },
     {
       "packageName": "@wiberg/fluentui-builder",
       "projectFolder": "projects/builders/fluentui-builder",
-      "reviewCategory": "builders"
+      "reviewCategory": "builders",
+      "shouldPublish": true
     },
     // {
     //   "packageName": "@wiberg/materialui-builder",
