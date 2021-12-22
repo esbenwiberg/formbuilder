@@ -26,7 +26,7 @@ module.exports = {
         },
         {
             value: "chore",
-            name: "🚚 chore:\tChanges to the build process, pipeline or auxiliary tools\n\t\tand libraries such as documentation generation",
+            name: "🚚 chore:\tChanges to the build process, pipeline or auxiliary tools",
         }
     ],
 

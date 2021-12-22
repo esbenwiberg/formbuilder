@@ -53,7 +53,7 @@ dependencies:
   '@rollup/plugin-json': 4.1.0_rollup@2.61.1
   '@rollup/plugin-node-resolve': 13.1.1_rollup@2.61.1
   '@rush-temp/fluentui-builder': file:projects/fluentui-builder.tgz
-  '@rush-temp/formbuilder': file:projects/formbuilder.tgz_@types+react-dom@17.0.11
+  '@rush-temp/formbuilder': file:projects/formbuilder.tgz
   '@rush-temp/storybook': file:projects/storybook.tgz_@types+react-dom@17.0.11
   '@storybook/addon-actions': 6.4.9_5539cae010396b202b015f3568914e95
   '@storybook/addon-essentials': 6.4.9_372564b803544bb4edee6e8056fdf79a
@@ -4336,20 +4336,6 @@ packages:
       '@xtuc/long': 4.2.2
     dev: false
 
-  /@wiberg/formbuilder/0.2.2_fa0453bb20dbdc1cdaea630145e09f50:
-    resolution: {integrity: sha512-rgCLHjq1vWsA4XrhIMd3yBq07W1Q2byCbeZv9wBCQLWbFjhxR1ZyTjS6nAyix7UntWXOCZTy3EfmKe1gRE3BBQ==}
-    peerDependencies:
-      '@fluentui/react': ^8.47.2
-      '@types/react': ^17.0.37
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@fluentui/react': 8.48.1_d5c215a71cdc3853e6673ca67dc4c091
-      '@types/react': 17.0.37
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
   /@xtuc/ieee754/1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
     dev: false
@@ -5153,7 +5139,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001292
-      electron-to-chromium: 1.4.26
+      electron-to-chromium: 1.4.27
       escalade: 3.1.1
       node-releases: 1.1.77
     dev: false
@@ -5164,7 +5150,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001292
-      electron-to-chromium: 1.4.26
+      electron-to-chromium: 1.4.27
       escalade: 3.1.1
       node-releases: 2.0.1
       picocolors: 1.0.0
@@ -5244,7 +5230,7 @@ packages:
       mkdirp: 0.5.5
       move-concurrently: 1.0.1
       promise-inflight: 1.0.1
-      rimraf: 2.6.3
+      rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
       y18n: 4.0.3
@@ -5936,7 +5922,7 @@ packages:
       fs-write-stream-atomic: 1.0.10
       iferr: 0.1.5
       mkdirp: 0.5.5
-      rimraf: 2.6.3
+      rimraf: 2.7.1
       run-queue: 1.0.3
     dev: false
 
@@ -6505,8 +6491,8 @@ packages:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
 
-  /electron-to-chromium/1.4.26:
-    resolution: {integrity: sha512-cA1YwlRzO6TGp7yd3+KAqh9Tt6Z4CuuKqsAJP6uF/H5MQryjAGDhMhnY5cEXo8MaRCczpzSBhMPdqRIodkbZYw==}
+  /electron-to-chromium/1.4.27:
+    resolution: {integrity: sha512-uZ95szi3zUbzRDx1zx/xnsCG+2xgZyy57pDOeaeO4r8zx5Dqe8Jv1ti8cunvBwJHVI5LzPuw8umKwZb3WKYxSQ==}
     dev: false
 
   /element-resize-detector/1.2.4:
@@ -7344,7 +7330,7 @@ packages:
     resolution: {integrity: sha512-DUxuQaKoqfNne8iikd14SAkh5uw4+8vNifp6gmA73yYNS6ywLIWSLD/n/mBzHQRpW3J7rbATEakmiA8JvkTyZw==}
     engines: {node: '>=6.11.5', yarn: '>=1.0.0'}
     dependencies:
-      '@babel/code-frame': 7.16.0
+      '@babel/code-frame': 7.10.4
       chalk: 2.4.2
       micromatch: 3.1.10
       minimatch: 3.0.4
@@ -7399,10 +7385,6 @@ packages:
     engines: {node: '>=0.4.x'}
     dev: false
 
-  /formbuilder/0.0.0:
-    resolution: {integrity: sha1-AxCPd28V0wfhh9pjLMYEdJ0lnIg=}
-    dev: false
-
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
@@ -7441,7 +7423,7 @@ packages:
       jsonfile: 2.4.0
       klaw: 1.3.1
       path-is-absolute: 1.0.1
-      rimraf: 2.6.3
+      rimraf: 2.7.1
     dev: false
 
   /fs-extra/10.0.0:
@@ -9905,7 +9887,7 @@ packages:
       copy-concurrently: 1.0.5
       fs-write-stream-atomic: 1.0.10
       mkdirp: 0.5.5
-      rimraf: 2.6.3
+      rimraf: 2.7.1
       run-queue: 1.0.3
     dev: false
 
@@ -10711,7 +10693,7 @@ packages:
     dependencies:
       icss-utils: 4.1.1
       postcss: 7.0.39
-      postcss-selector-parser: 6.0.7
+      postcss-selector-parser: 6.0.8
       postcss-value-parser: 4.2.0
     dev: false
 
@@ -10720,7 +10702,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       postcss: 7.0.39
-      postcss-selector-parser: 6.0.7
+      postcss-selector-parser: 6.0.8
     dev: false
 
   /postcss-modules-values/3.0.0:
@@ -10730,8 +10712,8 @@ packages:
       postcss: 7.0.39
     dev: false
 
-  /postcss-selector-parser/6.0.7:
-    resolution: {integrity: sha512-U+b/Deoi4I/UmE6KOVPpnhS7I7AYdKbhGcat+qTQ27gycvaACvNEw11ba6RrkwVmDVRW7sigWgLj4/KbbJjeDA==}
+  /postcss-selector-parser/6.0.8:
+    resolution: {integrity: sha512-D5PG53d209Z1Uhcc0qAZ5U3t5HagH3cxu+WLZ22jt3gLUpXM4eXXfiO14jiDWST3NNooX/E8wISfOhZ9eIjGTQ==}
     engines: {node: '>=4'}
     dependencies:
       cssesc: 3.0.0
@@ -11591,6 +11573,13 @@ packages:
 
   /rimraf/2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    hasBin: true
+    dependencies:
+      glob: 7.2.0
+    dev: false
+
+  /rimraf/2.7.1:
+    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
     hasBin: true
     dependencies:
       glob: 7.2.0
@@ -13570,91 +13559,31 @@ packages:
     dev: false
 
   file:projects/fluentui-builder.tgz:
-    resolution: {integrity: sha512-q0PF2WBq+ReNSgqMsVYacuZpTH8kd/1yZO7VzjY2S/AH4W8PeLSz/NzacINynJ8nxa5yO28AlEDpKVWD3LSz3g==, tarball: file:projects/fluentui-builder.tgz}
+    resolution: {integrity: sha512-zFm7y54E81I6ZfyIp4b0F35/0JCPgWaKc075j/6BwGBDn2atpuHLM4ToITDGmu7bg5Z9GZB1GqfhFZmXPVQwRw==, tarball: file:projects/fluentui-builder.tgz}
     name: '@rush-temp/fluentui-builder'
     version: 0.0.0
     dependencies:
-      '@babel/core': 7.16.5
-      '@commitlint/cli': 15.0.0
-      '@commitlint/config-conventional': 15.0.0
       '@fluentui/react': 8.48.1_d5c215a71cdc3853e6673ca67dc4c091
-      '@mdx-js/rollup': 2.0.0-rc.1_rollup@2.61.1
       '@types/node': 16.11.15
       '@types/react': 17.0.37
       '@types/react-dom': 17.0.11
-      '@typescript-eslint/eslint-plugin': 5.8.0_836011a006f4f5d67178564baf2b6d34
-      '@typescript-eslint/parser': 5.8.0_eslint@8.5.0+typescript@4.5.4
-      '@wiberg/formbuilder': 0.2.2_fa0453bb20dbdc1cdaea630145e09f50
       barrelsby: 2.3.1
-      commitizen: 4.2.4
-      commitlint-config-gitmoji: 2.2.5
-      cz-conventional-changelog: 3.3.0
-      cz-customizable: 6.3.0
-      eslint: 8.5.0
-      eslint-config-prettier: 8.3.0_eslint@8.5.0
-      eslint-plugin-prettier: 4.0.0_94e1b6d3ce6ea916847122712570e9ae
-      eslint-plugin-react-hooks: 4.3.0_eslint@8.5.0
-      formbuilder: 0.0.0
-      husky: 7.0.4
-      prettier: 2.5.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      rollup: 2.61.1
-      rollup-plugin-css-bundle: 1.0.4
-      rollup-plugin-terser: 7.0.2_rollup@2.61.1
-      rollup-plugin-typescript2: 0.31.1_c5b3f796929595710f7dd61dc8839d0e
-      standard-version: 9.3.2
       typescript: 4.5.4
-    transitivePeerDependencies:
-      - '@types/bluebird'
-      - acorn
-      - commitlint
-      - supports-color
-      - ts-toolbelt
     dev: false
 
-  file:projects/formbuilder.tgz_@types+react-dom@17.0.11:
-    resolution: {integrity: sha512-eShS4oQwJ7J64mzY4/Ot01f4bc5BCBvJimlyS4AljHGzMBIFYOsl2WR1m+IiIJuUqdbtwADofAhIjQq4+iP5+w==, tarball: file:projects/formbuilder.tgz}
-    id: file:projects/formbuilder.tgz
+  file:projects/formbuilder.tgz:
+    resolution: {integrity: sha512-uK7gN141xwCV56bAT2jN5PJfWCcL+UfDZqojawYIHXMuRvhcsRsqKv1YTKtFPsFCNsvsOoilQcV0OxtaiIvi3A==, tarball: file:projects/formbuilder.tgz}
     name: '@rush-temp/formbuilder'
     version: 0.0.0
     dependencies:
-      '@babel/core': 7.16.5
-      '@commitlint/cli': 15.0.0
-      '@commitlint/config-conventional': 15.0.0
-      '@fluentui/react': 8.48.1_d5c215a71cdc3853e6673ca67dc4c091
       '@types/node': 16.11.15
       '@types/react': 17.0.37
-      '@typescript-eslint/eslint-plugin': 5.8.0_836011a006f4f5d67178564baf2b6d34
-      '@typescript-eslint/parser': 5.8.0_eslint@8.5.0+typescript@4.5.4
-      babel-loader: 8.2.3_@babel+core@7.16.5
       barrelsby: 2.3.1
-      commitizen: 4.2.4
-      commitlint-config-gitmoji: 2.2.5
-      cz-conventional-changelog: 3.3.0
-      cz-customizable: 6.3.0
-      eslint: 8.5.0
-      eslint-config-prettier: 8.3.0_eslint@8.5.0
-      eslint-plugin-prettier: 4.0.0_94e1b6d3ce6ea916847122712570e9ae
-      eslint-plugin-react-hooks: 4.3.0_eslint@8.5.0
-      husky: 7.0.4
-      prettier: 2.5.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      rollup: 2.61.1
-      rollup-plugin-css-bundle: 1.0.4
-      rollup-plugin-terser: 7.0.2_rollup@2.61.1
-      rollup-plugin-typescript2: 0.31.1_c5b3f796929595710f7dd61dc8839d0e
-      standard-version: 9.3.2
       typescript: 4.5.4
-    transitivePeerDependencies:
-      - '@types/bluebird'
-      - '@types/react-dom'
-      - acorn
-      - commitlint
-      - supports-color
-      - ts-toolbelt
-      - webpack
     dev: false
 
   file:projects/storybook.tgz_@types+react-dom@17.0.11:

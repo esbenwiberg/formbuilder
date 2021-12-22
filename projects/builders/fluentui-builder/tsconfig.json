@@ -13,5 +13,5 @@
         "rootDirs": ["src/formbuilder/"]
     },
     "exclude": ["node_modules", "dist", "src/stories"],
-    "include": ["src", "../../formbuilder/src/interfaces/fieldconfig/config"]
+    "include": ["src", "../../formbuilder/src/interfaces/fieldconfig/config", "../../formbuilder/src/interfaces/fieldconfig/dates"]
 }

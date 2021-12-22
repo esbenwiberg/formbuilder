@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
-import { DatePicker, DayOfWeek, FirstWeekOfYear } from '@fluentui/react';
+import { DatePicker, ICalendarStrings } from '@fluentui/react';
 import { fluentUiValidationMessageElement } from '../fluentUiValidationMessageElement';
 import React from "react";
-import { IFormItem, IPropertyRenderProps, lang, IDynamicDateFieldConfig } from '@wiberg/formbuilder';
+import { IFormItem, IPropertyRenderProps, lang, IDynamicDateFieldConfig, FirstWeekOfYear, DayOfWeek } from '@wiberg/formbuilder';
 
 export type DynamicDateFieldConfigValueType = Date | null | undefined;
 
@@ -36,7 +36,7 @@ export const DynamicDateField = <T extends IFormItem>(props: PropsWithChildren<I
                     disabled={ props.disabled }
                     minDate={props.config?.minDate ? props.config?.minDate(props.parent) : undefined}
                     maxDate={props.config?.maxDate ? props.config?.maxDate(props.parent) : undefined}
-                    calendarProps={ { showGoToToday: true, strings: props.config?.localizationStrings, restrictedDates: props.config?.restrictedDates ? props.config?.restrictedDates(props.parent) : undefined } }
+                    calendarProps={ { showGoToToday: true, strings: props.config?.localizationStrings as any as ICalendarStrings, restrictedDates: props.config?.restrictedDates ? props.config?.restrictedDates(props.parent) : undefined } }
                     onBlur={() => props.onBlur(props.value)}
                 />
                 {

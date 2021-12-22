@@ -1,6 +1,4 @@
 {
     "directory": "./src",
-    "exclude": [
-
-    ]
+    "exclude": [ ]
 }

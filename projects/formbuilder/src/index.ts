@@ -33,6 +33,7 @@ export * from "./interfaces/fieldconfig/IDynamicDateFieldConfig";
 export * from "./interfaces/fieldconfig/IDynamicJsonfieldConfig";
 export * from "./interfaces/fieldconfig/IDynamicPredefinedArrayFieldConfig";
 export * from "./interfaces/fieldconfig/IDynamicTextfieldConfig";
+export * from "./interfaces/fieldconfig/dates/DateInterfaces";
 export * from "./interfaces/form/IFormItem";
 export * from "./interfaces/lists/IFormListColumnInfo";
 export * from "./interfaces/options/IFormGroupOptions";

@@ -7,14 +7,9 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --incremental",
-    "commit": "git add -A && cz",
     "release": "standard-version && git push --follow-tags origin main",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
-    "post-install": "husky install",
-    "clean": "npx rimraf dist",
-    "prebuildpackage": "npm run clean && npm run build && node dist/SetupPackage.js",
-    "buildpackage": "cd dist && npm pack",
-    "publishpackage": "cd dist && npm publish"
+    "clean": "npx rimraf dist"
   },
   "repository": {
     "type": "git",
