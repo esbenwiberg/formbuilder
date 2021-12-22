@@ -27,11 +27,7 @@ module.exports = {
         {
             value: "chore",
             name: "🚚 chore:\tChanges to the build process, pipeline or auxiliary tools\n\t\tand libraries such as documentation generation",
-        },
-        {
-            value: "wip",
-            name: "🚧 wip:\tWork in progress",
-        },
+        }
     ],
 
     // scopes: [{ name: "formbuilder" }, { name: "docs" }, { name: "misc" }],

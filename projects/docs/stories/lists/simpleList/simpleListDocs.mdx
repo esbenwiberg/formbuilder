@@ -1,0 +1,64 @@
+<h1>The simplest list of them all</h1>
+<p>Double click an item to open the item's form</p>
+
+<h2>Sample code</h2>  
+
+
+
+```initialize```  
+```js
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
+```
+
+```interfaces.ts```  
+
+```js
+export interface ISimpleListFormItem extends IFormItem {
+    id: string;
+    name: string;
+    age: number;
+    awesome: boolean;
+    custom: string;
+    start: Date;
+}
+```
+
+```options.ts``` 
+```js
+export const simpleListFormOptions: IFormBuilderProps<ISimpleListFormItem> = {
+    schemaConfig: { schemaProvider: simpleListFormItemSchemaProvider },
+    item: [
+        { id: "1", name: 'Esben', age: 33, awesome: true, start: new Date(2022,1,1), custom: "Something custom" } as ISimpleListFormItem,
+        { id: "2", name: 'Other', age: 12, awesome: false, custom: "Come on!"  } as ISimpleListFormItem
+    ],
+    listProps: {
+        config: { 
+            itemIdentifier: item => item.id
+        }
+    }
+}
+
+
+```
+
+```schemas.ts``` 
+```js
+
+export const simpleListFormItemSchemaProvider: ISchemaProvider<ISimpleListFormItem> = {
+    key: "simpleListFormItemSchemaProvider",
+    getSchema: async () : Promise<IFormSchema<ISimpleListFormItem>> => {
+        return {
+            options: {
+                properties: {
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age"}),
+                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: ISimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
+                } 
+            } as IFormItemOptions<ISimpleListFormItem>
+        } as IFormSchema<ISimpleListFormItem>;
+    }
+}
+```

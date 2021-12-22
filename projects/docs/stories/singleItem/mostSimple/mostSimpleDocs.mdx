@@ -1,0 +1,52 @@
+<h1>The form of them all</h1>
+
+<h2>Sample code</h2>  
+
+
+```initialize```  
+```js
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
+```
+
+```interfaces.ts```  
+
+```js
+export interface IMyFormItem extends IFormItem {
+    id: string;
+    name: string;
+    age: number;
+}
+
+```
+
+
+```options.ts``` 
+```js
+export const simpleFormItemOptions: IFormBuilderProps<IMyFormItem> = {
+    item: { id: "test1", name: 'Esbend', age: 42 } as IMyFormItem,
+    schemaConfig: {
+        schemaProvider: myFormItemSchemaProvider
+    }
+}
+```
+
+
+
+```schemas.ts```  
+```js
+export const myFormItemSchemaProvider: ISchemaProvider<IMyFormItem> = {
+    key: "myformitemschemaprovider",
+    getSchema: async () : Promise<IFormSchema<IMyFormItem>> => {
+        return {
+            options: {
+                properties: {
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name" }),
+                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age" })
+                }
+            } as IFormItemOptions<IMyFormItem>
+        } as IFormSchema<IMyFormItem>;
+    }
+}
+```
