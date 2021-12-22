@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@wiberg/fluentui-builder",
+      "comment": "extracted fluentui builder to seperate package",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@wiberg/fluentui-builder"
+}

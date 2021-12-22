@@ -1,10 +1,7 @@
 {
   "scripts": {
     "post-install": "husky install",
-    "commit": "git add -A && cz",
-    "prebuildpackage": "npm run clean && npm run build && node dist/SetupPackage.js",
-    "buildpackage": "cd dist && npm pack",
-    "publishpackage": "cd dist && npm publish"
+    "commit": "git add -A && cz"
   },
   "devDependencies": {
     "@types/node": "^16.11.12",

@@ -4,9 +4,7 @@ import fs from "fs";
 // This file is used by build system to build a clean npm package with the compiled js files in the root of the package.
 // It will not be included in the npm package.
 
-var args = process.argv.slice(1);
-
-function main(path) {
+function main() {
     const source = fs.readFileSync(__dirname + "/../package.json").toString('utf-8');
     const sourceObj = JSON.parse(source);
 
@@ -15,8 +13,8 @@ function main(path) {
     delete sourceObj.files;
     delete sourceObj.config;
 
-    sourceObj.main = sourceObj.main.replace("./dist/", `./${path}/`);
-    sourceObj.types = sourceObj.types.replace("./dist/", `./${path}/`);
+    sourceObj.main = sourceObj.main.replace("./dist/", "./src/");
+    sourceObj.types = sourceObj.types.replace("./dist/", "./src/");
 
     sourceObj.peerDependencies = {...sourceObj.dependencies};
     delete sourceObj.dependencies;
@@ -29,4 +27,4 @@ function main(path) {
     fs.copyFileSync(__dirname + "/../LICENSE", __dirname + "/LICENSE");
 }
 
-main(args[0]);
+main();

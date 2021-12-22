@@ -7,9 +7,11 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --incremental",
-    "release": "standard-version && git push --follow-tags origin main",
+    "build-publish": "tsc --outDir publish",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
-    "clean": "npx rimraf dist"
+    "clean:dist": "npx rimraf dist",
+    "clean:publish": "npx rimraf publish",
+    "prebuildpackage": "npm run clean:publish && npm run build-publish && node publish/SetupPackage.js"
   },
   "repository": {
     "type": "git",

@@ -10,8 +10,8 @@
         "jsx": "react",
         "sourceMap": true,
         "allowJs": true,
-        "rootDirs": ["src/formbuilder/"]
+        "rootDir": "./"
     },
-    "exclude": ["node_modules", "dist", "src/stories"],
-    "include": ["src"]
+    "exclude": ["node_modules", "dist"],
+    "include": ["src", "setupPackage.ts"]
 }

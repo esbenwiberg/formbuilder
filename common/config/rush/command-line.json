@@ -21,9 +21,17 @@
     },
     {
       "commandKind": "bulk",
-      "name": "clean",
+      "name": "clean:dist",
       "summary": "Cleans dist folder.",
       "description": "Cleans dist folder.",
+      "enableParallelism": true,
+      "ignoreMissingScript": true
+    },
+    {
+      "commandKind": "bulk",
+      "name": "clean:publish",
+      "summary": "Cleans publish folder.",
+      "description": "Cleans publish folder.",
       "enableParallelism": true,
       "ignoreMissingScript": true
     },
@@ -36,6 +44,14 @@
       "ignoreMissingScript": true,
       "incremental": true,
       "watchForChanges": true
+    },
+    {
+      "commandKind": "bulk",
+      "name": "prebuildpackage",
+      "summary": "Prebuilds packages and strips package.json",
+      "description": "Prebuilds packages and strips package.json.",
+      "enableParallelism": true,
+      "ignoreMissingScript": true
     },
     {
       "commandKind": "global",
