@@ -59,7 +59,16 @@
       "summary": "Create a commit using commitizen.",
       "description": "Create a commit using commitizen.",
       "shellCommand": "npm run commit"
+    },
+    {
+      "commandKind": "global",
+      "name": "publishpacks",
+      "summary": "Publishes all changed packages.",
+      "description": "Publishes all changed packages.",
+      "shellCommand": "rush publish --set-access-level public"
     }
+
+    
 
     
     // {

@@ -69,3 +69,7 @@ common/autoinstallers/*/.npmrc
 
 # dist folders
 dist/
+publish/
+
+# storybook
+storybook-static

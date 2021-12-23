@@ -10,8 +10,8 @@
         "jsx": "react",
         "sourceMap": true,
         "allowJs": true,
-        "rootDir": "./"
+        "rootDirs": [ "./", "src" ]
     },
     "exclude": ["node_modules", "dist"],
-    "include": ["src", "setupPackage.ts"]
+    "include": ["src"]
 }

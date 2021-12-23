@@ -5,13 +5,13 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "build:watch": "tsc --incremental",
-    "build-publish": "tsc --outDir publish",
+    "build:publish": "tsc -p tsconfig.publish.json --outDir publish",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
     "clean:dist": "npx rimraf dist",
     "clean:publish": "npx rimraf publish",
-    "prebuildpackage": "npm run clean:publish && npm run build-publish && node publish/SetupPackage.js"
+    "prebuildpackage": "npm run clean:publish && npm run build:publish && node publish/setupPackage.js"
   },
   "repository": {
     "type": "git",
