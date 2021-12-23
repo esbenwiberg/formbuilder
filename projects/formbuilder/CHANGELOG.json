@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.3.1",
+      "tag": "@wiberg/formbuilder_v0.3.1",
+      "date": "Thu, 23 Dec 2021 08:34:11 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "aligned readme and license files"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.0",
       "tag": "@wiberg/formbuilder_v0.3.0",
       "date": "Thu, 23 Dec 2021 07:25:23 GMT",
