@@ -1,0 +1,73 @@
+<h1>List forms with id's as property values</h1>
+<p>This sample is made to show how you can support id as property values.</p>
+<p>When you have id's as property values, you don't want them to be displayed in the list columns. But you do need them in your custom components that render the properties, ie. a user selector.</p>
+<p>Using this course of action, we can add the string/any values to the objects and use them in the custom column render.</p>
+<p>We then get the best of both worlds :)</p>  
+
+<h2>Sample code</h2>  
+
+
+```initialize```  
+```js
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createFluentBuilder());
+```
+
+```interfaces.ts```  
+```js
+export interface IMyIdValueListFormItem extends IFormItem {
+    id: number;
+    name: string;
+    userId: string;
+    userAsString: string;
+    typeId: string;
+    typeAsString: string;
+}
+
+```
+
+
+```options.ts``` 
+```js
+export const listWithIdsFormOptions: IFormBuilderProps<IMyIdValueListFormItem> = {
+    schemaConfig: { schemaProvider: idValueListFormItemSchemaProvider },
+    item: [
+        { id: 1, name: 'Esben', userId: "e959c336-f50d-43da-822f-a3107a01e99f", userAsString: "ewi", typeId: "241854fc-39ea-4bc5-9f9f-650d7cbfe20e", typeAsString: "Admin" } as IMyIdValueListFormItem,
+        { id: 2, name: 'Other', userId: "8ac4b128-25ee-4ff9-a5f4-012fc163995d", userAsString: "oth", typeId: "9ca1e9ba-636c-46f8-89f3-cee502d39fb5", typeAsString: "SuperUser" } as IMyIdValueListFormItem
+    ],
+    listProps: {
+        onItemChange: item => console.log(item),
+        config: { 
+            itemIdentifier: item => item.id.toString(),
+            shimmerLines: 2
+        },
+        editorConfig: {
+            title: item => `Edit '${item?.name}'`,
+            type: FormBuilderListEditorType.Panel
+        }
+    }
+}
+
+```
+
+
+
+```schemas.ts```  
+```js
+export const idValueListFormItemSchemaProvider: ISchemaProvider<IMyIdValueListFormItem> = {
+    key: "idValueListFormItemSchemaProvider",
+    getSchema: async () : Promise<IFormSchema<IMyIdValueListFormItem>> => {
+        return {
+            options: {
+                properties: {
+                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
+                    userId: propertyOptionsFactory.stringPropertyOption({ displayName: "This user", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.userAsString } }),
+                    typeId: propertyOptionsFactory.stringPropertyOption({ displayName: "This type", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.typeAsString } })
+                } 
+            } as IFormItemOptions<IMyIdValueListFormItem>
+        } as IFormSchema<IMyIdValueListFormItem>;
+    }
+}
+
+```

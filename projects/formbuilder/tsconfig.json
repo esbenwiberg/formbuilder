@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "lib": ["dom", "ESNext", "ES2017"],
+        "declaration": true,
+        "outDir": "dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "jsx": "react",
+        "sourceMap": true,
+        "allowJs": true,
+        "rootDir": "./"
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["src", "setupPackage.ts"]
+}

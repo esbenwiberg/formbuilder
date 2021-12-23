@@ -7,4 +7,4 @@ module.exports = {
     // Number of characters before linebreak insertion
     printWidth: 120,
     endOfLine: "auto"
-};
+}; 

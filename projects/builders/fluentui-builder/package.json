@@ -1,0 +1,60 @@
+{
+  "name": "@wiberg/fluentui-builder",
+  "version": "0.1.0",
+  "description": "A builder for the '@wiberg/formbuilder' using FluentUI components.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --incremental",
+    "build-publish": "tsc --outDir publish",
+    "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
+    "clean:dist": "npx rimraf dist",
+    "clean:publish": "npx rimraf publish",
+    "prebuildpackage": "npm run clean:publish && npm run build-publish && node publish/SetupPackage.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/esbenwiberg/formbuilder"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "cz-config.js"
+    }
+  },
+  "keywords": [
+    "formbuilder",
+    "formsbuilder",
+    "formgenerator",
+    "builder",
+    "forms",
+    "builder",
+    "react",
+    "fluentui",
+    "materialui",
+    "headless"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": "Esben Wiberg",
+  "license": "MIT",
+  "devDependencies": {
+    "@fluentui/react": "^8.47.2",
+    "@types/node": "^16.11.12",
+    "@types/react": "^17.0.37",
+    "barrelsby": "^2.3.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@fluentui/react": "^8.47.2",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@wiberg/formbuilder": "~0.3.0"
+  }
+}

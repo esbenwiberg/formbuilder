@@ -1,0 +1,27 @@
+{
+  "name": "@wiberg/fluentui-builder",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "@wiberg/fluentui-builder_v0.1.0",
+      "date": "Thu, 23 Dec 2021 07:25:23 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "extracted fluentui builder to seperate package"
+          }
+        ],
+        "patch": [
+          {
+            "comment": "changes to package build"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.2.2` to `~0.3.0`"
+          }
+        ]
+      }
+    }
+  ]
+}

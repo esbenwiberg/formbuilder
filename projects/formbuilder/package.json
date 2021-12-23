@@ -1,0 +1,48 @@
+{
+  "name": "@wiberg/formbuilder",
+  "version": "0.3.0",
+  "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --incremental",
+    "build-publish": "tsc --outDir publish",
+    "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
+    "clean:dist": "npx rimraf dist",
+    "clean:publish": "npx rimraf publish",
+    "prebuildpackage": "npm run clean:publish && npm run build-publish && node publish/SetupPackage.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/esbenwiberg/formbuilder"
+  },
+  "keywords": [
+    "formbuilder",
+    "formsbuilder",
+    "formgenerator",
+    "builder",
+    "forms",
+    "builder",
+    "react",
+    "fluentui",
+    "materialui",
+    "headless"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": "Esben Wiberg",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.11.12",
+    "@types/react": "^17.0.37",
+    "barrelsby": "^2.3.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.37",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
