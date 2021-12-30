@@ -55,7 +55,7 @@ export const LargeList: ComponentStory<typeof FormBuilder> = () => {
   const options = mergeDeep(overrideOptions as Partial<IFormBuilderProps<ILargeListFormItem>>, largeListFormOptions) ;
 
   return  <>
-            <FormBuilder {...options as any} />
+            <FormBuilder { ...options } />
             <CountDownConfirmDialog
               info={confirmInfo}
               cancelText="Cancel"

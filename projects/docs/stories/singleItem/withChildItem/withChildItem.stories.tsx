@@ -37,7 +37,7 @@ export default {
 export const WithChildItem: ComponentStory<typeof FormBuilder> = () => {
   const formRef = useRef<FormRef<IMyFormItemChild>>();
   return  <>
-            <FormBuilder {...itemWithChildFormItemOptions as any} ref={formRef} />
+            <FormBuilder {...itemWithChildFormItemOptions } formRef={formRef} />
             <div style={{ border: "dotted 1px black", padding: "20px", margin: "10px" }}>
                   <Label>This is outside the form:</Label>
                   <PrimaryButton text="Log item to console" onClick={() => console.log(formRef.current?.getItem())} />

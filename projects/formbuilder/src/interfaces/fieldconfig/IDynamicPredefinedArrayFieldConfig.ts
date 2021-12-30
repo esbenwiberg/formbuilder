@@ -6,12 +6,12 @@ export interface IDynamicPredefinedArrayItem {
 	text: string;
 }
 
-export interface IDynamicPredefinedArrayFieldValuesConfig {
+export interface IDynamicPredefinedArrayFieldValuesConfig<T> {
 	options?: Array<IDynamicPredefinedArrayItem>;
-	optionsAsync?: () => Promise<Array<IDynamicPredefinedArrayItem>>;
+	optionsAsync?: (item: T) => Promise<Array<IDynamicPredefinedArrayItem>>;
 }
 
 export interface IDynamicPredefinedArrayFieldConfig<T> extends IDynamicPropertyComponentConfig<T> {
 	multiSelect?: boolean;
-	predefinedOptions?: RequireOnlyOne<IDynamicPredefinedArrayFieldValuesConfig>
+	predefinedOptions?: RequireOnlyOne<IDynamicPredefinedArrayFieldValuesConfig<T>>
 }

@@ -16,12 +16,12 @@ export const DynamicPredefinedArrayField = <T extends IFormItem>(props: PropsWit
 
 	useEffect(() => {
 		// async fetch of values
-		let asyncGetter = props.config?.predefinedOptions?.optionsAsync as () => Promise<Array<IDynamicPredefinedArrayItem>>;
+		let asyncGetter = props.config?.predefinedOptions?.optionsAsync as (item: T) => Promise<Array<IDynamicPredefinedArrayItem>>;
 		if (asyncGetter != null) {
 			setOptions([{key: -1, text: lang.texts.areas.common.loading}])
 			let fetch = async () => {
 				try {
-					const options = await asyncGetter();
+					const options = await asyncGetter(props.parent);
 					setOptions(options);
 				}
 				catch (error) {

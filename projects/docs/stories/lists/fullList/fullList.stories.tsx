@@ -30,4 +30,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const FullList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...fullListFormOptions as any} />;
+export const FullList: ComponentStory<typeof FormBuilder> = () => <FormBuilder { ...fullListFormOptions } />;

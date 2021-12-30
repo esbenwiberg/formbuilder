@@ -29,4 +29,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SimpleList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...simpleListFormOptions as any} />;
+export const SimpleList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...simpleListFormOptions } />;

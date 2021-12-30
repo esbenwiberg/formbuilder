@@ -67,12 +67,14 @@ PeerDependencies:
 The plan is to have a stable release ready in ***2022 Q1***.
 
 ### Known issues
-- a minor type issue in IFormBuilderProps, causing the need for cast to any
+- some react hooks exhaustive deps needs to be handled
+- ~~a minor type issue in IFormBuilderProps, causing the need for cast to any~~
 
 ### What's next?
 - general stabilization
 - various cleanup
 - more documentation
+- material ui builder
 
 # Quick Start
 Find a 'Get started' guide on the [documentation site](https://esbenwiberg.github.io/formbuilder/?path=/docs/get-started--page)

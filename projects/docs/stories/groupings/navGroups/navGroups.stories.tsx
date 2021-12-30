@@ -31,4 +31,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const NavGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...navGroupRenderOptions as any} />;
+export const NavGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder { ...navGroupRenderOptions } />;

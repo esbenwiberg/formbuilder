@@ -30,4 +30,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const TabGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...tabGroupRenderOptions as any} />;
+export const TabGroups: ComponentStory<typeof FormBuilder> = () => <FormBuilder { ...tabGroupRenderOptions } />;

@@ -30,4 +30,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const SuperDynamicList: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...dynamicListFormOptions as any} />;
+export const SuperDynamicList: ComponentStory<typeof FormBuilder> = () => <FormBuilder { ...dynamicListFormOptions } />;

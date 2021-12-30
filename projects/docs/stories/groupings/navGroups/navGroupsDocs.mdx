@@ -87,7 +87,7 @@ export class MyNavGroupedFormItemSchemaProvider extends SchemaProvider<MyNavGrou
     public key = "MyNavGroupedFormItem";
     public itemType = () => MyNavGroupedFormItem
 
-    public getSchema = async () : Promise<IFormSchema<IFormItem>> => {
+    public getSchema = async () : Promise<IFormSchema<MyNavGroupedFormItem>> => {
         return {
             options: {
               

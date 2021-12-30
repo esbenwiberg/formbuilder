@@ -13,6 +13,6 @@ export const myFormItemSchemaProvider: ISchemaProvider<IMyFormItem> = {
                     // test: { displayName: "test", propertyType: customPropertyTypes.horse } as Partial<IFormItemPropertyOptions<IMyFormItem, IDynamicTextFieldConfig<IMyFormItem>> //TODO: move to antoher example (keeping it here for remembering) :)
                 }
             } as IFormItemOptions<IMyFormItem>
-        } as IFormSchema<IMyFormItem>;
+        }
     }
 }

@@ -6,7 +6,7 @@ import mostSimpleDocs from './mostSimpleDocs.mdx';
 import { initializeIcons, Label, PrimaryButton } from '@fluentui/react';
 import { simpleFormItemOptions } from './models/options';
 import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
-import { formbuilder, FormBuilder, FormRef } from '@wiberg/formbuilder';
+import { formbuilder, FormBuilder, FormRef, IFormBuilderProps } from '@wiberg/formbuilder';
 import { IMyFormItem } from './models/interfaces';
 
 initializeIcons(/* optional base url */);
@@ -34,7 +34,7 @@ export const MostSimple: ComponentStory<typeof FormBuilder> = () => {
   const formRef = useRef<FormRef<IMyFormItem>>();
 
   return  <>
-            <FormBuilder {...simpleFormItemOptions as any} ref={formRef} />
+            <FormBuilder {...simpleFormItemOptions } formRef={formRef} />
             <div style={{ border: "dotted 1px black", padding: "20px", margin: "10px" }}>
               <Label>This is outside the form:</Label>
               <PrimaryButton text="Log item to console" onClick={() => console.log(formRef.current?.getItem())} />

@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { IFormItemOptions } from '../interfaces/options/IFormItemOptions';
 import { IFormSchema } from '../interfaces/schema/IFormSchema';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
@@ -53,18 +53,20 @@ export interface IFormBuilderProps<T extends IFormItem> {
 
 export type FormBuilderRef<T extends IFormItem> = { getItem: () => FormBuilderItemType<T>, validateItem: () => Promise<ValidationResult>; };
 
+
 // wrapper for handling both single item and list of items
-export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(props : IFormBuilderProps<T>, ref: FormBuilderRef) => {
+// export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(props : IFormBuilderProps<T>, ref: FormBuilderRef) => {
+export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & { formRef?: Ref<any> }) => {
 
     // verify that the formbuilder is set up correctly
     formbuilder.verify();
 
-    const formRef = useRef<FormRef<T>>();
+    const subFormRef = useRef<FormRef<T>>();
     const [schema, setSchema] = useState<IFormSchema<T> | undefined>(props.overrideSchema); 
 
-    useImperativeHandle<FormBuilderRef, any>(ref as any, () => ({ 
-        getItem: () => formRef.current?.getItem(), 
-        validateItem: () => formRef.current?.validateItem != null ? formRef.current?.validateItem(ValidationEventType.Manual) : undefined
+    useImperativeHandle<FormBuilderRef<T>, any>(props.formRef as any, () => ({ 
+        getItem: () => subFormRef.current?.getItem(), 
+        validateItem: () => subFormRef.current?.validateItem != null ? subFormRef.current?.validateItem(ValidationEventType.Manual) : undefined
     }), []);
     
     const loadSchema = async() => {
@@ -89,7 +91,7 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
                 (Array.isArray(props.item) || props.listProps != null)
                     ?   <FormList
                             key={getKey()}
-                            ref={formRef}
+                            ref={subFormRef}
                             items={props.item}
                             schema={schema}
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
@@ -98,7 +100,7 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
                         />
                     :   <Form
                             key={getKey()}
-                            ref={formRef}
+                            ref={subFormRef}
                             schema={schema}
                             onPropertyChange={ (item: IFormItem, prop: string, value: any) => props.singleItemProps?.onPropertyChange == null ? () => {} : props.singleItemProps.onPropertyChange(item as any, prop, value)} // TODO: fucking T type mismatch for some reason (ewi)
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
@@ -107,4 +109,4 @@ export const FormBuilder = forwardRef(<T extends IFormItem, FormBuilderRef>(prop
             }
         </div>
     )
-})
+}

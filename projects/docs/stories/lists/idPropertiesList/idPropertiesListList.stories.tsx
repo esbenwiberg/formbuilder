@@ -28,4 +28,4 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const ListWithIdProperties: ComponentStory<typeof FormBuilder> = () => <FormBuilder {...listWithIdsFormOptions as any} />;
+export const ListWithIdProperties: ComponentStory<typeof FormBuilder> = () => <FormBuilder { ...listWithIdsFormOptions } />;
