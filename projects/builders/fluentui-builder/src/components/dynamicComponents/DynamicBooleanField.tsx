@@ -46,10 +46,3 @@ export const DynamicBooleanField = <T extends IFormItem>(props: PropsWithChildre
 		</>
 	)
 }
-
-
-// const preventUpdate = (prev: any, next: any) => {
-//     return prev.value === next.value
-//       && prev.errorMessage === next.errorMessage;
-// }
-// export const DynamicBooleanField = memo(DynamicBooleanFieldComp, preventUpdate) as typeof DynamicBooleanFieldComp;

@@ -50,10 +50,17 @@ export const buildFormItemRender = () : IFormItemRender => {
         for (const prop of properties ?? Object.keys(renderProps.schema.properties)) {
             let propSchema = {...renderProps.schema.properties[prop]};
             if (propSchema.hide && propSchema.hide(renderProps.item)) continue;
+            // check if property type is not available in any builders
+            let found = false;
             for (const builder of _builders) {
                 let result = builder.build(renderProps, prop, propSchema);
-                if (result.found && result.element != null) elements.push(result.element);
+                if (result.found) {
+                    found = true;
+                    if (result.element != null) 
+                        elements.push(result.element);
+                }
             }
+            if (!found) console.warn(`Property type '${propSchema.propertyType}' is not supported in any registered builders. Maybe you've forgot to register a builder?`);
         }
 
         return elements?.length ? elements : undefined;

@@ -45,9 +45,3 @@ export const DynamicDateField = <T extends IFormItem>(props: PropsWithChildren<I
 			    }
             </>
 }
-
-// const preventUpdate = (prev: any, next: any) => {
-//     return prev.value === next.value
-//       && prev.errorMessage === next.errorMessage;
-// }
-// export const DynamicDateField = memo(DynamicDateFieldComp, preventUpdate) as typeof DynamicDateFieldComp;
