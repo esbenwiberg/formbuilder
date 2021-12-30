@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Thu, 23 Dec 2021 08:34:11 GMT and should not be manually modified.
+This log was last generated on Thu, 30 Dec 2021 20:55:24 GMT and should not be manually modified.
+
+## 0.1.2
+Thu, 30 Dec 2021 20:55:24 GMT
+
+### Patches
+
+- added the parent item to the getter for predefined array. made multiselect available for predefined array types
 
 ## 0.1.1
 Thu, 23 Dec 2021 08:34:11 GMT
