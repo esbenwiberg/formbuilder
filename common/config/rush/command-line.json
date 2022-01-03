@@ -65,7 +65,8 @@
       "name": "publishpacks",
       "summary": "Publishes all changed packages.",
       "description": "Publishes all changed packages.",
-      "shellCommand": "rush publish --set-access-level public"
+      "shellCommand": "rush publish --set-access-level public --include-all",
+      "safeForSimultaneousRushProcesses": true
     }
 
     

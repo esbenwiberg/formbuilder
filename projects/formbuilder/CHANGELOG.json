@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.3.3",
+      "tag": "@wiberg/formbuilder_v0.3.3",
+      "date": "Mon, 03 Jan 2022 11:53:59 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "upscaled @types/react package version"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.2",
       "tag": "@wiberg/formbuilder_v0.3.2",
       "date": "Thu, 30 Dec 2021 20:55:24 GMT",

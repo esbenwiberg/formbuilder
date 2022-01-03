@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 30 Dec 2021 20:55:24 GMT and should not be manually modified.
+This log was last generated on Mon, 03 Jan 2022 11:53:59 GMT and should not be manually modified.
+
+## 0.3.3
+Mon, 03 Jan 2022 11:53:59 GMT
+
+### Patches
+
+- upscaled @types/react package version
 
 ## 0.3.2
 Thu, 30 Dec 2021 20:55:24 GMT
