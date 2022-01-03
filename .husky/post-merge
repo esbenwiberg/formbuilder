@@ -5,10 +5,14 @@ IFS=$'\n'
 PACKAGE_LOCK_REGEX="(^pnpm-lock\.yaml)"
 PACKAGES=("$(git diff --name-only HEAD@{1} HEAD | grep -E "$PACKAGE_LOCK_REGEX")")
 
-if [[ ${PACKAGES[@]} ]]; then
-    echo "📦 packages has changed. Running 'rush update, install and build' to update your dependencies..."
-    rush update --full --purge
-    rush install
-    rush rebuild
-    done
+if [[ ${PACKAGES[@]} ]]; 
+    then
+        echo "📦 packages has changed. Running 'rush update, install and build' to update your dependencies..."
+        rush update --full --purge
+        rush install
+        rush rebuild
+        done
+    else
+        echo "No changes to packages..."
+        done
 fi
