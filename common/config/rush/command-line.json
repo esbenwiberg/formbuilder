@@ -62,10 +62,10 @@
     },
     {
       "commandKind": "global",
-      "name": "publishpacks",
+      "name": "publishpackages",
       "summary": "Publishes all changed packages.",
       "description": "Publishes all changed packages.",
-      "shellCommand": "rush publish --set-access-level public --include-all",
+      "shellCommand": "rush publish --include-all --publish --set-access-level public",
       "safeForSimultaneousRushProcesses": true
     }
 
@@ -234,6 +234,14 @@
    * For example, you might define a "--production" parameter for the "rush build" command.
    */
   "parameters": [
+    {
+      "parameterKind": "string",
+      "argumentName": "TOKEN",
+      "longName": "--npm-auth-token",
+      "description": "the npm token used for publishing",
+      "required": true,
+      "associatedCommands": [ "publishpackages" ]
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom parameter.
