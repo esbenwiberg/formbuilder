@@ -1,6 +1,5 @@
-import { IPropertyRenderProps } from "../../interfaces/IPropertyRenderProps";
 import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
-import { IFormItemBuilder, IFormItemBuilderResult, LabelRender } from "../interfaces/IFormItemBuilder";
+import { IFormItemBuilder, IFormItemBuilderResult, LabelRender, LoadingSpinner, ValidationMessageElement } from "../interfaces/IFormItemBuilder";
 import { IPropertyTypes, propertyTypes } from "../../models/property/PropertyType";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
 import { IDynamicComponentConfig } from "./config/IDynamicComponentConfig";
@@ -17,9 +16,9 @@ import { ValidationMark } from "../..";
 import { buildPropertyRenderInfo } from "../helpers/BuildPropertyRenderProps";
 import { getValidationMarkForProperty } from "../helpers/GetValidationMark";
 
-export const createComplexObjectBuilder = (labelRender?: LabelRender, validationMessage?: (message: string) => JSX.Element, loadingSpinner?: React.ElementType<ILoadingProps>) : IFormItemBuilder => {
+export const createComplexObjectBuilder = (labelRender?: LabelRender, validationMessage?: ValidationMessageElement, loadingSpinner?: LoadingSpinner) : IFormItemBuilder => {
 
-    const id: Readonly<string> = "internal_custombuilder";
+    const id: Readonly<string> = "internal_complexbuilder";
     
     const defaultLabelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(propertySchema: IFormItemPropertyOptions<T, C>, key: string) => <label key={key}>{propertySchema.displayName}</label>;
     const defaultValidationMessageElement = (message: string) : JSX.Element => <p>{message}</p>;

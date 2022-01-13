@@ -53,7 +53,9 @@ export const buildFormItemRender = () : IFormItemRender => {
             // check if property type is not available in any builders
             let found = false;
             for (const builder of _builders) {
+                console.log(builder.id);
                 let result = builder.build(renderProps, prop, propSchema);
+                console.log(result.found);
                 if (result.found) {
                     found = true;
                     if (result.element != null) 

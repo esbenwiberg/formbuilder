@@ -117,11 +117,170 @@ import StackAlt from './assets/stackalt.svg';
 # Builders
 
 <div className="subheading">The works</div>
-<p>how it works</p>
+<p>Often the various formbuilders out there are hardcoded to a specific UI library. And it's often not the UI library you use. This is dumb!</p>
+<p>But hey, we've got your back!</p>
+<p>This formbuilder uses a plug 'n' play style when it comes to render forms. This means that if none of our existing builders suit your needs, you can create your own. And quite easily actually! :)</p>
+<p>Let's go through what it takes to create a simple custom builder.</p>
 
 <div className="subheading">Custom builders</div>
-<p>how it works</p>
-<p>overrides</p>
-<p>custom implementation</p>
-<p>custom property types</p>
+
+## The builder
+<p>A builder consists of basically one method 'build'. This method should return the component used for rendering a property, based on the property type.</p>
+
+```customBuilder.ts```
+```js
+export const createCustomBuilder = () : IFormItemBuilder => {
+
+    const id: Readonly<string> = "myCustomBuilder";
+    
+    const labelRender: LabelRender = fluentUiLabel; // re-using the label from the fluent builder. or you can create your own.
+
+    const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
+        let { item } = renderProps;
+        
+        // guards
+        if (item === null) throw Error("item is null");
+        if (schema == null) throw Error("schema is null");
+
+        // build the info needed for the render (tis is a supplied method)
+        let info = buildPropertyRenderInfo(renderProps, schema, property);
+
+        // add a label for the property name
+        const WrapInLabel = (element: JSX.Element, addErrormessage?: boolean) : JSX.Element => {
+            return (
+                <div className="formbuilder-property" key={info.props.key}>
+                    { !info.props.options.hideLabel && labelRender(schema, info.key + "-label")}
+                    { element }
+                </div>
+            )
+        }
+
+        // using the default propertypes that ships with the formbuilder
+        const propertyType: IPropertyTypes = propertyTypes;
+
+        // render based on property type
+        switch (schema.propertyType) {
+            case propertyType.string: return { found: true, element: WrapInLabel(<MyOwnComponent {...schema} {...info.props} />) };
+            default: return { found: false, element: undefined }
+        }
+    };
+
+    return { id, build, loadingComponent, listComponent: undefined };
+}
+
+```
+
+### Registering your builder
+
+<p>Your custom builder can work alone or alongside another one. It can add functionality or it can override existing functionality in another builder.</p>
+
+<p>The order, in which the builders are added, matters!</p>
+<p>
+    When scanning for rendering property types, the builders are looped through in the order added.
+    This means that if more builders can handle the same property type, the first one wins.
+    You're then able to override existing property types, if they doesn't suit your needs.
+</p>
+
+<p>Here's an example showing how to register your custom builder, making it working alongside the existing functionality.</p>
+<p>The complex builder is responsible for managing nested forms, custom render components and value arrays</p>
+
+```app.tsx```
+```js
+formbuilder.initialize()
+    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .withBuilders(createCustomBuilder(), createFluentBuilder());
+```
+
+<p>You can use your builder without any of the builders available. But excluding the ```complexbuilder``` will restrict the formbuilder to not support nested forms or custom render components.</p>
+`
+```app.tsx```
+```js
+formbuilder.initialize()
+    .withBuilders(createCustomBuilder());
+```
+
+
+## Custom property types
+<p>The formbuilder comes with a set of predefined propertytypes. When creating a custom builder, you may ned other types of properties, making it more manageable if you supply extra property types.</p>
+
+```customPropertyTypes.ts```
+```js
+export interface ICustomPropertyTypes extends IPropertyTypes {
+    specialText: string,
+    specialNumber: string
+}
+
+export const customPropertyTypes: ICustomPropertyTypes = {
+    ...propertyTypes,
+    specialText: "specialText",
+    specialNumber: "specialNumber"
+}
+```
+
+```customBuilder.ts```
+```js
+export const createCustomBuilder = () : IFormItemBuilder => {
+    ...
+
+    const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
+        ...
+
+        // here we are using your own custom property types
+        const customPropertyType: ICustomPropertyTypes = customPropertyTypes;
+
+        // render based on property type
+        switch (schema.customPropertyType) {
+            case customPropertyType.specialText: return { found: true, element: WrapInLabel(<SpecialTextField {...schema} {...info.props} />) };
+            case customPropertyType.specialNumber: return { found: true, element: WrapInLabel(<SpecialNumberField {...schema} {...info.props} />) };
+            default: return { found: false, element: undefined }
+        }
+    };
+
+    return { id, build, loadingComponent, listComponent: undefined }
+}
+
+```
+
+
+
+## Custom field config
+<p>When creating your own builders and property types, you propably need to enrich the custom components needed to render. This is supplied to them by the config object, and this can be extended.</p>
+
+```specialConfig.ts```
+```js
+export interface ISpecialFieldConfig<T> extends IDynamicTextFieldConfig<T> {
+    color?: string;
+}
+```
+
+```customRenderComponent.ts```
+```js
+interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, ISpecialFieldConfig<T>, string | number | undefined> { 
+    config?: ISpecialFieldConfig<T>;
+}
+
+export const SpecialTextField = <T extends IFormItem>(props: PropsWithChildren<IProps<T>>) : ReactElement | null => {
+
+	const [value, setValue] = useState<string | number | undefined>(props.value);
+	useEffect(() => setValue(props.value), [props.value])
+
+    const onChange = (ev: any) => {
+		setValue(ev.target.value);
+        props.onChange(ev.target.value);
+    }
+
+    return (
+		<input 
+			value={value}
+			onChange={onChange}
+			style={{ backgroundColor: props.config?.color }}
+            type="text"
+		>
+		</input>
+	)
+}
+```
+
+## Lists
+<p>TBD</p>
 

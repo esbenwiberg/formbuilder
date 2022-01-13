@@ -8,6 +8,7 @@ import { strings } from "./common/String";
 import { createComplexObjectBuilder } from "../builders/custom/ComplexObjectBuilder";
 import { IFormItemBuilder, LabelRender } from "../builders/interfaces/IFormItemBuilder";
 import { ILoadingProps } from "../builders/interfaces/ILoadingProps";
+import { debug } from "console";
 
 export interface IFormBuilder {
     formItemRender: IFormItemRender;

@@ -53,14 +53,4 @@ export const propertyTypes: IPropertyTypes = {
     custom
 }
 
-export interface ICustomPropertyTypes extends IPropertyTypes {
-    color: string,
-    horse: string
-}
-
-export const customPropertyTypes: ICustomPropertyTypes = {
-    ...propertyTypes,
-    color: "color",
-    horse: "horse"
-}
 

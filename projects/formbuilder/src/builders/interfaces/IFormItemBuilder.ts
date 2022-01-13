@@ -19,3 +19,7 @@ export interface IFormItemBuilder {
 }
 
 export type LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(propertySchema: IFormItemPropertyOptions<T, C>, key: string, validationMark?: ValidationMark) => JSX.Element | undefined;
+
+export declare type ValidationMessageElement = (message: string) => JSX.Element;
+
+export declare type LoadingSpinner = React.ElementType<ILoadingProps>;
