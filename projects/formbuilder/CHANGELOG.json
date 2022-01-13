@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.3.4",
+      "tag": "@wiberg/formbuilder_v0.3.4",
+      "date": "Thu, 13 Jan 2022 12:06:14 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": " Added documentation for creating custom builders"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.3",
       "tag": "@wiberg/formbuilder_v0.3.3",
       "date": "Mon, 03 Jan 2022 11:53:59 GMT",
