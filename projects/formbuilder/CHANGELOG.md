@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 13 Jan 2022 12:06:14 GMT and should not be manually modified.
+This log was last generated on Tue, 08 Feb 2022 20:14:10 GMT and should not be manually modified.
+
+## 0.4.0
+Tue, 08 Feb 2022 20:14:10 GMT
+
+### Minor changes
+
+- changed propertyOptionsFactory method names
 
 ## 0.3.4
 Thu, 13 Jan 2022 12:06:14 GMT

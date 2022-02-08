@@ -24,13 +24,13 @@ export const fullListFormItemSchemaProvider: ISchemaProvider<IFullListFormItem> 
                     }
                 },
                 properties: {
-                    firstname: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true, customValueRender: (item, onChange) => <>{<TextField value={item.firstname+""} onChange={(ev, val) => onChange({...item, ...{ firstname: val }})} />}</> } }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    custom: propertyOptionsFactory.customComponentPropertyOption({ displayName: "This is rendered by a custom component", group: "groupOne", config: { component: CustomComponent, test: "This is a static variable" }}),
-                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: IFullListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } }),
-                    fakeListColumn: propertyOptionsFactory.stringPropertyOption({ displayName: "Fake list column", group: "groupOne", hide: (item: IFullListFormItem) => true, listItemOptions: { customValueRender: item => <>{<div onClick={() => alert(item.age)} style={{ cursor: "pointer", backgroundColor: (item.age ?? 0) > 15 ? "green" : "red", height: "100%"}}></div> }</> }} ),
-                    endpoints: propertyOptionsFactory.formItemPropertyOption<IFullListFormItem>({ 
+                    firstname: propertyOptionsFactory.string({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true, customValueRender: (item, onChange) => <>{<TextField value={item.firstname+""} onChange={(ev, val) => onChange({...item, ...{ firstname: val }})} />}</> } }),
+                    age: propertyOptionsFactory.number({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    awesome: propertyOptionsFactory.boolean({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    custom: propertyOptionsFactory.customComponent({ displayName: "This is rendered by a custom component", group: "groupOne", config: { component: CustomComponent, test: "This is a static variable" }}),
+                    start: propertyOptionsFactory.date({ displayName: "Start", group: "groupOne", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: IFullListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } }),
+                    fakeListColumn: propertyOptionsFactory.string({ displayName: "Fake list column", group: "groupOne", hide: (item: IFullListFormItem) => true, listItemOptions: { customValueRender: item => <>{<div onClick={() => alert(item.age)} style={{ cursor: "pointer", backgroundColor: (item.age ?? 0) > 15 ? "green" : "red", height: "100%"}}></div> }</> }} ),
+                    endpoints: propertyOptionsFactory.formItem<IFullListFormItem>({ 
                         displayName: "Endpoints", 
                         group: "endpoints",
                         config: { schemaConfig: { schemaProvider: fullListChildFormItemSchemaProvider as any } },
@@ -79,8 +79,8 @@ export const fullListChildFormItemSchemaProvider: ISchemaProvider<IFullListFormC
                     }
                 },
                 properties: {
-                    endpoint: propertyOptionsFactory.stringPropertyOption({ displayName: "Endpoint", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } }),
-                    url: propertyOptionsFactory.stringPropertyOption({ displayName: "Url", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } })
+                    endpoint: propertyOptionsFactory.string({ displayName: "Endpoint", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } }),
+                    url: propertyOptionsFactory.string({ displayName: "Url", config: { resizable: true }, description: "This is an explanation of what this property does..", listItemOptions: { isResizable: true } })
                 } 
             } as IFormItemOptions<IFullListFormChildItem>
         } as IFormSchema<IFullListFormChildItem>;

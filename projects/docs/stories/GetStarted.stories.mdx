@@ -152,8 +152,8 @@ export const personSchemaProvider: ISchemaProvider<IPerson> = {
         return {
             options: {
                 properties: {
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "Name" }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "Age" })
+                    name: propertyOptionsFactory.string({ displayName: "Name" }),
+                    age: propertyOptionsFactory.number({ displayName: "Age" })
                 }
             }
         }

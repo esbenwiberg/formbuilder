@@ -1,5 +1,6 @@
 import { IPropertyTypes, IFormItemPropertyOptions, IDynamicPropertyComponentConfig, propertyOptionsFactory, IFormSchema, IDynamicArrayFieldConfig, IDynamicPredefinedArrayFieldConfig, ValidationEventType, ValidationMark, IValidationRule, mergeDeep, json, FormBuilderListEditorType, IFormBuilderListMenuItemSelectionMode } from "@wiberg/formbuilder";
 import { IDynamicListFormItem } from "./interfaces";
+import { IJsonPropertySchema, IJsonMemberSchema } from "./JsonPropertySchema";
 
 const mappings: Record<string, keyof IPropertyTypes> = {
     "String": "string",
@@ -14,17 +15,17 @@ const mappings: Record<string, keyof IPropertyTypes> = {
 const propertyOptions = (propertyType: keyof IPropertyTypes, propertyName: string) : Partial<IFormItemPropertyOptions<IDynamicListFormItem, IDynamicPropertyComponentConfig<IDynamicListFormItem>>> => {
     switch (propertyType) {
         case "string":
-            return propertyOptionsFactory.stringPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.string<IDynamicListFormItem>({ displayName: propertyName });
         case "number":
-            return propertyOptionsFactory.numberPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.number<IDynamicListFormItem>({ displayName: propertyName });
         case "boolean":
-            return propertyOptionsFactory.booleanPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.boolean<IDynamicListFormItem>({ displayName: propertyName });
         case "json":
-            return propertyOptionsFactory.jsonPropertyOption<IDynamicListFormItem>({ displayName: propertyName });
+            return propertyOptionsFactory.json<IDynamicListFormItem>({ displayName: propertyName });
         case "predefinedArray":
-            return propertyOptionsFactory.predefinedArrayPropertyOption<IDynamicListFormItem>({ displayName: propertyName, config: { predefinedOptions: { options: [] } } });
+            return propertyOptionsFactory.predefinedArray<IDynamicListFormItem>({ displayName: propertyName, config: { predefinedOptions: { options: [] } } });
         case "array":
-            return propertyOptionsFactory.arrayPropertyOption<IDynamicListFormItem>({ displayName: propertyName, config: {  } });
+            return propertyOptionsFactory.array<IDynamicListFormItem>({ displayName: propertyName, config: {  } });
     }
     return {};
 }

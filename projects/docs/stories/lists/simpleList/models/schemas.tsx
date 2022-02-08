@@ -8,10 +8,10 @@ export const simpleListFormItemSchemaProvider: ISchemaProvider<ISimpleListFormIt
         return {
             options: {
                 properties: {
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", description: "This is an explanation of what this property does.." }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age"}),
-                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    start: propertyOptionsFactory.datePropertyOption({ displayName: "Start", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: ISimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
+                    name: propertyOptionsFactory.string({ displayName: "This name", description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.number({ displayName: "This age"}),
+                    awesome: propertyOptionsFactory.boolean({ displayName: "Are you awesome?", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    start: propertyOptionsFactory.date({ displayName: "Start", config: { displayFormat: (date?: Date) => date?.toDateString() ?? "", minDate: (item: ISimpleListFormItem) => new Date() }, listItemOptions: { customValueRender: item => <>{item.start?.toDateString()}</> } })
                 } 
             } as IFormItemOptions<ISimpleListFormItem>
         } as IFormSchema<ISimpleListFormItem>;

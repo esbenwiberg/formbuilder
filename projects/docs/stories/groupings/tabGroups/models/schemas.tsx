@@ -20,10 +20,10 @@ export const myTabGroupedFormItemSchemaProvider: ISchemaProvider<IMyTabGroupedFo
                     }
                 },
                 properties: {
-                    name: propertyOptionsFactory.stringPropertyOption({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
-                    age: propertyOptionsFactory.numberPropertyOption({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    awesome: propertyOptionsFactory.booleanPropertyOption({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
-                    awesomeDesc: propertyOptionsFactory.stringPropertyOption({ displayName: "Why are you awesome?", hide: (item: IMyTabGroupedFormItem) => !item.awesome, group: "groupTwo" }),
+                    name: propertyOptionsFactory.string({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
+                    age: propertyOptionsFactory.number({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
+                    awesome: propertyOptionsFactory.boolean({ displayName: "Are you awesome?", group: "groupTwo", config: { asToggle: true, textIfTrue: "Oh yearh", textIfFalse: "Nonono" }}),
+                    awesomeDesc: propertyOptionsFactory.string({ displayName: "Why are you awesome?", hide: (item: IMyTabGroupedFormItem) => !item.awesome, group: "groupTwo" }),
                 } 
             } as IFormItemOptions<IMyTabGroupedFormItem>
         } as IFormSchema<IMyTabGroupedFormItem>;

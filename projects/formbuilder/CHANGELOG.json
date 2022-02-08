@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.4.0",
+      "tag": "@wiberg/formbuilder_v0.4.0",
+      "date": "Tue, 08 Feb 2022 20:14:10 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "changed propertyOptionsFactory method names"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.3.4",
       "tag": "@wiberg/formbuilder_v0.3.4",
       "date": "Thu, 13 Jan 2022 12:06:14 GMT",
