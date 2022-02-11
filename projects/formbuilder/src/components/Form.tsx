@@ -189,7 +189,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
                         if (children === undefined) return null;
                         return props.groupRender ? props.groupRender(_, children) : children;
                     })
-                        ?? formbuilder.formItemRender.properties(propertyRenderProps) // not defining properties here, defaults to all
+                        ?? formbuilder.formItemRender.properties(propertyRenderProps) // not defining groups here, defaults to all
                 }
             </GroupContainer>
         </div>

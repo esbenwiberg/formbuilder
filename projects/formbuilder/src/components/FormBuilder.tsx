@@ -12,7 +12,7 @@ import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../utils/FormBuilderInitializer';
 import { ILoadingProps } from '../builders/interfaces/ILoadingProps';
 import { ISchemaProvider } from '../interfaces/schema/ISchemaProvider';
-import { RequireOnlyOne } from '..';
+import { RequireOnlyOne, RecursivePartial } from '..';
 import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
 import { IFormItem } from '../interfaces/form/IFormItem';
 
@@ -44,7 +44,7 @@ export interface IFormBuilderProps<T extends IFormItem> {
     groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
     groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
     validationOverride?: ValidationOverride;
-    formItemConfigOverrides?: Partial<IFormItemOptions<T>>;
+    formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>;
     propertyOverrides?: IPropertyOverrides;
     loadingProps?: ILoadingProps;
     keyPrefix?: string;

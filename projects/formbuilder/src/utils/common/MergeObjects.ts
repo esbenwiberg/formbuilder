@@ -1,5 +1,6 @@
+import { RecursivePartial } from "../../interfaces/types/Partials";
 
-export const mergeDeep = <T extends Record<string, any>>(...objects: Array<T | Partial<T> | undefined>) : T => {
+export const mergeDeep = <T extends Record<string, any>>(...objects: Array<T | Partial<T> | RecursivePartial<T> | undefined>) : T => {
 
     const isObject = (obj: T) => obj && typeof obj === 'object';
     
