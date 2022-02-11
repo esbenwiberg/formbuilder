@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Tue, 08 Feb 2022 20:14:10 GMT and should not be manually modified.
+This log was last generated on Fri, 11 Feb 2022 08:06:43 GMT and should not be manually modified.
+
+## 0.4.1
+Fri, 11 Feb 2022 08:06:43 GMT
+
+### Patches
+
+- Added dynamic schema to IFormItemPropertyOptions
 
 ## 0.4.0
 Tue, 08 Feb 2022 20:14:10 GMT

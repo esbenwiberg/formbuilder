@@ -5,14 +5,14 @@ import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyC
 import { IDynamicComponentConfig } from "./config/IDynamicComponentConfig";
 import { IFormItemProps } from "../../components/Form";
 import { IFormItemComponentConfig } from "./config/IFormItemComponentConfig";
-import { FormBuilder } from "../../components/FormBuilder";
+import { FormBuilder, ISchemaConfig } from "../../components/FormBuilder";
 import { IItemRenderProps } from "../../interfaces/IItemRenderProps";
 import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
 import { DynamicArrayField } from "./components/DynamicArrayField";
 import React, { ElementType, PropsWithChildren, ReactElement } from "react";
 import { ILoadingProps } from "../interfaces/ILoadingProps";
 import { IFormItem } from "../../interfaces/form/IFormItem";
-import { ValidationMark } from "../..";
+import { AtLeast, RequireOnlyOne, ValidationMark } from "../..";
 import { buildPropertyRenderInfo } from "../helpers/BuildPropertyRenderProps";
 import { getValidationMarkForProperty } from "../helpers/GetValidationMark";
 
@@ -71,7 +71,7 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
                 if (!formConfig?.schemaConfig) return { found: false, element: undefined };
                 let formItemProps: IFormItemProps<T> = {
                     item: item[property],
-                    schemaConfig: formConfig.schemaConfig,
+                    schemaConfig: formConfig.schemaConfig as RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">,
                     groupContainer: formConfig.groupContainer,
                     groupRender: formConfig.groupRender,
                     onPropertyChange: (item: T, prop: string, value: any) => info.props.onChange(item),
@@ -80,6 +80,9 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
                     propertyOverrides: convertPropertyOverrides(renderProps.propertyOverrides, property)
                 };
 
+                if (formConfig.schemaConfig.dynamicSchema != null)
+                    formItemProps.schemaConfig = formConfig.schemaConfig.dynamicSchema(item);
+                    
                 let addErrormessage = false;
                 // used for having properties as array of formitem
                 let listProps = schema?.listProps; 
