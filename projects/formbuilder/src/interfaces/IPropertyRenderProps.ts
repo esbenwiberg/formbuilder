@@ -7,6 +7,8 @@ export interface IPropertyRenderProps<TItem extends IFormItem, TConfig extends I
     key?: string;
     /** the property value */
     value: TValue;
+    /** the name of the property */
+    propertyName: string;
     /** the options used for rendering the property */
     options: IFormItemPropertyOptions<TItem, TConfig>
     /** the 'onChange' event of the properties render element */

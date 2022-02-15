@@ -80,8 +80,9 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
                     propertyOverrides: convertPropertyOverrides(renderProps.propertyOverrides, property)
                 };
 
+                // handle dynamic schema coming from formitem config
                 if (formConfig.schemaConfig.dynamicSchema != null)
-                    formItemProps.schemaConfig = formConfig.schemaConfig.dynamicSchema(item);
+                    formConfig.schemaConfig = formConfig.schemaConfig.dynamicSchema(item);
                     
                 let addErrormessage = false;
                 // used for having properties as array of formitem

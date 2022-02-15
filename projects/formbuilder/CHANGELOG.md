@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Fri, 11 Feb 2022 08:06:43 GMT and should not be manually modified.
+This log was last generated on Fri, 11 Feb 2022 11:08:54 GMT and should not be manually modified.
+
+## 0.4.2
+Fri, 11 Feb 2022 11:08:54 GMT
+
+### Patches
+
+- Fixed issues with formitem config dynamic schema. Added propertyname to IPropertyRenderProps.
 
 ## 0.4.1
 Fri, 11 Feb 2022 08:06:43 GMT

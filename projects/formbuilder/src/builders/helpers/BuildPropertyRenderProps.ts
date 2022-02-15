@@ -10,6 +10,7 @@ export const buildPropertyRenderInfo = <T extends IFormItem, C extends IDynamicP
     let props: IPropertyRenderProps<T, C, any> = {
         key: schema.key ?? key,
         value: (item as any)[propertyName],
+        propertyName: propertyName,
         options: schema,
         onChange: (value: any) => onChange(propertyName ,value),
         onBlur: (value: any) => onBlur(propertyName, value),
