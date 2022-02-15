@@ -81,8 +81,11 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
                 };
 
                 // handle dynamic schema coming from formitem config
-                if (formConfig.schemaConfig.dynamicSchema != null)
-                    formConfig.schemaConfig = formConfig.schemaConfig.dynamicSchema(item);
+                if (formConfig.schemaConfig.dynamicSchema != null) {
+                    const dynamicSchema = formConfig.schemaConfig = formConfig.schemaConfig.dynamicSchema(item);
+                    formConfig.schemaConfig = dynamicSchema;
+                    formItemProps.schemaConfig = dynamicSchema;
+                }
                     
                 let addErrormessage = false;
                 // used for having properties as array of formitem
