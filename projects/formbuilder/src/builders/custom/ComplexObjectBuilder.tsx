@@ -64,7 +64,7 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
                 if (!customConfig?.component) return { found: false, element: undefined };
                 // const Comp = this.customComponents[customConfig?.componentName];
                 const Comp = customConfig.component;
-                return { found: true, element: <>{ WrapInLabel(<Comp key={info.key} {...info.props} {...schema} />) }</> }
+                return { found: true, element: <>{ WrapInLabel(<Comp key={info.key} {...info.props} {...schema} {...customConfig.componentProps} />) }</> }
 
             case propertyType.formItem:
                 let formConfig = (schema.config as any) as IFormItemComponentConfig<T>;
