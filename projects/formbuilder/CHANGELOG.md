@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 17 Feb 2022 13:19:10 GMT and should not be manually modified.
+This log was last generated on Mon, 21 Feb 2022 19:04:34 GMT and should not be manually modified.
+
+## 0.5.0
+Mon, 21 Feb 2022 19:04:34 GMT
+
+### Minor changes
+
+- Changes to nested validations, to make them work without registering schemaproviders
 
 ## 0.4.3
 Thu, 17 Feb 2022 13:19:10 GMT

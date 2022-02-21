@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.5.0",
+      "tag": "@wiberg/formbuilder_v0.5.0",
+      "date": "Mon, 21 Feb 2022 19:04:34 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Changes to nested validations, to make them work without registering schemaproviders"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.3",
       "tag": "@wiberg/formbuilder_v0.4.3",
       "date": "Thu, 17 Feb 2022 13:19:10 GMT",

@@ -60,18 +60,18 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     const [validationResults, setValidationResults] = useState<IValidationResult>(props.validationResult ?? {});
 
     const validateItem = async (formItem: T, schema: IFormSchema<T> | undefined, on: ValidationEventType = ValidationEventType.Manual, prop: string | undefined) : Promise<ValidationResult> => {
-        let schemaTest = dynamicSchema.current ?? schema;
+        let selectedSchema = dynamicSchema.current ?? schema;
         switch (props.validationOverride) {
             case undefined:
             case ValidationOverride.None:
-                let results = await formValidator.validate(formItem, prop, schemaTest, on, validationResults, props.validationResultPrefix);
+                let results = await formValidator.validate(formItem, prop, selectedSchema, on, validationResults, props.validationResultPrefix);
                 setValidationResults({...results});
                 return validationUtil.validated(results) ? ValidationResult.Success : ValidationResult.Failed;
             case ValidationOverride.Ignore:
                 setValidationResults({});
                 return ValidationResult.Success;
             case ValidationOverride.Continue:
-                let results2 = await formValidator.validate(formItem, prop, schemaTest, on, validationResults, props.validationResultPrefix);
+                let results2 = await formValidator.validate(formItem, prop, selectedSchema, on, validationResults, props.validationResultPrefix);
                 setValidationResults({...results2});
                 return validationUtil.validated(results2) ? ValidationResult.Success : ValidationResult.FailedDontBlock;
             default:

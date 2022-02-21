@@ -16,7 +16,7 @@ export const myFormItemChildSchemaProvider: ISchemaProvider<IAnotherFormItem> = 
                     validationRules: {
                         name: { id: "mustbeesben", validationMark: ValidationMark.Required, validationRule: (item: IMyFormItemChild) => item.name === "Esben", validationMessage: "Your name must be 'Esben'", validateOn: ValidationEventType.Blur | ValidationEventType.Manual },
                         age: { id: "lessthanforthy", validationMark: ValidationMark.Required, validationRule: (item: IMyFormItemChild) => (item.age ?? 0) < 40, validationMessage: "You must be less than 40 years old", validateOn: ValidationEventType.Blur | ValidationEventType.Manual },
-                        child: { id: "nest", validationRule: () => true, validateOn: ValidationEventType.Blur | ValidationEventType.Manual, validationMessage: "", usingSchemaKey: "anotherFormItemSchemaProvider" }
+                        child: { id: "nest", validateOn: ValidationEventType.Blur | ValidationEventType.Manual, validationMessage: "", nestedValidation: { schemaProvider: anotherFormItemSchemaProvider } }
                     }
                 },
                 properties: { 
