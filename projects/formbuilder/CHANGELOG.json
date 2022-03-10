@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.6.4",
+      "tag": "@wiberg/formbuilder_v0.6.4",
+      "date": "Thu, 10 Mar 2022 19:32:31 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "minor type fix"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.3",
       "tag": "@wiberg/formbuilder_v0.6.3",
       "date": "Thu, 10 Mar 2022 19:22:12 GMT",
