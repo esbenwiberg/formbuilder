@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 10 Mar 2022 15:42:27 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Mar 2022 17:53:21 GMT and should not be manually modified.
+
+## 0.6.2
+Thu, 10 Mar 2022 17:53:21 GMT
+
+### Patches
+
+- Fixed lazy load of FormList
 
 ## 0.6.1
 Thu, 10 Mar 2022 15:42:27 GMT

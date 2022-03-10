@@ -24,7 +24,8 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     const [columns, setColumns, columnRef] = useStateRef<Array<IFormListColumnInfo>>();
 
     useEffect(() => {
-      setItems(props.items);
+        setItems(props.items);
+        setFilteredItems([...props.items]);
     }, [props.items])
     
     useImperativeHandle<FormListRef, any>(ref as any, () => ({
@@ -151,8 +152,9 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         });
         
         const property = currColumn.fieldName!;
-        const newItems = formListHelper.copyAndSort<T>(filteredItems, property, currColumn.isSortedDescending);
+        const newItems = formListHelper.copyAndSort<T>(filteredItemsRef.current, property, currColumn.isSortedDescending);
         setColumns(newColumns);
+        
         setFilteredItems(newItems);
     }
 

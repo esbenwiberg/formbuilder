@@ -12,16 +12,15 @@ const newItemPreProcess = (item: IFullListFormItem) : void => {
 
 const deleteItemsPreProcess = (items: Array<IFullListFormItem>) : boolean => (items.findIndex(_ => _.firstname === "Esben") < 0);
 
+
+
 export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
     schemaConfig: { schemaProvider: fullListFormItemSchemaProvider },
-    item: [
-        { id: "1", firstname: 'Esben', age: 33, awesome: true, start: new Date(2022,1,1), custom: "Something custom" } as IFullListFormItem,
-        { id: "2", firstname: 'Other', age: 12, awesome: false, custom: "Come on!"  } as IFullListFormItem
-    ],
+    item: null,
     listProps: {
         onItemChange: item => console.log(item),
         config: { 
-            itemIdentifier: item => item.id as string,
+            itemIdentifier: item => item?.id as string,
             multiSelect: true, 
             onItemsChange: items => console.log("FROM OUTSIDE", items),
             shimmerLines: 5

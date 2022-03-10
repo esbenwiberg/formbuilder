@@ -2,13 +2,14 @@
 import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
-import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang } from "@wiberg/formbuilder";
+import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang, id } from "@wiberg/formbuilder";
 import { Searcher } from "../..";
 
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
 
 	const editorFormRef = useRef<FormRef<T>>();
     const [items, setItems] = useState(props.items);
+    const [filteredItems, setFilteredItems] = useState(props.filteredItems);
     const [showEditor, setShowEditor] = useState(false);
     const [columns, setColumns, columnRef] = useStateRef<Array<IColumn>>();
     const [showValidationOverrideConfirm, setShowValidationOverrideConfirm] = useState(false);
@@ -32,16 +33,21 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     useEffect(() => {
         if (!!props.listProps.config?.shimmerLines && !!!items?.length) {
             setEnableShimmer(true);
-            setTimeout(() => {setEnableShimmer(false);
-            }, 5000);
+            setTimeout(() => setEnableShimmer(false), 5000);
         }
-        else setEnableShimmer(false);
+        else {
+            setEnableShimmer(false);
+        }
     }, [items, props.listProps.config?.shimmerLines])
 
     useEffect(() => {
+        if (props.items?.length) setEnableShimmer(false);
         setItems(props.items);
     }, [props.items])
     
+    useEffect(() => {
+        setFilteredItems(props.filteredItems);
+    }, [props.filteredItems])
 
     useEffect(() => {
         if (props.listProps.menuConfig?.actions == null) return;
@@ -206,7 +212,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                     {/* <MarqueeSelection selection={selection}> */}
                         <ShimmeredDetailsList
                             columns={ columns }
-                            items={ props.filteredItems }
+                            items={ filteredItems }
                             // selectionPreservedOnEmptyClick
                             selection={ selection }
                             enableShimmer={ enableShimmer }
@@ -214,7 +220,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                             layoutMode={DetailsListLayoutMode.fixedColumns}
                             constrainMode={ConstrainMode.horizontalConstrained}
                             setKey={'itemId'}
-                            getKey={(item: T) => `item-${props.listProps.config.itemIdentifier(item)}`}
+                            getKey={(item: T) => `item-${props.listProps.config.itemIdentifier(item) ?? id.make()}`}
                             onItemInvoked={ 
                                 props.listProps.config.disableItemInvoke ? undefined :
                                 (item?: T, index?: number | undefined, ev?: Event | undefined) => {

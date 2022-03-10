@@ -76,7 +76,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
     }
 
     useEffect(() => {
-      setItem(props.item);
+        setItem(props.item);
     }, [props.item])
     
 

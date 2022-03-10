@@ -37,7 +37,7 @@ export const fullListFormItemSchemaProvider: ISchemaProvider<IFullListFormItem> 
                         listItemOptions: { customValueRender: (item: IFullListFormItem) => <>{item.endpoints?.length ?? 0}</> } as any, // TODO: this 'as any' should'nt be needed? (ewi) (in 'MyFormItemSchemaProvider' it works!)
                         listProps: { 
                             config: {
-                                itemIdentifier: (item: IFullListFormChildItem) => item.endpoint as string,
+                                itemIdentifier: (item: IFullListFormChildItem) => item?.endpoint as string,
                             },
                             editorConfig: { title: (item: IFullListFormChildItem) => `Edit: ${item?.endpoint}`, type: FormBuilderListEditorType.Dialog },
                             searchConfig: { searchableFields: ["name", "url"], searchEnabled: true, searchPlaceHolder: "Filter endpoints.." },

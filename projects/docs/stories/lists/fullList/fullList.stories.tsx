@@ -1,13 +1,14 @@
 // fullList.stories.ts|tsx
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import fullListDocs from './fullListDocs.mdx';
-import { initializeIcons } from '@fluentui/react';
+import { initializeIcons, PrimaryButton } from '@fluentui/react';
 import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder } from '@wiberg/formbuilder';
 import { fullListFormOptions } from './models/options';
+import { IFullListFormItem } from './models/interfaces';
 
 initializeIcons(/* optional base url */);
 
@@ -30,4 +31,24 @@ export default {
   },
 } as ComponentMeta<typeof FormBuilder>;
 
-export const FullList: ComponentStory<typeof FormBuilder> = () => <FormBuilder { ...fullListFormOptions } />;
+
+
+export const FullList: ComponentStory<typeof FormBuilder> = () => {
+  const [items, setItems] = useState<IFullListFormItem[]>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setItems([
+         { id: "1", firstname: 'Esben', age: 33, awesome: true, start: new Date(2022,1,1), custom: "Something custom" } as IFullListFormItem,
+         { id: "2", firstname: 'Other', age: 12, awesome: false, custom: "Come on!"  } as IFullListFormItem
+     ]);
+ }, 2000);
+  }, [])
+  
+
+  return (
+    <>
+      <FormBuilder { ...fullListFormOptions } item={items} />
+    </>
+  )
+}
