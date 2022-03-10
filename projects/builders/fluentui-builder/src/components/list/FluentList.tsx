@@ -8,6 +8,7 @@ import { Searcher } from "../..";
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
 
 	const editorFormRef = useRef<FormRef<T>>();
+    const [items, setItems] = useState(props.items);
     const [showEditor, setShowEditor] = useState(false);
     const [columns, setColumns, columnRef] = useStateRef<Array<IColumn>>();
     const [showValidationOverrideConfirm, setShowValidationOverrideConfirm] = useState(false);
@@ -29,13 +30,18 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [props.columns])
 
     useEffect(() => {
-        if (!!props.listProps.config?.shimmerLines && !!!props.items?.length) {
+        if (!!props.listProps.config?.shimmerLines && !!!items?.length) {
             setEnableShimmer(true);
             setTimeout(() => {setEnableShimmer(false);
             }, 5000);
         }
         else setEnableShimmer(false);
-    }, [props.items, props.listProps.config?.shimmerLines])
+    }, [items, props.listProps.config?.shimmerLines])
+
+    useEffect(() => {
+        setItems(props.items);
+    }, [props.items])
+    
 
     useEffect(() => {
         if (props.listProps.menuConfig?.actions == null) return;
@@ -172,7 +178,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                 <div className="formbuilder-listcontainer-toolbar">
                 { props.listProps.searchConfig?.searchEnabled &&
                     <Searcher
-                        items={props.items}
+                        items={items}
                         onSearch={(filteredItems: Array<T>, searchText: string) => {
                             props.updateFilteredItems(filteredItems);
                             selection.setAllSelected(false);
@@ -225,7 +231,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                         />
                     {/* </MarqueeSelection> */}
                 </div>
-                { (!enableShimmer && !!!props.items?.length) && <Label>No items found</Label> }
+                { (!enableShimmer && !!!items?.length) && <Label>No items found</Label> }
                 <Dialog
                     hidden={!showValidationOverrideConfirm}
                     title={lang.texts.areas.list.validationRequirementsNotMet.title}

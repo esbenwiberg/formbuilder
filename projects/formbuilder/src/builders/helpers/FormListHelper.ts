@@ -6,7 +6,7 @@ const copyAndSort = <T>(items: T[], property: string, isSortedDescending?: boole
     return items.slice(0).sort((a: T, b: T) => ((isSortedDescending ? a[key] < b[key] : a[key] > b[key]) ? 1 : -1));
 }
 
-const filterColumns = (propKeys: Array<string>, options: IFormListColumnsPicks | undefined) : Array<string> => {
+const filterColumns = (propKeys: Array<string>, options: IFormListColumnsPicks<any> | undefined) : Array<string> => {
     if (options?.columns == null || options?.pickType == null) return propKeys;
     if (options.pickType == FormListColumnsPickType.Only)
         return propKeys.filter(_ => options?.columns.includes(_));

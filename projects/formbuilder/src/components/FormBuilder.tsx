@@ -26,7 +26,7 @@ export interface IFormBuilderListProps<T extends IFormItem> {
     config: IFormBuilderListConfig<T>;
     onItemChange?: (item: T) => void;
     searchConfig?: IFormBuilderListSearchConfig;
-    columnConfig?: IFormBuilderListColumns;
+    columnConfig?: IFormBuilderListColumns<T>;
     menuConfig?: IFormBuilderListMenuConfig<T>;
     editorConfig?: IFormBuilderListEditorConfig<T>;
 }
@@ -61,6 +61,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
     // verify that the formbuilder is set up correctly
     formbuilder.verify();
 
+    const [item, setItem] = useState(props.item);
     const subFormRef = useRef<FormRef<T>>();
     const [schema, setSchema] = useState<IFormSchema<T> | undefined>(props.overrideSchema); 
 
@@ -73,6 +74,11 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
         let schemaMerged = await schemaFromConfig(props.schemaConfig, props.formItemConfigOverrides, props.propertyOverrides);
         setSchema(schemaMerged);
     }
+
+    useEffect(() => {
+      setItem(props.item);
+    }, [props.item])
+    
 
     useEffect(() => {
         if (props.overrideSchema == null)
@@ -92,7 +98,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
                     ?   <FormList
                             key={getKey()}
                             ref={subFormRef}
-                            items={props.item}
+                            items={item}
                             schema={schema}
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
                             listProps={props.listProps ?? schema.options.listOptions}
@@ -102,6 +108,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
                             key={getKey()}
                             ref={subFormRef}
                             schema={schema}
+                            item={item}
                             onPropertyChange={ (item: IFormItem, prop: string, value: any) => props.singleItemProps?.onPropertyChange == null ? () => {} : props.singleItemProps.onPropertyChange(item as any, prop, value)} // TODO: fucking T type mismatch for some reason (ewi)
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
                             keyPrefix={getKey()}

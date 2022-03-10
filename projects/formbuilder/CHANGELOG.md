@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Mon, 21 Feb 2022 19:04:34 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Mar 2022 15:24:55 GMT and should not be manually modified.
+
+## 0.6.0
+Thu, 10 Mar 2022 15:24:55 GMT
+
+### Minor changes
+
+- Fixed issue when updating items outside the FormList. Changed type of FormList Column picks.
 
 ## 0.5.0
 Mon, 21 Feb 2022 19:04:34 GMT

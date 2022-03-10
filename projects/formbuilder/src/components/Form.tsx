@@ -127,6 +127,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
         let groupedProps: {[key: string] : Array<string>} = {};
         Object.keys(schema.options.properties).forEach(_ => {
             let prop = schema.options.properties[_];
+            if (prop.hide?.(item)) return;
             let groupKey = prop.group ?? "";
             if (groupedProps[groupKey] == null)
                 groupedProps[groupKey] = [];

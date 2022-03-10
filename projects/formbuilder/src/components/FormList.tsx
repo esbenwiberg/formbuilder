@@ -23,6 +23,10 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     const [selectedItems, setSelectedItems, selectedItemsRef] = useStateRef<Array<T>>([]);
     const [columns, setColumns, columnRef] = useStateRef<Array<IFormListColumnInfo>>();
 
+    useEffect(() => {
+      setItems(props.items);
+    }, [props.items])
+    
     useImperativeHandle<FormListRef, any>(ref as any, () => ({
         getItem: () => items as Array<T>
     }), [items]);

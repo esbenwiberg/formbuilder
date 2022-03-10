@@ -14,15 +14,15 @@ export interface IFormBuilderListConfig<T extends IFormItem> {
 }
 
 export enum FormListColumnsPickType { Only, Without }
-export interface IFormListColumnsPicks {
-    columns: Array<string>;
+export interface IFormListColumnsPicks<T> {
+    columns: Array<keyof T>;
     pickType: FormListColumnsPickType;
 }
 
-export interface IFormBuilderListColumns {
-    columnOrder?: Array<string>;
+export interface IFormBuilderListColumns<T> {
+    columnOrder?: Array<keyof T>;
     // customColumns?: Array<any>;
-    columnsPicks?: IFormListColumnsPicks;
+    columnsPicks?: IFormListColumnsPicks<T>;
 }
 
 export enum IFormBuilderListMenuItemSelectionMode {
