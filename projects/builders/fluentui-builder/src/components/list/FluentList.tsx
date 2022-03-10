@@ -2,7 +2,7 @@
 import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
-import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang, id } from "@wiberg/formbuilder";
+import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang, id, IFormBuilderListMenuItem } from "@wiberg/formbuilder";
 import { Searcher } from "../..";
 
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
@@ -56,20 +56,24 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         let actions = props.listProps.menuConfig?.actions(createItem, editItem, deleteItems);
         if (!actions?.length) return; // is it needed to set to empty array as well? (ewi)
         // parse to commandbarProps
-        let commandBarItems = actions.map(_ => {
-            return {
-                key: _.title,
-                text: _.title,
-                onClick: () => _.action(props.selectedItems),
-                disabled: props.readOnly || formListHelper.isMenuItemDisabled(_.selectionMode, props.selectedItems?.length),
-                iconProps: { iconName: _.iconName}
-
-            } as ICommandBarItemProps
-        });
+        let commandBarItems = actions.map(buildMenuItem);
         setMenuItems(commandBarItems);
 
     }, [props.listProps.menuConfig, props.selectedItems])
 
+    const buildMenuItem = (item: IFormBuilderListMenuItem<T>) : ICommandBarItemProps => {
+        return {
+            key: item.title,
+            text: item.title,
+            onClick: () => item.action(props.selectedItems),
+            disabled: props.readOnly || formListHelper.isMenuItemDisabled(item.selectionMode, props.selectedItems?.length),
+            iconProps: { iconName: item.iconName },
+            subMenuProps: item.subMenuItems == null
+                            ? undefined
+                            : { items: item.subMenuItems.map(buildMenuItem) }
+
+        } as ICommandBarItemProps
+    }
     
     const buildColumns = () : Array<IColumn> => {
         return props.columns.map(_ => {

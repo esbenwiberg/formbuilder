@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Thu, 10 Mar 2022 19:22:12 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Mar 2022 20:12:04 GMT and should not be manually modified.
+
+## 0.2.3
+Thu, 10 Mar 2022 20:12:04 GMT
+
+### Patches
+
+- Added support for FluentList nested menu items
 
 ## 0.2.2
 Thu, 10 Mar 2022 19:22:12 GMT

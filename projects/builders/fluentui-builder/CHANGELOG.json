@@ -2,6 +2,18 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.2.3",
+      "tag": "@wiberg/fluentui-builder_v0.2.3",
+      "date": "Thu, 10 Mar 2022 20:12:04 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added support for FluentList nested menu items"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.2",
       "tag": "@wiberg/fluentui-builder_v0.2.2",
       "date": "Thu, 10 Mar 2022 19:22:12 GMT",

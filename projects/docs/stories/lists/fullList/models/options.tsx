@@ -17,7 +17,6 @@ const deleteItemsPreProcess = (items: Array<IFullListFormItem>) : boolean => (it
 export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
     schemaConfig: { schemaProvider: fullListFormItemSchemaProvider },
     item: null,
-    propertyOverrides: { disabledProps: true },
     listProps: {
         onItemChange: item => console.log(item),
         config: { 
@@ -49,7 +48,43 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
                     { title: "New", iconName: "Add", selectionMode: IFormBuilderListMenuItemSelectionMode.None | IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => newItem(newItemPreProcess) },
                     { title: "Edit", iconName: "Edit", selectionMode: IFormBuilderListMenuItemSelectionMode.Single, action: () => editItem() },
                     { title: "Delete", iconName: "Delete", selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => deleteItems(deleteItemsPreProcess) },
-                    { title: "Click here!", iconName: "NumberField", selectionMode: IFormBuilderListMenuItemSelectionMode.Multi, action: items => alert(items.length) }
+                    { title: "Click here!", iconName: "NumberField", selectionMode: IFormBuilderListMenuItemSelectionMode.Multi, action: items => alert(items.length) },
+                    {
+                        title: 'Additional actions',
+                        iconName: 'SetAction',
+                        selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi,
+                        action: () => {},
+                        subMenuItems: [
+                            {
+                                title: 'Set active',
+                                iconName: 'SetAction',
+                                selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi,
+                                action: () => {},
+                                subMenuItems: [
+                                    {
+                                        title: 'Activate',
+                                        selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi,
+                                        action: () => {}
+                                    },
+                                    {
+                                        title: 'Inactivate',
+                                        selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi,
+                                        action: () => {}
+                                    },
+                                ],
+                            },
+                            {
+                                title: 'Move all requests',
+                                selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi,
+                                action: () => {}
+                            },
+                            {
+                                title: 'Move all allocations',
+                                selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi,
+                                action: () => {}
+                            },
+                        ],
+                    },
                 ]
             ),
         }
