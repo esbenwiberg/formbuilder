@@ -114,7 +114,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     
     useEffect(() => {
         buildGroupings();
-    }, [schema])
+    }, [schema, item])
 
     const buildGroupings = () => {
         if (schema?.options?.groups == null) {

@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 10 Mar 2022 15:24:55 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Mar 2022 15:42:27 GMT and should not be manually modified.
+
+## 0.6.1
+Thu, 10 Mar 2022 15:42:27 GMT
+
+### Patches
+
+- rebuild of groupings when item change
 
 ## 0.6.0
 Thu, 10 Mar 2022 15:24:55 GMT
