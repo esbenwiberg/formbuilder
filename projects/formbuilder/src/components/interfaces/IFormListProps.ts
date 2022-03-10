@@ -14,4 +14,5 @@ export interface IFormListProps<T extends IFormItem> {
     validationOverride?: ValidationOverride;
     listProps: IFormBuilderListProps<T>;
     keyPrefix?: string;
+    readOnly?: boolean;
 }

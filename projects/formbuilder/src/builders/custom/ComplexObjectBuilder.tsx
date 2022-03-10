@@ -12,9 +12,8 @@ import { DynamicArrayField } from "./components/DynamicArrayField";
 import React, { ElementType, PropsWithChildren, ReactElement } from "react";
 import { ILoadingProps } from "../interfaces/ILoadingProps";
 import { IFormItem } from "../../interfaces/form/IFormItem";
-import { AtLeast, RequireOnlyOne, ValidationMark } from "../..";
+import { RequireOnlyOne } from "../..";
 import { buildPropertyRenderInfo } from "../helpers/BuildPropertyRenderProps";
-import { getValidationMarkForProperty } from "../helpers/GetValidationMark";
 
 export const createComplexObjectBuilder = (labelRender?: LabelRender, validationMessage?: ValidationMessageElement, loadingSpinner?: LoadingSpinner) : IFormItemBuilder => {
 
@@ -32,7 +31,18 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
     const convertPropertyOverrides = (propertyOverrides: IPropertyOverrides | undefined, property: string) : IPropertyOverrides | undefined => {
         if (propertyOverrides == undefined) return undefined;
         let clone = {...propertyOverrides};
-        if (Array.isArray(propertyOverrides.disabledProps) && propertyOverrides.disabledProps.indexOf(property) >= 0) clone.disabledProps = true;
+        
+        if (propertyOverrides.disabledProps != null) {
+            if (Array.isArray(propertyOverrides.disabledProps) ){
+                if (propertyOverrides.disabledProps.indexOf(property) >= 0) {
+                    clone.disabledProps = true
+                }
+            }
+            else {
+                clone.disabledProps = !!propertyOverrides.disabledProps;
+            }
+        }
+        console.log(clone);
         return clone;
     };
 

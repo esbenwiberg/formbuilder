@@ -17,6 +17,7 @@ const deleteItemsPreProcess = (items: Array<IFullListFormItem>) : boolean => (it
 export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
     schemaConfig: { schemaProvider: fullListFormItemSchemaProvider },
     item: null,
+    propertyOverrides: { disabledProps: true },
     listProps: {
         onItemChange: item => console.log(item),
         config: { 

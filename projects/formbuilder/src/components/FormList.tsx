@@ -24,8 +24,8 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     const [columns, setColumns, columnRef] = useStateRef<Array<IFormListColumnInfo>>();
 
     useEffect(() => {
-        setItems(props.items);
-        setFilteredItems([...props.items]);
+        setItems(props.items ?? []);
+        setFilteredItems(props.items ?? []);
     }, [props.items])
     
     useImperativeHandle<FormListRef, any>(ref as any, () => ({
@@ -143,11 +143,12 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         const currColumn: IFormListColumnInfo = columnRef.current.filter(currCol => column.key === currCol.key)[0];
         newColumns.forEach((newCol: IFormListColumnInfo) => {
             if (newCol === currColumn) {
-            currColumn.isSortedDescending = !currColumn.isSortedDescending;
-            currColumn.isSorted = true;
-            } else {
-            newCol.isSorted = false;
-            newCol.isSortedDescending = true;
+                currColumn.isSortedDescending = !currColumn.isSortedDescending;
+                currColumn.isSorted = true;
+            } 
+            else {
+                newCol.isSorted = false;
+                newCol.isSortedDescending = true;
             }
         });
         
@@ -158,7 +159,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         setFilteredItems(newItems);
     }
 
-    const ListContainer: React.ComponentType<IFormListRenderProps<T>> = formbuilder.formItemRender.list();
+    const ListContainer: React.ComponentType<IFormListRenderProps<T>> = formbuilder.formItemRender.list() as any; // WTF!! added readOnly to listprops and suddently it wont compile - works fine though (ewi)
 
 	return (
         <div className="formbuilder-listcontainer" key={`${props.keyPrefix}`} >
@@ -175,6 +176,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
                 updateFilteredItems={setFilteredItems}
                 updateSelectedItems={setSelectedItems}
                 sortColumn={sortColumn}
+                readOnly={props.readOnly}
             />
         </div>
     )

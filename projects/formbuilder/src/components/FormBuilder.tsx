@@ -103,6 +103,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
                             listProps={props.listProps ?? schema.options.listOptions}
                             keyPrefix={`${props.keyPrefix}-list`}
+                            readOnly={props.propertyOverrides?.disabledProps === true}
                         />
                     :   <Form
                             key={getKey()}

@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.6.3",
+      "tag": "@wiberg/formbuilder_v0.6.3",
+      "date": "Thu, 10 Mar 2022 19:22:12 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fixed override of disabled properties"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.2",
       "tag": "@wiberg/formbuilder_v0.6.2",
       "date": "Thu, 10 Mar 2022 17:53:21 GMT",

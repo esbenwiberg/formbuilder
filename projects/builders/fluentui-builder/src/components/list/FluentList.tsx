@@ -50,6 +50,8 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [props.filteredItems])
 
     useEffect(() => {
+        console.log(props.readOnly);
+        
         if (props.listProps.menuConfig?.actions == null) return;
         let actions = props.listProps.menuConfig?.actions(createItem, editItem, deleteItems);
         if (!actions?.length) return; // is it needed to set to empty array as well? (ewi)
@@ -59,7 +61,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                 key: _.title,
                 text: _.title,
                 onClick: () => _.action(props.selectedItems),
-                disabled: formListHelper.isMenuItemDisabled(_.selectionMode, props.selectedItems?.length),
+                disabled: props.readOnly || formListHelper.isMenuItemDisabled(_.selectionMode, props.selectedItems?.length),
                 iconProps: { iconName: _.iconName}
 
             } as ICommandBarItemProps

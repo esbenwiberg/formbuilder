@@ -26,12 +26,18 @@ export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefi
     let hiddenOverrides = propertyOverrides?.hiddenProps;
     Object.keys(merged.properties).forEach(_ => {
         if (disabledOverrides != null) {
-            let disable = false;
-            if (Array.isArray(disabledOverrides) && disabledOverrides.indexOf(_) >= 0)
-                disable = true;
-            else
-                disable = !!disabledOverrides;
-            if (disable) merged.properties[_].disable = () => true;
+            let disable = merged.properties[_].disable;
+            if (Array.isArray(disabledOverrides) ){
+                
+                if (disabledOverrides.indexOf(_) >= 0) {
+                    disable = () => true;
+                }
+            }
+            else {
+                disable = () => !!disabledOverrides;
+            }
+
+            merged.properties[_].disable = disable;
         }
         if (hiddenOverrides != null && hiddenOverrides.indexOf(_) >= 0) {
             merged.properties[_].hide = () => true;

@@ -178,7 +178,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
         onBlur: (prop: string) => validateItem(item, schema, ValidationEventType.Blur, prop),
         validationResults: validationResults,
         validationResultPrefix: props.validationResultPrefix,
-        // propertyOverrides: props.propertyOverrides // this is merged with the schema, and shouldnt be part of the child items (ewi)
+        propertyOverrides: props.propertyOverrides // this is merged with the schema, and shouldnt be part of the child items (ewi)
     }
 
 	return (
