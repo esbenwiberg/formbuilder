@@ -17,6 +17,7 @@ export const MyTabGroupContainer: FunctionComponent<IGroupContainerProps> = prop
 
 export const myTabGroupRender = (grouping: IFormGrouping, children: Array<any>) : JSX.Element => (
     <PivotItem
+        itemIcon={grouping.validationError ? "Error" : undefined}
         key={grouping.groupKey}
         headerText={grouping.displayName}
         children={

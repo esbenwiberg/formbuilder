@@ -114,7 +114,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     
     useEffect(() => {
         buildGroupings();
-    }, [schema, item])
+    }, [schema, item, validationResults])
 
     const buildGroupings = () => {
         if (schema?.options?.groups == null) {
@@ -140,12 +140,29 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
                 groupKey: _, 
                 displayName: group.displayName,
                 groupProps: {...group.groupProps},
-                properties: groupedProps[_]
+                properties: groupedProps[_],
+                validationError: groupValidation(groupedProps[_])
             } as IFormGrouping
         });
 
         setGroupings(propertyGroupings);
         setGroupsHandled(true);
+    }
+
+    const groupValidation = (properties: string[]) : boolean => {
+        if (validationResults == null) return false;
+        
+        let error = false;
+        properties?.forEach(_ => {
+            const result = validationResults[_];
+            if (result == null) return;
+            Object.keys(result).forEach(r => {
+                var res = result[r];
+                if (res != null && !res.success)
+                    error = true;
+            })
+        })
+        return error;
     }
 
     const onPropertyChange = (property: string, value: any | never) : void => {

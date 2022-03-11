@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 10 Mar 2022 19:32:31 GMT and should not be manually modified.
+This log was last generated on Fri, 11 Mar 2022 11:42:28 GMT and should not be manually modified.
+
+## 0.6.5
+Fri, 11 Mar 2022 11:42:28 GMT
+
+### Patches
+
+- Added validation error to form footer. Added validationerror to groupings
 
 ## 0.6.4
 Thu, 10 Mar 2022 19:32:31 GMT

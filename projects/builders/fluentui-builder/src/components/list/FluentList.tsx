@@ -1,9 +1,10 @@
- import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps } from "@fluentui/react";
+ import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps, Icon, Stack } from "@fluentui/react";
 import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
 import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang, id, IFormBuilderListMenuItem } from "@wiberg/formbuilder";
 import { Searcher } from "../..";
+import { fluentUiValidationMessageElement } from "../fluentUiValidationMessageElement";
 
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
 
@@ -16,6 +17,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     const [enableShimmer, setEnableShimmer] = useState(false);
     const [newItemMode, setNewItemMode] = useState(false);
     const [menuItems, setMenuItems] = useState<Array<ICommandBarItemProps> | undefined>(undefined);
+    const [validationFailed, setValidationFailed] = useState(false);
 
     const [selection] = useState<Selection>(new Selection({
         selectionMode: props.listProps.config.multiSelect ? SelectionMode.multiple : SelectionMode.single,
@@ -126,8 +128,12 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         if (validated == ValidationResult.FailedDontBlock) {
             setShowValidationOverrideConfirm(true);
         }
+        else if (validated == ValidationResult.Failed) {
+            setValidationFailed(true);
+        }
         else if (validated == ValidationResult.Success) {
             props.onItemChange(editorFormRef.current?.getItem() as T);
+            setValidationFailed(false);
             setShowEditor(false);
         }
     }
@@ -147,7 +153,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             if (props.listProps?.editorConfig?.customFooter != undefined)
                 return props.listProps.editorConfig.customFooter(saveForm, dismissForm, validateForm, getItem);
             else
-                return (<div>
+                return (<Stack horizontal>
                     <PrimaryButton
                         text={newItemMode ? lang.texts.areas.common.create : lang.texts.areas.common.save}
                         styles={{ root: { marginRight: 8 } }}
@@ -157,9 +163,12 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                         text={lang.texts.areas.common.cancel}
                         onClick={ dismissForm }
                     />
-                  </div>)
+                    {
+                        validationFailed && <div style={{paddingLeft: "10px", paddingTop: "6px" }}><Icon iconName="Error" title="Validation errors" styles={{root: { color: "red", fontSize: "20px", cursor: "help" }}} /></div>
+                    }
+                  </Stack>)
         },
-        [showEditor],
+        [showEditor, validationFailed],
     );
 
     const handleColumnReorder = (draggedIndex: number, targetIndex: number) => {
