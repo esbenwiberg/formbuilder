@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.6.6",
+      "tag": "@wiberg/formbuilder_v0.6.6",
+      "date": "Fri, 11 Mar 2022 22:23:10 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added validation error icon to FormList dialog footer. Added resizable to FormListProps column options"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.5",
       "tag": "@wiberg/formbuilder_v0.6.5",
       "date": "Fri, 11 Mar 2022 11:42:28 GMT",

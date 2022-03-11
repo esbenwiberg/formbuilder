@@ -23,6 +23,7 @@ export interface IFormBuilderListColumns<T> {
     columnOrder?: Array<keyof T>;
     // customColumns?: Array<any>;
     columnsPicks?: IFormListColumnsPicks<T>;
+    resizableColumns?: Array<keyof T> | true;
 }
 
 export enum IFormBuilderListMenuItemSelectionMode {

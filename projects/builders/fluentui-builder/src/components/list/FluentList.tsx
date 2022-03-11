@@ -1,10 +1,9 @@
- import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps, Icon, Stack } from "@fluentui/react";
+ import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps, Icon, Stack, Spinner } from "@fluentui/react";
 import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
 import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang, id, IFormBuilderListMenuItem } from "@wiberg/formbuilder";
 import { Searcher } from "../..";
-import { fluentUiValidationMessageElement } from "../fluentUiValidationMessageElement";
 
 const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRenderProps<T>>) : ReactElement | null => {
 
@@ -52,8 +51,6 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [props.filteredItems])
 
     useEffect(() => {
-        console.log(props.readOnly);
-        
         if (props.listProps.menuConfig?.actions == null) return;
         let actions = props.listProps.menuConfig?.actions(createItem, editItem, deleteItems);
         if (!actions?.length) return; // is it needed to set to empty array as well? (ewi)
@@ -81,6 +78,10 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         return props.columns.map(_ => {
             let col = _ as IColumn;
             col.onColumnClick = () => props.sortColumn(_ as IFormListColumnInfo);
+            
+            const resizable = props.listProps.columnConfig?.resizableColumns;
+            if (resizable === true || (resizable?.findIndex(_ => _ == col.fieldName) ?? -1) >= 0)
+                col.isResizable = true;
             return col;
         });
     }
@@ -99,7 +100,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         setShowEditor(true); 
     }
 
-    const  editItem = (pre?: (item: T) => void | boolean) => {
+    const editItem = (pre?: (item: T) => void | boolean) => {
         let sItem = {...props.selectedItems[0]};
         if (pre) {
             let result = pre(sItem);
@@ -164,7 +165,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                         onClick={ dismissForm }
                     />
                     {
-                        validationFailed && <div style={{paddingLeft: "10px", paddingTop: "6px" }}><Icon iconName="Error" title="Validation errors" styles={{root: { color: "red", fontSize: "20px", cursor: "help" }}} /></div>
+                        validationFailed && <div style={{paddingLeft: "10px", paddingTop: "2px" }}><Icon iconName="Error" title="Validation errors" styles={{root: { color: "red", fontSize: "20px", cursor: "help" }}} /></div>
                     }
                   </Stack>)
         },
@@ -191,7 +192,10 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                                 keyPrefix={ props.keyPrefix ?? "" }
                                 newItemMode={ newItemMode }
                                 onRenderFooterContent={ onRenderFooterContent }
-                                show={ (show: boolean) => setShowEditor(show) }
+                                show={ (show: boolean) => {
+                                    setValidationFailed(false);                                    
+                                    setShowEditor(show);
+                                 } }
                                 dialogType={ props.listProps.editorConfig?.type }
                                 ref={ editorFormRef }
                              />

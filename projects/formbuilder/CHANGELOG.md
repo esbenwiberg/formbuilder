@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Fri, 11 Mar 2022 11:42:28 GMT and should not be manually modified.
+This log was last generated on Fri, 11 Mar 2022 22:23:10 GMT and should not be manually modified.
+
+## 0.6.6
+Fri, 11 Mar 2022 22:23:10 GMT
+
+### Patches
+
+- Added validation error icon to FormList dialog footer. Added resizable to FormListProps column options
 
 ## 0.6.5
 Fri, 11 Mar 2022 11:42:28 GMT

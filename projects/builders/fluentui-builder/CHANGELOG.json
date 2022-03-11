@@ -2,6 +2,35 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.2.6",
+      "tag": "@wiberg/fluentui-builder_v0.2.6",
+      "date": "Fri, 11 Mar 2022 22:23:10 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added validation error icon to FormList dialog footer. Added resizable to FormListProps column options"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.6.5` to `~0.6.6`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.2.5",
+      "tag": "@wiberg/fluentui-builder_v0.2.5",
+      "date": "Fri, 11 Mar 2022 22:20:05 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added validation error icon to FormList dialog footer. Added resizable to FormListProps column options"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.4",
       "tag": "@wiberg/fluentui-builder_v0.2.4",
       "date": "Fri, 11 Mar 2022 11:42:28 GMT",
