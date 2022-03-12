@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Sat, 12 Mar 2022 21:00:03 GMT and should not be manually modified.
+This log was last generated on Sat, 12 Mar 2022 23:43:19 GMT and should not be manually modified.
+
+## 0.6.8
+Sat, 12 Mar 2022 23:43:19 GMT
+
+### Patches
+
+- FluentList: Added update of selected items when items are set outside form
 
 ## 0.6.7
 Sat, 12 Mar 2022 21:00:03 GMT

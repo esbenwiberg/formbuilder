@@ -26,6 +26,10 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     useEffect(() => {
         setItems(props.items ?? []);
         setFilteredItems(props.items ?? []);
+        // update selected items, when changes to items from outside (ewi)
+        if (selectedItemsRef.current?.length) {
+            setSelectedItems((props.items ?? []).filter(_ => selectedItemsRef.current.findIndex(r => props.listProps.config.itemIdentifier(r) == props.listProps.config.itemIdentifier(_)) >= 0));
+        }
     }, [props.items])
     
     useImperativeHandle<FormListRef, any>(ref as any, () => ({

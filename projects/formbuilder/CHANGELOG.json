@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.6.8",
+      "tag": "@wiberg/formbuilder_v0.6.8",
+      "date": "Sat, 12 Mar 2022 23:43:19 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "FluentList: Added update of selected items when items are set outside form"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.7",
       "tag": "@wiberg/formbuilder_v0.6.7",
       "date": "Sat, 12 Mar 2022 21:00:03 GMT",
