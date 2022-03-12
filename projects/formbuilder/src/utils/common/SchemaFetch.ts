@@ -1,3 +1,4 @@
+import { FormListColumnsPickType } from "../..";
 import { IFormItem } from "../../interfaces/form/IFormItem";
 import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
 import { IFormItemOptions } from "../../interfaces/options/IFormItemOptions";
@@ -7,17 +8,17 @@ import { RecursivePartial } from "../../interfaces/types/Partials";
 import { formSchemaUtil } from "./FormSchemaUtil";
 import { mergeDeep } from "./MergeObjects";
 
-export const fetchSchemaFromMap = async <T extends IFormItem>(schemaMapKey: string, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+export const fetchSchemaFromMap = async <T extends IFormItem>(schemaMapKey: string, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
     let schema = await formSchemaUtil.getSchemaFromMap<T>(schemaMapKey, dynamicKey);
     return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
 };
 
-export const fetchSchema = async <T extends IFormItem>(schemaProvider: ISchemaProvider<T>, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+export const fetchSchema = async <T extends IFormItem>(schemaProvider: ISchemaProvider<T>, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
     let schema = await schemaProvider.getSchema(dynamicKey);
     return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
 };
 
-export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefined, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : IFormSchema<T> | undefined => {
+export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefined, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : IFormSchema<T> | undefined => {
     if (schema == null) return undefined;
     // merge with overrides
     let merged: IFormItemOptions<T> = mergeDeep<IFormItemOptions<T>>(schema?.options, formItemConfigOverrides);
@@ -39,8 +40,15 @@ export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefi
 
             merged.properties[_].disable = disable;
         }
-        if (hiddenOverrides != null && hiddenOverrides.indexOf(_) >= 0) {
-            merged.properties[_].hide = () => true;
+        
+        if (hiddenOverrides != null) {
+            const found = hiddenOverrides.columns.indexOf(_) >= 0;
+            if (hiddenOverrides.pickType == FormListColumnsPickType.Only) {
+                if (found) merged.properties[_].hide = () => true;
+            }
+            else if (hiddenOverrides.pickType == FormListColumnsPickType.Without) {
+                if (!found) merged.properties[_].hide = () => true;
+            }
         }
     })
     

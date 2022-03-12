@@ -6,7 +6,7 @@ import { IFormSchema } from "../../interfaces/schema/IFormSchema";
 import { RecursivePartial } from "../../interfaces/types/Partials";
 import { fetchSchema, fetchSchemaFromMap } from "../common/SchemaFetch";
 
-export const schemaFromConfig = async <T extends IFormItem>(schemaConfig: ISchemaConfig<T>, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+export const schemaFromConfig = async <T extends IFormItem>(schemaConfig: ISchemaConfig<T>, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
     let schema: IFormSchema<T> | undefined = undefined;
     if (schemaConfig.schemaProvider != null)
         schema = await fetchSchema<T>(schemaConfig.schemaProvider, formItemConfigOverrides, propertyOverrides, dynamicKey);

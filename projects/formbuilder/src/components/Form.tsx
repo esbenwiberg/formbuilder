@@ -30,7 +30,7 @@ export interface IFormItemProps<T extends IFormItem> {
     groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
     validationOverride?: ValidationOverride;
     formItemConfigOverrides?: Partial<IFormItemOptions<T>>;
-    propertyOverrides?: IPropertyOverrides;
+    propertyOverrides?: IPropertyOverrides<T>;
     loadingProps?: ILoadingProps;
     /*** DO NOT USE! only used internally */
     validationResult?: IValidationResult;

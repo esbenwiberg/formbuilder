@@ -1,4 +1,4 @@
-import { IFormBuilderProps } from "@wiberg/formbuilder";
+import { FormListColumnsPickType, IFormBuilderProps } from "@wiberg/formbuilder";
 import { IAnotherFormItem, IMyFormItemChild } from "./interfaces";
 import { myFormItemChildSchemaProvider } from "./schemas";
 

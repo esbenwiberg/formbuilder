@@ -45,7 +45,7 @@ export interface IFormBuilderProps<T extends IFormItem> {
     groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
     validationOverride?: ValidationOverride;
     formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>;
-    propertyOverrides?: IPropertyOverrides;
+    propertyOverrides?: IPropertyOverrides<T>;
     loadingProps?: ILoadingProps;
     keyPrefix?: string;
     overrideSchema?: IFormSchema<T>;

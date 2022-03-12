@@ -28,7 +28,7 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
 
     const loadingSpinnerComponent = () : ElementType<ILoadingProps> | undefined => loadingSpinner ?? defaultSpinner;
 
-    const convertPropertyOverrides = (propertyOverrides: IPropertyOverrides | undefined, property: string) : IPropertyOverrides | undefined => {
+    const convertPropertyOverrides = (propertyOverrides: IPropertyOverrides<any> | undefined, property: string) : IPropertyOverrides<any> | undefined => {
         if (propertyOverrides == undefined) return undefined;
         let clone = {...propertyOverrides};
         

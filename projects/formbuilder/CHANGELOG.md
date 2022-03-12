@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Fri, 11 Mar 2022 22:23:10 GMT and should not be manually modified.
+This log was last generated on Sat, 12 Mar 2022 21:00:03 GMT and should not be manually modified.
+
+## 0.6.7
+Sat, 12 Mar 2022 21:00:03 GMT
+
+### Patches
+
+- changed implementation of hidden properties in propertyoverrides
 
 ## 0.6.6
 Fri, 11 Mar 2022 22:23:10 GMT
