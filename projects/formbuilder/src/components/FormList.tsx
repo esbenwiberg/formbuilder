@@ -55,8 +55,6 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     }, [])
 
     useEffect(() => {
-        console.log("SHIMMER", props.listProps?.shimmerConfig);
-        
         const shimmerConfig = props.listProps?.shimmerConfig;
         if (shimmerConfig?.forceShimmer) {
             setEnableShimmer(true);
