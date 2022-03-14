@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.6.9",
+      "tag": "@wiberg/formbuilder_v0.6.9",
+      "date": "Mon, 14 Mar 2022 11:03:20 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added column widths to IFormListProps"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.6.8",
       "tag": "@wiberg/formbuilder_v0.6.8",
       "date": "Sat, 12 Mar 2022 23:43:19 GMT",

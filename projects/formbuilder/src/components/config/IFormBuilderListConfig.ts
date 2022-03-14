@@ -24,6 +24,7 @@ export interface IFormBuilderListColumns<T> {
     // customColumns?: Array<any>;
     columnsPicks?: IFormListColumnsPicks<T>;
     resizableColumns?: Array<keyof T> | true;
+    columnWidths?: Array<{column: string, width: number}> | number;
 }
 
 export enum IFormBuilderListMenuItemSelectionMode {

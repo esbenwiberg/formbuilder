@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Sat, 12 Mar 2022 23:43:19 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Mar 2022 11:03:20 GMT and should not be manually modified.
+
+## 0.6.9
+Mon, 14 Mar 2022 11:03:20 GMT
+
+### Patches
+
+- Added column widths to IFormListProps
 
 ## 0.6.8
 Sat, 12 Mar 2022 23:43:19 GMT

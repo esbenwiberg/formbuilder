@@ -50,6 +50,22 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         setFilteredItems(props.filteredItems);
     }, [props.filteredItems])
 
+    const buildMenuItem = useCallback(
+        (item: IFormBuilderListMenuItem<T>) : ICommandBarItemProps => {
+            return {
+                key: item.title,
+                text: item.title,
+                onClick: () => item.action(props.selectedItems),
+                disabled: props.readOnly || formListHelper.isMenuItemDisabled(item.selectionMode, props.selectedItems?.length),
+                iconProps: { iconName: item.iconName },
+                subMenuProps: item.subMenuItems == null
+                                ? undefined
+                                : { items: item.subMenuItems.map(buildMenuItem) }
+
+            } as ICommandBarItemProps
+        }, [items, props.selectedItems, props.readOnly]
+    )
+
     useEffect(() => {
         if (props.listProps.menuConfig?.actions == null) return;
         let actions = props.listProps.menuConfig?.actions(createItem, editItem, deleteItems);
@@ -60,19 +76,6 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
 
     }, [props.listProps.menuConfig, props.selectedItems])
 
-    const buildMenuItem = (item: IFormBuilderListMenuItem<T>) : ICommandBarItemProps => {
-        return {
-            key: item.title,
-            text: item.title,
-            onClick: () => item.action(props.selectedItems),
-            disabled: props.readOnly || formListHelper.isMenuItemDisabled(item.selectionMode, props.selectedItems?.length),
-            iconProps: { iconName: item.iconName },
-            subMenuProps: item.subMenuItems == null
-                            ? undefined
-                            : { items: item.subMenuItems.map(buildMenuItem) }
-
-        } as ICommandBarItemProps
-    }
     
     const buildColumns = () : Array<IColumn> => {
         return props.columns.map(_ => {
@@ -82,6 +85,19 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             const resizable = props.listProps.columnConfig?.resizableColumns;
             if (resizable === true || (resizable?.findIndex(_ => _ == col.fieldName) ?? -1) >= 0)
                 col.isResizable = true;
+            
+            const widthConfig = props.listProps.columnConfig?.columnWidths;
+            if (widthConfig != null) {
+                if (typeof widthConfig === 'number') {
+                    col.minWidth = widthConfig
+                }
+                else if (Array.isArray(widthConfig)) {
+                    const config = widthConfig?.find(_ => _.column == col.fieldName);
+                    if (config?.width != null)
+                        col.minWidth = config.width;
+                }
+            }
+
             return col;
         });
     }

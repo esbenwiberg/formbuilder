@@ -28,7 +28,8 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         setFilteredItems(props.items ?? []);
         // update selected items, when changes to items from outside (ewi)
         if (selectedItemsRef.current?.length) {
-            setSelectedItems((props.items ?? []).filter(_ => selectedItemsRef.current.findIndex(r => props.listProps.config.itemIdentifier(r) == props.listProps.config.itemIdentifier(_)) >= 0));
+            const changedItems = (props.items ?? []).filter(_ => selectedItemsRef.current.findIndex(r => props.listProps.config.itemIdentifier(r) == props.listProps.config.itemIdentifier(_)) >= 0);
+            setSelectedItems(changedItems);
         }
     }, [props.items])
     

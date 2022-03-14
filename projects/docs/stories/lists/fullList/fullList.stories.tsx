@@ -48,6 +48,11 @@ export const FullList: ComponentStory<typeof FormBuilder> = () => {
 
   return (
     <>
+      <PrimaryButton text="Age +10" onClick={() => {
+        const clone = [...items];
+        clone.forEach(_ => _.age = _.age + 10);
+        setItems(clone);
+      }} />
       <FormBuilder { ...fullListFormOptions } item={items} />
     </>
   )

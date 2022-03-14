@@ -14,16 +14,13 @@ export const createCustomBuilder = () : IFormItemBuilder => {
     const labelRender: LabelRender = fluentUiLabel;
 
     const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
-        console.log("GOGO");
         
         let { item } = renderProps;
         
         if (item === null) throw Error("item is null");
         if (schema == null) throw Error("schema is null");
-        console.log("1");
         
         let info = buildPropertyRenderInfo(renderProps, schema, property);
-        console.log("2");
         const WrapInLabel = (element: JSX.Element, addErrormessage?: boolean) : JSX.Element => {
             return (
                 <div className="formbuilder-property" key={info.props.key}>
@@ -32,10 +29,7 @@ export const createCustomBuilder = () : IFormItemBuilder => {
                 </div>
             )
         }
-        console.log("3");
         const propertyType: ICustomPropertyTypes = customPropertyTypes;
-        console.log("4");
-        console.log(schema.propertyType);
         
         switch (schema.propertyType) {
             case propertyType.specialText: return { found: true, element: WrapInLabel(<SpecialTextField {...schema} {...info.props} />) };

@@ -50,6 +50,7 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
                     { title: "Edit", iconName: "Edit", selectionMode: IFormBuilderListMenuItemSelectionMode.Single, action: () => editItem() },
                     { title: "Delete", iconName: "Delete", selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: () => deleteItems(deleteItemsPreProcess) },
                     { title: "Click here!", iconName: "NumberField", selectionMode: IFormBuilderListMenuItemSelectionMode.Multi, action: items => alert(items.length) },
+                    { title: "Age", iconName: "NumberField", selectionMode: IFormBuilderListMenuItemSelectionMode.Single | IFormBuilderListMenuItemSelectionMode.Multi, action: items => alert(items.map(_ => _.age).join(", ")) },
                 ]
             ),
         }

@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Fri, 11 Mar 2022 22:23:10 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Mar 2022 11:03:20 GMT and should not be manually modified.
+
+## 0.2.7
+Mon, 14 Mar 2022 11:03:20 GMT
+
+### Patches
+
+- Added column widths to IFormListProps
 
 ## 0.2.6
 Fri, 11 Mar 2022 22:23:10 GMT
