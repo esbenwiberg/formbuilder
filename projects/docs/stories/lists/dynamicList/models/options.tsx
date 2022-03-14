@@ -16,7 +16,10 @@ export const dynamicListFormOptions: IFormBuilderProps<IPluginFormItem> = {
             itemIdentifier: item => item.id as string,
             multiSelect: true, 
             onItemsChange: items => console.log("FROM OUTSIDE", items),
-            shimmerLines: 20
+            shimmerConfig: {
+                shimmerLines: 20,
+                autoShimmerOnEmptyList: true
+            }
         },
         columnConfig: {
             columnOrder: ["name", "customStuff"],

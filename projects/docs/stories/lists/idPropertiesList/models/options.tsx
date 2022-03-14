@@ -12,7 +12,10 @@ export const listWithIdsFormOptions: IFormBuilderProps<IMyIdValueListFormItem> =
         onItemChange: item => console.log(item),
         config: { 
             itemIdentifier: item => item.id.toString(),
-            shimmerLines: 2
+        },
+        shimmerConfig: {
+            shimmerLines: 2,
+            autoShimmerOnEmptyList: true
         },
         editorConfig: {
             title: item => `Edit '${item?.name}'`,

@@ -4,7 +4,7 @@ import { IFormSchema } from '../interfaces/schema/IFormSchema';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
-import { IFormBuilderListConfig, IFormBuilderListSearchConfig, IFormBuilderListColumns, IFormBuilderListMenuConfig, IFormBuilderListEditorConfig } from './config/IFormBuilderListConfig';
+import { IFormBuilderListConfig, IFormBuilderListSearchConfig, IFormBuilderListColumns, IFormBuilderListMenuConfig, IFormBuilderListEditorConfig, IFormListShimmerConfig } from './config/IFormBuilderListConfig';
 import { Form, FormRef } from './Form';
 import { FormList } from './FormList';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
@@ -29,6 +29,7 @@ export interface IFormBuilderListProps<T extends IFormItem> {
     columnConfig?: IFormBuilderListColumns<T>;
     menuConfig?: IFormBuilderListMenuConfig<T>;
     editorConfig?: IFormBuilderListEditorConfig<T>;
+    shimmerConfig?: IFormListShimmerConfig;
 }
 
 export interface ISchemaConfig<T extends IFormItem> {

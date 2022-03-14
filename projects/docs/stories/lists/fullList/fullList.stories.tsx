@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import fullListDocs from './fullListDocs.mdx';
-import { initializeIcons, PrimaryButton } from '@fluentui/react';
+import { DefaultButton, initializeIcons, PrimaryButton, Stack } from '@fluentui/react';
 import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder } from '@wiberg/formbuilder';
 import { fullListFormOptions } from './models/options';
@@ -35,6 +35,7 @@ export default {
 
 export const FullList: ComponentStory<typeof FormBuilder> = () => {
   const [items, setItems] = useState<IFullListFormItem[]>([]);
+  const [options, setOptions] = useState(fullListFormOptions);
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,16 +45,22 @@ export const FullList: ComponentStory<typeof FormBuilder> = () => {
      ]);
  }, 2000);
   }, [])
-  
 
   return (
     <>
-      <PrimaryButton text="Age +10" onClick={() => {
-        const clone = [...items];
-        clone.forEach(_ => _.age = _.age + 10);
-        setItems(clone);
-      }} />
-      <FormBuilder { ...fullListFormOptions } item={items} />
+      <Stack horizontal>
+        <PrimaryButton text="Age +10" onClick={() => {
+            const clone = [...items];
+            clone.forEach(_ => _.age = _.age + 10);
+            setItems(clone);
+        }} />
+        <DefaultButton text="Toggle shimmer" onClick={() => {
+            const clone = {...options};
+            clone.listProps.shimmerConfig.forceShimmer = !clone.listProps.shimmerConfig.forceShimmer;
+            setOptions(clone);
+        }} />
+      </Stack>
+      <FormBuilder { ...options } item={items} />
     </>
   )
 }

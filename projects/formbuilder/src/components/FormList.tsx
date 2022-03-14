@@ -22,6 +22,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     const [filteredItems, setFilteredItems, filteredItemsRef] = useStateRef(props.items ?? []);
     const [selectedItems, setSelectedItems, selectedItemsRef] = useStateRef<Array<T>>([]);
     const [columns, setColumns, columnRef] = useStateRef<Array<IFormListColumnInfo>>();
+    const [enableShimmer, setEnableShimmer] = useState(false);
 
     useEffect(() => {
         setItems(props.items ?? []);
@@ -52,6 +53,22 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         const cols = buildColumns();
         setColumns(cols);
     }, [])
+
+    useEffect(() => {
+        console.log("SHIMMER", props.listProps?.shimmerConfig);
+        
+        const shimmerConfig = props.listProps?.shimmerConfig;
+        if (shimmerConfig?.forceShimmer) {
+            setEnableShimmer(true);
+        }
+        else if (shimmerConfig?.autoShimmerOnEmptyList && !!!items?.length) {
+            setEnableShimmer(true);
+            setTimeout(() => setEnableShimmer(false), shimmerConfig?.autoShimmerTimeout ?? 5000);
+        }
+        else {
+            setEnableShimmer(false);
+        }
+    }, [items, props.listProps?.shimmerConfig, props.listProps?.shimmerConfig?.forceShimmer ])
 
     if (listProps?.schema == null) return null;
 
@@ -182,6 +199,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
                 updateSelectedItems={setSelectedItems}
                 sortColumn={sortColumn}
                 readOnly={props.readOnly}
+                shimmer={enableShimmer}
             />
         </div>
     )

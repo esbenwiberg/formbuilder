@@ -22,8 +22,11 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
         config: { 
             itemIdentifier: item => item?.id as string,
             multiSelect: true, 
-            onItemsChange: items => console.log("FROM OUTSIDE", items),
-            shimmerLines: 5
+            onItemsChange: items => console.log("FROM OUTSIDE", items)
+        },
+        shimmerConfig: {
+            shimmerLines: 5,
+            autoShimmerOnEmptyList: true
         },
         columnConfig: {
             columnOrder: ["firstname", "awesome", "custom"],

@@ -13,8 +13,11 @@ export const largeListFormOptions: IFormBuilderProps<ILargeListFormItem> = {
         config: { 
             itemIdentifier: item => item.id?.toString(),
             disableItemInvoke: true,
-            multiSelect: true,
-            shimmerLines: 100
+            multiSelect: true
+        },
+        shimmerConfig: {
+            shimmerLines: 100,
+            autoShimmerOnEmptyList: true
         },
         columnConfig: {
             columnsPicks: {

@@ -13,7 +13,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     const [showEditor, setShowEditor] = useState(false);
     const [columns, setColumns, columnRef] = useStateRef<Array<IColumn>>();
     const [showValidationOverrideConfirm, setShowValidationOverrideConfirm] = useState(false);
-    const [enableShimmer, setEnableShimmer] = useState(false);
+    const [enableShimmer, setEnableShimmer] = useState<boolean | undefined>(false);
     const [newItemMode, setNewItemMode] = useState(false);
     const [menuItems, setMenuItems] = useState<Array<ICommandBarItemProps> | undefined>(undefined);
     const [validationFailed, setValidationFailed] = useState(false);
@@ -32,14 +32,8 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [props.columns])
 
     useEffect(() => {
-        if (!!props.listProps.config?.shimmerLines && !!!items?.length) {
-            setEnableShimmer(true);
-            setTimeout(() => setEnableShimmer(false), 5000);
-        }
-        else {
-            setEnableShimmer(false);
-        }
-    }, [items, props.listProps.config?.shimmerLines])
+      setEnableShimmer(props.shimmer);
+    }, [props.shimmer])
 
     useEffect(() => {
         if (props.items?.length) setEnableShimmer(false);
@@ -252,7 +246,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                             // selectionPreservedOnEmptyClick
                             selection={ selection }
                             enableShimmer={ enableShimmer }
-                            shimmerLines={ props.listProps.config.shimmerLines}
+                            shimmerLines={ props.listProps?.shimmerConfig?.shimmerLines}
                             layoutMode={DetailsListLayoutMode.fixedColumns}
                             constrainMode={ConstrainMode.horizontalConstrained}
                             setKey={'itemId'}
@@ -273,7 +267,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                         />
                     {/* </MarqueeSelection> */}
                 </div>
-                { (!enableShimmer && !!!items?.length) && <Label>No items found</Label> }
+                { (!enableShimmer && !!!items?.length) && (props.listProps?.shimmerConfig?.noItemsElement ?? null) }
                 <Dialog
                     hidden={!showValidationOverrideConfirm}
                     title={lang.texts.areas.list.validationRequirementsNotMet.title}

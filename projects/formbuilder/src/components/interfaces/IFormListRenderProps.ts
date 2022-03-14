@@ -19,4 +19,6 @@ export interface IFormListRenderProps<T extends IFormItem> extends IFormListProp
     updateFilteredItems: (items: Array<T>) => void;
     updateSelectedItems: (items: Array<T>) => void;
     sortColumn: (column: IFormListColumnInfo) => void;
+
+    shimmer?: boolean;
 }

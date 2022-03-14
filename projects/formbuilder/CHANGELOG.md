@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Mon, 14 Mar 2022 11:03:20 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Mar 2022 14:11:41 GMT and should not be manually modified.
+
+## 0.6.10
+Mon, 14 Mar 2022 14:11:41 GMT
+
+### Patches
+
+- Refactored IFormList shimmer configuration
 
 ## 0.6.9
 Mon, 14 Mar 2022 11:03:20 GMT
