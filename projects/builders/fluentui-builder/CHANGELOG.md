@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Mon, 14 Mar 2022 11:03:20 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Mar 2022 11:14:26 GMT and should not be manually modified.
+
+## 0.2.8
+Mon, 14 Mar 2022 11:14:26 GMT
+
+### Patches
+
+- Made clomun minWidth set on item schema win over IFOrmListProps column width settings
 
 ## 0.2.7
 Mon, 14 Mar 2022 11:03:20 GMT

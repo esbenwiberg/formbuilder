@@ -88,8 +88,9 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             
             const widthConfig = props.listProps.columnConfig?.columnWidths;
             if (widthConfig != null) {
-                if (typeof widthConfig === 'number') {
-                    col.minWidth = widthConfig
+                // do not override width from item schema
+                if (typeof widthConfig === 'number' && col.minWidth == null) {
+                    col.minWidth = widthConfig;
                 }
                 else if (Array.isArray(widthConfig)) {
                     const config = widthConfig?.find(_ => _.column == col.fieldName);
