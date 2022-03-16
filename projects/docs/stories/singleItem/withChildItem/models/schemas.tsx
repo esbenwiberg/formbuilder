@@ -22,7 +22,7 @@ export const myFormItemChildSchemaProvider: ISchemaProvider<IAnotherFormItem> = 
                 properties: { 
                     name: propertyOptionsFactory.string({ displayName: "This name", group: "groupOne", config: { resizable: true }, description: "This is an explanation of what this property does.." }),
                     age: propertyOptionsFactory.number({ displayName: "This age", group: "groupTwo", hideLabel: true, config: { allowNegativeNumbers: true } }),
-                    child: propertyOptionsFactory.formItem({ displayName: "Another 'FormItem' as child", config: { schemaConfig: { registeredSchemaKey: "anotherFormItemSchemaProvider" } }, listItemOptions: { customValueRender: item => <>{(item.child as IAnotherFormItem)?.name}</> } } ),
+                    child: propertyOptionsFactory.formItem({ displayName: "Another 'FormItem' as child", description: "This is a description", config: { schemaConfig: { registeredSchemaKey: "anotherFormItemSchemaProvider" } }, listItemOptions: { customValueRender: item => <>{(item.child as IAnotherFormItem)?.name}</> } } ),
                 } 
             } as IFormItemOptions<IMyFormItemChild>
         } as IFormSchema<IAnotherFormItem>;

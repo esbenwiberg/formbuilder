@@ -24,7 +24,7 @@
 ```initialize```  
 ```js
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createCustomBuilder(), createFluentBuilder());
 ```
 
@@ -93,7 +93,7 @@ export const createCustomBuilder = () : IFormItemBuilder => {
     
     // const listComponent = <T extends IFormItem>() : ElementType<IFormListRenderProps<T>> => FluentList;
     const loadingComponent = () => undefined;
-    const labelRender: LabelRender = fluentUiLabel;
+    const labelRender: FormLabel = Fluentpr;
 
     const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
         let { item } = renderProps;

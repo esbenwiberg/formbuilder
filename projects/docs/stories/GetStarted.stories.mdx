@@ -126,7 +126,7 @@ import StackAlt from './assets/stackalt.svg';
 ```ts
 export const App = () => {
   formbuilder.initialize()
-      .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+      .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
       .withBuilders(createFluentBuilder());
   
   ...

@@ -6,13 +6,13 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import dynamicListDocs from './dynamicListDocs.mdx';
 import { initializeIcons } from '@fluentui/react';
 import { FormBuilder, formbuilder } from '@wiberg/formbuilder';
-import { createFluentBuilder, fluentUiValidationMessageElement, fluentUiLabel, FluentFormShimmer } from '@wiberg/fluentui-builder';
+import { createFluentBuilder, fluentUiValidationMessageElement, FluentPropertyLabel, FluentFormShimmer } from '@wiberg/fluentui-builder';
 import { dynamicListFormOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

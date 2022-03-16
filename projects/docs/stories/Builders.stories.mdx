@@ -133,7 +133,7 @@ export const createCustomBuilder = () : IFormItemBuilder => {
 
     const id: Readonly<string> = "myCustomBuilder";
     
-    const labelRender: LabelRender = fluentUiLabel; // re-using the label from the fluent builder. or you can create your own.
+    const labelRender: FormLabel = FluentPropertyLabel; // re-using the label from the fluent builder. or you can create your own.
 
     const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
         let { item } = renderProps;
@@ -187,7 +187,7 @@ export const createCustomBuilder = () : IFormItemBuilder => {
 ```app.tsx```
 ```js
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createCustomBuilder(), createFluentBuilder());
 ```
 

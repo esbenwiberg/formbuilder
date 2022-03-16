@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import customBuilderDocs from './custombuilderDocs.mdx';
 import { initializeIcons, Label, PrimaryButton } from '@fluentui/react';
 import { simpleFormItemOptions } from './models/options';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder, FluentPropertyLabel } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder, FormRef } from '@wiberg/formbuilder';
 import { IMyFormItem } from './models/interfaces';
 import { createCustomBuilder } from './models/builder/myCustomBuilder';
@@ -28,7 +28,7 @@ export default {
 
 export const CustomBuilder: ComponentStory<typeof FormBuilder> = () => {
   formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createCustomBuilder(), createFluentBuilder());
 
   const formRef = useRef<FormRef<IMyFormItem>>();

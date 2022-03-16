@@ -6,14 +6,14 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import navGroupsDocs from './navGroupsDocs.mdx';
 import { initializeIcons } from '@fluentui/react';
 import { navGroupRenderOptions } from './models/options';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder, FluentPropertyLabel } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder } from '@wiberg/formbuilder';
 
 initializeIcons(/* optional base url */);
 
 
 formbuilder
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

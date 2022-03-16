@@ -6,7 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import largeListDocs from './largeListDocs.mdx';
 import { initializeIcons } from '@fluentui/react';
 import { CountDownConfirmDialog, ICountDownConfirmDialogInfo } from './models/CountDownConfirmDialog';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder, IFormBuilderListMenuItemSelectionMode, IFormBuilderProps, mergeDeep } from '@wiberg/formbuilder';
 import { ILargeListFormItem } from './models/interfaces';
 import { largeListFormOptions } from './models/options';
@@ -14,7 +14,7 @@ import { largeListFormOptions } from './models/options';
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

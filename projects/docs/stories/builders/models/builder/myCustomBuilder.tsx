@@ -1,9 +1,9 @@
-import React, { ElementType } from "react";
-import { LabelRender, IFormItemBuilder, IFormItem, IFormListRenderProps, ILoadingProps, IDynamicPropertyComponentConfig, IItemRenderProps, IFormItemPropertyOptions, IFormItemBuilderResult, buildPropertyRenderInfo, ValidationMark, getValidationMarkForProperty, IPropertyTypes, propertyTypes } from "@wiberg/formbuilder";
+import React from "react";
+import { IFormItemBuilder, IFormItem, IDynamicPropertyComponentConfig, IItemRenderProps, IFormItemPropertyOptions, IFormItemBuilderResult, buildPropertyRenderInfo, FormLabel } from "@wiberg/formbuilder";
 import { customPropertyTypes, ICustomPropertyTypes } from "./customPropertyType";
 import { SpecialTextField } from "./specialTextField";
 import { SpecialNumberField } from "./specialNumberField";
-import { fluentUiLabel } from "@wiberg/fluentui-builder";
+import { FluentPropertyLabel } from "@wiberg/fluentui-builder";
 
 export const createCustomBuilder = () : IFormItemBuilder => {
 
@@ -11,7 +11,7 @@ export const createCustomBuilder = () : IFormItemBuilder => {
     
     // const listComponent = <T extends IFormItem>() : ElementType<IFormListRenderProps<T>> => FluentList;
     const loadingComponent = () => undefined;
-    const labelRender: LabelRender = fluentUiLabel;
+    const BuilderLabelRender: FormLabel = FluentPropertyLabel;
 
     const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
         
@@ -21,10 +21,17 @@ export const createCustomBuilder = () : IFormItemBuilder => {
         if (schema == null) throw Error("schema is null");
         
         let info = buildPropertyRenderInfo(renderProps, schema, property);
+
         const WrapInLabel = (element: JSX.Element, addErrormessage?: boolean) : JSX.Element => {
             return (
                 <div className="formbuilder-property" key={info.props.key}>
-                    { !info.props.options.hideLabel && labelRender(schema, info.key + "-label")}
+                     <BuilderLabelRender
+                        key={`${info.key}-labelcontainer`}
+                        propertySchema={schema}
+                        hideLabel={info.props.options.hideLabel}
+                        parentKey={info.key}
+                        validationMark={validationMark}
+                    />
                     { element }
                 </div>
             )

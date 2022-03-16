@@ -3,7 +3,7 @@
  */
 
 export * from "./FluentBuilder";
-export * from "./components/fluentUiLabel";
+export * from "./components/FluentPropertyLabel";
 export * from "./components/fluentUiValidationMessageElement";
 export * from "./components/dynamicComponents/DynamicBooleanField";
 export * from "./components/dynamicComponents/DynamicDateField";
@@ -13,7 +13,6 @@ export * from "./components/dynamicComponents/DynamicTextfield";
 export * from "./components/list/FluentDialog";
 export * from "./components/list/FluentList";
 export * from "./components/list/components/FluentFormShimmer";
-export * from "./components/list/components/FluentPropertyLabel";
 export * from "./components/list/components/FluentSpinner";
 export * from "./components/list/components/search/DelayedSearchBox";
 export * from "./components/list/components/search/Searcher";

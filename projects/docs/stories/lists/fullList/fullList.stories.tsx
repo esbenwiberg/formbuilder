@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import fullListDocs from './fullListDocs.mdx';
 import { DefaultButton, initializeIcons, PrimaryButton, Stack } from '@fluentui/react';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder } from '@wiberg/formbuilder';
 import { fullListFormOptions } from './models/options';
 import { IFullListFormItem } from './models/interfaces';
@@ -13,7 +13,7 @@ import { IFullListFormItem } from './models/interfaces';
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

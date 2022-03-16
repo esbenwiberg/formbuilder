@@ -5,14 +5,14 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import tabGroupsDocs from './tabGroupsDocs.mdx';
 import { initializeIcons } from '@fluentui/react';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder, FluentPropertyLabel } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder } from '@wiberg/formbuilder';
 import { tabGroupRenderOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
     

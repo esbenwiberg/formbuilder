@@ -2,6 +2,23 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.3.0",
+      "tag": "@wiberg/fluentui-builder_v0.3.0",
+      "date": "Wed, 16 Mar 2022 12:08:31 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Change builder label implementation"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.6.10` to `~0.7.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.2.9",
       "tag": "@wiberg/fluentui-builder_v0.2.9",
       "date": "Mon, 14 Mar 2022 14:11:41 GMT",

@@ -6,7 +6,7 @@ import { IFormbuilderLanguage } from "../models/language/ILanguage";
 import { initLanguage } from "../models/language/Language";
 import { strings } from "./common/String";
 import { createComplexObjectBuilder } from "../builders/custom/ComplexObjectBuilder";
-import { IFormItemBuilder, LabelRender } from "../builders/interfaces/IFormItemBuilder";
+import { FormLabel, IFormItemBuilder } from "../builders/interfaces/IFormItemBuilder";
 import { ILoadingProps } from "../builders/interfaces/ILoadingProps";
 
 export interface IFormBuilder {
@@ -15,7 +15,7 @@ export interface IFormBuilder {
     /** initialize the formbuilder */
     initialize: () => IFormBuilder;
     /** use the complex builder, which is used for nested forms or render with custom components */
-    usingComplexBuilder: (labelRender?: LabelRender, validationMsgElement?: (message: string) => JSX.Element, loadingSpinner?: React.ElementType<ILoadingProps>) => IFormBuilder;
+    usingComplexBuilder: (labelRender?: FormLabel, validationMsgElement?: (message: string) => JSX.Element, loadingSpinner?: React.ElementType<ILoadingProps>) => IFormBuilder;
     /** Add one or more of the standard builders or your own custom ones */
     withBuilders: (...builders: Array<IFormItemBuilder>) => IFormBuilder;
     /** override all or parts of the text used in the formbuilder */
@@ -39,7 +39,7 @@ export const formbuilder: IFormBuilder = {
         formbuilder.formItemRender = buildFormItemRender();
         return formbuilder;
     },
-    usingComplexBuilder: (labelRender?: LabelRender, validationMsgElement?: (message: string) => JSX.Element, loadingSpinner?: React.ElementType<ILoadingProps>) : IFormBuilder => {
+    usingComplexBuilder: (labelRender?: FormLabel, validationMsgElement?: (message: string) => JSX.Element, loadingSpinner?: React.ElementType<ILoadingProps>) : IFormBuilder => {
         formbuilder.formItemRender?.register(createComplexObjectBuilder(labelRender, validationMsgElement, loadingSpinner));
         return formbuilder;
     },

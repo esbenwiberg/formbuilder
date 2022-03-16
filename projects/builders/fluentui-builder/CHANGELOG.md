@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Mon, 14 Mar 2022 14:11:41 GMT and should not be manually modified.
+This log was last generated on Wed, 16 Mar 2022 12:08:31 GMT and should not be manually modified.
+
+## 0.3.0
+Wed, 16 Mar 2022 12:08:31 GMT
+
+### Minor changes
+
+- Change builder label implementation
 
 ## 0.2.9
 Mon, 14 Mar 2022 14:11:41 GMT

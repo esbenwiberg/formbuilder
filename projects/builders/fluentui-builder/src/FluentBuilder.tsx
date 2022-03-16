@@ -4,18 +4,17 @@ import { DynamicDateField } from "./components/dynamicComponents/DynamicDateFiel
 import { DynamicPredefinedArrayField } from "./components/dynamicComponents/DynamicPredefinedArrayField";
 import { DynamicTextfield } from "./components/dynamicComponents/DynamicTextfield";
 import React, { ElementType } from "react";
-import { FluentPropertyLabel } from "./components/list/components/FluentPropertyLabel";
+import { FluentPropertyLabel } from "./components/FluentPropertyLabel";
 import { FluentFormShimmer } from "./components/list/components/FluentFormShimmer";
-import { fluentUiLabel } from "./components/fluentUiLabel";
 import FluentList from "./components/list/FluentList";
-import { LabelRender, IFormItemBuilder, IFormItem, IFormListRenderProps, ILoadingProps, IDynamicPropertyComponentConfig, IItemRenderProps, IFormItemPropertyOptions, IFormItemBuilderResult, buildPropertyRenderInfo, ValidationMark, getValidationMarkForProperty, IPropertyTypes, propertyTypes } from "@wiberg/formbuilder";
+import { IFormItemBuilder, IFormItem, IFormListRenderProps, ILoadingProps, IDynamicPropertyComponentConfig, IItemRenderProps, IFormItemPropertyOptions, IFormItemBuilderResult, buildPropertyRenderInfo, ValidationMark, getValidationMarkForProperty, IPropertyTypes, propertyTypes, FormLabel } from "@wiberg/formbuilder";
 
-export const createFluentBuilder = (labelRender?: LabelRender) : IFormItemBuilder => {
+export const createFluentBuilder = (labelRender?: FormLabel) : IFormItemBuilder => {
 
     const id: Readonly<string> = "internal_fluentbuilder";
     
-    const defaultLabelRender: LabelRender = fluentUiLabel;
-    const builderLabelRender = labelRender ?? defaultLabelRender;
+    const DefaultLabelRender: FormLabel = FluentPropertyLabel;
+    const BuilderLabelRender = labelRender ?? DefaultLabelRender;
     const listComponent = <T extends IFormItem>() : ElementType<IFormListRenderProps<T>> => FluentList;
     const loadingSpinnerComponent = () : ElementType<ILoadingProps> | undefined => FluentFormShimmer;
 
@@ -30,10 +29,9 @@ export const createFluentBuilder = (labelRender?: LabelRender) : IFormItemBuilde
 
         const WrapInLabel = (element: JSX.Element) : JSX.Element => {
             return (
-                <div className="formbuilder-property" key={`propcon-${info.key}`}>
-                    <FluentPropertyLabel
+                <div className="formbuilder-property" key={info.key}>
+                    <BuilderLabelRender
                         key={`${info.key}-labelcontainer`}
-                        labelRender={builderLabelRender}
                         propertySchema={schema}
                         hideLabel={info.props.options.hideLabel}
                         parentKey={info.key}

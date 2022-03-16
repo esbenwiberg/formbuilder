@@ -1,5 +1,5 @@
 import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
-import { IFormItemBuilder, IFormItemBuilderResult, LabelRender, LoadingSpinner, ValidationMessageElement } from "../interfaces/IFormItemBuilder";
+import { FormLabel, IFormItemBuilder, IFormItemBuilderResult, IFormLabelProps, LoadingSpinner, ValidationMessageElement } from "../interfaces/IFormItemBuilder";
 import { IPropertyTypes, propertyTypes } from "../../models/property/PropertyType";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
 import { IDynamicComponentConfig } from "./config/IDynamicComponentConfig";
@@ -12,18 +12,18 @@ import { DynamicArrayField } from "./components/DynamicArrayField";
 import React, { ElementType, PropsWithChildren, ReactElement } from "react";
 import { ILoadingProps } from "../interfaces/ILoadingProps";
 import { IFormItem } from "../../interfaces/form/IFormItem";
-import { RequireOnlyOne } from "../..";
+import { getValidationMarkForProperty, RequireOnlyOne, ValidationMark } from "../..";
 import { buildPropertyRenderInfo } from "../helpers/BuildPropertyRenderProps";
 
-export const createComplexObjectBuilder = (labelRender?: LabelRender, validationMessage?: ValidationMessageElement, loadingSpinner?: LoadingSpinner) : IFormItemBuilder => {
+export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMessage?: ValidationMessageElement, loadingSpinner?: LoadingSpinner) : IFormItemBuilder => {
 
     const id: Readonly<string> = "internal_complexbuilder";
     
-    const defaultLabelRender: LabelRender = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(propertySchema: IFormItemPropertyOptions<T, C>, key: string) => <label key={key}>{propertySchema.displayName}</label>;
+    const DefaultLabelRender: FormLabel = <T extends IFormItem>(props: PropsWithChildren<IFormLabelProps<T>>) => <label key={props.parentKey + "-label"}>{props.propertySchema.displayName}</label>;
     const defaultValidationMessageElement = (message: string) : JSX.Element => <p>{message}</p>;
     const defaultSpinner: React.ElementType<ILoadingProps> = (props: PropsWithChildren<ILoadingProps>, context?: any): ReactElement<any, any> => <p>Loading...</p>;
 
-    const builderLabelRender = labelRender ?? defaultLabelRender;
+    const BuilderLabelRender = labelRender ?? DefaultLabelRender;
     const builderValidationMessageElement = validationMessage ?? defaultValidationMessageElement;
 
     const loadingSpinnerComponent = () : ElementType<ILoadingProps> | undefined => loadingSpinner ?? defaultSpinner;
@@ -53,11 +53,18 @@ export const createComplexObjectBuilder = (labelRender?: LabelRender, validation
         if (schema == null) throw Error("schema is null");
 
         let info = buildPropertyRenderInfo(renderProps, schema, property);
+        let validationMark: ValidationMark = getValidationMarkForProperty(renderProps, property);
 
         const WrapInLabel = (element: JSX.Element, addErrormessage?: boolean) : JSX.Element => {
             return (
                 <div className="formbuilder-property" key={info.props.key}>
-                    { !info.props.options.hideLabel && builderLabelRender(schema, info.key + "-label")}
+                     <BuilderLabelRender
+                        key={`${info.key}-labelcontainer`}
+                        propertySchema={schema}
+                        hideLabel={info.props.options.hideLabel}
+                        parentKey={info.key}
+                        validationMark={validationMark}
+                    />
                     { element }
                     { (addErrormessage && info.props.errorMessage) && builderValidationMessageElement(info.props.errorMessage)}
                 </div>

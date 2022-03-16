@@ -5,14 +5,14 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import simpleListDocs from './simpleListDocs.mdx';
 import { initializeIcons } from '@fluentui/react';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder } from '@wiberg/formbuilder';
 import { simpleListFormOptions } from './models/options';
 
 initializeIcons(/* optional base url */);
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder());
     
 export default {

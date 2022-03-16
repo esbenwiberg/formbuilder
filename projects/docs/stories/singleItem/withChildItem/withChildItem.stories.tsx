@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import withChildItemDocs from './withChildItemDocs.mdx';
 import { DefaultButton, initializeIcons, Label, PrimaryButton } from '@fluentui/react';
 import { itemWithChildFormItemOptions } from './models/options';
-import { fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder, FormRef } from '@wiberg/formbuilder';
 import { anotherFormItemSchemaProvider } from './models/schemas';
 import { IMyFormItemChild } from './models/interfaces';
@@ -14,7 +14,7 @@ initializeIcons(/* optional base url */);
 
 
 formbuilder.initialize()
-    .usingComplexBuilder(fluentUiLabel, fluentUiValidationMessageElement, FluentFormShimmer)
+    .usingComplexBuilder(FluentPropertyLabel, fluentUiValidationMessageElement, FluentFormShimmer)
     .withBuilders(createFluentBuilder())
     .withLanguage({ texts: { areas: { common: { save: "Save this" }, form: { dateDefaultPlaceholder: "Pick a date.." } } } })
 
