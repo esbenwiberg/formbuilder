@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 28 Apr 2022 08:29:39 GMT and should not be manually modified.
+This log was last generated on Thu, 28 Apr 2022 11:56:44 GMT and should not be manually modified.
+
+## 0.7.2
+Thu, 28 Apr 2022 11:56:44 GMT
+
+### Patches
+
+- reverted tsconfig changes
 
 ## 0.7.1
 Thu, 28 Apr 2022 08:29:39 GMT
