@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Wed, 16 Mar 2022 12:08:31 GMT and should not be manually modified.
+This log was last generated on Thu, 28 Apr 2022 08:29:39 GMT and should not be manually modified.
+
+## 0.7.1
+Thu, 28 Apr 2022 08:29:39 GMT
+
+### Patches
+
+- Changes to tsconfig. Fix to propertyoverrides not re-rendering
 
 ## 0.7.0
 Wed, 16 Mar 2022 12:08:31 GMT

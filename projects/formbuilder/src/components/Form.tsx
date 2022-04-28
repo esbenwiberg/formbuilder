@@ -106,7 +106,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     }, [props.schemaConfig]);
 
     useEffect(() => {
-        if (props.propertyOverrides == null) return;
+        // if (props.propertyOverrides == null) return;
         loadSchema(undefined, true);
     }, [props.propertyOverrides]);
 

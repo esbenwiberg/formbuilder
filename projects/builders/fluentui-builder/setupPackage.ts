@@ -1,10 +1,11 @@
-import fs from "fs";
+// import fs from "fs";
 
 // DO NOT DELETE THIS FILE
 // This file is used by build system to build a clean npm package with the compiled js files in the root of the package.
 // It will not be included in the npm package.
 
-function main() {
+async function main2() {
+    const fs = await import("fs");
     const source = fs.readFileSync(__dirname + "/../package.json").toString('utf-8');
     const sourceObj = JSON.parse(source);
 
@@ -27,4 +28,4 @@ function main() {
     fs.copyFileSync(__dirname + "/../../../../LICENSE", __dirname + "/LICENSE");
 }
 
-main();
+main2();

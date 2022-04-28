@@ -44,10 +44,10 @@ export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefi
         if (hiddenOverrides != null) {
             const found = hiddenOverrides.columns.indexOf(_) >= 0;
             if (hiddenOverrides.pickType == FormListColumnsPickType.Only) {
-                if (found) merged.properties[_].hide = () => true;
+                merged.properties[_].hide = () => found;
             }
             else if (hiddenOverrides.pickType == FormListColumnsPickType.Without) {
-                if (!found) merged.properties[_].hide = () => true;
+                merged.properties[_].hide = () => !found;
             }
         }
     })

@@ -1,12 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
+        "target": "es2021",
+        "module": "ESNext",
         "lib": ["dom", "ESNext", "ES2017"],
         "declaration": true,
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "downlevelIteration": true,
+        "allowSyntheticDefaultImports": true,
         "jsx": "react",
         "sourceMap": true,
         "allowJs": true,
