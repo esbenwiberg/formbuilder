@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 28 Apr 2022 11:56:44 GMT and should not be manually modified.
+This log was last generated on Tue, 03 May 2022 12:55:53 GMT and should not be manually modified.
+
+## 0.8.0
+Tue, 03 May 2022 12:55:53 GMT
+
+### Minor changes
+
+- Changed grouprender implementation
 
 ## 0.7.2
 Thu, 28 Apr 2022 11:56:44 GMT

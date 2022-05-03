@@ -52,16 +52,16 @@ export const MyNavGroupContainer: FunctionComponent<IProps> = props => {
                     selectedKey={ selectedKey }
                 />
             <div style={{position: "relative", top: "-130px", left: "400px" }}>
-                <Stack tokens={{ childrenGap: 8 }} key="askjrlfd">
-                    { (props.children as Array<JSX.Element>).filter(_ => _.props["data-groupname"]?.startsWith(selectedKey)) }
+                <Stack tokens={{ childrenGap: 8 }}>
+                    { (props.children as Array<JSX.Element>).filter(_ => _.props.grouping.displayName?.startsWith(selectedKey)) }
                 </Stack>
             </div>
         </div>
     )
 }
 
-export const myNavGroupRender = (grouping: IFormGrouping, children: Array<any>) : JSX.Element => (
-    <div key={grouping.groupKey} data-groupname={grouping.displayName}>
+export const MyNavGroupRender: React.FC<{grouping: IFormGrouping}> = ({grouping, children}) => (
+    <div key={grouping.groupKey}>
         <h3>{grouping.displayName}</h3>
         { children }
     </div>

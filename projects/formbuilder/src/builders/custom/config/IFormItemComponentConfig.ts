@@ -4,11 +4,12 @@ import { IFormGrouping } from "../../../interfaces/IFormGrouping";
 import { RequireOnlyOne } from "../../../interfaces/types/Partials";
 import { IDynamicPropertyComponentConfig } from "../../interfaces/IDynamicPropertyComponentConfig";
 import { ISchemaProvider } from "../../../interfaces/schema/ISchemaProvider";
+import React from "react";
 
 export interface IFormItemComponentConfig<T extends IFormItem> extends IDynamicPropertyComponentConfig<T> {
 	schemaConfig: RequireOnlyOne<IFormItemComponentSchemaConfig<T>, "registeredSchemaKey" | "schemaProvider" | "dynamicSchema">;
-	groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
-	groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
+	groupContainer?: React.FC<{groupings: Array<IFormGrouping>}>;
+	groupRender?: React.FC<{grouping: IFormGrouping}>;
 	[key: string]: any | undefined;
 }
 

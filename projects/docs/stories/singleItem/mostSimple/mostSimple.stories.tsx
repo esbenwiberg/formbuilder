@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import mostSimpleDocs from './mostSimpleDocs.mdx';
 import { initializeIcons, Label, PrimaryButton } from '@fluentui/react';
 import { simpleFormItemOptions } from './models/options';
-import { fluenFluentPropertyLabeltUiLabel, fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder } from '@wiberg/fluentui-builder';
+import { fluentUiValidationMessageElement, FluentFormShimmer, createFluentBuilder, FluentPropertyLabel } from '@wiberg/fluentui-builder';
 import { formbuilder, FormBuilder, FormRef, IFormBuilderProps } from '@wiberg/formbuilder';
 import { IMyFormItem } from './models/interfaces';
 

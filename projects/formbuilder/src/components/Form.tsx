@@ -26,8 +26,8 @@ export interface IFormItemProps<T extends IFormItem> {
     schema?: IFormSchema<T>;
     dynamicSchema?: IDynamicSchemaConfig<T>; // experimental
     onPropertyChange?: (item: T, prop: string, value: any) => void;
-    groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
-    groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
+    groupContainer?: React.FC<{groupings: Array<IFormGrouping>}>;
+    groupRender?: React.FC<{ grouping: IFormGrouping}>;
     validationOverride?: ValidationOverride;
     formItemConfigOverrides?: Partial<IFormItemOptions<T>>;
     propertyOverrides?: IPropertyOverrides<T>;
@@ -202,10 +202,11 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
         <div className="formbuilder-formcontainer" key={`${props.keyPrefix}-formbuilder-formcontainer`}>
             <GroupContainer groupings={groupings} key={`${props.keyPrefix}-formbuilder-groupcontainer`}>
                 {
-                    groupings?.map(_ => {
+                    groupings?.map((_, idx) => {
                         let children = formbuilder.formItemRender.properties(propertyRenderProps, _.properties);
                         if (children === undefined) return null;
-                        return props.groupRender ? props.groupRender(_, children) : children;
+                        const GroupRender = props.groupRender;
+                        return GroupRender ? <GroupRender grouping={_} key={`group-${_.groupKey}-${idx}`}>{children}</GroupRender> : children
                     })
                         ?? formbuilder.formItemRender.properties(propertyRenderProps) // not defining groups here, defaults to all
                 }

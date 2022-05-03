@@ -9,8 +9,8 @@ export interface IFormListProps<T extends IFormItem> {
     schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
     items: Array<T>;
     schema: IFormSchema<T>;
-    groupContainer?: React.ElementType<{groupings: Array<IFormGrouping>}>;
-    groupRender?: (grouping: IFormGrouping, children: Array<any>) => JSX.Element;
+    groupContainer?: React.FC<{groupings: Array<IFormGrouping>}>;
+    groupRender?: React.FC<{grouping: IFormGrouping}>;
     validationOverride?: ValidationOverride;
     listProps: IFormBuilderListProps<T>;
     keyPrefix?: string;

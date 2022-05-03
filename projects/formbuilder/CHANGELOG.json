@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.8.0",
+      "tag": "@wiberg/formbuilder_v0.8.0",
+      "date": "Tue, 03 May 2022 12:55:53 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Changed grouprender implementation"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.2",
       "tag": "@wiberg/formbuilder_v0.7.2",
       "date": "Thu, 28 Apr 2022 11:56:44 GMT",
