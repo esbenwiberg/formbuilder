@@ -1,6 +1,11 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Thu, 05 May 2022 10:46:06 GMT and should not be manually modified.
+This log was last generated on Thu, 05 May 2022 10:55:36 GMT and should not be manually modified.
+
+## 0.4.1
+Thu, 05 May 2022 10:55:36 GMT
+
+_Version update only_
 
 ## 0.4.0
 Thu, 05 May 2022 10:46:06 GMT

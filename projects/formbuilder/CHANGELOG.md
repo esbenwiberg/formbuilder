@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 05 May 2022 10:46:06 GMT and should not be manually modified.
+This log was last generated on Thu, 05 May 2022 10:55:36 GMT and should not be manually modified.
+
+## 0.9.0
+Thu, 05 May 2022 10:55:36 GMT
+
+### Minor changes
+
+- Rebuild/publish
 
 ## 0.8.0
 Thu, 05 May 2022 10:46:06 GMT

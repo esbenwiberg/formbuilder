@@ -2,6 +2,18 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.4.1",
+      "tag": "@wiberg/fluentui-builder_v0.4.1",
+      "date": "Thu, 05 May 2022 10:55:36 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.8.0` to `~0.9.0`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.4.0",
       "tag": "@wiberg/fluentui-builder_v0.4.0",
       "date": "Thu, 05 May 2022 10:46:06 GMT",

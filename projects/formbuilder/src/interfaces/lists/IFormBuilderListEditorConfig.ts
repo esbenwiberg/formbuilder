@@ -19,7 +19,7 @@ export interface IFormBuilderListEditorDialogContentOptions {
 
 export interface IFormBuilderListEditorContainerOptions {
     type: FormBuilderListEditorType;
-    contentWrapper?: IFormBuilderListEditorDialogContentOptions;
+    contentWrapper?: IFormBuilderListEditorDialogContentOptions; 
     customWidth?: string;
     panelSize?: FormListPanelSize;
 }
