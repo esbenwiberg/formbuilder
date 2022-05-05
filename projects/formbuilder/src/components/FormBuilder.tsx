@@ -30,6 +30,7 @@ export interface FormBuilderSingleItemProps<T extends IFormItem> {
 export interface IFormBuilderListProps<T extends IFormItem> {
     config: IFormBuilderListConfig<T>;
     onItemChange?: (item: T) => void;
+    onItemsRemoved?: (items: Array<T>) => void;
     searchConfig?: IFormBuilderListSearchConfig;
     columnConfig?: IFormBuilderListColumns<T>;
     menuConfig?: IFormBuilderListMenuConfig<T>;

@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 05 May 2022 18:20:50 GMT and should not be manually modified.
+This log was last generated on Thu, 05 May 2022 19:16:53 GMT and should not be manually modified.
+
+## 0.11.0
+Thu, 05 May 2022 19:16:53 GMT
+
+### Minor changes
+
+- Added 'onItemsRemoved' event for FormList
 
 ## 0.10.0
 Thu, 05 May 2022 18:20:50 GMT

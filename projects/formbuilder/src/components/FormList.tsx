@@ -125,6 +125,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         setFilteredItems(filteredItemsLeft);
         
         setSelectedItems([]);
+        if (props.listProps.onItemsRemoved) props.listProps.onItemsRemoved([...sItems]);
         if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...itemsLeft]);
     }
 
