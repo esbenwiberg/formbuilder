@@ -28,7 +28,9 @@ export const dynamicListFormOptions: IFormBuilderProps<IPluginFormItem> = {
         editorConfig: {
             title: item => `Invoke '${item?.name}'`,
             description: "Here's a little description for ya'",
-            type: FormBuilderListEditorType.Panel,
+            containerOptions: {
+                type: FormBuilderListEditorType.Panel
+            },
             dynamicForm: {
                 dynamicKey: (item: IPluginFormItem) => item.id as string,
                 schemaConfig: { schemaProvider: dynamicFormItemSchemaProvider },

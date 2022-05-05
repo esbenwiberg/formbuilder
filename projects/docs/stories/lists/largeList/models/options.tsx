@@ -27,7 +27,9 @@ export const largeListFormOptions: IFormBuilderProps<ILargeListFormItem> = {
         },
         editorConfig: {
             title: item => `Edit ${item.name}`,
-            type: FormBuilderListEditorType.Panel
+            containerOptions: {
+                type: FormBuilderListEditorType.Panel
+            }
         },
         searchConfig: {
             searchEnabled: true,

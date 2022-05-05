@@ -12,6 +12,7 @@ export * from "./components/dynamicComponents/DynamicPredefinedArrayField";
 export * from "./components/dynamicComponents/DynamicTextfield";
 export * from "./components/list/FluentDialog";
 export * from "./components/list/FluentList";
+export * from "./components/list/components/FluentDialogContentWrapper";
 export * from "./components/list/components/FluentFormShimmer";
 export * from "./components/list/components/FluentSpinner";
 export * from "./components/list/components/search/DelayedSearchBox";

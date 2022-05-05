@@ -2,10 +2,44 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
-      "version": "0.3.3",
-      "tag": "@wiberg/fluentui-builder_v0.3.3",
-      "date": "Tue, 03 May 2022 12:55:53 GMT",
+      "version": "0.5.0",
+      "tag": "@wiberg/fluentui-builder_v0.5.0",
+      "date": "Thu, 05 May 2022 18:20:50 GMT",
       "comments": {
+        "minor": [
+          {
+            "comment": "Merge of forgotten branch"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.9.0` to `~0.10.0`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.4.1",
+      "tag": "@wiberg/fluentui-builder_v0.4.1",
+      "date": "Thu, 05 May 2022 10:55:36 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.8.0` to `~0.9.0`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.4.0",
+      "tag": "@wiberg/fluentui-builder_v0.4.0",
+      "date": "Thu, 05 May 2022 10:46:06 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Made list dialog show immediately, not waiting for content"
+          }
+        ],
         "dependency": [
           {
             "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.7.2` to `~0.8.0`"

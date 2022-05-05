@@ -1,11 +1,25 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Tue, 03 May 2022 12:55:53 GMT and should not be manually modified.
+This log was last generated on Thu, 05 May 2022 18:20:50 GMT and should not be manually modified.
 
-## 0.3.3
-Tue, 03 May 2022 12:55:53 GMT
+## 0.5.0
+Thu, 05 May 2022 18:20:50 GMT
+
+### Minor changes
+
+- Merge of forgotten branch
+
+## 0.4.1
+Thu, 05 May 2022 10:55:36 GMT
 
 _Version update only_
+
+## 0.4.0
+Thu, 05 May 2022 10:46:06 GMT
+
+### Minor changes
+
+- Made list dialog show immediately, not waiting for content
 
 ## 0.3.2
 Thu, 28 Apr 2022 11:56:44 GMT

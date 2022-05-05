@@ -4,7 +4,6 @@ import { IFormSchema } from '../interfaces/schema/IFormSchema';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
-import { IFormBuilderListConfig, IFormBuilderListSearchConfig, IFormBuilderListColumns, IFormBuilderListMenuConfig, IFormBuilderListEditorConfig, IFormListShimmerConfig } from './config/IFormBuilderListConfig';
 import { Form, FormRef } from './Form';
 import { FormList } from './FormList';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
@@ -12,9 +11,15 @@ import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../utils/FormBuilderInitializer';
 import { ILoadingProps } from '../builders/interfaces/ILoadingProps';
 import { ISchemaProvider } from '../interfaces/schema/ISchemaProvider';
-import { RequireOnlyOne, RecursivePartial } from '..';
 import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
 import { IFormItem } from '../interfaces/form/IFormItem';
+import { IFormBuilderListConfig } from '../interfaces/lists/IFormBuilderListConfig';
+import { IFormBuilderListColumns } from '../interfaces/lists/IFormBuilderListColumns';
+import { IFormBuilderListEditorConfig } from '../interfaces/lists/IFormBuilderListEditorConfig';
+import { IFormBuilderListMenuConfig } from '../interfaces/lists/IFormBuilderListMenuConfig';
+import { IFormBuilderListSearchConfig } from '../interfaces/lists/IFormBuilderListSearchConfig';
+import { IFormListShimmerConfig } from '../interfaces/lists/IFormListShimmerConfig';
+import { RequireOnlyOne, RecursivePartial } from '../interfaces/types/Partials';
 
 export type FormBuilderItemType<T extends IFormItem> = T | Array<T>;
 

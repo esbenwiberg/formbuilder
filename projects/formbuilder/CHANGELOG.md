@@ -1,13 +1,27 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Tue, 03 May 2022 12:55:53 GMT and should not be manually modified.
+This log was last generated on Thu, 05 May 2022 18:20:50 GMT and should not be manually modified.
 
-## 0.8.0
-Tue, 03 May 2022 12:55:53 GMT
+## 0.10.0
+Thu, 05 May 2022 18:20:50 GMT
 
 ### Minor changes
 
-- Changed grouprender implementation
+- Merge of forgotten branch
+
+## 0.9.0
+Thu, 05 May 2022 10:55:36 GMT
+
+### Minor changes
+
+- Rebuild/publish
+
+## 0.8.0
+Thu, 05 May 2022 10:46:06 GMT
+
+### Minor changes
+
+- Added more granular options for List Editor dialog
 
 ## 0.7.2
 Thu, 28 Apr 2022 11:56:44 GMT

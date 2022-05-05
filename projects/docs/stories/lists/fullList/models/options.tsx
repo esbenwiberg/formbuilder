@@ -2,6 +2,7 @@ import { FormBuilderListEditorType, FormListColumnsPickType, IFormBuilderListMen
 import { MyTabGroupContainer, myTabGroupRender } from "./grouping";
 import { IFullListFormItem } from "./interfaces";
 import { fullListFormItemSchemaProvider } from "./schemas";
+import { FluentFormShimmer } from '@wiberg/fluentui-builder';
 
 const date = new Date();
 
@@ -39,7 +40,9 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
         editorConfig: {
             title: (item, creation) => creation ? "New item" : `Edit '${item?.firstname}'`,
             description: "Here's a little description for ya'",
-            type: FormBuilderListEditorType.Panel
+            containerOptions: {
+                type: FormBuilderListEditorType.Panel
+            }
         },
         searchConfig: {
             searchEnabled: true,
