@@ -118,10 +118,10 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             if (result === false) return;
         }
         props.updateSelectedItems([sItem]);
-        setTimeout(() => {
-            setNewItemMode(false);
-            setShowEditor(true);
-        }, 200); // TODO: why was this needed ? (ewi)
+    // setTimeout(() => {
+        setNewItemMode(false);
+        setShowEditor(true);
+    // }, 100); // TODO: why was this needed ? (ewi) (200 before)
     }
 
     const deleteItems = (pre?: (items: Array<T>) => boolean | void) => {
@@ -178,9 +178,9 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                     {
                         validationFailed && <div style={{paddingLeft: "10px", paddingTop: "2px" }}><Icon iconName="Error" title="Validation errors" styles={{root: { color: "red", fontSize: "20px", cursor: "help" }}} /></div>
                     }
-                  </Stack>)
+                </Stack>)
         },
-        [showEditor, validationFailed],
+        [validationFailed]
     );
 
     const handleColumnReorder = (draggedIndex: number, targetIndex: number) => {
@@ -206,10 +206,9 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                                 show={ (show: boolean) => {
                                     setValidationFailed(false);                                    
                                     setShowEditor(show);
-                                 } }
-                                dialogType={ props.listProps.editorConfig?.type }
+                                } }
                                 ref={ editorFormRef }
-                             />
+                            />
                 }
                 <div className="formbuilder-listcontainer-toolbar">
                 { props.listProps.searchConfig?.searchEnabled &&

@@ -35,6 +35,7 @@ export const DynamicTextfield = <T extends IFormItem>(props: PropsWithChildren<I
 				resizable={props.config?.resizable}
 				onBlur={() => props.onBlur(props.value)}
 				errorMessage={props.errorMessage}
+				canRevealPassword
 			/>
 }
 

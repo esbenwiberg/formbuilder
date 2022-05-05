@@ -1,4 +1,5 @@
-import { FormListColumnsPickType, IFormBuilderListMenuItemSelectionMode, IFormListColumnsPicks } from "../../components/config/IFormBuilderListConfig";
+import { IFormListColumnsPicks, FormListColumnsPickType } from "../../interfaces/lists/IFormBuilderListColumns";
+import { IFormBuilderListMenuItemSelectionMode } from "../../interfaces/lists/IFormBuilderListMenuConfig";
 
 const copyAndSort = <T>(items: T[], property: string, isSortedDescending?: boolean): T[] => {
     let key = property as keyof T;

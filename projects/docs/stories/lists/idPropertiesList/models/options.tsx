@@ -19,7 +19,9 @@ export const listWithIdsFormOptions: IFormBuilderProps<IMyIdValueListFormItem> =
         },
         editorConfig: {
             title: item => `Edit '${item?.name}'`,
-            type: FormBuilderListEditorType.Panel
+            containerOptions: {
+                type: FormBuilderListEditorType.Panel
+            }
         }
     }
 }

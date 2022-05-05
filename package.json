@@ -3,7 +3,8 @@
     "post-install": "husky install",
     "commit": "git add -A && cz",
     "storybook:install": "cd projects/docs && npm i",
-    "storybook:build": "cd projects/docs && npm run build-storybook"
+    "storybook:build": "cd projects/docs && npm run build-storybook",
+    "storybook": "cd projects/docs && npm run storybook"
   },
   "devDependencies": {
     "@types/node": "^16.11.12",

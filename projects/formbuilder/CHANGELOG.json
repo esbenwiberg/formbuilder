@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.8.0",
+      "tag": "@wiberg/formbuilder_v0.8.0",
+      "date": "Thu, 05 May 2022 10:46:06 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Added more granular options for List Editor dialog"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.7.2",
       "tag": "@wiberg/formbuilder_v0.7.2",
       "date": "Thu, 28 Apr 2022 11:56:44 GMT",

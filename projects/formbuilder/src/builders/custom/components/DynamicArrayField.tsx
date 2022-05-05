@@ -1,5 +1,4 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
-import { FormBuilderListEditorType, IFormBuilderListMenuItemSelectionMode } from '../../../components/config/IFormBuilderListConfig';
 import { FormBuilder } from '../../../components/FormBuilder';
 import { IPropertyRenderProps } from '../../../interfaces/IPropertyRenderProps';
 import { IFormItemOptions } from '../../../interfaces/options/IFormItemOptions';
@@ -9,7 +8,9 @@ import { ValidationMark } from '../../../models/validation/ValidationMark';
 import { IDynamicArrayFieldConfig } from '../config/IDynamicArrayFieldConfig';
 import React from "react";
 import { IFormItem } from '../../../interfaces/form/IFormItem';
- 
+import { FormBuilderListEditorType } from '../../../interfaces/lists/IFormBuilderListEditorConfig';
+import { IFormBuilderListMenuItemSelectionMode } from '../../../interfaces/lists/IFormBuilderListMenuConfig';
+
 interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicArrayFieldConfig<T>, Array<any> | undefined> { 
     config?: IDynamicArrayFieldConfig<T>;
 }
@@ -63,7 +64,9 @@ export const DynamicArrayField = <T extends IFormItem>(props: PropsWithChildren<
                     },
                     editorConfig: {
                         title: item => "Item",
-                        type: FormBuilderListEditorType.Dialog
+                        containerOptions: {
+                            type: FormBuilderListEditorType.Dialog
+                        }
                     },
                     menuConfig: {
                         actions: (newItem, editItem, deleteItems) => (

@@ -6,7 +6,6 @@ import { IValidationResult } from '../models/validation/IValidationResult';
 import { ValidationEventType } from '../models/validation/ValidationEventType';
 import { ValidationOverride } from '../models/validation/ValidationOverride';
 import { ValidationResult } from '../models/validation/ValidationResult';
-import { IDynamicSchemaConfig } from './config/IFormBuilderListConfig';
 import { formValidator } from './helpers/FormValidator';
 import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IItemRenderProps } from '../interfaces/IItemRenderProps';
@@ -19,6 +18,7 @@ import { RequireOnlyOne } from '../interfaces/types/Partials';
 import { ISchemaConfig } from './FormBuilder';
 import { IFormItem } from '../interfaces/form/IFormItem';
 import { useIsMounted } from '../hooks/useIsMounted';
+import { IDynamicSchemaConfig } from '../interfaces/lists/IDynamicSchemaConfig';
 
 export interface IFormItemProps<T extends IFormItem> {
     schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
