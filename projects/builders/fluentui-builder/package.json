@@ -38,8 +38,7 @@
     "headless"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "author": "Esben Wiberg",
   "license": "MIT",
