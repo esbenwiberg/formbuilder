@@ -2,7 +2,7 @@ import { PropsWithChildren, ReactElement, useEffect, useState } from 'react';
 import { TextField } from '@fluentui/react';
 import React from "react";
 import { IFormItem, IPropertyRenderProps, json, IDynamicJsonFieldConfig } from '@wiberg/formbuilder';
- 
+
 interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicJsonFieldConfig<T>, string | undefined> { 
     config?: IDynamicJsonFieldConfig<T>;
 }

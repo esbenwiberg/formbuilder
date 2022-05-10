@@ -1,5 +1,5 @@
 import { FormBuilderListEditorType, FormListColumnsPickType, IFormBuilderListMenuItemSelectionMode, IFormBuilderProps, ValidationOverride } from "@wiberg/formbuilder";
-import { MyTabGroupContainer, myTabGroupRender } from "./grouping";
+import { MyTabGroupContainer, MyTabGroupRender } from "./grouping";
 import { IFullListFormItem } from "./interfaces";
 import { fullListFormItemSchemaProvider } from "./schemas";
 import { FluentFormShimmer } from '@wiberg/fluentui-builder';
@@ -41,7 +41,10 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
             title: (item, creation) => creation ? "New item" : `Edit '${item?.firstname}'`,
             description: "Here's a little description for ya'",
             containerOptions: {
-                type: FormBuilderListEditorType.Panel
+                type: FormBuilderListEditorType.Panel,
+                contentWrapper: {
+                    renderDelay: 50
+                }
             }
         },
         searchConfig: {
@@ -62,6 +65,6 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
         }
     },
     groupContainer: MyTabGroupContainer,
-    groupRender: myTabGroupRender,
+    groupRender: MyTabGroupRender,
     validationOverride: ValidationOverride.None
 }
