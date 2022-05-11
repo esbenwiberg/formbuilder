@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.11.1",
+      "tag": "@wiberg/formbuilder_v0.11.1",
+      "date": "Wed, 11 May 2022 13:12:39 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added support for input as password"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.0",
       "tag": "@wiberg/formbuilder_v0.11.0",
       "date": "Thu, 05 May 2022 19:16:53 GMT",

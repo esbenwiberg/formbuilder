@@ -1,6 +1,6 @@
 {
   "name": "@wiberg/formbuilder",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -36,7 +36,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^16.11.12",
-    "@types/react": "^17.0.37",
+    "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "barrelsby": "^2.3.1",
     "typescript": "^4.5.4"

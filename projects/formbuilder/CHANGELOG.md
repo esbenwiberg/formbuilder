@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Thu, 05 May 2022 19:16:53 GMT and should not be manually modified.
+This log was last generated on Wed, 11 May 2022 13:12:39 GMT and should not be manually modified.
+
+## 0.11.1
+Wed, 11 May 2022 13:12:39 GMT
+
+### Patches
+
+- Added support for input as password
 
 ## 0.11.0
 Thu, 05 May 2022 19:16:53 GMT
