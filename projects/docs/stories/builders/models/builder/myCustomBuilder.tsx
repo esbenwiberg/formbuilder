@@ -1,5 +1,5 @@
 import React from "react";
-import { IFormItemBuilder, IFormItem, IDynamicPropertyComponentConfig, IItemRenderProps, IFormItemPropertyOptions, IFormItemBuilderResult, buildPropertyRenderInfo, FormLabel } from "@wiberg/formbuilder";
+import { IFormItemBuilder, IFormItem, IDynamicPropertyComponentConfig, IItemRenderProps, IFormItemPropertyOptions, IFormItemBuilderResult, buildPropertyRenderInfo, FormLabel, ValidationMark, getValidationMarkForProperty } from "@wiberg/formbuilder";
 import { customPropertyTypes, ICustomPropertyTypes } from "./customPropertyType";
 import { SpecialTextField } from "./specialTextField";
 import { SpecialNumberField } from "./specialNumberField";
@@ -21,6 +21,8 @@ export const createCustomBuilder = () : IFormItemBuilder => {
         if (schema == null) throw Error("schema is null");
         
         let info = buildPropertyRenderInfo(renderProps, schema, property);
+
+        let validationMark: ValidationMark = getValidationMarkForProperty(renderProps, property);
 
         const WrapInLabel = (element: JSX.Element, addErrormessage?: boolean) : JSX.Element => {
             return (

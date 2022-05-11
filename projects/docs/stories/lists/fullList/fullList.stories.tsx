@@ -40,10 +40,10 @@ export const FullList: ComponentStory<typeof FormBuilder> = () => {
   useEffect(() => {
     setTimeout(() => {
       setItems([
-         { id: "1", firstname: 'Esben', age: 33, awesome: true, start: new Date(2022,1,1), custom: "Something custom" } as IFullListFormItem,
-         { id: "2", firstname: 'Other', age: 12, awesome: false, custom: "Come on!"  } as IFullListFormItem
-     ]);
- }, 2000);
+        { id: "1", firstname: 'Esben', age: 33, awesome: true, start: new Date(2022,1,1), custom: "Something custom" } as IFullListFormItem,
+        { id: "2", firstname: 'Other', age: 12, awesome: false, custom: "Come on!"  } as IFullListFormItem
+    ]);
+  }, 2000);
   }, [])
 
   return (

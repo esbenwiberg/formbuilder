@@ -1,4 +1,4 @@
- import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps, Icon, Stack, Spinner } from "@fluentui/react";
+import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps, Icon, Stack, Spinner } from "@fluentui/react";
 import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
@@ -32,7 +32,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [props.columns])
 
     useEffect(() => {
-      setEnableShimmer(props.shimmer);
+        setEnableShimmer(props.shimmer);
     }, [props.shimmer])
 
     useEffect(() => {

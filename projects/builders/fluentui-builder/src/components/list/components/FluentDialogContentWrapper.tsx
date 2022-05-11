@@ -9,7 +9,7 @@ export const FluentDialogContentWrapper: FunctionComponent<IFormBuilderListEdito
 	useEffect(() => {
 		setTimeout(() => {
 			setReady(true);
-		}, renderDelay ?? 367);
+		}, renderDelay ?? 10);
 	}, [])
 
     if (!ready) return <>{fallback ?? null}</>;

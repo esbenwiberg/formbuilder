@@ -33,7 +33,7 @@ export const FluentDialog = forwardRef(<T extends IFormItem, FormRef>(props : IF
                             }}
                         >
                             <>
-                                <FluentDialogContentWrapper renderDelay={props.editorConfig?.containerOptions?.contentWrapper?.renderDelay } fallback={props.editorConfig?.containerOptions?.contentWrapper?.fallback} >
+                                <FluentDialogContentWrapper key={`${props.keyPrefix}-formwrapper`} renderDelay={props.editorConfig?.containerOptions?.contentWrapper?.renderDelay } fallback={props.editorConfig?.containerOptions?.contentWrapper?.fallback} >
                                     <Form
                                         key={`${props.keyPrefix}-listitemdialogform`}
                                         ref={ref as any}
@@ -77,7 +77,7 @@ export const FluentDialog = forwardRef(<T extends IFormItem, FormRef>(props : IF
                             isFooterAtBottom={true}
                             styles={{ header: { paddingBottom: "30px" }, footerInner: { borderTop: "1px solid rgb(237, 235, 233)" } }}
                         >
-                            <FluentDialogContentWrapper renderDelay={props.editorConfig?.containerOptions?.contentWrapper?.renderDelay } fallback={props.editorConfig?.containerOptions?.contentWrapper?.fallback} >
+                            <FluentDialogContentWrapper key={`${props.keyPrefix}-formwrapper`} renderDelay={props.editorConfig?.containerOptions?.contentWrapper?.renderDelay } fallback={props.editorConfig?.containerOptions?.contentWrapper?.fallback} >
                                 <Form
                                     key={`${props.keyPrefix}-listitempanelform`}
                                     ref={ref as any}

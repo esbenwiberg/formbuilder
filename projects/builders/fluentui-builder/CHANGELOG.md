@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Thu, 05 May 2022 19:16:53 GMT and should not be manually modified.
+This log was last generated on Wed, 11 May 2022 13:12:39 GMT and should not be manually modified.
+
+## 0.5.2
+Wed, 11 May 2022 13:12:39 GMT
+
+### Patches
+
+- Added support for input as password
 
 ## 0.5.1
 Thu, 05 May 2022 19:16:53 GMT
