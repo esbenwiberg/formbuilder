@@ -65,7 +65,7 @@ common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
 # Heft
-.heft
+#.heft
 
 # dist folders
 dist/

@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Wed, 18 May 2022 09:52:55 GMT and should not be manually modified.
+This log was last generated on Wed, 18 May 2022 13:50:55 GMT and should not be manually modified.
+
+## 0.11.3
+Wed, 18 May 2022 13:50:55 GMT
+
+### Patches
+
+- changed to ES6 modules
 
 ## 0.11.2
 Wed, 18 May 2022 09:52:55 GMT
