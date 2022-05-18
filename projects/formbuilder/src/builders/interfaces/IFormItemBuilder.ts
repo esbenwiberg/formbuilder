@@ -30,3 +30,4 @@ export interface IFormLabelProps<T extends IFormItem> {
 	propertySchema: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>;
 	parentKey?: string;
 }
+ 

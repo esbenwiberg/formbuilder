@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.11.2",
+      "tag": "@wiberg/formbuilder_v0.11.2",
+      "date": "Wed, 18 May 2022 09:52:55 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Changed build to use heft"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.1",
       "tag": "@wiberg/formbuilder_v0.11.1",
       "date": "Wed, 11 May 2022 13:12:39 GMT",

@@ -47,7 +47,7 @@
     },
     {
       "commandKind": "bulk",
-      "name": "prebuildpackage",
+      "name": "prebuildpackages",
       "summary": "Prebuilds packages and strips package.json",
       "description": "Prebuilds packages and strips package.json.",
       "enableParallelism": true,

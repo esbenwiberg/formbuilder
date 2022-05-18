@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Wed, 11 May 2022 13:12:39 GMT and should not be manually modified.
+This log was last generated on Wed, 18 May 2022 09:52:55 GMT and should not be manually modified.
+
+## 0.11.2
+Wed, 18 May 2022 09:52:55 GMT
+
+### Patches
+
+- Changed build to use heft
 
 ## 0.11.1
 Wed, 11 May 2022 13:12:39 GMT

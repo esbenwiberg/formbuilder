@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Wed, 11 May 2022 13:12:39 GMT and should not be manually modified.
+This log was last generated on Wed, 18 May 2022 09:52:55 GMT and should not be manually modified.
+
+## 0.5.3
+Wed, 18 May 2022 09:52:55 GMT
+
+### Patches
+
+- Changed build system to use heft
 
 ## 0.5.2
 Wed, 11 May 2022 13:12:39 GMT
