@@ -1,17 +1,16 @@
 {
   "name": "@wiberg/formbuilder",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "A builder of forms! It is highly customizable and can be tailored to your exact needs. As crazy as they may be..",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -b",
-    "build:watch": "tsc --incremental",
-    "build:publish": "tsc -p tsconfig.publish.json --outDir publish",
+    "build": "heft build --clean",
+    "build:watch": "heft build --clean --watch",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
     "clean:dist": "npx rimraf dist",
     "clean:publish": "npx rimraf publish",
-    "prebuildpackage": "npm run clean:publish && npm run build:publish && node publish/setupPackage.js"
+    "prebuildpackage": "npm run build && node setupPackage.js"
   },
   "repository": {
     "type": "git",
@@ -39,7 +38,8 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "barrelsby": "^2.3.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.6.4",
+    "@rushstack/heft": "^0.45.2"
   },
   "dependencies": {
     "react": "^17.0.2",

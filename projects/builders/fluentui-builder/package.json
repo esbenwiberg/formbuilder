@@ -1,17 +1,16 @@
 {
   "name": "@wiberg/fluentui-builder",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A builder for the '@wiberg/formbuilder' using FluentUI components.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -b",
-    "build:watch": "tsc --incremental",
-    "build:publish": "tsc -p tsconfig.publish.json --outDir publish",
+    "build": "heft build --clean",
+    "build:watch": "heft build --clean --watch",
     "barrels": "barrelsby --delete --c ./barrelsbyconfig.json",
     "clean:dist": "npx rimraf dist",
     "clean:publish": "npx rimraf publish",
-    "prebuildpackage": "npm run clean:publish && npm run build:publish && node publish/setupPackage.js"
+    "prebuildpackage": "npm run build && node setupPackage.js"
   },
   "repository": {
     "type": "git",
@@ -48,12 +47,13 @@
     "@fluentui/react": "^8.47.2",
     "@types/node": "^16.11.12",
     "barrelsby": "^2.3.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.6.4",
+    "@rushstack/heft": "^0.45.2"
   },
   "dependencies": {
     "@fluentui/react": "^8.47.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "@wiberg/formbuilder": "~0.11.1"
+    "@wiberg/formbuilder": "~0.11.2"
   }
 }

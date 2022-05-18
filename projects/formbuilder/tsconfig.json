@@ -1,39 +1,10 @@
 {
+    "$schema": "http://json.schemastore.org/tsconfig",
+    "extends": "../../.heft/tsconfig.json",
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "lib": ["dom", "ESNext", "ES2017"],
-        "declaration": true,
         "outDir": "dist",
-        "strict": true,
-        "esModuleInterop": true,
-        "jsx": "react",
-        "sourceMap": true,
-        "allowJs": true,
-        "rootDirs": [ "./", "src" ]
+        "rootDirs": ["src/"]
     },
-    "exclude": ["node_modules", "dist"],
-    "include": ["src"]
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "dist"]
 }
-
-
-// {
-//     "compilerOptions": {
-//         "target": "es2021",
-//         "module": "ESNext",
-//         "lib": ["dom", "ESNext", "ES2017"],
-//         "declaration": true,
-//         "outDir": "dist",
-//         "strict": true,
-//         "esModuleInterop": true,
-//         "moduleResolution": "Node",
-//         "downlevelIteration": true,
-//         "allowSyntheticDefaultImports": true,
-//         "jsx": "react",
-//         "sourceMap": true,
-//         "allowJs": true,
-//         "rootDirs": [ "./", "src" ]
-//     },
-//     "exclude": ["node_modules", "dist"],
-//     "include": ["src"]
-// }
