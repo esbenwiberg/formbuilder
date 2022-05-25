@@ -2,6 +2,23 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.5.5",
+      "tag": "@wiberg/fluentui-builder_v0.5.5",
+      "date": "Wed, 25 May 2022 21:24:25 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "changed all FormList ction pre-events to support promises"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.11.3` to `~0.11.4`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.4",
       "tag": "@wiberg/fluentui-builder_v0.5.4",
       "date": "Wed, 18 May 2022 13:50:55 GMT",

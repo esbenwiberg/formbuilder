@@ -2,7 +2,7 @@ import { IFormItem } from "../form/IFormItem";
 
 export interface IFormBuilderListMenuConfig<T extends IFormItem> {
     //** Only use the preprocessor on 'editItem' when 'IFormBuilderListConfig' has disabled 'item invoke' (otherwaise this will cause inconsistency, as the preprocesser isn't called there) */
-    actions?: (newItem: (pre?: (item: T) => void | boolean) => void, editItem: (pre?: (item: T) => void | boolean) => void, deleteItems: (pre?: (items: Array<T>) => void | boolean) => void) => Array<IFormBuilderListMenuItem<T>>;
+    actions?: (newItem: (pre?: (item: T) => boolean | void | Promise<boolean | void>) => void, editItem: (pre?: (item: T) => boolean | void | Promise<boolean | void>) => void, deleteItems: (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => void) => Array<IFormBuilderListMenuItem<T>>;
 }
 
 export enum IFormBuilderListMenuItemSelectionMode {

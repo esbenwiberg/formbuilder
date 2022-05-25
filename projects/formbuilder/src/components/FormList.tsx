@@ -104,12 +104,12 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         }
     }
 
-    const deleteItems = (pre?: (items: Array<T>) => boolean | void) => {
+    const deleteItems = async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
         let sItems = [...selectedItems];
         // pre event (can cancel the operation)
         if (pre) {
-            let result = pre(sItems);
-            if (result === false) return;
+            let result = await pre(sItems);
+            if (result === false) return false;
         }
 
         let itemsLeft: T[] = [];

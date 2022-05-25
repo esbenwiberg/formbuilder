@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.11.4",
+      "tag": "@wiberg/formbuilder_v0.11.4",
+      "date": "Wed, 25 May 2022 21:24:25 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "changed all FormList ction pre-events to support promises"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.3",
       "tag": "@wiberg/formbuilder_v0.11.3",
       "date": "Wed, 18 May 2022 13:50:55 GMT",

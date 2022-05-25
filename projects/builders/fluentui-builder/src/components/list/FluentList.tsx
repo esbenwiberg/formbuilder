@@ -72,7 +72,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
 
     
     const buildColumns = () : Array<IColumn> => {
-        return props.columns.map(_ => {
+        return props.columns.map((_: IColumn) => {
             let col = _ as IColumn;
             col.onColumnClick = () => props.sortColumn(_ as IFormListColumnInfo);
             
@@ -99,11 +99,11 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
 
     // TODO: move crud operations out to FormList (ewi)
     //       with alot of other stuff as well
-    const createItem = (pre?: (item: T) => boolean | void) => {
+    const createItem = async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
         let item = {} as T;
         if (pre) {
-            let result = pre(item);
-            if (result === false) return;
+            let result = await pre(item);
+            if (result === false) return false;
         }
         selection.setAllSelected(false);
         props.updateSelectedItems([item]);
@@ -111,11 +111,11 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         setShowEditor(true); 
     }
 
-    const editItem = (pre?: (item: T) => void | boolean) => {
+    const editItem = async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
         let sItem = {...props.selectedItems[0]};
         if (pre) {
-            let result = pre(sItem);
-            if (result === false) return;
+            let result = await pre(sItem);
+            if (result === false) return false;
         }
         props.updateSelectedItems([sItem]);
     // setTimeout(() => {
@@ -124,8 +124,8 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     // }, 100); // TODO: why was this needed ? (ewi) (200 before)
     }
 
-    const deleteItems = (pre?: (items: Array<T>) => boolean | void) => {
-        const success = props.deleteItems(pre);
+    const deleteItems = async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
+        const success = await props.deleteItems(pre);
         if (!success) return;
         selection.setAllSelected(false);
     }

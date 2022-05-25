@@ -39,7 +39,7 @@ export const fullListFormItemSchemaProvider: ISchemaProvider<IFullListFormItem> 
                             config: {
                                 itemIdentifier: (item: IFullListFormChildItem) => item?.endpoint as string,
                             },
-                            editorConfig: { title: (item: IFullListFormChildItem) => `Edit: ${item?.endpoint}`, type: FormBuilderListEditorType.Dialog },
+                            editorConfig: { title: (item: IFullListFormChildItem) => `Edit: ${item?.endpoint}`, containerOptions: { type: FormBuilderListEditorType.Dialog } },
                             searchConfig: { searchableFields: ["name", "url"], searchEnabled: true, searchPlaceHolder: "Filter endpoints.." },
                             menuConfig: {
                                 actions: (newItem, editItem, deleteItems) => (

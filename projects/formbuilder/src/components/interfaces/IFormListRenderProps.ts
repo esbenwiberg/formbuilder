@@ -10,7 +10,7 @@ export interface IFormListRenderProps<T extends IFormItem> extends IFormListProp
     filteredItems: Array<T>;
     selectedItems: Array<T>;
     
-    deleteItems: (pre?: (items: Array<T>) => boolean | void) => boolean | void;
+    deleteItems: (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => boolean | void | Promise<boolean | void>;
     columnValueRender?: (propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>) => ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined;
 
     columns: Array<IFormListColumnInfo>;

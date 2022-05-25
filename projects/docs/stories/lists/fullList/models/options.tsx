@@ -11,7 +11,11 @@ const newItemPreProcess = (item: IFullListFormItem) : void => {
     item.endpoints = [];
 }
 
-const deleteItemsPreProcess = (items: Array<IFullListFormItem>) : boolean => (items.findIndex(_ => _.firstname === "Esben") < 0);
+const deleteItemsPreProcess = (items: Array<IFullListFormItem>) : Promise<boolean> => new Promise<boolean>((resolve, reject) => {
+    setTimeout(() => {
+        resolve(items.findIndex(_ => _.firstname === "Esben") < 0)
+    }, 2000);
+});
 
 
 
