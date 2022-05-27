@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import { formbuilder } from '../utils/FormBuilderInitializer';
 import { useStateRef } from '../hooks/useStateRef';
 import { IFormItemPropertyOptions } from '../interfaces/options/IFormItemPropertyOptions';
@@ -66,11 +66,11 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         else {
             setEnableShimmer(false);
         }
-    }, [items, props.listProps?.shimmerConfig, props.listProps?.shimmerConfig?.forceShimmer ])
+    }, [items, props.listProps?.shimmerConfig, props.listProps?.shimmerConfig?.forceShimmer, setEnableShimmer])
 
     if (listProps?.schema == null) return null;
 
-    const itemChangeInCollection = (collection: Array<T>, item: T) : Array<T> => {
+    const itemChangeInCollection = useCallback((collection: Array<T>, item: T) : Array<T> => {
         let clone = [...collection];
         let itemIndex = clone.findIndex(_ => props.listProps.config.itemIdentifier(_) == props.listProps.config.itemIdentifier(item));
         if (itemIndex < 0)
@@ -78,9 +78,9 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         else
             clone[itemIndex] = {...item};
         return clone;
-    }
+    }, [props.listProps.config.itemIdentifier])
 
-    const onItemChange = async (item: T) : Promise<void> => {
+    const onItemChange = useCallback(async (item: T) : Promise<void> => {
         if (item == null) return;
         // changed
         let changedItems = itemChangeInCollection(itemsRef.current, item);
@@ -95,18 +95,17 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         // selected
         let changedSelectedItems = itemChangeInCollection(selectedItemsRef.current, item);
         setSelectedItems(changedSelectedItems);
+    }, [itemChangeInCollection, setSelectedItems, setFilteredItems, setItems, props.listProps.onItemChange, props.listProps.config.onItemsChange, itemsRef.current, filteredItemsRef.current]);
 
-    }
-
-    const columnValueRender = (propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>) : ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined => {
+    const columnValueRender = useCallback((propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>) : ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined => {
         let valueRender = propInfo?.listItemOptions?.customValueRender as any;
         if (valueRender == undefined) return undefined;
         else {
             return (item: T) => valueRender(item, ((item: T) => onItemChange(item as T)));
         }
-    }
+    }, [onItemChange])
 
-    const deleteItems = async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
+    const deleteItems = useCallback(async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
         let sItems = [...selectedItems];
         // pre event (can cancel the operation)
         if (pre) {
@@ -129,9 +128,9 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         setSelectedItems([]);
         if (props.listProps.onItemsRemoved) props.listProps.onItemsRemoved([...sItems]);
         if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...itemsLeft]);
-    }
+    }, [setItems, setSelectedItems, setFilteredItems, props.listProps.onItemsRemoved, props.listProps.config.onItemsChange, selectedItems, items, filteredItems])
 
-    const buildColumns = () : Array<IFormListColumnInfo> => {
+    const buildColumns = useCallback(() : Array<IFormListColumnInfo> => {
         let propertyOptions = props.schema.options.properties;
         let columnOptions = props.listProps.columnConfig?.columnsPicks;
         let propKeys = Object.keys(propertyOptions);
@@ -158,9 +157,9 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
             });
         else
             return columns;
-    }
+    }, [props.schema.options.properties, props.listProps.columnConfig?.columnsPicks, props.listProps.columnConfig?.columnOrder, formListHelper.filterColumns])
 
-    const sortColumn = (column: IFormListColumnInfo) : void => {
+    const sortColumn = useCallback((column: IFormListColumnInfo) : void => {
         if (column == null) return;
         const newColumns: IFormListColumnInfo[] = columns.slice();
         const currColumn: IFormListColumnInfo = columnRef.current.filter(currCol => column.key === currCol.key)[0];
@@ -180,10 +179,10 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         setColumns(newColumns);
         
         setFilteredItems(newItems);
-    }
+    }, [setFilteredItems, setColumns, columns, columnRef.current, filteredItemsRef.current])
 
-    const ListContainer: React.ComponentType<IFormListRenderProps<T>> = formbuilder.formItemRender.list() as any; // WTF!! added readOnly to listprops and suddently it wont compile - works fine though (ewi)
-
+    const ListContainer: React.ComponentType<IFormListRenderProps<T>> = useMemo(() => formbuilder.formItemRender.list() as any, [formbuilder.formItemRender.list]); // WTF!! added readOnly to listprops and suddently it wont compile - works fine though (ewi)
+ 
 	return (
         <div className="formbuilder-listcontainer" key={`${props.keyPrefix}`} >
             <ListContainer

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@wiberg/formbuilder",
+      "comment": "Added more useCallbacks to FormList",
+      "type": "none"
+    }
+  ],
+  "packageName": "@wiberg/formbuilder"
+}

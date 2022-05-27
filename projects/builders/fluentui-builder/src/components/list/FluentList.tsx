@@ -72,7 +72,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [props.listProps.menuConfig, props.selectedItems])
 
     
-    const buildColumns = () : Array<IColumn> => {
+    const buildColumns = useCallback(() : Array<IColumn> => {
         return props.columns.map((_: IColumn) => {
             let col = _ as IColumn;
             col.onColumnClick = () => props.sortColumn(_ as IFormListColumnInfo);
@@ -96,11 +96,11 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
 
             return col;
         });
-    }
+    }, [props.columns, props.sortColumn, props.listProps.columnConfig?.resizableColumns])
 
     // TODO: move crud operations out to FormList (ewi)
     //       with alot of other stuff as well
-    const createItem = async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
+    const createItem = useCallback(async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
         let item = {} as T;
         if (pre) {
             let result = await pre(item);
@@ -110,9 +110,9 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         props.updateSelectedItems([item]);
         setNewItemMode(true);
         setShowEditor(true); 
-    }
+    }, [props.updateSelectedItems, setNewItemMode, setShowEditor])
 
-    const editItem = async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
+    const editItem = useCallback(async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
         let sItem = {...props.selectedItems[0]};
         if (pre) {
             let result = await pre(sItem);
@@ -123,20 +123,20 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         setNewItemMode(false);
         setShowEditor(true);
     // }, 100); // TODO: why was this needed ? (ewi) (200 before)
-    }
+    }, [props.updateSelectedItems, setNewItemMode, setShowEditor, props.selectedItems])
 
-    const deleteItems = async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
+    const deleteItems = useCallback(async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
         const success = await props.deleteItems(pre);
         if (!success) return;
         selection.setAllSelected(false);
-    }
+    }, [props.deleteItems])
 
-    const validateForm = async () : Promise<ValidationResult | undefined> => {
+    const validateForm = useCallback(async () : Promise<ValidationResult | undefined> => {
         let validated = await editorFormRef.current?.validateItem();
         return validated;
-    }
+    }, [editorFormRef.current?.validateItem])
 
-    const saveForm = async () : Promise<void> => {
+    const saveForm = useCallback(async () : Promise<void> => {
         let validated = await validateForm();
         if (validated == ValidationResult.FailedDontBlock) {
             setShowValidationOverrideConfirm(true);
@@ -158,17 +158,17 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             setFormLoading(false);
             setShowEditor(false);
         }
-    }
+    }, [validateForm, setShowValidationOverrideConfirm, setValidationFailed, setFormLoading, props.listProps?.editorConfig?.dismissImmediately, props.onItemChange, editorFormRef.current, setShowEditor])
 
-    const dismissForm = async () : Promise<void> => {
+    const dismissForm = useCallback(async () : Promise<void> => {
         if (newItemMode) props.updateSelectedItems([]);
         setNewItemMode(false);
         setShowEditor(false)
-    }
+    }, [setNewItemMode, setShowEditor, props.updateSelectedItems])
 
-    const getItem = () : T | any => {
+    const getItem = useCallback(() : T | any => {
         return editorFormRef.current?.getItem() as T | any;
-    }
+    }, [editorFormRef.current])
 
     const onRenderFooterContent = useCallback(
         () => {
@@ -196,10 +196,10 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                     }
                 </Stack>)
         },
-        [validationFailed, formLoading]
+        [validationFailed, formLoading, props.listProps?.editorConfig?.customFooter, saveForm, dismissForm, validateForm, getItem]
     );
 
-    const handleColumnReorder = (draggedIndex: number, targetIndex: number) => {
+    const handleColumnReorder = useCallback((draggedIndex: number, targetIndex: number) => {
         if (columns == null) return;
         const draggedItems = columns[draggedIndex];
         const newColumns: IColumn[] = [...columns];
@@ -208,7 +208,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         newColumns.splice(draggedIndex, 1);
         newColumns.splice(targetIndex, 0, draggedItems);
         setColumns(newColumns);
-    };
+    }, [columns, setColumns])
 
     return  <>
 				{ (showEditor && props.selectedItems?.length) 

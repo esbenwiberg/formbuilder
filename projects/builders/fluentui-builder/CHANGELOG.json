@@ -2,6 +2,18 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.5.7",
+      "tag": "@wiberg/fluentui-builder_v0.5.7",
+      "date": "Fri, 27 May 2022 08:45:56 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added more useCallbacks to FluentList"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.6",
       "tag": "@wiberg/fluentui-builder_v0.5.6",
       "date": "Fri, 27 May 2022 07:20:47 GMT",

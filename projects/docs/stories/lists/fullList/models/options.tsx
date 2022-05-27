@@ -28,7 +28,7 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
             return new Promise<void>((resolve, reject) => {
                 setTimeout(() => {
                     resolve();
-                }, 5000);
+                }, 3000);
             })
         },
         config: { 
