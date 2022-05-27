@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Wed, 25 May 2022 21:24:25 GMT and should not be manually modified.
+This log was last generated on Fri, 27 May 2022 07:20:47 GMT and should not be manually modified.
+
+## 0.11.5
+Fri, 27 May 2022 07:20:47 GMT
+
+### Patches
+
+- added support for formlist editor on save to either wait for callback or not
 
 ## 0.11.4
 Wed, 25 May 2022 21:24:25 GMT

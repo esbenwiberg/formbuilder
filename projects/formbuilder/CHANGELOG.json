@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.11.5",
+      "tag": "@wiberg/formbuilder_v0.11.5",
+      "date": "Fri, 27 May 2022 07:20:47 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "added support for formlist editor on save to either wait for callback or not"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.4",
       "tag": "@wiberg/formbuilder_v0.11.4",
       "date": "Wed, 25 May 2022 21:24:25 GMT",

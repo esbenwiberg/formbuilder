@@ -5,7 +5,7 @@ import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemProp
 import { IFormListProps } from "./IFormListProps";
 
 export interface IFormListRenderProps<T extends IFormItem> extends IFormListProps<T> {
-    onItemChange: (item: T) => void;
+    onItemChange: (item: T) => Promise<void> | void;
     
     filteredItems: Array<T>;
     selectedItems: Array<T>;

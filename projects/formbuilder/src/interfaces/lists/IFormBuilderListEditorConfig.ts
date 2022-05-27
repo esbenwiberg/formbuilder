@@ -8,6 +8,7 @@ export interface IFormBuilderListEditorConfig<T> {
     containerOptions: IFormBuilderListEditorContainerOptions;
     dynamicForm?: IDynamicSchemaConfig<T>;
     customFooter?: (save: () => Promise<void>, dismiss: () => Promise<void>, validate: () => Promise<ValidationResult | undefined>, getItem: () => T | any) => JSX.Element;
+    dismissImmediately?: boolean;
 }
 
 export enum FormBuilderListEditorType { Dialog, Panel };

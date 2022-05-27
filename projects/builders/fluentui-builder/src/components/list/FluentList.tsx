@@ -17,6 +17,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     const [newItemMode, setNewItemMode] = useState(false);
     const [menuItems, setMenuItems] = useState<Array<ICommandBarItemProps> | undefined>(undefined);
     const [validationFailed, setValidationFailed] = useState(false);
+    const [formLoading, setFormLoading] = useState(false);
 
     const [selection] = useState<Selection>(new Selection({
         selectionMode: props.listProps.config.multiSelect ? SelectionMode.multiple : SelectionMode.single,
@@ -144,8 +145,17 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             setValidationFailed(true);
         }
         else if (validated == ValidationResult.Success) {
-            props.onItemChange(editorFormRef.current?.getItem() as T);
+            setFormLoading(true);
+            if (props.listProps?.editorConfig?.dismissImmediately) {
+                new Promise<void>((resolve, reject) => {
+                    props.onItemChange(editorFormRef.current?.getItem() as T);
+                    resolve();
+                });
+            }
+            else
+                await props.onItemChange(editorFormRef.current?.getItem() as T);
             setValidationFailed(false);
+            setFormLoading(false);
             setShowEditor(false);
         }
     }
@@ -166,21 +176,27 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                 return props.listProps.editorConfig.customFooter(saveForm, dismissForm, validateForm, getItem);
             else
                 return (<Stack horizontal>
-                    <PrimaryButton
-                        text={newItemMode ? lang.texts.areas.common.create : lang.texts.areas.common.save}
-                        styles={{ root: { marginRight: 8 } }}
-                        onClick={ saveForm }
-                    />
+                    {
+                        formLoading
+                            ?   <Spinner styles={{root:{paddingRight: "10px"}}} />
+                            :   <PrimaryButton
+                                    text={newItemMode ? lang.texts.areas.common.create : lang.texts.areas.common.save}
+                                    styles={{ root: { marginRight: 8 } }}
+                                    onClick={ saveForm }
+                                /> 
+                    }
+
                     <DefaultButton
                         text={lang.texts.areas.common.cancel}
                         onClick={ dismissForm }
+                        disabled={formLoading}
                     />
                     {
                         validationFailed && <div style={{paddingLeft: "10px", paddingTop: "2px" }}><Icon iconName="Error" title="Validation errors" styles={{root: { color: "red", fontSize: "20px", cursor: "help" }}} /></div>
                     }
                 </Stack>)
         },
-        [validationFailed]
+        [validationFailed, formLoading]
     );
 
     const handleColumnReorder = (draggedIndex: number, targetIndex: number) => {
@@ -227,7 +243,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                         highLightElements={() => Array.from(document.querySelectorAll('.ms-List .ms-DetailsRow-cell:not(.ms-DetailsRow-cellCheck)'))
                                                         .filter(_ => {
                                                             if (props.listProps.searchConfig?.searchableFields == null) return [];
-                                                            return props.listProps.searchConfig.searchableFields.findIndex(sf => sf == (_.attributes as any)["data-automation-key"].value) >= 0
+                                                            return props.listProps.searchConfig.searchableFields.findIndex((sf: string) => sf == (_.attributes as any)["data-automation-key"].value) >= 0
                                                         })
                         }
                         filterOnItemsChange

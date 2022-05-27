@@ -23,7 +23,14 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
     schemaConfig: { schemaProvider: fullListFormItemSchemaProvider },
     item: null,
     listProps: {
-        onItemChange: item => console.log(item),
+        onItemChange: item => {
+            console.log(item)
+            return new Promise<void>((resolve, reject) => {
+                setTimeout(() => {
+                    resolve();
+                }, 5000);
+            })
+        },
         config: { 
             itemIdentifier: item => item?.id as string,
             multiSelect: true, 
@@ -49,7 +56,8 @@ export const fullListFormOptions: IFormBuilderProps<IFullListFormItem> = {
                 contentWrapper: {
                     renderDelay: 50
                 }
-            }
+            },
+            // dismissImmediately: true
         },
         searchConfig: {
             searchEnabled: true,

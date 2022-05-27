@@ -80,10 +80,14 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         return clone;
     }
 
-    const onItemChange = (item: T) : void => {
+    const onItemChange = async (item: T) : Promise<void> => {
         if (item == null) return;
-        // items
+        // changed
         let changedItems = itemChangeInCollection(itemsRef.current, item);
+        // callbacks
+        if (props.listProps.onItemChange) await props.listProps.onItemChange({...item});
+        if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...changedItems]);
+        // items
         setItems(changedItems);
         // filtered
         let changedFilteredItems = itemChangeInCollection(filteredItemsRef.current, item);
@@ -92,8 +96,6 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         let changedSelectedItems = itemChangeInCollection(selectedItemsRef.current, item);
         setSelectedItems(changedSelectedItems);
 
-        if (props.listProps.onItemChange) props.listProps.onItemChange({...item});
-        if (props.listProps.config.onItemsChange) props.listProps.config.onItemsChange([...changedItems]);
     }
 
     const columnValueRender = (propInfo: IFormItemPropertyOptions<T, IDynamicPropertyComponentConfig<T>>) : ((item: T, onChange: (item: IFormItem) => void) => string | JSX.Element | undefined) | undefined => {
