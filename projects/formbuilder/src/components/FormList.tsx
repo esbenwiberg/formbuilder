@@ -182,7 +182,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     }, [setFilteredItems, setColumns, columns, columnRef.current, filteredItemsRef.current])
 
     const ListContainer: React.ComponentType<IFormListRenderProps<T>> = useMemo(() => formbuilder.formItemRender.list() as any, [formbuilder.formItemRender.list]); // WTF!! added readOnly to listprops and suddently it wont compile - works fine though (ewi)
- 
+    
 	return (
         <div className="formbuilder-listcontainer" key={`${props.keyPrefix}`} >
             <ListContainer

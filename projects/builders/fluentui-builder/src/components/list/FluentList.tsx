@@ -26,7 +26,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             props.updateSelectedItems(selection.getSelection() as Array<T> ?? []);
         }
     }));
-
+ 
     useEffect(() => {
         let cols = buildColumns();
         setColumns(cols);
