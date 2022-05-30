@@ -1,5 +1,5 @@
 import { Dialog, DialogFooter, PrimaryButton, DefaultButton, CommandBar, ShimmeredDetailsList, SelectionMode, DetailsListLayoutMode, ConstrainMode, IColumn, Label, Selection, ICommandBarItemProps, Icon, Stack, Spinner } from "@fluentui/react";
-import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback } from "react";
+import { PropsWithChildren, ReactElement, useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { FluentDialog } from "./FluentDialog";
 import React from "react";
 import { IFormItem, IFormListRenderProps, FormRef, useStateRef, formListHelper, IFormListColumnInfo, ValidationResult, lang, id, IFormBuilderListMenuItem } from "@wiberg/formbuilder";
@@ -106,10 +106,10 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             let result = await pre(item);
             if (result === false) return false;
         }
+        setShowEditor(true); 
+        setNewItemMode(true);
         selection.setAllSelected(false);
         props.updateSelectedItems([item]);
-        setNewItemMode(true);
-        setShowEditor(true); 
     }, [props.updateSelectedItems, setNewItemMode, setShowEditor])
 
     const editItem = useCallback(async (pre?: (item: T) => boolean | void | Promise<boolean | void>) => {
@@ -118,11 +118,8 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             let result = await pre(sItem);
             if (result === false) return false;
         }
-        props.updateSelectedItems([sItem]);
-    // setTimeout(() => {
-        setNewItemMode(false);
         setShowEditor(true);
-    // }, 100); // TODO: why was this needed ? (ewi) (200 before)
+        setNewItemMode(false);
     }, [props.updateSelectedItems, setNewItemMode, setShowEditor, props.selectedItems])
 
     const deleteItems = useCallback(async (pre?: (items: Array<T>) => boolean | void | Promise<boolean | void>) => {
