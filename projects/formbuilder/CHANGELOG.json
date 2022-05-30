@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.11.7",
+      "tag": "@wiberg/formbuilder_v0.11.7",
+      "date": "Mon, 30 May 2022 12:37:30 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "minor state update change to FormList editor"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.6",
       "tag": "@wiberg/formbuilder_v0.11.6",
       "date": "Fri, 27 May 2022 09:00:46 GMT",

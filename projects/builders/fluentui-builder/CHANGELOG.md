@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Mon, 30 May 2022 08:06:11 GMT and should not be manually modified.
+This log was last generated on Mon, 30 May 2022 12:37:30 GMT and should not be manually modified.
+
+## 0.5.10
+Mon, 30 May 2022 12:37:30 GMT
+
+### Patches
+
+- minor state update change to FormList editor
 
 ## 0.5.9
 Mon, 30 May 2022 08:06:11 GMT

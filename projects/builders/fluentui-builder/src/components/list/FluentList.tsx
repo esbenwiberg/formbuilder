@@ -134,6 +134,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
     }, [editorFormRef.current?.validateItem])
 
     const saveForm = useCallback(async () : Promise<void> => {
+        setFormLoading(true);
         let validated = await validateForm();
         if (validated == ValidationResult.FailedDontBlock) {
             setShowValidationOverrideConfirm(true);
@@ -142,7 +143,6 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             setValidationFailed(true);
         }
         else if (validated == ValidationResult.Success) {
-            setFormLoading(true);
             if (props.listProps?.editorConfig?.dismissImmediately) {
                 new Promise<void>((resolve, reject) => {
                     props.onItemChange(editorFormRef.current?.getItem() as T);
@@ -151,6 +151,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
             }
             else
                 await props.onItemChange(editorFormRef.current?.getItem() as T);
+            
             setValidationFailed(false);
             setFormLoading(false);
             setShowEditor(false);
@@ -293,10 +294,21 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                     }}
                 >
                     <DialogFooter>
-                        <PrimaryButton text={lang.texts.areas.list.validationRequirementsNotMet.ok} onClick={() => {
+                        <PrimaryButton text={lang.texts.areas.list.validationRequirementsNotMet.ok} onClick={async () => {
                             setShowValidationOverrideConfirm(false);
+
+                            if (props.listProps?.editorConfig?.dismissImmediately) {
+                                new Promise<void>((resolve, reject) => {
+                                    props.onItemChange(editorFormRef.current?.getItem() as T);
+                                    resolve();
+                                });
+                            }
+                            else
+                                await props.onItemChange(editorFormRef.current?.getItem() as T);
+
+                            setValidationFailed(false);
+                            setFormLoading(false);
                             setShowEditor(false);
-                            props.onItemChange(editorFormRef.current?.getItem() as T);
                         } } />
                         <DefaultButton text={lang.texts.areas.list.validationRequirementsNotMet.cancel} onClick={() => setShowValidationOverrideConfirm(false)} />
                     </DialogFooter>

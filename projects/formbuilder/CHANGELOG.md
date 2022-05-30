@@ -1,6 +1,13 @@
 # Change Log - @wiberg/formbuilder
 
-This log was last generated on Fri, 27 May 2022 09:00:46 GMT and should not be manually modified.
+This log was last generated on Mon, 30 May 2022 12:37:30 GMT and should not be manually modified.
+
+## 0.11.7
+Mon, 30 May 2022 12:37:30 GMT
+
+### Patches
+
+- minor state update change to FormList editor
 
 ## 0.11.6
 Fri, 27 May 2022 09:00:46 GMT
