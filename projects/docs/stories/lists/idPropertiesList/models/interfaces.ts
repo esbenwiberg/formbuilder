@@ -4,7 +4,7 @@ export interface IMyIdValueListFormItem extends IFormItem {
     id: number;
     name: string;
     userId: string;
-    userAsString: string;
+    userIdAsString: string;
     typeId: string;
     typeAsString: string;
 }

@@ -9,7 +9,7 @@ export const idValueListFormItemSchemaProvider: ISchemaProvider<IMyIdValueListFo
             options: {
                 properties: {
                     name: propertyOptionsFactory.string({ displayName: "This name", description: "This is an explanation of what this property does.." }),
-                    userId: propertyOptionsFactory.string({ displayName: "This user", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.userAsString } }),
+                    userId: propertyOptionsFactory.string({ displayName: "This user", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.userIdAsString } }),
                     typeId: propertyOptionsFactory.string({ displayName: "This type", listItemOptions: { customValueRender: (item: IMyIdValueListFormItem) => item.typeAsString } })
                 } 
             } as IFormItemOptions<IMyIdValueListFormItem>

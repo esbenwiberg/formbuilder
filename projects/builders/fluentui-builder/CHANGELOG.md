@@ -1,6 +1,13 @@
 # Change Log - @wiberg/fluentui-builder
 
-This log was last generated on Mon, 30 May 2022 12:37:30 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Jun 2022 21:25:02 GMT and should not be manually modified.
+
+## 0.5.11
+Thu, 09 Jun 2022 21:25:02 GMT
+
+### Patches
+
+- Added custom sorter to Formlist
 
 ## 0.5.10
 Mon, 30 May 2022 12:37:30 GMT

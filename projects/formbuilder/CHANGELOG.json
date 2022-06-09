@@ -2,6 +2,18 @@
   "name": "@wiberg/formbuilder",
   "entries": [
     {
+      "version": "0.11.8",
+      "tag": "@wiberg/formbuilder_v0.11.8",
+      "date": "Thu, 09 Jun 2022 21:25:02 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added custom sorter to Formlist"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.11.7",
       "tag": "@wiberg/formbuilder_v0.11.7",
       "date": "Mon, 30 May 2022 12:37:30 GMT",

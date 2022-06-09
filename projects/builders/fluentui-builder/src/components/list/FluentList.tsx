@@ -135,6 +135,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
 
     const saveForm = useCallback(async () : Promise<void> => {
         setFormLoading(true);
+        
         let validated = await validateForm();
         if (validated == ValidationResult.FailedDontBlock) {
             setShowValidationOverrideConfirm(true);
@@ -153,9 +154,9 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                 await props.onItemChange(editorFormRef.current?.getItem() as T);
             
             setValidationFailed(false);
-            setFormLoading(false);
             setShowEditor(false);
         }
+        setFormLoading(false);
     }, [validateForm, setShowValidationOverrideConfirm, setValidationFailed, setFormLoading, props.listProps?.editorConfig?.dismissImmediately, props.onItemChange, editorFormRef.current, setShowEditor])
 
     const dismissForm = useCallback(async () : Promise<void> => {

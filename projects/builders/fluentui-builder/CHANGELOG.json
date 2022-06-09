@@ -2,6 +2,23 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.5.11",
+      "tag": "@wiberg/fluentui-builder_v0.5.11",
+      "date": "Thu, 09 Jun 2022 21:25:02 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Added custom sorter to Formlist"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@wiberg/formbuilder\" from `~0.11.7` to `~0.11.8`"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.10",
       "tag": "@wiberg/fluentui-builder_v0.5.10",
       "date": "Mon, 30 May 2022 12:37:30 GMT",

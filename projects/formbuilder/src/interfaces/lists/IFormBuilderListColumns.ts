@@ -4,6 +4,7 @@ export interface IFormBuilderListColumns<T> {
     columnsPicks?: IFormListColumnsPicks<T>;
     resizableColumns?: Array<keyof T> | true;
     columnWidths?: Array<{column: string, width: number}> | number;
+    customSort?: (itemA: T, itemB: T, property: string, isSortedDescending?: boolean) => number;
 }
 
 export enum FormListColumnsPickType { Only, Without }

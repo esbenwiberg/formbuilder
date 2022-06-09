@@ -175,10 +175,15 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
         });
         
         const property = currColumn.fieldName!;
-        const newItems = formListHelper.copyAndSort<T>(filteredItemsRef.current, property, currColumn.isSortedDescending);
+        let sortedItems = [];
+        const customSort = listProps.listProps?.columnConfig?.customSort;
+        if (customSort != null)
+            sortedItems = filteredItemsRef.current.slice(0).sort((a,b) => customSort(a, b, property, currColumn.isSortedDescending));
+        else 
+            sortedItems = formListHelper.copyAndSort<T>(filteredItemsRef.current, property, currColumn.isSortedDescending);
         setColumns(newColumns);
         
-        setFilteredItems(newItems);
+        setFilteredItems(sortedItems);
     }, [setFilteredItems, setColumns, columns, columnRef.current, filteredItemsRef.current])
 
     const ListContainer: React.ComponentType<IFormListRenderProps<T>> = useMemo(() => formbuilder.formItemRender.list() as any, [formbuilder.formItemRender.list]); // WTF!! added readOnly to listprops and suddently it wont compile - works fine though (ewi)
