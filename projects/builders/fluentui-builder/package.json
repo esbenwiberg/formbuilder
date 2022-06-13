@@ -1,6 +1,6 @@
 {
   "name": "@wiberg/fluentui-builder",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "description": "A builder for the '@wiberg/formbuilder' using FluentUI components.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

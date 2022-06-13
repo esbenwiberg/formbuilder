@@ -62,7 +62,7 @@ export const Searcher: FunctionComponent<IProps> = props => {
 		highlightInProgess.current = true;
 		// clear highlight on new search
 		var highlightElements = props.highLightElements();
-		highlightElements.forEach(_ => _.innerHTML = _.innerHTML.replace(/(<span class="tp-searcher-highlight">|<\/span>)/igm, ""));
+		highlightElements.forEach(_ => _.innerHTML = _.innerHTML.replace(/(<span class="formbuilder-searcher-highlight">|<\/span>)/igm, ""));
 		// set highlights
 		highlightElements.forEach((_) => {
 			let html = _.innerHTML;
@@ -76,7 +76,7 @@ export const Searcher: FunctionComponent<IProps> = props => {
 				html = htmlParts.map( item =>
 					tagsRegEx.test(item)
 					  ? item
-					  : item.replace(new RegExp(`(${searchText})`, 'ig'), `<span class="tp-searcher-highlight">$1</span>`)
+					  : item.replace(new RegExp(`(${searchText})`, 'ig'), `<span class="formbuilder-searcher-highlight">$1</span>`)
 				).join('');
 			});
 			_.innerHTML = html;
@@ -85,7 +85,7 @@ export const Searcher: FunctionComponent<IProps> = props => {
     }
 	
 	return <DelayedSearchBox
-				className={`tp-panel-searchbox ${props.className  ? props.className : ""}`}
+				className={`formbuilder-searchbox ${props.className  ? props.className : ""}`}
 				delay={props.delay ?? 300}
 				disabled={props.disabled}
 				searchPlaceHolder={props.searchPlaceHolder} 

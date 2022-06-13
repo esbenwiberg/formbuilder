@@ -117,6 +117,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
         if (pre) {
             let result = await pre(sItem);
             if (result === false) return false;
+            props.updateSelectedItems([sItem]);
         }
         setShowEditor(true);
         setNewItemMode(false);
@@ -234,7 +235,7 @@ const FluentList = <T extends IFormItem>(props: PropsWithChildren<IFormListRende
                             selection.setAllSelected(false);
                             props.updateSelectedItems([]);
                         }}
-                        className="tp-searcher"
+                        className="formbuilder-searcher"
                         delay={600}
                         searchPlaceHolder={props.listProps.searchConfig.searchPlaceHolder}
                         enableTextHighlight={true}

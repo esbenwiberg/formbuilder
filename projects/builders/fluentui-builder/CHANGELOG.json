@@ -2,6 +2,18 @@
   "name": "@wiberg/fluentui-builder",
   "entries": [
     {
+      "version": "0.5.12",
+      "tag": "@wiberg/fluentui-builder_v0.5.12",
+      "date": "Mon, 13 Jun 2022 20:21:06 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixed issues with FormList preEdit event, not persisting changes"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.5.11",
       "tag": "@wiberg/fluentui-builder_v0.5.11",
       "date": "Thu, 09 Jun 2022 21:25:02 GMT",
