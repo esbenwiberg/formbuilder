@@ -2,7 +2,6 @@ import { IValidationRule } from "../../models/validation/IValidationRules";
 import { IFormSchema } from "../../interfaces/schema/IFormSchema";
 import { IValidationResult } from "../../models/validation/IValidationResult";
 import { ValidationEventType } from "../../models/validation/ValidationEventType";
-import { formSchemaUtil } from "../../utils/common/FormSchemaUtil";
 import { IFormItem } from "../../interfaces/form/IFormItem";
 
 const validateRule = async <T extends IFormItem>(item: T, property: string, rule: IValidationRule<T> | Array<IValidationRule<T>>, onEvent: ValidationEventType | undefined, results: IValidationResult, validationResultPrefix?: string) : Promise<void> => {
@@ -17,9 +16,7 @@ const validateRule = async <T extends IFormItem>(item: T, property: string, rule
     }
     else {
         if (rule.nestedValidation != undefined) {
-            let childSchema = rule.nestedValidation.schemaKey
-                                ? await formSchemaUtil.getSchemaFromMap(rule.nestedValidation.schemaKey)
-                                : await rule.nestedValidation.schemaProvider?.getSchema();
+            let childSchema = await rule.nestedValidation.schemaProvider?.getSchema();
             if ((item as any)[property] != null) {
                 results = await formValidator.validate((item as any)[property], undefined, childSchema, onEvent, results, property); // TODO: maybe set all events here ('undefined'), to prevent validation messages to dissapear when other properties change (ewi)
             }

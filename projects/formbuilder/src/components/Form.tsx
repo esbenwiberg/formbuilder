@@ -21,7 +21,7 @@ import { useIsMounted } from '../hooks/useIsMounted';
 import { IDynamicSchemaConfig } from '../interfaces/lists/IDynamicSchemaConfig';
 
 export interface IFormItemProps<T extends IFormItem> {
-    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
+    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">;
     item: T;
     schema?: IFormSchema<T>;
     dynamicSchema?: IDynamicSchemaConfig<T>; // experimental

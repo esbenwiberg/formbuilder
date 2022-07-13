@@ -21,10 +21,10 @@ export interface IFormBuilder {
     /** override all or parts of the text used in the formbuilder */
     withLanguage: (language: RecursivePartial<IFormbuilderLanguage>) => IFormBuilder;
 
-    /** use this to be able to register schemas, making the implementation of child forms prettier */
-    registerSchemaProvider: <T extends IFormItem>(provider: ISchemaProvider<T>) => void;
-    /** will get the schemaprovider by it's key */
-    getSchemaProvider: <T extends IFormItem>(key: string) => ISchemaProvider<T> | undefined;
+    // /** use this to be able to register schemas, making the implementation of child forms prettier */
+    // registerSchemaProvider: <T extends IFormItem>(provider: ISchemaProvider<T>) => void;
+    // /** will get the schemaprovider by it's key */
+    // getSchemaProvider: <T extends IFormItem>(key: string) => ISchemaProvider<T> | undefined;
 
     /** verifies that the formbuilder is setup correctly - throws an error if not */
     verify: () => void;
@@ -50,13 +50,6 @@ export const formbuilder: IFormBuilder = {
     withLanguage: (language: RecursivePartial<IFormbuilderLanguage>): IFormBuilder => {
         initLanguage(language);
         return formbuilder;
-    },
-    registerSchemaProvider: <T extends IFormItem>(provider: ISchemaProvider<T>) : void => {
-        if (provider == null || strings.isNullOrWhiteSpace(provider.key)) return;
-        schemaRegister[provider.key] = provider as ISchemaProvider<IFormItem>;
-    },
-    getSchemaProvider: <T extends IFormItem>(key: string) : ISchemaProvider<T> | undefined => {
-        return schemaRegister[key];
     },
     verify: () =>  {
         if (formbuilder.formItemRender == null) // TODO: add link to init guide

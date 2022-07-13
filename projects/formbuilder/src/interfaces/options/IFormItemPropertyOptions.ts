@@ -3,6 +3,7 @@ import { IDynamicPropertyComponentConfig } from "../../builders/interfaces/IDyna
 import { IFormItemListItemOptions } from "./IFormItemListItemOptions";
 import { IFormBuilderListProps } from "../../components/FormBuilder";
 import { IFormItem } from "../form/IFormItem";
+import { IValidation } from "../../_new/IValidation";
 
 export interface IFormItemPropertyOptions<T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>> {
     /** the key of the property */
@@ -29,4 +30,6 @@ export interface IFormItemPropertyOptions<T extends IFormItem, C extends IDynami
     listProps?: IFormBuilderListProps<IFormItem & any>;
     /** event that fires on property value change (used to change other property values when changing a property value) (or when you need to change a dynamic schema based on a property value) */
     onChanged?: (item: T) => { refreshDynamicSchema?: boolean };
+    /** validation for the property (can either return a string or use a custom validator) */
+    validation?: IValidation<T>;
 }

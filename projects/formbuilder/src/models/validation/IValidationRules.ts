@@ -4,8 +4,8 @@ import { ValidationEventType } from "./ValidationEventType";
 import { ValidationMark } from "./ValidationMark";
 
 export interface INestedValidation<T> {
-    schemaKey?: string;
     schemaProvider?: ISchemaProvider<T>;
+    schema?: IFormSchema<T>;
 }
 
 export interface IValidationRule<T extends IFormItem> {

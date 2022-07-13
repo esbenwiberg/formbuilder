@@ -4,6 +4,6 @@ import { RequireOnlyOne } from "../types/Partials";
 
 export interface IDynamicSchemaConfig<T> extends IFormItem {
     dynamicKey: (item: T) => string;
-    schemaConfig?: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
+    schemaConfig?: RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">;
     useEmptyItem?: boolean;
 }

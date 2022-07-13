@@ -39,13 +39,13 @@ export interface IFormBuilderListProps<T extends IFormItem> {
 }
 
 export interface ISchemaConfig<T extends IFormItem> {
-    registeredSchemaKey?: string;
     schemaProvider?: ISchemaProvider<T>;
+    schema?: IFormSchema<T>;
 }
 
 export interface IFormBuilderProps<T extends IFormItem> {
     item: FormBuilderItemType<T>;
-    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
+    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">;
     singleItemProps?: FormBuilderSingleItemProps<T>;
     listProps?: IFormBuilderListProps<T>;
     groupContainer?: React.FC<{groupings: Array<IFormGrouping>}>;
@@ -118,6 +118,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
                             schema={schema}
                             item={item}
                             onPropertyChange={ (item: IFormItem, prop: string, value: any) => props.singleItemProps?.onPropertyChange == null ? () => {} : props.singleItemProps.onPropertyChange(item as any, prop, value)} // TODO: fucking T type mismatch for some reason (ewi)
+                            // onPropertyChange={ props.singleItemProps?.onPropertyChange}
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
                             keyPrefix={getKey()}
                         />
