@@ -1,5 +1,5 @@
 import { IFormItemPropertyOptions } from "../../interfaces/options/IFormItemPropertyOptions";
-import { FormLabel, IFormItemBuilder, IFormItemBuilderResult, IFormLabelProps, LoadingSpinner, ValidationMessageElement } from "../interfaces/IFormItemBuilder";
+import { FormLabel, IFormItemBuilder, IFormLabelProps, LoadingSpinner, ValidationMessageElement } from "../interfaces/IFormItemBuilder";
 import { IPropertyTypes, propertyTypes } from "../../models/property/PropertyType";
 import { IDynamicPropertyComponentConfig } from "../interfaces/IDynamicPropertyComponentConfig";
 import { IDynamicComponentConfig } from "./config/IDynamicComponentConfig";
@@ -12,8 +12,24 @@ import { DynamicArrayField } from "./components/DynamicArrayField";
 import React, { ElementType, PropsWithChildren, ReactElement } from "react";
 import { ILoadingProps } from "../interfaces/ILoadingProps";
 import { IFormItem } from "../../interfaces/form/IFormItem";
-import { getValidationMarkForProperty, RequireOnlyOne, ValidationMark } from "../..";
+import { getValidationMarkForProperty, IPropertyRenderProps, RequireOnlyOne, ValidationMark } from "../..";
 import { buildPropertyRenderInfo } from "../helpers/BuildPropertyRenderProps";
+
+export const WrapInLabel: React.FC<{ Label: FormLabel, Error: ValidationMessageElement, info: any, schema: IFormItemPropertyOptions<any, any>, validationMark: ValidationMark, skipError?: boolean }> = ({ Label, Error, info, schema, validationMark, children, skipError }) => {
+    return (
+        <div className="formbuilder-property" key={info.props.key}>
+            <Label
+                key={`${info.key}-labelcontainer`}
+                propertySchema={schema}
+                hideLabel={info.props.options.hideLabel}
+                parentKey={info.key}
+                validationMark={validationMark}
+            />
+            { children }
+            { (!skipError && info.props.errorMessage) && Error(info.props.errorMessage)}
+        </div>
+    )
+}
 
 export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMessage?: ValidationMessageElement, loadingSpinner?: LoadingSpinner) : IFormItemBuilder => {
 
@@ -46,7 +62,9 @@ export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMe
         return clone;
     };
 
-    const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>): IFormItemBuilderResult => {
+    
+
+    const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : JSX.Element | undefined => {
         let { item, validationResults } = renderProps;
         
         if (item == null) throw Error("item is null");
@@ -55,40 +73,32 @@ export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMe
         let info = buildPropertyRenderInfo(renderProps, schema, property);
         let validationMark: ValidationMark = getValidationMarkForProperty(renderProps, property);
 
-        const WrapInLabel = (element: JSX.Element, addErrormessage?: boolean) : JSX.Element => {
-            return (
-                <div className="formbuilder-property" key={info.props.key}>
-                     <BuilderLabelRender
-                        key={`${info.key}-labelcontainer`}
-                        propertySchema={schema}
-                        hideLabel={info.props.options.hideLabel}
-                        parentKey={info.key}
-                        validationMark={validationMark}
-                    />
-                    { element }
-                    { (addErrormessage && info.props.errorMessage) && builderValidationMessageElement(info.props.errorMessage)}
-                </div>
-            )
-        }
-
         const propertyType: IPropertyTypes = propertyTypes;
 
         switch (schema.propertyType) {
             case propertyType.array:
-                return { found: true, element: WrapInLabel(<DynamicArrayField {...schema} {...info.props} />) };
+                return (
+                    <WrapInLabel Label={BuilderLabelRender} Error={builderValidationMessageElement} info={info} schema={schema} validationMark={validationMark} >
+                        <DynamicArrayField {...schema} {...info.props} />
+                    </WrapInLabel>
+                )
             case propertyType.custom: 
                 let customConfig = (schema.config as unknown) as IDynamicComponentConfig<T>;
-                if (!customConfig?.component) return { found: false, element: undefined };
+                if (!customConfig?.component) return undefined;
                 // const Comp = this.customComponents[customConfig?.componentName];
                 const Comp = customConfig.component;
-                return { found: true, element: <>{ WrapInLabel(<Comp key={info.key} {...info.props} {...schema} {...customConfig.componentProps} />) }</> }
+                return(
+                    <WrapInLabel Label={BuilderLabelRender} Error={builderValidationMessageElement} info={info} schema={schema} validationMark={validationMark} >
+                        <Comp key={info.key} {...info.props} {...schema} {...customConfig.componentProps} />
+                    </WrapInLabel>
+                )
 
             case propertyType.formItem:
                 let formConfig = (schema.config as any) as IFormItemComponentConfig<T>;
-                if (!formConfig?.schemaConfig) return { found: false, element: undefined };
+                if (!formConfig?.schemaConfig) return undefined;
                 let formItemProps: IFormItemProps<T> = {
                     item: item[property],
-                    schemaConfig: formConfig.schemaConfig as RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">,
+                    schemaConfig: formConfig.schemaConfig as RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">,
                     groupContainer: formConfig.groupContainer,
                     groupRender: formConfig.groupRender,
                     onPropertyChange: (item: T, prop: string, value: any) => info.props.onChange(item),
@@ -99,7 +109,7 @@ export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMe
 
                 // handle dynamic schema coming from formitem config
                 if (formConfig.schemaConfig.dynamicSchema != null) {
-                    const dynamicSchema = formConfig.schemaConfig = formConfig.schemaConfig.dynamicSchema(item);
+                    const dynamicSchema = formConfig.schemaConfig.dynamicSchema(item);
                     formConfig.schemaConfig = dynamicSchema;
                     formItemProps.schemaConfig = dynamicSchema;
                 }
@@ -114,9 +124,13 @@ export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMe
                 }
 
                 // types sucks sometimes!! (ewi)
-                return { found: true, element: <>{ WrapInLabel(<FormBuilder key={info.key} keyPrefix={info.key} {...formItemProps as any} {...formConfig} listProps={listProps as any} />, addErrormessage) }</> }
+                return(
+                    <WrapInLabel Label={BuilderLabelRender} Error={builderValidationMessageElement} info={info} schema={schema} validationMark={validationMark} skipError={!addErrormessage} >
+                        <FormBuilder key={info.key} keyPrefix={info.key} {...formItemProps as any} {...formConfig} listProps={listProps as any} />
+                    </WrapInLabel>
+                )
 
-            default: return { found: false, element: undefined }
+            default: return undefined;
         }
     };
 

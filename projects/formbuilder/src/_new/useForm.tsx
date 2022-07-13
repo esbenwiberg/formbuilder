@@ -1,50 +1,45 @@
-import { useRef } from "react"
-import { FormBuilder, IFormBuilderListProps, FormBuilderRef, IFormBuilderProps } from "../components/FormBuilder"
-import { ISchemaProvider } from "../interfaces/schema/ISchemaProvider"
+import { FormBuilder, IFormBuilderListProps, FormBuilderRef, IFormBuilderProps, ISchemaConfig } from "../components/FormBuilder"
+import { RequireOnlyOne } from "../interfaces/types/Partials";
+import { FormProvider, IFormContext, useFormContext } from "./FormContext";
 
-export const useForm = <T,>(schema: ISchemaProvider<T>, item: T, formOptions?: Partial<IFormBuilderProps<T>>) => {
+export const useForm = <T,>(schema: RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">, item: T, formOptions?: Partial<IFormBuilderProps<T>>) => {
 
-    const formRef = useRef<FormBuilderRef<T>>();
-
-    const changedFields: string[] = [];
+    const ctx = useFormContext<IFormContext<T>>();
 
     return {
         Form: (
-            <FormBuilder
-                formRef={formRef}
-                {...formOptions}
-                item={item}
-                schemaConfig={{ schemaProvider: schema }}
-                singleItemProps={{onPropertyChange(item: T, prop: string, value: any) {
-                    // add to changed properties aaray
-                    if (!changedFields.includes(prop)) {
-                        changedFields.push(prop);
-                    }
-                    // from form props
-                    formOptions?.singleItemProps?.onPropertyChange?.(item, prop, value);
-                },}}
-            />
+            <FormProvider item={item}>
+                <FormBuilder
+                    {...formOptions}
+                    item={ctx.item}
+                    schemaConfig={ schema }
+                    singleItemProps={{onPropertyChange(item: T, prop: string, value: any) {
+                        // add to changed properties
+                        ctx.addChangedField(prop);
+                        // update ctx item
+                        ctx.setItem(item);
+                        // from form props
+                        formOptions?.singleItemProps?.onPropertyChange?.(item, prop, value);
+                    },}}
+                />
+            </FormProvider>
         ),
-        validateItem: formRef.current?.validateItem,
-        getItem: formRef.current?.getItem,
-        changedFields: changedFields
+        // validateItem: formRef.current?.validateItem,
+        getItem: () => ctx.item,
+        changedFields: ctx.changedFields
     }
 }
 
-export const useFormList = <T,>(schema: ISchemaProvider<T>, item: T, listOptions: IFormBuilderListProps<T>) => {
+export const useFormList = <T,>(schema: RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">, item: T, listOptions: IFormBuilderListProps<T>) => {
 
     return {
         Form: (
             <FormBuilder
                 item={item}
-                schemaConfig={{ schemaProvider: schema }}
+                schemaConfig={ schema }
                 listProps={listOptions}
             />
         ),
         
     }
-}
-
-function FormBuilderRef<T>() {
-    throw new Error("Function not implemented.");
 }

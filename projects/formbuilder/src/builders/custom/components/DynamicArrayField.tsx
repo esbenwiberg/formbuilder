@@ -10,6 +10,8 @@ import React from "react";
 import { IFormItem } from '../../../interfaces/form/IFormItem';
 import { FormBuilderListEditorType } from '../../../interfaces/lists/IFormBuilderListEditorConfig';
 import { IFormBuilderListMenuItemSelectionMode } from '../../../interfaces/lists/IFormBuilderListMenuConfig';
+import { IFormItemPropertyOptions } from '../../../interfaces/options/IFormItemPropertyOptions';
+import { IDynamicPropertyComponentConfig } from '../../interfaces/IDynamicPropertyComponentConfig';
 
 interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicArrayFieldConfig<T>, Array<any> | undefined> { 
     config?: IDynamicArrayFieldConfig<T>;
@@ -28,22 +30,22 @@ export const DynamicArrayField = <T extends IFormItem>(props: PropsWithChildren<
 	const [items, setItems] = useState<Array<IFakeItem>>(wrapValues(props.value) ?? []);
 	useEffect(() => setItems(wrapValues(props.value) ?? []), [props.value]);
 
-    const getSchema = () : IFormSchema<IFakeItem> => {
-        var schema: IFormSchema<any> = {
-            options: {
+    const schema: IFormSchema<any> = {
+        properties: { 
+            value: { 
+                propertyType: props.config?.propertyType ?? 'string', 
+                displayName: "Value", 
+                config: { resizable: true },
                 validation: {
-                    ignoreValidation: false,
-                    validationRules: {
-                        value: { id: "required", validationMark: ValidationMark.Required, validationRule: (item: IFakeItem) => item.value != null && item.value != "", validationMessage: "Value must be specified", validateOn: ValidationEventType.Blur | ValidationEventType.Manual },
-                    }
-                },
-                properties: { 
-                    value: { propertyType: props.config?.propertyType, displayName: "Value", config: { resizable: true } },
-                } 
-            } as IFormItemOptions<IFakeItem>
+                    validationMark: ValidationMark.Required, 
+                    validationRule: (item: IFakeItem) => {
+                        if (item.value == null || item.value === "") return "Value must be specified";
+                        return null;
+                    },
+                    validateOn: ValidationEventType.Blur | ValidationEventType.Manual,
+                }
+            }
         }
-
-        return schema as IFormSchema<IFakeItem>;
     }
 
     const onChange = (fakeItems: Array<IFakeItem>) : void => {
@@ -55,7 +57,7 @@ export const DynamicArrayField = <T extends IFormItem>(props: PropsWithChildren<
         <>
             <FormBuilder
                 item={items}
-                schemaConfig={ { schemaProvider: { key: "fakeit", getSchema: async () => getSchema() } }}
+                schemaConfig={ { schema: schema }}
                 listProps={{
                     config: { 
                         itemIdentifier: (item: IFakeItem) => item?.value?.toString(),
@@ -78,7 +80,6 @@ export const DynamicArrayField = <T extends IFormItem>(props: PropsWithChildren<
                         ),
                     }
                 }}
-                overrideSchema={getSchema()}
             />
         </>
     )

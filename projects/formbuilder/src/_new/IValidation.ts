@@ -6,7 +6,7 @@ import { ValidationMark } from "../models/validation/ValidationMark";
 
 export interface IValidation<T extends IFormItem> {
     /** the validation rule it self - how is this property validated (return true for valid, false for invalid) */
-    validationRule?: (item: T) => string;
+    validationRule?: (item: T) => string | null;
     /** which events should the validation, for this property, fire (defaults to all) */
     validateOn: ValidationEventType;
     /** should this validation rule add a mark to the property label */

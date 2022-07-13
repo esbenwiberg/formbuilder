@@ -34,14 +34,15 @@
   "author": "Esben Wiberg",
   "license": "MIT",
   "devDependencies": {
+    "@rushstack/heft": "^0.45.2",
     "@types/node": "^16.11.12",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "barrelsby": "^2.3.1",
-    "typescript": "^4.6.4",
-    "@rushstack/heft": "^0.45.2"
+    "typescript": "^4.6.4"
   },
   "dependencies": {
+    "immer": "^9.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

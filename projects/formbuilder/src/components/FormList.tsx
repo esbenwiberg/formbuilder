@@ -131,7 +131,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
     }, [setItems, setSelectedItems, setFilteredItems, props.listProps.onItemsRemoved, props.listProps.config.onItemsChange, selectedItems, items, filteredItems])
 
     const buildColumns = useCallback(() : Array<IFormListColumnInfo> => {
-        let propertyOptions = props.schema.options.properties;
+        let propertyOptions = props.schema.properties;
         let columnOptions = props.listProps.columnConfig?.columnsPicks;
         let propKeys = Object.keys(propertyOptions);
         let filteredPropKeys = formListHelper.filterColumns(propKeys, columnOptions);
@@ -157,7 +157,7 @@ export const FormList = forwardRef(<T extends IFormItem, FormListRef>(props : IF
             });
         else
             return columns;
-    }, [props.schema.options.properties, props.listProps.columnConfig?.columnsPicks, props.listProps.columnConfig?.columnOrder, formListHelper.filterColumns])
+    }, [props.schema.properties, props.listProps.columnConfig?.columnsPicks, props.listProps.columnConfig?.columnOrder, formListHelper.filterColumns])
 
     const sortColumn = useCallback((column: IFormListColumnInfo) : void => {
         if (column == null) return;

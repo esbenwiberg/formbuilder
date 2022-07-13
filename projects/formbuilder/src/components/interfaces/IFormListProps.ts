@@ -6,7 +6,7 @@ import { ValidationOverride } from "../../models/validation/ValidationOverride";
 import { IFormBuilderListProps, ISchemaConfig } from "../FormBuilder";
 
 export interface IFormListProps<T extends IFormItem> {
-    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "registeredSchemaKey" | "schemaProvider">;
+    schemaConfig: RequireOnlyOne<ISchemaConfig<T>, "schema" | "schemaProvider">;
     items: Array<T>;
     schema: IFormSchema<T>;
     groupContainer?: React.FC<{groupings: Array<IFormGrouping>}>;

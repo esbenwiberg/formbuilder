@@ -10,7 +10,7 @@ import { IFormGrouping } from '../interfaces/IFormGrouping';
 import { IPropertyOverrides } from '../interfaces/IPropertyOverrides';
 import { formbuilder } from '../utils/FormBuilderInitializer';
 import { ILoadingProps } from '../builders/interfaces/ILoadingProps';
-import { ISchemaProvider } from '../interfaces/schema/ISchemaProvider';
+import { SchemaProvider } from '../interfaces/schema/ISchemaProvider';
 import { schemaFromConfig } from '../utils/schema/schemaFromConfig';
 import { IFormItem } from '../interfaces/form/IFormItem';
 import { IFormBuilderListConfig } from '../interfaces/lists/IFormBuilderListConfig';
@@ -39,7 +39,7 @@ export interface IFormBuilderListProps<T extends IFormItem> {
 }
 
 export interface ISchemaConfig<T extends IFormItem> {
-    schemaProvider?: ISchemaProvider<T>;
+    schemaProvider?: SchemaProvider<T>;
     schema?: IFormSchema<T>;
 }
 
@@ -108,7 +108,7 @@ export const FormBuilder = <T extends IFormItem>(props : IFormBuilderProps<T> & 
                             items={item}
                             schema={schema}
                             {...props as any} // TODO: fucking T type mismatch for some reason (ewi)
-                            listProps={props.listProps ?? schema.options.listOptions}
+                            listProps={props.listProps ?? schema.listOptions}
                             keyPrefix={`${props.keyPrefix}-list`}
                             readOnly={props.propertyOverrides?.disabledProps === true}
                         />

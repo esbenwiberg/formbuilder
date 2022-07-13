@@ -117,16 +117,16 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
     }, [schema, item, validationResults])
 
     const buildGroupings = () => {
-        if (schema?.options?.groups == null) {
+        if (schema?.groups == null) {
             setGroupsHandled(true);
             return;
         }
 
-        let groups = schema?.options?.groups;
+        let groups = schema?.groups;
 
         let groupedProps: {[key: string] : Array<string>} = {};
-        Object.keys(schema.options.properties).forEach(_ => {
-            let prop = schema.options.properties[_];
+        Object.keys(schema.properties).forEach(_ => {
+            let prop = schema.properties[_];
             if (prop.hide?.(item)) return;
             let groupKey = prop.group ?? "";
             if (groupedProps[groupKey] == null)
@@ -170,7 +170,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
         clone[property as keyof IFormItem] = value;
         // setItem(clone);
         // validateItem(clone, schema, ValidationEventType.Change, property);
-        var onChanged = schema?.options.properties[property]?.onChanged;
+        var onChanged = schema?.properties[property]?.onChanged;
         if (onChanged != null) {
             let result = onChanged(clone);
             if (result?.refreshDynamicSchema) {
@@ -190,7 +190,7 @@ export const Form = forwardRef(<T extends IFormItem, FormRef>(props : IFormItemP
 
     const propertyRenderProps: IItemRenderProps<T> = {
         item: item,
-        schema: schema.options,
+        schema: schema,
         onChange: onPropertyChange,
         onBlur: (prop: string) => validateItem(item, schema, ValidationEventType.Blur, prop),
         validationResults: validationResults,

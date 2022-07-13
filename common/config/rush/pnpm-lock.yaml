@@ -30,6 +30,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-react-hooks: ^4.3.0
   husky: ^7.0.4
+  immer: ^9.0.15
   react: ^17.0.2
   react-dom: ^17.0.2
   rollup: ^2.61.1
@@ -37,7 +38,7 @@ specifiers:
   rollup-plugin-terser: ^7.0.2
   rollup-plugin-typescript2: ^0.31.1
   standard-version: ^9.3.2
-  typescript: ^4.5.4
+  typescript: ^4.6.4
 
 dependencies:
   '@babel/core': 7.17.10
@@ -69,6 +70,7 @@ dependencies:
   eslint-plugin-prettier: 4.0.0_343238fd071b66c61a278b522fc82317
   eslint-plugin-react-hooks: 4.5.0_eslint@8.15.0
   husky: 7.0.4
+  immer: 9.0.15
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   rollup: 2.72.1
@@ -7824,6 +7826,10 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
+  /immer/9.0.15:
+    resolution: {integrity: sha512-2eB/sswms9AEUSkOm4SbV5Y7Vmt/bKRwByd52jfLkW4OLYeaTP3EEiJ9agqU0O/tq6Dk62Zfj+TJSqfm1rLVGQ==}
+    dev: false
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -12998,7 +13004,7 @@ packages:
     dev: false
 
   file:projects/fluentui-builder.tgz:
-    resolution: {integrity: sha512-Jsg8Rcp7wQcV4ZoDFRaUCF8MOT1vPz06nOH5/Pn9T/8CzsnoLG/BgC4ZlLF/3CmXTNZG3D4DMrFoGZpxClIHhQ==, tarball: file:projects/fluentui-builder.tgz}
+    resolution: {integrity: sha512-mBOIOJ2SbgYLv9LvAQilcJ3MwfsdgvvSTRIRTVi5QOodNGv2ntIsoJUfCOUiWIGXafW6/+/cDu/gOGloYwZlfg==, tarball: file:projects/fluentui-builder.tgz}
     name: '@rush-temp/fluentui-builder'
     version: 0.0.0
     dependencies:
@@ -13014,7 +13020,7 @@ packages:
     dev: false
 
   file:projects/formbuilder.tgz:
-    resolution: {integrity: sha512-/ZSHORFmGB+gnK+r4VdPYUASUh/qlkA63jz3dEuE8mh9aZ3HgONnNm8Zo8U59EJ8nnMP4pAxvfk1llV3ngHUHw==, tarball: file:projects/formbuilder.tgz}
+    resolution: {integrity: sha512-X0JAfQrzi4GsN8+eV9BJmZk6e8b1qpHkwOrvAH58QbZ1Qv53SslfGLSpP7GbrMLYiQgEbnkusqnD18FT0sOM8g==, tarball: file:projects/formbuilder.tgz}
     name: '@rush-temp/formbuilder'
     version: 0.0.0
     dependencies:
@@ -13023,13 +13029,14 @@ packages:
       '@types/react': 17.0.45
       '@types/react-dom': 17.0.16
       barrelsby: 2.3.4
+      immer: 9.0.15
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.6.4
     dev: false
 
   file:projects/storybook.tgz_@types+react-dom@17.0.16:
-    resolution: {integrity: sha512-aMPPVruYL06X/4pBrpWEp9O/GbGBcGt7cWfDKNmrmw6najvwwId2/xiClQ3D2x0KSE/v60yYRuIKYwnHOqVY+g==, tarball: file:projects/storybook.tgz}
+    resolution: {integrity: sha512-QXdfVglZkwGxoWWqcmWfAqu4z3faqJr+XzURABZ/Hjak0eTkQCIsBpBmRkB3cfBQ60UNPex1N6802pUZQfF1Jw==, tarball: file:projects/storybook.tgz}
     id: file:projects/storybook.tgz
     name: '@rush-temp/storybook'
     version: 0.0.0

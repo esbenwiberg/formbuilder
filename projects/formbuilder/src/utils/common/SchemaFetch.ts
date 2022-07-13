@@ -3,25 +3,25 @@ import { IFormItem } from "../../interfaces/form/IFormItem";
 import { IPropertyOverrides } from "../../interfaces/IPropertyOverrides";
 import { IFormItemOptions } from "../../interfaces/options/IFormItemOptions";
 import { IFormSchema } from "../../interfaces/schema/IFormSchema";
-import { ISchemaProvider } from "../../interfaces/schema/ISchemaProvider";
+import { SchemaProvider } from "../../interfaces/schema/ISchemaProvider";
 import { RecursivePartial } from "../../interfaces/types/Partials";
-import { formSchemaUtil } from "./FormSchemaUtil";
 import { mergeDeep } from "./MergeObjects";
+// import { formSchemaUtil } from "./FormSchemaUtil";
 
-export const fetchSchemaFromMap = async <T extends IFormItem>(schemaMapKey: string, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
-    let schema = await formSchemaUtil.getSchemaFromMap<T>(schemaMapKey, dynamicKey);
-    return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
-};
+// export const fetchSchemaFromMap = async <T extends IFormItem>(schemaMapKey: string, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+//     let schema = await formSchemaUtil.getSchemaFromMap<T>(schemaMapKey, dynamicKey);
+//     return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
+// };
 
-export const fetchSchema = async <T extends IFormItem>(schemaProvider: ISchemaProvider<T>, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
-    let schema = await schemaProvider.getSchema(dynamicKey);
+export const fetchSchema = async <T extends IFormItem>(schemaProvider: SchemaProvider<T>, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : Promise<IFormSchema<T> | undefined> => {
+    let schema = await schemaProvider(dynamicKey);
     return mergeSchema(schema, formItemConfigOverrides, propertyOverrides, dynamicKey);
 };
 
 export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefined, formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>, propertyOverrides?: IPropertyOverrides<T>, dynamicKey?: string) : IFormSchema<T> | undefined => {
     if (schema == null) return undefined;
     // merge with overrides
-    let merged: IFormItemOptions<T> = mergeDeep<IFormItemOptions<T>>(schema?.options, formItemConfigOverrides);
+    let merged: IFormItemOptions<T> = mergeDeep<IFormItemOptions<T>>(schema, formItemConfigOverrides);
     // property overrides
     let disabledOverrides = propertyOverrides?.disabledProps;
     let hiddenOverrides = propertyOverrides?.hiddenProps;
@@ -52,6 +52,5 @@ export const mergeSchema = <T extends IFormItem>(schema: IFormSchema<T> | undefi
         }
     })
     
-    schema.options = merged as any;
-    return schema;
+    return merged;
 };
