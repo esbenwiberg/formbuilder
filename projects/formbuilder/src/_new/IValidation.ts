@@ -14,3 +14,7 @@ export interface IValidation<T extends IFormItem> {
     /** use this when validating a child form item */
     nestedValidation?: RequireOnlyOne<INestedValidation<any>>;
 }
+
+export interface IValidationResult {
+    
+}

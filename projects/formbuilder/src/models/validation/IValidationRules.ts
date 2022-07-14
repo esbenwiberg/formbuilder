@@ -1,16 +1,14 @@
-import { IFormSchema, ISchemaProvider, RequireOnlyOne } from "../..";
+import { IFormSchema, SchemaProvider, RequireOnlyOne } from "../..";
 import { IFormItem } from "../../interfaces/form/IFormItem";
 import { ValidationEventType } from "./ValidationEventType";
 import { ValidationMark } from "./ValidationMark";
 
 export interface INestedValidation<T> {
-    schemaProvider?: ISchemaProvider<T>;
+    schemaProvider?: SchemaProvider<T>;
     schema?: IFormSchema<T>;
 }
 
 export interface IValidationRule<T extends IFormItem> {
-    /** the validation rule identifier */
-    id: string;
     /** should this rule be skipped during validation */
     disabled?: boolean;
     /** should this validation rule add a mark to the property label */

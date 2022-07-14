@@ -1,10 +1,7 @@
 import { buildFormItemRender, IFormItemRender } from "../components/helpers/FormItemRender";
-import { IFormItem } from "../interfaces/form/IFormItem";
-import { ISchemaProvider } from "../interfaces/schema/ISchemaProvider";
 import { RecursivePartial } from "../interfaces/types/Partials";
 import { IFormbuilderLanguage } from "../models/language/ILanguage";
 import { initLanguage } from "../models/language/Language";
-import { strings } from "./common/String";
 import { createComplexObjectBuilder } from "../builders/custom/ComplexObjectBuilder";
 import { FormLabel, IFormItemBuilder } from "../builders/interfaces/IFormItemBuilder";
 import { ILoadingProps } from "../builders/interfaces/ILoadingProps";
@@ -29,8 +26,6 @@ export interface IFormBuilder {
     /** verifies that the formbuilder is setup correctly - throws an error if not */
     verify: () => void;
 }
-
-const schemaRegister: { [id: string] : ISchemaProvider<IFormItem> } = {};
 
 export const formbuilder: IFormBuilder = {
     formItemRender: undefined as any,

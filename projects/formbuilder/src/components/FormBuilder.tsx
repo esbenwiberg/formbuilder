@@ -51,7 +51,7 @@ export interface IFormBuilderProps<T extends IFormItem> {
     groupContainer?: React.FC<{groupings: Array<IFormGrouping>}>;
     groupRender?: React.FC<{grouping: IFormGrouping}>;
     validationOverride?: ValidationOverride;
-    formItemConfigOverrides?: RecursivePartial<IFormItemOptions<T>>;
+    formItemConfigOverrides?: RecursivePartial<IFormSchema<T>>;
     propertyOverrides?: IPropertyOverrides<T>;
     loadingProps?: ILoadingProps;
     keyPrefix?: string;

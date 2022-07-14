@@ -62,8 +62,6 @@ export const createComplexObjectBuilder = (labelRender?: FormLabel, validationMe
         return clone;
     };
 
-    
-
     const build = <T extends IFormItem, C extends IDynamicPropertyComponentConfig<T>>(renderProps: IItemRenderProps<T>, property: string, schema: IFormItemPropertyOptions<T, C>) : JSX.Element | undefined => {
         let { item, validationResults } = renderProps;
         

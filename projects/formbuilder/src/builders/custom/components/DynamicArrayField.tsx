@@ -10,8 +10,6 @@ import React from "react";
 import { IFormItem } from '../../../interfaces/form/IFormItem';
 import { FormBuilderListEditorType } from '../../../interfaces/lists/IFormBuilderListEditorConfig';
 import { IFormBuilderListMenuItemSelectionMode } from '../../../interfaces/lists/IFormBuilderListMenuConfig';
-import { IFormItemPropertyOptions } from '../../../interfaces/options/IFormItemPropertyOptions';
-import { IDynamicPropertyComponentConfig } from '../../interfaces/IDynamicPropertyComponentConfig';
 
 interface IProps<T extends IFormItem> extends IPropertyRenderProps<T, IDynamicArrayFieldConfig<T>, Array<any> | undefined> { 
     config?: IDynamicArrayFieldConfig<T>;
@@ -38,10 +36,8 @@ export const DynamicArrayField = <T extends IFormItem>(props: PropsWithChildren<
                 config: { resizable: true },
                 validation: {
                     validationMark: ValidationMark.Required, 
-                    validationRule: (item: IFakeItem) => {
-                        if (item.value == null || item.value === "") return "Value must be specified";
-                        return null;
-                    },
+                    validationRule: (item: IFakeItem) => item.value != null && item.value !== "",
+                    validationMessage: "Value must be specified",
                     validateOn: ValidationEventType.Blur | ValidationEventType.Manual,
                 }
             }
